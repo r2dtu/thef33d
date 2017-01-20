@@ -9,3 +9,9 @@ Laurel Fink:
   github user: lmfink
   slack user: laurel.fink
   trello user: laurelfink
+  
+Kendrick Trinh:
+  email:      ketrinh@ucsd.edu
+  github:     ketrinh
+  slack:      ktrinh
+  trello      kendricktrinh
