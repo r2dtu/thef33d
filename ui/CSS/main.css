@@ -1,0 +1,14 @@
+body {
+    margin: 0;
+    padding: 0;
+    background: #101111;
+}
+
+h1 {
+    text-decoration: none;
+    color: #fff;
+    display: block;
+    font-size: 0.9em;
+    font-weight: lighter;
+    margin-left: 10px;
+}

@@ -1,0 +1,182 @@
+.parallax_main {
+    height: 900px;
+    border-bottom-color: #0073df;
+    border-bottom-style: solid;
+    border-bottom-width: 0px;
+    /*opacity: 0;
+    background-color: #444;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: auto;*/
+    z-index: 0;
+}
+
+.embedded-video {
+    white-space: nowrap;
+    position: relative;
+    transition: 0.5s;
+}
+
+.embedded-video:hover {
+    transition: 0.5s;
+    height: 375px;
+    width: 550px;
+}
+
+.embedded ul {
+    list-style: none;
+    text-align: center;
+}
+
+.embedded li {
+    display: inline-block;
+}
+
+.parallax_main_shrink {
+    height: 40px;
+    transition: 0.7s;
+}
+
+.parallax-fade {
+    opacity: 0.5;
+}
+
+.parallax_main li {
+    text-align: center;
+}
+
+.parallax_main ul {
+    width: auto;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.parallax_display {
+    background-color: #101111;
+    /*background-image: url("img/space_3.jpg");*/
+    height: 100%;
+    position: sticky;
+    /*
+    background-attachment: fixed;
+    background-position: center;
+    */
+    background-repeat: no-repeat;
+    background-size: auto;
+    z-index: 5;
+}
+
+.parallax-settings-wrap {
+    transform: translateY( -62px);
+    background-color: #fff;
+    position: relative;
+    height: 500px;
+    width: auto;
+    font-size: 1em;
+    font-weight: 600;
+    overflow: auto;
+    transition: .7s;
+    z-index: 10;
+    margin-left: 100%;
+    transform: translateY( -48px);
+    opacity: 0.6;
+}
+
+.parallax-settings {
+    transition: 0.7s;
+    margin-left: 0%;
+}
+
+.parallax-settings-hide {
+    opacity: 0;
+}
+
+.parallax-settings-text a {
+    text-decoration: none;
+    font-size: 1.0em;
+    opacity: 1;
+    display: block;
+    list-style: none;
+    color: rgb( 0, 0, 0);
+    text-align: auto;
+}
+
+.parallax-settings-text li {
+    display: inline-block;
+}
+
+.show-button {
+    position: relative;
+    display: inline-block;
+    background-size: auto;
+    transition: 0.7s;
+    opacity: 0.9;
+    margin-left: 98%;
+    marigin-top: 0;
+    z-index: 20;
+    transform: translateY( 447px) translateX( -30px);
+}
+
+.show-button-shink {
+    transition: 0.7s;
+    transform: translateY( -10px) translateX( -20px);
+}
+
+.show-button:hover {
+    cursor: pointer;
+    opacity: 0.75;
+}
+
+.settings-button {
+    position: relative;
+    display: inline-block;
+    background-size: auto;
+    transition: 0.7s;
+    opacity: 0.9;
+    margin-left: 98%;
+    marigin-top: 0;
+    z-index: 20;
+    transform: translateY( 470px);
+}
+
+.settings-button:hover {
+    cursor: pointer;
+    opacity: 0.7;
+}
+
+.settings-button-open {
+    transform: rotate(50deg) translateY( 20px) translateX( 10px);
+    transition: 0.7s
+}
+
+.settings-button-shrink {
+    transition: 0.7s;
+    transform: translateY( 12px) translateX( 7px);
+}
+
+.parallax_main_1 {
+    background-image: url("img/Lunar1.jpg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    z-index: -500;
+    transform: translateZ(-999px);
+}
+
+.parallax_main_2 {
+    background-image: url("img/cooking.jpg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    z-index: 500;
+    transform: translateZ(999px);
+}
+
+.parallax_main_3 {
+    background-image: url("img/space_3.jpg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    z-index: 600;
+    transform: translateZ(1000px);
+}
