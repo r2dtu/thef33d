@@ -20,7 +20,7 @@
 
 
 <div id="container">
-  <form action="file:///C:/Users/Wyatt/Desktop/Atom%20Dir/CSE_110/index.html" method="post" autocomplete="on">
+  <form action="file:///C:/Users/Wyatt/Desktop/Atom%20Dir/teamteam/ui/index.html" method="post" autocomplete="on">
     <div id="UpperLabels">
       <lable for="username">Username:</label>
       <input type="text" id="username" placeholder="Enter User Name"name="username" required autofocus>
@@ -45,6 +45,37 @@
   </p>
   <button id="createButton" type="submit">Create an Account</button>
 </div>
+
+<div class="createAccountsPanel">
+
+  <table id="AccountTable" border="0" width="900" height="200">
+
+    <th> Email </th>
+    <tr>
+      <td>
+      <input type="text" id="email" placeholder="Enter email" name="email" ></td>
+      <td><select>
+        <option value="friend_name"> What is your best friend's name? </option>
+        <option value="pet"> What is your pet's name? </option>
+      </select></td>
+    </tr>
+
+      <th> Password </th>
+      <tr>
+      <td>
+        <input type="password" id="password" placeholder="Enter Password" name="password" >
+      </td>
+      <td>
+        <input type="text" id="securityAnswer" placeholder="Enter your answer" name="securityAnswer">
+      </td>
+    </tr>
+  </table>
+
+
+  <button id="SubmitAcc" type="submit"> Submit </button>
+
+</div>
+
 
 <div class="parallax_login_2"> </div>
 
