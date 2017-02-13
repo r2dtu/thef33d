@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).ready( function() {
 
     var $toggleButton = $('.toggle-button'),
         $parallax1 = $('.parallax_main_1'),
@@ -6,21 +6,32 @@ $(document).ready(function() {
         $parallax3 = $('.parallax_main_3');
 
     var height = 0;
+    var seethru = 0;
 
     // Hamburger button
     $(document).scroll(function() {
         //alert($(document).scrollTop() + " px");
 
         height = $(document).scrollTop();
+        
+        if( height < 60 ){
+            
+            $parallax1.css('opacity', '1.0');
+            
+        }
 
-        if( height > 70 && height < 436 ){
-
+        if( height > 200 && height < 600 ){
+            
+            seethru = 1 - ((height-200)/600);
+            $parallax1.css('opacity', seethru);
             $parallax2.css('transform', 'translateY(' + -height + 'px)');
+            $parallax3.css('transform', 'translateY(' + -height + 'px)');
 
-        }else if( height > 436 ){
+        }else if( height > 600 ){
 
-            var set = height;
-            $parallax3.css('transform', 'translateY(' + -set + 'px)');
+            seethru = 1 - ( (height - 600) / 500);
+            $parallax2.css('opacity', seethru);
+            $parallax3.css('transform', 'translateY(' + -height + 'px)');
 
         }
 

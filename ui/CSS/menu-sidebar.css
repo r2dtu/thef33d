@@ -1,3 +1,20 @@
+:root {
+
+    /*Lite
+    --primary: #ffffff;
+    --secondary: #00FF7F;
+    */
+        
+    /*Dark
+    --primary: #101111;
+    --secondary: #0073df;
+    
+    /*Red*/
+    --primary: #101111;
+    --secondary: #990000;
+
+}
+
 .user-display {
     background-image: url("img/login_background.jpg");
     width: 90px;
@@ -57,29 +74,29 @@
 }
 
 .menu li:hover {
-    background-color: #0073df;
+    background-color: var(--secondary);
     transition: .5s background-color;
     width: 140px;
 }
 
 .menu li {
-    background-color: #444;
+    background-color: var(--primary);
     margin-top: 0;
     margin-bottom: 0;
     margin-left: -40px;
     border-bottom-style: solid;
     border-top-style: solid;
     border-width: thin;
-    border-color: #0073df;
+    border-color: var(--secondary);
     height: 120px;
     width: 90px;
     font-size: 2.0em;
     font-weight: bolder;
-    color: #fff;
+    color: var(--primary);
 }
 
 .menu-wrap {
-    background-color: #101111;
+    background-color: var(--primary);
     position: fixed;
     top: 0;
     height: 100%;
@@ -99,6 +116,6 @@
     text-align: center;
     text-decoration: none;
     font-size: 3.0em;
-    color: #0073df;
+    color: #fff;
     margin: 0;
 }

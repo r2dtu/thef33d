@@ -1,7 +1,25 @@
+:root {
+
+    /*Lite
+    --primary: #ffffff;
+    --secondary: #00FF7F;
+    */
+        
+    /*Dark
+    --primary: #0073df;
+    --secondary: #101111;
+    
+    /*Red*/
+    --primary: #101111;
+    --secondary: #990000;
+    
+
+}
+
 .nav {
     border-bottom-style: solid;
     border-bottom-width: 10px;
-    border-bottom-color: #0073df;
+    border-bottom-color: var( --secondary );
 }
 
 .hideNav {
@@ -12,7 +30,7 @@
 
 .nav ul {
     list-style: none;
-    background-color: #0073df;
+    background-color: var( --secondary );
     text-align: center;
     padding: 0;
     margin: 0;
@@ -26,12 +44,11 @@
 }
 
 .nav a:hover {
-    background-color: #0073df; /*was #005f5f */
+    /*background-color: #0073df; was #005f5f */
 }
 
 .nav a.active {
     background-color: #fff;
-    color: #444;
     cursor: default;
 }
 
@@ -44,7 +61,7 @@
         border-bottom: none;
         height: 60px;
         line-height: 60px;
-        font-size: 1.0em;
+        font-size: 1.1em;
         display: inline-block;
         margin-right: -4px;
     }

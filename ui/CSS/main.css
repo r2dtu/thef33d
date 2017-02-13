@@ -1,7 +1,25 @@
+:root {
+
+    /*Lite
+    --primary: #ffffff;
+    --secondary: #00FF7F;
+    */
+        
+    /*Dark
+    --primary: #101111;
+    --secondary: #0073df;
+    
+    /*Red*/
+    --primary: #101111;
+    --secondary: #990000;
+    
+
+}
+
 body {
     margin: 0;
     padding: 0;
-    background: #101111;
+    background: var(--primary);
 }
 
 h1 {

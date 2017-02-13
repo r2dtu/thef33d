@@ -1,3 +1,21 @@
+:root {
+
+    /*Lite
+    --primary: #ffffff;
+    --secondary: #00FF7F;
+    */
+
+    /*Dark
+    --primary: #101111;
+    --secondary: #0073df;
+    
+    /*Red*/
+    --primary: #101111;
+    --secondary: #990000;
+
+
+}
+
 .main-panel-shift {
     transition: .5s;
     margin-left: 90px;
@@ -5,7 +23,7 @@
 
 .main-panel {
     transition: .5s;
-    background-color: #101111;
+    background-color: var(--primary);
     height: 100%;
     margin-bottom: 0;
 }
