@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<!-- Check for new idea: http://www.pellmell.fr/ -->
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,18 +10,11 @@
 
     <!-- Links to CSS ------------------------------------------------------------->
 
-    <link rel="stylesheet" type="text/css" href="CSS/variables.css">
-    <link rel="stylesheet" type="text/css" href="CSS/navBarStyle.css">
     <link rel="stylesheet" type="text/css" href="CSS/parallax.css">
-    <link rel="stylesheet" type="text/css" href="CSS/animate.min.css">
-    <link rel="stylesheet" type="text/css" href="CSS/dotstyle.css">
     <link rel="stylesheet" type="text/css" href="CSS/hamburger.css">
-    <link rel="stylesheet" type="text/css" href="CSS/menu-sidebar.css">
     <link rel="stylesheet" type="text/css" href="CSS/main-panel.css">
-    <link rel="stylesheet" type="text/css" href="CSS/dropdown.css">
-    <link rel="stylesheet" type="text/css" href="CSS/menu-dropdown.css">
     <link rel="stylesheet" type="text/css" href="CSS/main.css">
-    <link rel="stylesheet" type="text/css" href="CSS/addCategory.css">
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet"> 
 
     <!-- End links to CSS --------------------------------------------------------->
 
@@ -28,53 +23,9 @@
 
 <body>
 
-    <!-- Side pannel that slides in and out --------------------------------------->
-
-    <div class="menu-wrap">
-        <div class="menu-sidebar">
-
-            <!--<div class="user-display">
-                <ul>
-                    <img class="user-pic" src="CSS/img/Profile.jpg">
-                    <li class="user-name"><a href="#">Austin Coleman</a></li>
-                </ul>
-            </div>-->
-
-            <h2 class="FeedF">F</h2>
-
-            <ul class="menu">
-                <li id="cat1"><a href="#channel_1"></a></li>
-                <li id="cat2"><a href="#channel_2"></a></li>
-                <li id="cat3"><a href="#channel_3"></a></li>
-            </ul>
-
-            <div id="addCategory" class="addCategory-button">
-
-                <div class="wrapper-addCategory">
-                    <div class="addCategory-bar addCategory-bar-vert"></div>
-                    <div class="addCategory-bar addCategory-bar-hori"></div>
-                </div>
-
-            </div>
-
-        </div>
-    </div>
-
-    <!-- End of sliding side pannel ----------------------------------------------->
-
     <div class="main-panel">
 
         <!-- Top of screen navigation bar --------------------------------------------->
-
-        <div class="nav">
-            <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Login</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">News</a></li>
-                <li><a href="#">Contact</a></li>
-            </ul>
-        </div>
 
         <div class="toggle-button">
 
@@ -85,31 +36,32 @@
             </div>
         </div>
 
-        <div id="dropdown" class="dropdown-button">
-
-            <div class="wrapper-dropdown">
-                <div class="dropdown-bar dropdown-bar-left"></div>
-                <div class="dropdown-bar dropdown-bar-right"></div>
-            </div>
-        </div>
-
-
         <!-- End of top of screen navigation bar -------------------------------------->
 
+        
+        <div class="nav-menu">
+            
+            <h1 class="FeedLogo">The Feed.</h1>
+            
+            <ul class="nav-menu-list">
+                <li onclick="hideMenu()"><a href="#mainparallax1">Moon</a></li>
+                <li onclick="hideMenu()"><a href="#mainparallax2">Snowy Mountains</a></li>
+                <li onclick="hideMenu()"><a href="#mainparallax3">Rainforest</a></li>
+            </ul>
+        </div>
 
         <!-- Start of parallax effect ------------------------------------------------->
 
-        <div class="parallax_display">
 
-            <div id="mainparallax1" class="parallax_main parallax_main_1">
-                <div id="settingsButton1" class="settings-button">
-                    <img src="CSS/img/settings-gear.jpg" height="20px" width="20px" />
-                </div>
-                <div id="showButton1" class="show-button">
-                    <img src="CSS/img/show.jpeg" height="20px" width="20px" />
-                </div>
-                <div class="embedded">
-                    <!--
+        <div id="mainparallax1" class="parallax_main parallax_main_1">
+            <div id="settingsButton1" class="settings-button">
+                <img src="CSS/img/settings-gear.jpg" height="20px" width="20px" />
+            </div>
+            <div id="showButton1" class="show-button">
+                <img src="CSS/img/show.jpeg" height="20px" width="20px" />
+            </div>
+            <div class="embedded">
+                <!--
                   <ul>
                     <li><iframe width="500" height="315" src="https://www.youtube.com/embed/FhC9R9oCAVk" frameborder="0" allowfullscreen></iframe></li>
                     <li><iframe width="500" height="315" src="https://www.youtube.com/embed/_Z-f3RSNUsQ" frameborder="0" allowfullscreen></iframe></li>
@@ -117,71 +69,61 @@
                     <li><iframe width="500" height="315" src="https://www.youtube.com/embed/UXnJ95N0F8I" frameborder="0" allowfullscreen></iframe></li>
                   </ul>
                   -->
-                </div>
-                <div id="parallaxSettings1" class="parallax-settings-wrap">
-                    <div class="parallax-settings">
-                        <ul class="parallax-settings-text">
-                            <li><a href="#">Background Image: </a></li>
-                        </ul>
+            </div>
+            <div id="parallaxSettings1" class="parallax-settings-wrap">
+                <div class="parallax-settings">
+                    <ul class="parallax-settings-text">
+                        <li><a href="#">Background Image: </a></li>
+                    </ul>
 
-                    </div>
                 </div>
             </div>
-            <!--
-        <div class="parallax_display">
         </div>
--->
 
-            <div id="mainparallax2" class="parallax_main parallax_main_2">
-                <div id="settingsButton2" class="settings-button">
-                    <img src="CSS/img/settings-gear.jpg" height="20px" width="20px" />
-                </div>
-                <div id="showButton2" class="show-button">
-                    <img src="CSS/img/show.jpeg" height="20px" width="20px" />
-                </div>
-                <div id="parallaxSettings2" class="parallax-settings-wrap">
-                    <div class="parallax-settings">
-                        <ul class="parallax-settings-text">
-                            <li><a href="#">Background Image: </a></li>
-                        </ul>
-                    </div>
+        <div id="mainparallax2" class="parallax_main parallax_main_2">
+            <div id="settingsButton2" class="settings-button">
+                <img src="CSS/img/settings-gear.jpg" height="20px" width="20px" />
+            </div>
+            <div id="showButton2" class="show-button">
+                <img src="CSS/img/show.jpeg" height="20px" width="20px" />
+            </div>
+            <div id="parallaxSettings2" class="parallax-settings-wrap">
+                <div class="parallax-settings">
+                    <ul class="parallax-settings-text">
+                        <li><a href="#">Background Image: </a></li>
+                    </ul>
                 </div>
             </div>
-
-            <!--
-        <div class="parallax_display">
         </div>
--->
 
-            <div id="mainparallax3" class="parallax_main parallax_main_3">
-                <div id="settingsButton3" class="settings-button">
-                    <img src="CSS/img/settings-gear.jpg" height="20px" width="20px" />
-                </div>
-                <div id="showButton3" class="show-button">
-                    <img src="CSS/img/show.jpeg" height="20px" width="20px" />
-                </div>
-                <div id="parallaxSettings3" class="parallax-settings-wrap">
-                    <div class="parallax-settings">
-                        <ul class="parallax-settings-text">
-                            <li><a href="#">Background Image: </a></li>
-                        </ul>
-                    </div>
+        <div id="mainparallax3" class="parallax_main parallax_main_3">
+            <div id="settingsButton3" class="settings-button">
+                <img src="CSS/img/settings-gear.jpg" height="20px" width="20px" />
+            </div>
+            <div id="showButton3" class="show-button">
+                <img src="CSS/img/show.jpeg" height="20px" width="20px" />
+            </div>
+            <div id="parallaxSettings3" class="parallax-settings-wrap">
+                <div class="parallax-settings">
+                    <ul class="parallax-settings-text">
+                        <li><a href="#">Background Image: </a></li>
+                    </ul>
                 </div>
             </div>
-
-            <!--        <div class="parallax_display"> -->
         </div>
 
-        <!-- End of parallax effect --------------------------------------------------->
     </div>
 
     <h1>copyright: The Feed Team 2017</h1>
 
 </body>
 
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js" type="text/javascript"></script> 
+<script src="jquery.localscroll.js" type="text/javascript"></script> 
+    
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript" src="javascript/hamburger.js"></script>
-<script type="text/javascript" src="javascript/crush.js"></script>
+<!--<script type="text/javascript" src="javascript/crush.js"></script>-->
 <script type="text/javascript" src="javascript/dropdown.js"></script>
 <script type="text/javascript" src="javascript/settings-button.js"></script>
 <script type="text/javascript" src="javascript/parallax.js"></script>

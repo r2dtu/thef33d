@@ -8,18 +8,26 @@ $(document).ready( function() {
     var height = 0;
     var seethru = 0;
 
-    // Hamburger button
     $(document).scroll(function() {
-        //alert($(document).scrollTop() + " px");
 
+        
         height = $(document).scrollTop();
         
-        if( height < 60 ){
+        if( height < 400 ){
             
-            $parallax1.css('opacity', '1.0');
+            $parallax1.css('transform', 'translateY(' + height + 'px)');
+            $parallax2.css('transform', 'translateY(' + -height + 'px)');
+            $parallax3.css('transform', 'translateY(' + -height + 'px)');
+            
+        }else if( height < 800 ){
+            
+            $parallax1.css('transform', 'translateY(' + height + 'px)');
+            $parallax2.css('transform', 'translateY(' + height + 'px)');
+            $parallax3.css('transform', 'translateY(' + -height + 'px)');
             
         }
 
+        /*
         if( height > 200 && height < 600 ){
             
             seethru = 1 - ((height-200)/600);
@@ -34,6 +42,7 @@ $(document).ready( function() {
             $parallax3.css('transform', 'translateY(' + -height + 'px)');
 
         }
+        */
 
     });
 });

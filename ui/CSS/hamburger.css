@@ -15,7 +15,7 @@ body {
     transform: translate(-22px, -20px);/*was -22, -20 and absolute*/
     padding: 2px;
     transition: .25s;
-    z-index: 15;
+    z-index: 10001;
 }
 
 .toggle-button:hover {
@@ -50,20 +50,17 @@ body {
 }
 
 .button-open .menu-bar-top {
-    margin-left: 90px;
     transform: rotate(45deg) translate(8px, 8px);
     transition: .5s;
 }
 
 .button-open .menu-bar-middle {
-    margin-left: 90px;
     transform: translate(230px);
     transition: .1s ease-in;
     opacity: 0;
 }
 
 .button-open .menu-bar-bottom {
-    margin-left: 90px;
     transform: rotate(-45deg) translate(8px, -7px);
     transition: .5s;
 }

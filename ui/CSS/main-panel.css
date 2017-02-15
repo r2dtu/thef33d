@@ -1,10 +1,8 @@
 :root {
-
     /*Lite
     --primary: #ffffff;
     --secondary: #00FF7F;
     */
-
     /*Dark
     --primary: #101111;
     --secondary: #0073df;
@@ -12,14 +10,66 @@
     /*Red*/
     --primary: #101111;
     --secondary: #990000;
-
-
 }
 
-.main-panel-shift {
-    transition: .5s;
-    margin-left: 90px;
+
+
+.nav-menu {
+    opacity: 1.0;
+    background-color: black;
+    z-index: -10000;
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    transition: 1.2s;
 }
+.nav-menu ul {
+    list-style: none;
+    text-align: left;
+    padding: 0;
+    margin-top: 5%;
+}
+.nav-menu a {
+    font-family: 'Ubuntu', sans-serif;
+    text-decoration: none;
+    color: #fff;
+    transition: 0.5s;
+    opacity: 1.0;
+}
+.nav-menu a:hover {
+    opacity: 0.5;
+    transition: 0.7s;
+}
+.nav-menu a.active {
+    transition: 0.5s;
+    opacity: 0;
+    background-color: #fff;
+    cursor: default;
+}
+.nav-menu li {
+    width: 100%;
+    border-bottom: none;
+    height: 10%;
+    line-height: 60px;
+    font-size: 3.0em;
+    display: inline-block;
+    margin-left: 4%;
+    margin-bottom: 1%;
+}
+
+.FeedLogo {
+    text-align: right;
+    display: block;
+    color: #fff;
+    font-family: 'Ubuntu', sans-serif;
+    text-decoration: none;
+    opacity: 1.0;
+    margin-right: 2%;
+    margin-top:: 2%;
+    font-size: 1.5em;
+}
+
+
 
 .main-panel {
     transition: .5s;
