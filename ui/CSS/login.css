@@ -111,32 +111,6 @@ input[type=text], input[type=password]{
   padding: 12px 20px;
   margin: 8px 0;
   display: inline-block;
-<<<<<<< HEAD
   border: 1px solid #ccc;
   box-sizing: border-box;
 } */
-=======
-  padding: 15px 15px;
-  margin: 60px 100px;
-}
-
-.createAccountsPanel{
-
-  background-color: black;
-}
-
-#SubmitAcc {
-  float: right;
-  background-color: #0fadc3;
-  color: white;
-
-  padding: 20px 20px;
-  margin: 100px 200px;
-
-  font-size: 20px;
-
-  border: 2px;
-  border-radius: 5px;
-  cursor: pointer;
-}
->>>>>>> efa288c29195dbf4974cd9e288b47d58483a2a2b
