@@ -57,5 +57,76 @@
 </form> -->
 
 </body>
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script>
+
+var user_info;
+
+$(document).ready(function(){
+
+    $("#loginButton").click(function(){
+
+      var username = $("#username").val();
+      var password = $("#password").val();
+      var loginData = {"message": "login", "username": username, "password": password}
+
+      var request;
+
+      request = $.ajax({
+          url: "../server/main.php",
+          type: "POST",
+          data: loginData
+      });
+
+      // Callback handler that will be called on success
+      request.done(function (response, textStatus, jqXHR){
+          user_info = JSON.parse(response);
+          if(user_info.can_login == "yes"){
+            window.location.href = "../ui/index.html";
+          }else if(user_info.can_login == "no"){
+            alert("Wrong username or password. Try again or make an account below.");
+          }else{
+            alert("Database issue: " + user_info.error);
+          }
+      });
+
+      // Callback handler that will be called on failure
+      request.fail(function (jqXHR, textStatus, errorThrown){
+          alert("HTTPRequest: " + textStatus + " " + errorThrown);
+      });
+
+    });
+    $("#createButton").click(function(){
+      var username = $("#username").val();
+      var password = $("#password").val();
+      var createData = {"message": "create_account", "username": username, "password": password}
+
+      var request;
+
+      request = $.ajax({
+          url: "../server/main.php",
+          type: "POST",
+          data: createData
+      });
+
+      // Callback handler that will be called on success
+      request.done(function (response, textStatus, jqXHR){
+          user_info = JSON.parse(response);
+          if(user_info.can_create == "yes"){
+            window.location.href = "../ui/index.html";
+          }else if(user_info.can_create == "no"){
+            alert("Email already exists with a current account");
+          }else{
+            alert("Database issue: " + user_info["error"]);
+          }
+      });
+
+      // Callback handler that will be called on failure
+      request.fail(function (jqXHR, textStatus, errorThrown){
+          alert("HTTPRequest: " + textStatus + " " + errorThrown);
+      });
+    });
+});
+</script>
 
 </html>
