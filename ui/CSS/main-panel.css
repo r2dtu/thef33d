@@ -15,7 +15,7 @@
 
 
 .nav-menu {
-    opacity: 1.0;
+    opacity: 0.0;
     background-color: black;
     z-index: -10000;
     position: fixed;
@@ -24,6 +24,7 @@
     transition: 1.2s;
 }
 .nav-menu ul {
+    width: 50%;
     list-style: none;
     text-align: left;
     padding: 0;
@@ -53,8 +54,9 @@
     line-height: 60px;
     font-size: 3.0em;
     display: inline-block;
-    margin-left: 4%;
+    margin-left: 7%;
     margin-bottom: 1%;
+    float: left;
 }
 
 .FeedLogo {
@@ -69,7 +71,21 @@
     font-size: 1.5em;
 }
 
-
+.addScreen {
+    text-align: center;
+    color: #fff;
+    float: right;
+    margin-top: 27%;
+    margin-right% -10%;
+    font-family: 'Ubuntu', sans-serif;
+    text-decoration: none;
+    opacity: 1.0;
+    width: 10%;
+    height: 5%;
+    font-size: 4.0em;
+    display: inline-block;
+    transition: 0.7s;
+}
 
 .main-panel {
     transition: .5s;
