@@ -165,3 +165,69 @@ input[type=checkbox] {
   padding: 15px 15px;
   margin: 60px 100px;
 }
+
+#createAccountLayer{
+  background-color: rgb( 65, 63, 67);
+  height: 300px;
+}
+
+#EmailHeader{
+  font-size: 20px;
+
+  color: white;
+  padding-top: 15px;
+}
+
+#SecQuestionHeader{
+  color: white;
+  /*padding-left: 620px;*/
+  padding-left: 33%;
+  font-size: 20px;
+}
+
+#PasswordHeader{
+  color: white;
+  font-size: 20px;
+
+}
+
+#SQAnswerHeader{
+  color:white;
+  font-size: 20px;
+
+}
+
+#emailInput{
+  margin-top: 30px;
+  margin-left: 100px;
+}
+
+#securityQuestionDropdown{
+  margin-left: 200px;
+  padding-right: 70px;
+  height: 40px;
+}
+
+#passwordInput{
+  margin-top: 50px;
+  margin-left: 100px;
+}
+
+#securityAnswer{
+  margin-left: 200px;
+}
+
+#submitAccount{
+  float: right;
+  background-color: #0fadc3;
+  color: white;
+
+  padding: 20px 20px;
+  margin: 100px 250px;
+
+  font-size: 20px;
+
+  border: 2px;
+  border-radius: 5px;
+  cursor: pointer;
+}
