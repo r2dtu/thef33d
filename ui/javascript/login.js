@@ -1,5 +1,3 @@
-var user_info;
-
 $(document).ready(function(){
 
     $("#login_button").click(function(){
@@ -9,14 +7,14 @@ $(document).ready(function(){
       var loginData = {"message": "login", "username": username, "password": password}
 
       request = $.ajax({
-          url: "php/main.php",
+          url: "php/login.php",
           type: "POST",
           data: loginData
       });
 
       // Callback handler that will be called on success
       request.done(function (response, textStatus, jqXHR){
-          user_info = JSON.parse(response);
+          var user_info = JSON.parse(response);
           if(user_info.can_login == "yes"){
             window.location.href = "index.html";
           }else if(user_info.can_login == "no"){
@@ -40,14 +38,14 @@ $(document).ready(function(){
       var request;
 
       request = $.ajax({
-          url: "php/main.php",
+          url: "php/login.php",
           type: "POST",
           data: createData
       });
 
       // Callback handler that will be called on success
       request.done(function (response, textStatus, jqXHR){
-          user_info = JSON.parse(response);
+          var user_info = JSON.parse(response);
           if(user_info.can_create == "yes"){
             window.location.href = "index.html";
           }else if(user_info.can_create == "no"){

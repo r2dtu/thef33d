@@ -3,6 +3,7 @@ session_start();
 
 include 'error.php';
 
+/********* OPEN PDO DATABASE CONNECTION *********/
 try{
   $conn = new PDO("mysql:host=localhost;dbname=cseclasses", root, root);
 }
@@ -41,11 +42,7 @@ if($_POST['message'] == "create_category"){
 
     $img_url = $_POST['img_url'];
 
-    $q_result = $conn->query("SELECT * FROM categories WHERE username='$username' AND category_name='$category_name'")->fetch(PDO::FETCH_ASSOC);
-
-    $id = $q_result["id"];
-
-    $statement = $conn->prepare("UPDATE categories SET img_url='$img_url' WHERE id='$id'")->execute();
+    $statement = $conn->prepare("UPDATE categories SET img_url='$img_url' WHERE username='$username' AND category_name='$category_name'")->execute();
 
   }
   catch(PDOException $e){
@@ -66,11 +63,7 @@ if($_POST['message'] == "create_category"){
       exit();
     }
 
-    $q_result = $conn->query("SELECT * FROM categories WHERE username='$username' AND category_name='$category_name'")->fetch(PDO::FETCH_ASSOC);
-
-    $id = $q_result["id"];
-
-    $statement = $conn->prepare("UPDATE categories SET category_name='$new_name' WHERE id='$id'")->execute();
+    $statement = $conn->prepare("UPDATE categories SET category_name='$new_name' WHERE username='$username' AND category_name='$category_name'")->execute();
 
     $q_result["can_update"] = "yes";
     echo json_encode($q_result);
