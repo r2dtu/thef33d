@@ -14,5 +14,4 @@ $(document).ready(function(){
   request.fail(function (jqXHR, textStatus, errorThrown){
       alert("HTTPRequest: " + textStatus + " " + errorThrown);
   });
-
 });
