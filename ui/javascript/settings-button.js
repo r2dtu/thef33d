@@ -43,5 +43,34 @@ $(document).ready(function() {
         $("#settingsButton3").toggleClass('settings-button-shrink');
         $("#parallaxSettings3").toggleClass('parallax-settings-hide');
     });
+    
+    var test = 4;
+    
+    // Show button 3
+    $("#showButton4").on('click', function() {
+        alert( "got em");
+    });
+    
+    // Settings button 3
+    $("#settingsButton3").on('click', function() {
+        $("#settingsButton3").toggleClass('settings-button-open');
+        $("#parallaxSettings3").toggleClass('parallax-settings');
+    });
 
 });
+
+function generic_show(id){
+    
+    $("#mainparallax" + id).toggleClass('parallax_main_shrink');
+    $("#showButton" + id).toggleClass('show-button-shink');
+    $("#settingsButton" + id).toggleClass('settings-button-shrink');
+    $("#parallaxSettings" + id).toggleClass('parallax-settings-hide');
+    
+}
+
+function generic_settings(id){
+    
+    $("#settingsButton" + id).toggleClass('settings-button-open');
+    $("#parallaxSettings" +id).toggleClass('parallax-settings');
+    
+}

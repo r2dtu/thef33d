@@ -18,11 +18,7 @@
 
 .parallax_main {
     height: 100vh;
-    border-bottom-color: var(--secondary);
-    border-bottom-style: solid;
-    border-bottom-width: 0px;
     transition: 0.7s;
-    z-index: 0;
 }
 
 .embedded-video {
@@ -31,19 +27,15 @@
     transition: 0.5s;
 }
 
-.embedded-video:hover {
-    transition: 0.5s;
-    height: 375px;
-    width: 550px;
-}
-
 .embedded ul {
     list-style: none;
     text-align: center;
+    z-index: 20000;
 }
 
 .embedded li {
     display: inline-block;
+    z-index: 20000;
 }
 
 .parallax_main_shrink {
@@ -124,6 +116,12 @@
     /*transform: translateY( 447px) translateX( -30px);*/
 }
 
+.show-button-image {
+    height="20px"; 
+    width="20px";
+    background-image: url("CSS/img/show.jpeg");
+}
+
 .show-button-shink {
     transition: 0.7s;
     margin-top: 1%;
@@ -145,6 +143,12 @@
     margin-right: 1%;
     z-index: 950;
     /*transform: translateY( 470px);*/
+}
+
+#settings-image {
+    height="20px"; 
+    width="20px";
+    background-image: image("CSS/img/settings-gear.jpg"); 
 }
 
 .settings-button:hover {
@@ -191,4 +195,17 @@
     background-size: cover;
     background-repeat: no-repeat;
     z-index: 902;
+}
+
+.parallax_main_general {  
+    top: 0; 
+    position: sticky;
+    background-color: darkgrey;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-top-width: thick;
+    border-top-style: double;
+    border-top-color: black;
+    z-index: 903;  
 }
