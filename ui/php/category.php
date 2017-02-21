@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-include 'main.php';
+include 'error.php';
 
 try{
   $conn = new PDO("mysql:host=localhost;dbname=cseclasses", root, root);
@@ -17,8 +17,7 @@ if($_POST['message'] == "create_category"){
 
   try {
 
-    $result = $conn->query("SELECT * FROM categories WHERE username='$username' AND category_name='$category_name'");
-    $q_result = $result->fetch(PDO::FETCH_ASSOC);
+    $q_result = $conn->query("SELECT * FROM categories WHERE username='$username' AND category_name='$category_name'")->fetch(PDO::FETCH_ASSOC);
 
     if(isset($q_result["category_name"])){
       $q_result["can_create"] = "no";
@@ -26,8 +25,7 @@ if($_POST['message'] == "create_category"){
       exit();
     }
     $id = uniqid();
-    $statement = $conn->prepare("INSERT INTO categories (id, category_name, username) VALUES ('$id', '$category_name', '$username')");
-    $statement->execute();
+    $statement = $conn->prepare("INSERT INTO categories (id, category_name, username) VALUES ('$id', '$category_name', '$username')")->execute();
     $q_result["can_create"] = "yes";
     echo json_encode($q_result);
     exit();
@@ -43,13 +41,11 @@ if($_POST['message'] == "create_category"){
 
     $img_url = $_POST['img_url'];
 
-    $result = $conn->query("SELECT * FROM categories WHERE username='$username' AND category_name='$category_name'");
-    $q_result = $result->fetch(PDO::FETCH_ASSOC);
+    $q_result = $conn->query("SELECT * FROM categories WHERE username='$username' AND category_name='$category_name'")->fetch(PDO::FETCH_ASSOC);
 
     $id = $q_result["id"];
 
-    $statement = $conn->prepare("UPDATE categories SET img_url='$img_url' WHERE id='$id'");
-    $statement->execute();
+    $statement = $conn->prepare("UPDATE categories SET img_url='$img_url' WHERE id='$id'")->execute();
 
   }
   catch(PDOException $e){
@@ -62,8 +58,7 @@ if($_POST['message'] == "create_category"){
 
     $new_name = $_POST['new_name'];
 
-    $result = $conn->query("SELECT * FROM categories WHERE username='$username' AND category_name='$new_name'");
-    $q_result = $result->fetch(PDO::FETCH_ASSOC);
+    $q_result = $conn->query("SELECT * FROM categories WHERE username='$username' AND category_name='$new_name'")->fetch(PDO::FETCH_ASSOC);
 
     if(isset($q_result["category_name"])){
       $q_result["can_update"] = "no";
@@ -71,13 +66,11 @@ if($_POST['message'] == "create_category"){
       exit();
     }
 
-    $result = $conn->query("SELECT * FROM categories WHERE username='$username' AND category_name='$category_name'");
-    $q_result = $result->fetch(PDO::FETCH_ASSOC);
+    $q_result = $conn->query("SELECT * FROM categories WHERE username='$username' AND category_name='$category_name'")->fetch(PDO::FETCH_ASSOC);
 
     $id = $q_result["id"];
 
-    $statement = $conn->prepare("UPDATE categories SET category_name='$new_name' WHERE id='$id'");
-    $statement->execute();
+    $statement = $conn->prepare("UPDATE categories SET category_name='$new_name' WHERE id='$id'")->execute();
 
     $q_result["can_update"] = "yes";
     echo json_encode($q_result);

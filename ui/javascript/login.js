@@ -9,7 +9,7 @@ $(document).ready(function(){
       var loginData = {"message": "login", "username": username, "password": password}
 
       request = $.ajax({
-          url: "../server/main.php",
+          url: "php/main.php",
           type: "POST",
           data: loginData
       });
@@ -18,7 +18,7 @@ $(document).ready(function(){
       request.done(function (response, textStatus, jqXHR){
           user_info = JSON.parse(response);
           if(user_info.can_login == "yes"){
-            window.location.href = "../ui/index.html";
+            window.location.href = "index.html";
           }else if(user_info.can_login == "no"){
             alert("Wrong username or password. Try again or make an account below.");
           }else{
@@ -40,7 +40,7 @@ $(document).ready(function(){
       var request;
 
       request = $.ajax({
-          url: "../server/main.php",
+          url: "php/main.php",
           type: "POST",
           data: createData
       });
@@ -49,7 +49,7 @@ $(document).ready(function(){
       request.done(function (response, textStatus, jqXHR){
           user_info = JSON.parse(response);
           if(user_info.can_create == "yes"){
-            window.location.href = "../ui/index.html";
+            window.location.href = "index.html";
           }else if(user_info.can_create == "no"){
             alert("Email already exists with a current account");
           }else{
