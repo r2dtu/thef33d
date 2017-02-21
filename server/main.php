@@ -27,6 +27,7 @@ if($_POST['message'] == "login"){ //CASE: user is trying to log in
 
     $q_result["can_login"] = "yes";
     echo json_encode($q_result);
+    $_SESSION["username"] = $username;
     exit();
   }
   catch(PDOException $e){
