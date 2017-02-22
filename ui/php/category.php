@@ -74,5 +74,6 @@ if($_POST['message'] == "create_category"){
     error_out();
   }
 }
+echo uniqid();
 
 ?>
