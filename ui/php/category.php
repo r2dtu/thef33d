@@ -40,9 +40,9 @@ if($_POST['message'] == "create_category"){
 
   try{
 
-    $img_url = $_POST['img_url'];
+    $background_img = $_POST['background_img'];
 
-    $statement = $conn->prepare("UPDATE categories SET img_url='$img_url' WHERE username='$username' AND category_name='$category_name'")->execute();
+    $statement = $conn->prepare("UPDATE categories SET background_img='$background_img' WHERE username='$username' AND category_name='$category_name'")->execute();
 
   }
   catch(PDOException $e){

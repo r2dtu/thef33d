@@ -8,7 +8,7 @@ $(document).ready(function(){
   // Callback handler that will be called on success
   request.done(function (response, textStatus, jqXHR){
     var category_data = JSON.parse(response);
-    for(var category_name in category_data){
+    for(var category_id in category_data){
 
       //create new parallax
 
