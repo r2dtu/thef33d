@@ -5,7 +5,7 @@ include 'error.php';
 
 /********* OPEN PDO DATABASE CONNECTION *********/
 try{
-  $conn = new PDO("mysql:host=localhost;dbname=cseclasses", root, root);
+  $conn = new PDO("mysql:host=localhost;dbname=thefeed", root, root);
 }
 catch(PDOException $e){
   error_out();
