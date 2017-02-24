@@ -66,34 +66,35 @@ try{
   /* GET ALL OF USER'S CATEGORIES */
   $monster_data = $conn->query("SELECT * FROM categories WHERE username='$username'")->fetchAll(PDO::FETCH_UNIQUE);
 
-
   /* LOOP THROUGH EVERY CATEGORY AND GET CATEGORY INFORMATION */
-  foreach($query_categories as $category_id => $category_data){
+  foreach($monster_data as $c_id => $category_data){
 
-    $query = $conn->query("SELECT y_sub FROM y_subs WHERE category_id='$category_id'")->fetchAll(PDO::FETCH_COLUMN);
+    $query = $conn->query("SELECT sub FROM y_subs WHERE c_id='$c_id'")->fetchAll(PDO::FETCH_COLUMN);
     $y_subs = array();
-    foreach($query as $y_sub){
-      array_push($y_subs, $y_sub);
+    foreach($query as $sub){
+      array_push($y_subs, $sub);
     }
-    $monster_data["$category_id"]["y_subs"] = $y_subs;
+    $monster_data["$c_id"]["y_subs"] = $y_subs;
 
 
-    $query = $conn->query("SELECT r_sub FROM r_subs WHERE category_id='$category_id'")->fetchAll(PDO::FETCH_COLUMN);
+    $query = $conn->query("SELECT sub FROM r_subs WHERE c_id='$c_id'")->fetchAll(PDO::FETCH_COLUMN);
     $r_subs = array();
-    foreach($query as $r_sub){
-      array_push($r_subs, $r_sub);
+    foreach($query as $sub){
+      array_push($r_subs, $sub);
     }
-    $monster_data["$category_id"]["r_subs"] = $r_subs;
+    $monster_data["$c_id"]["r_subs"] = $r_subs;
 
 
-    $query = $conn->query("SELECT p_sub FROM p_subs WHERE category_id='$category_id'")->fetchAll(PDO::FETCH_COLUMN);
+    $query = $conn->query("SELECT sub FROM p_subs WHERE c_id='$c_id'")->fetchAll(PDO::FETCH_COLUMN);
     $p_subs = array();
-    foreach($query as $p_sub){
-      array_push($p_subs, $p_sub);
+    foreach($query as $sub){
+      array_push($p_subs, $sub);
     }
-    $monster_data["$category_id"]["p_subs"] = $p_subs;
+    $monster_data["$c_id"]["p_subs"] = $p_subs;
 
   }
+
+  $monster_data["username"] = $username;
 
   echo json_encode($monster_data);
 

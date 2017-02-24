@@ -26,7 +26,7 @@ $(document).ready(function(){
       });
 
       request.fail(function (jqXHR, textStatus, errorThrown){
-        
+
           alert("HTTPRequest: " + textStatus + " " + errorThrown);
       });
 
@@ -35,8 +35,8 @@ $(document).ready(function(){
     /***** SUBMIT ACCOUNT *****/
     $("#submitAccount").click(function(){
 
-      var username = $("#username").val();
-      var password = $("#password").val();
+      var username = $("#emailInput").val();
+      var password = $("#passwordInput").val();
       var createData = {"message": "create_account", "username": username, "password": password}
 
       var request;

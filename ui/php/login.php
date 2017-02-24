@@ -49,6 +49,7 @@ if($_POST['message'] == "login"){ //CASE: user is trying to log in
 
     $q_result["can_create"] = "yes";
     $statement = $conn->prepare("INSERT INTO accounts (username, password) VALUES ('$username', '$password')")->execute();
+    $_SESSION["username"] = $username;
     echo json_encode($q_result);
     exit();
 

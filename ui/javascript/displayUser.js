@@ -8,26 +8,33 @@ $(document).ready(function(){
   // Callback handler that will be called on success
   request.done(function (response, textStatus, jqXHR){
     var category_data = JSON.parse(response);
-    for(var category_id in category_data){
 
-      //create new parallax
+    var out = "";
 
-      var background_img = category_data[category_name][background_img];
+    out += "Category info for user: " + category_data["username"] + "\n\n";
 
-      //disply category name and img
+    for(var c_id in category_data){
 
-      for(var y_sub in category_data[category_name]["y_subs"]){
-        //get videos from that subscription and display them
+      if(c_id == "username") continue;
+
+      out += "c_id: " + c_id + "\n"
+      out += "c_name: " + category_data[c_id]["c_name"] + "\n";
+
+      for(var y_sub in category_data[c_id]["y_subs"]){
+        out += "  y_sub: " + category_data[c_id]["y_subs"][y_sub] + "\n";
       }
 
-      for(var r_sub in category_data[category_name]["r_subs"]){
-        //get feeds from that subscription and display them
+      for(var r_sub in category_data[c_id]["r_subs"]){
+        out += "  r_sub: " + category_data[c_id]["y_subs"][r_sub] + "\n";
       }
 
-      for(var p_sub in category_data[category_name]["p_subs"]){
-        //get feedss from that subscription and display them
+      for(var p_sub in category_data[c_id]["p_subs"]){
+        out += "  p_sub: " + category_data[c_id]["y_subs"][p_sub] + "\n";
       }
+      out += "\n";
     }
+
+    alert(out);
 
   });
 
