@@ -25,7 +25,7 @@ $(document).ready(function(){
       $panels.append( '<div id="mainparallax' + numPanels + '" cid="' + c_id + '"cname="' + c_data[c_id]["c_name"] + '"class="parallax_main parallax_main_general"><div id="settingsButton' + numPanels + '" class="settings-button" onclick="generic_settings(' + numPanels + ')"><img src="CSS/img/settings-gear.jpg" height="20px" width="20px" /></div><div id="showButton' + numPanels + '" class="show-button" onclick="generic_show(' + numPanels + ')"><img src="CSS/img/show.jpeg" height="20px" width="20px" /></div><div id="parallaxSettings' + numPanels + '" class="parallax-settings-wrap"><div class="parallax-settings"></div></div></div>');
       $navList.append('<li draggable="true" onclick="hideMenu()"><a href="#mainparallax' + numPanels + '">Untitled</a></li>');
 
-      //style each parallax div with .css
+      //style each parallax div with .css 
 
       for(var y_sub in c_data[c_id]["y_subs"]){
       }
