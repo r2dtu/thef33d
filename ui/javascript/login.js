@@ -39,9 +39,7 @@ $(document).ready(function(){
       var password = $("#passwordInput").val();
       var createData = {"message": "create_account", "username": username, "password": password}
 
-      var request;
-
-      request = $.ajax({
+      var request = $.ajax({
           url: "php/login.php",
           type: "POST",
           data: createData
@@ -63,5 +61,28 @@ $(document).ready(function(){
       request.fail(function (jqXHR, textStatus, errorThrown){
           alert("HTTPRequest: " + textStatus + " " + errorThrown);
       });
+    });
+
+    $("#forgotPassword").click(function(){
+
+      var email = $("#username").val();
+      var forgottenData = {"message": "forgot_password", "username": email}
+
+      var request = $.ajax({
+          url: "php/login.php",
+          type: "POST",
+          data: forgottenData
+      });
+
+      request.done(function (response, textStatus, jqXHR){
+          alert("Response: " + response);
+      });
+
+      // Callback handler that will be called on failure
+      request.fail(function (jqXHR, textStatus, errorThrown){
+          alert("HTTPRequest: " + textStatus + " " + errorThrown);
+      });
+
+
     });
 });
