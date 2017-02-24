@@ -29,6 +29,7 @@
     text-align: left;
     padding: 0;
     margin-top: 5%;
+    display: inline-block;
 }
 .nav-menu a {
     font-family: 'Ubuntu', sans-serif;
@@ -60,23 +61,31 @@
 }
 
 .FeedLogo {
+    transition: 0.7s;
+    position: absolute;
+    top: 0;
+    left: 90%;
     text-align: right;
-    display: block;
+    display: inline-block;
     color: #fff;
     font-family: 'Ubuntu', sans-serif;
     text-decoration: none;
     opacity: 1.0;
-    margin-right: 2%;
-    margin-top:: 2%;
     font-size: 1.5em;
 }
 
+.FeedLogoShift{
+    transition: 0.7s;
+    left: 40%;
+}
+
 .addScreen {
+    position: absolute;
+    top: 85%;
+    left: 91%;
     text-align: center;
     color: #fff;
     float: right;
-    margin-top: 27%;
-    margin-right% -10%;
     font-family: 'Ubuntu', sans-serif;
     text-decoration: none;
     opacity: 1.0;
@@ -85,6 +94,11 @@
     font-size: 4.0em;
     display: inline-block;
     transition: 0.7s;
+}
+
+.addScreenShift {
+    transition: 0.7s;
+    left: 41%;
 }
 
 .main-panel {
