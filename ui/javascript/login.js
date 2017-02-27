@@ -1,6 +1,7 @@
 $(document).ready(function(){
 
-    $("#login_button").click(function(){
+    /***** LOG IN TO ACCOUNT *****/
+    $("#loginButton").click(function(){
 
       var username = $("#username").val();
       var password = $("#password").val();
@@ -12,8 +13,8 @@ $(document).ready(function(){
           data: loginData
       });
 
-      // Callback handler that will be called on success
       request.done(function (response, textStatus, jqXHR){
+
           var user_info = JSON.parse(response);
           if(user_info.can_login == "yes"){
             window.location.href = "index.html";
@@ -24,20 +25,21 @@ $(document).ready(function(){
           }
       });
 
-      // Callback handler that will be called on failure
       request.fail(function (jqXHR, textStatus, errorThrown){
+
           alert("HTTPRequest: " + textStatus + " " + errorThrown);
       });
 
     });
-    $("#create_button").click(function(){
-      var username = $("#username").val();
-      var password = $("#password").val();
+
+    /***** SUBMIT ACCOUNT *****/
+    $("#submitAccount").click(function(){
+
+      var username = $("#emailInput").val();
+      var password = $("#passwordInput").val();
       var createData = {"message": "create_account", "username": username, "password": password}
 
-      var request;
-
-      request = $.ajax({
+      var request = $.ajax({
           url: "php/login.php",
           type: "POST",
           data: createData
@@ -59,5 +61,28 @@ $(document).ready(function(){
       request.fail(function (jqXHR, textStatus, errorThrown){
           alert("HTTPRequest: " + textStatus + " " + errorThrown);
       });
+    });
+
+    $("#forgotPassword").click(function(){
+
+      var email = $("#username").val();
+      var forgottenData = {"message": "forgot_password", "username": email}
+
+      var request = $.ajax({
+          url: "php/login.php",
+          type: "POST",
+          data: forgottenData
+      });
+
+      request.done(function (response, textStatus, jqXHR){
+          alert("Response: " + response);
+      });
+
+      // Callback handler that will be called on failure
+      request.fail(function (jqXHR, textStatus, errorThrown){
+          alert("HTTPRequest: " + textStatus + " " + errorThrown);
+      });
+
+
     });
 });

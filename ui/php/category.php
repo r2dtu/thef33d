@@ -5,28 +5,29 @@ include 'error.php';
 
 /********* OPEN PDO DATABASE CONNECTION *********/
 try{
-  $conn = new PDO("mysql:host=localhost;dbname=cseclasses", root, root);
+  $conn = new PDO("mysql:host=localhost;dbname=thefeed", root, root);
 }
 catch(PDOException $e){
   error_out();
 }
 
-$category_name = $_POST['category_name'];
+$c_name = $_POST['c_name'];
+$c_img = $_POST['c_img'];
 $username = $_SESSION["username"];
 
 if($_POST['message'] == "create_category"){
 
   try {
 
-    $q_result = $conn->query("SELECT * FROM categories WHERE username='$username' AND category_name='$category_name'")->fetch(PDO::FETCH_ASSOC);
+    $q_result = $conn->query("SELECT * FROM categories WHERE username='$username' AND c_name='$c_name'")->fetch(PDO::FETCH_ASSOC);
 
     if(isset($q_result["category_name"])){
       $q_result["can_create"] = "no";
       echo json_encode($q_result);
       exit();
     }
-    $id = uniqid();
-    $statement = $conn->prepare("INSERT INTO categories (id, category_name, username) VALUES ('$id', '$category_name', '$username')")->execute();
+    $c_id = uniqid();
+    $statement = $conn->prepare("INSERT INTO categories (c_id, c_name, username, img) VALUES ('$c_id', '$c_name', '$username', '$c_img')")->execute();
     $q_result["can_create"] = "yes";
     echo json_encode($q_result);
     exit();
@@ -40,9 +41,7 @@ if($_POST['message'] == "create_category"){
 
   try{
 
-    $img_url = $_POST['img_url'];
-
-    $statement = $conn->prepare("UPDATE categories SET img_url='$img_url' WHERE username='$username' AND category_name='$category_name'")->execute();
+    $statement = $conn->prepare("UPDATE categories SET img='$c_img' WHERE username='$username' AND c_name='$c_name'")->execute();
 
   }
   catch(PDOException $e){
@@ -55,7 +54,7 @@ if($_POST['message'] == "create_category"){
 
     $new_name = $_POST['new_name'];
 
-    $q_result = $conn->query("SELECT * FROM categories WHERE username='$username' AND category_name='$new_name'")->fetch(PDO::FETCH_ASSOC);
+    $q_result = $conn->query("SELECT * FROM categories WHERE username='$username' AND c_name='$new_name'")->fetch(PDO::FETCH_ASSOC);
 
     if(isset($q_result["category_name"])){
       $q_result["can_update"] = "no";
@@ -74,5 +73,6 @@ if($_POST['message'] == "create_category"){
     error_out();
   }
 }
+echo uniqid();
 
 ?>

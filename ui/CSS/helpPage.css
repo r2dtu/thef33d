@@ -1,0 +1,54 @@
+.HelpPage {
+    position: absolute;
+    top: 12%;
+    left: 95%;
+    text-align: right;
+    display: inline-block;
+    color: #fff;
+    font-family: 'Ubuntu', sans-serif;
+    text-decoration: none;
+    opacity: 1.0;
+    font-size: 3.0em;
+    transition: 0.7s;
+}
+
+.HelpPageShift {
+    transition: 0.7s;
+    left: 45%;
+}
+
+.helpPageHidden {
+    position: absolute;
+    height: 100vh;
+    width: 50%;
+    background-color: rgba( 255, 255, 255, 1.0 );
+    top: 0;
+    left: 100%;
+    transition: 0.7s;
+}
+
+.helpPageShow {
+    left: 50%;
+}
+
+.helpHeader {
+    text-align: center;
+    width: 100%;
+    display: inline-block;
+    color: #000;
+    font-family: 'Ubuntu', sans-serif;
+    text-decoration: none;
+    opacity: 1.0;
+    font-size: 3.0em;
+}
+
+.helpText {
+    text-align: center;
+    width: 100%;
+    display: inline-block;
+    color: #000;
+    font-family: 'Ubuntu', sans-serif;
+    text-decoration: none;
+    opacity: 1.0;
+    font-size: 1.0em;
+}
