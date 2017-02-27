@@ -28,7 +28,8 @@
       <input type="password" id="password" placeholder="Enter Password"name="password" required>
     </div>
     <div id="lower">
-      <input type="checkbox"><label for="checkbox">Keep me logged in</label>
+      <button id="googleSignIn" type="submit"> Sign in with Google </button>
+      <!--<input type="checkbox"><label for="checkbox">Keep me logged in</label>-->
       <!--<input type="submit" value="Login">-->
       <button id="forgotPassword" type="button">Forgot Password</button>
       <button id="loginButton" type="sumbit">Login</button>
@@ -36,8 +37,10 @@
   </form>
   </div>
 
+
+
 </div>
-<!--
+
 <div class="parallax_layer">
   <p id="CreateAccount">Tired of clutered media feeds spread across multiple websites?
   The FEED is your solution. Organize content like never before in your own, personal
@@ -45,54 +48,31 @@
   </p>
   <button id="createButton" type="submit">Create an Account</button>
 </div>
--->
+
 <div id="createAccountLayer">
   <button id="submitAccount" type="submit"> Submit </button>
 
+<div id="left-fields">
   <p id="EmailHeader"> Email: </p>
-  <p id="SecQuestionHeader"> Security Question: </p>
   <input type="text" id="emailInput" placeholder="Enter email" name="emailInput" required />
 
+  <p id="PasswordHeader"> Password: </p>
+  <input type="text" id="passwordInput" placeholder="Enter password" name="passwordInput" required />
+</div>
+
+<div id="mid-fields">
+  <p id="SecQuestionHeader"> Security Question: </p>
   <select id="securityQuestionDropdown">
     <option value="">What was your first pet's name?</option>
     <option value="">Who is your best childhood friend</option>
     <option value="">What was your dream car as a child</option>
   </select>
 
-  <p id="PasswordHeader"> Password: </p>
   <p id="SQAnswerHeader"> Security Question Answer: </p>
-  <input type="text" id="passwordInput" placeholder="Enter password" name="passwordInput" required />
-
   <input type="text" id="securityAnswer"
     placeholder="Enter answer to your security question" name="securityAnswer" required />
+  </div>
 
-  <!--<table id="accountTable" border="0" width="800" height="200" >
-
-  <th> Email </th><th> Security Question </th>
-    <tr>
-      <td>
-        <input type="text" id="emailInput" placeholder="Enter email" name="emailInput" required />
-      </td>
-      <td>
-        <select id="SecurityQuestionDropdown">
-          <option value="">one</option>
-          <option value="">two</option>
-          <option value="">three</option>
-        </select>
-      </td>
-    </tr>
-    <th> Password </th>      <th> Security Question Answer </th>
-    <tr>
-      <td>
-        <input type="text" id="passwordInput" placeholder="Enter password" name="passwordInput" required />
-     </td>
-      <td>
-        <input type="text" id="securityAnswer"
-          placeholder="Enter answer to your security question" name="securityAnswer" required />
-     </td>
-    </tr>
-
-  </table> -->
 
 </div>
 
