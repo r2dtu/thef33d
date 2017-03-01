@@ -42,26 +42,26 @@ if (isset($_SESSION[$tokenSessionKey])) {
 // Check to ensure that the access token was successfully acquired.
 if ($client->getAccessToken()) {
     $htmlBody = '';
-    
+
     try {
-        
+
         // This commented code inserts a new subscription into the user's subscriptions list - it does not update immediately, and you must call listSubscriptions again.
-        
+
         // This code subscribes the authenticated user to the specified channel.
         // Identify the resource being subscribed to by specifying its channel ID
         // and kind.
         /*$resourceId = new Google_Service_YouTube_ResourceId();
         $resourceId->setChannelId('UCtVd0c0tGXuTSbU5d8cSBUg');
         $resourceId->setKind('youtube#channel');
-        
+
         // Create a snippet object and set its resource ID.
         $subscriptionSnippet = new Google_Service_YouTube_SubscriptionSnippet();
         $subscriptionSnippet->setResourceId($resourceId);
-        
+
         // Create a subscription request that contains the snippet object.
         $subscription = new Google_Service_YouTube_Subscription();
         $subscription->setSnippet($subscriptionSnippet);
-        
+
         // Execute the request and return an object containing information about the new subscription.
         $subscriptionResponse = $youtube->subscriptions->insert('id,snippet', $subscription, array());
         echo _format_json(json_encode($subscriptionResponse), true);*/
@@ -71,7 +71,7 @@ if ($client->getAccessToken()) {
         echo "<br>";
         $sub1 = $sub->getItems();
         foreach ($sub1 as $subscription_channel) {
-            
+
             echo "Title: ";
             echo $subscription_channel->getSnippet()->getTitle();
             echo ", ";
@@ -79,11 +79,11 @@ if ($client->getAccessToken()) {
             $cid = $subscription_channel->getSnippet()->getResourceId()->getChannelId();
             echo $cid;
             echo "<br>";
-            
+
             // Get a list of channel's videos
             $channelsResponse = $youtube->channels->listChannels('contentDetails', array('id' => $cid));
             $channels = $channelsResponse->getItems();
-            
+
             // Print each channel's videos
             foreach ($channels as $channel) {
 
@@ -105,7 +105,7 @@ if ($client->getAccessToken()) {
                 }
             }
         }
-        
+
     } catch (Google_Service_Exception $e) {
         $htmlBody .= sprintf('<p>A service error occurred: <code>%s</code></p>', htmlspecialchars($e->getMessage()));
     } catch (Google_Exception $e) {
@@ -116,7 +116,7 @@ if ($client->getAccessToken()) {
     $_SESSION[$tokenSessionKey] = $client->getAccessToken();
 
 } else {
-    
+
     // If the user has not authorized the application, start the OAuth 2.0 flow.
     $state = mt_rand();
     $client->setState($state);

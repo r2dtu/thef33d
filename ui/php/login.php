@@ -12,7 +12,7 @@ catch(PDOException $e){
 $username = $_POST['username'];
 $password = $_POST['password'];
 
-if($_POST['message'] == "login"){ //CASE: user is trying to log in
+if($_POST['message'] == "login"){
 
   try {
 
