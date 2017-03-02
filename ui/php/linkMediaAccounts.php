@@ -6,7 +6,7 @@ include 'error.php';
 
 
 try{
-  $conn = new PDO("mysql:host=localhost;dbname=thefeed", root, root);
+  $conn = new PDO("mysql:host=localhost;dbname=thefeed", root, WTF110lecture);
 }catch(PDOException $e){
   error_out();
 }

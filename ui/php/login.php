@@ -3,7 +3,7 @@ session_start();
 include 'error.php';
 
 try{
-  $conn = new PDO("mysql:host=localhost;dbname=thefeed", root, root);
+  $conn = new PDO("mysql:host=localhost;dbname=thefeed", root, WTF110lecture);
 }
 catch(PDOException $e){
   error_out();
@@ -11,6 +11,7 @@ catch(PDOException $e){
 
 $username = $_POST['username'];
 $password = $_POST['password'];
+
 
 if($_POST['message'] == "login"){
 
