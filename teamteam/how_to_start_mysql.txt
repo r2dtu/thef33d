@@ -1,0 +1,8 @@
+mysql -u root -p
+Enter password: WTF110lecture
+
+mysql> show databases;
+mysql> use thefeed;
+mysql> show tables;
+mysql> select * from accounts;
+...

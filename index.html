@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Check for new idea: http://www.pellmell.fr/ -->
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!-- Links to CSS ------------------------------------------------------------->
+
+    <link rel="stylesheet" type="text/css" href="CSS/parallax.css">
+    <link rel="stylesheet" type="text/css" href="CSS/helpPage.css">
+    <link rel="stylesheet" type="text/css" href="CSS/userPage.css">
+    <link rel="stylesheet" type="text/css" href="CSS/hamburger.css">
+    <link rel="stylesheet" type="text/css" href="CSS/main-panel.css">
+    <link rel="stylesheet" type="text/css" href="CSS/main.css">
+    <link rel="stylesheet" type="text/css" href="CSS/settings-panel.css">
+    <link rel="stylesheet" href="animate.min.css">
+    <link rel="stylesheet" type="text/css" media="all" href="css/animate.css">
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+
+    <!-- End links to CSS --------------------------------------------------------->
+
+    <title>Feed Home Page</title>
+</head>
+
+<body>
+
+    <div class="main-panel">
+
+        <!-- Top of screen navigation bar --------------------------------------------->
+
+        <div class="toggle-button">
+
+            <div class="wrapper">
+                <div class="menu-bar menu-bar-top"></div>
+                <div class="menu-bar menu-bar-middle"></div>
+                <div class="menu-bar menu-bar-bottom"></div>
+            </div>
+        </div>
+
+        <!-- End of top of screen navigation bar -------------------------------------->
+
+
+        <div class="nav-menu">
+
+            <h1 class="FeedLogo">The Feed.</h1>
+
+            <h1 class="HelpPage">?</h1>
+
+            <input class="userInformation" type="image" name="userAccountButton" src="CSS/img/genericUser.jpg" width=50px;>
+
+            <ul class="nav-menu-list">
+
+                <!-- For drag and drop: http://syntaxxx.com/rearranging-web-page-items-with-html5-drag-and-drop/ -->
+
+                <li draggable="true" onclick="hideMenu()"><a href="#mainparallax1"><b id="name1">Moon</b></a></li>
+                <li draggable="true" onclick="hideMenu()"><a href="#mainparallax2"><b id="name2">Snowy Mountains</b></a></li>
+                <li draggable="true" onclick="hideMenu()"><a href="#mainparallax3"><b id="name3">Rainforest</b></a></li>
+            </ul>
+
+            <h1 class="addScreen">+</h1>
+
+            <div class="helpPageHidden">
+                <h1 class="helpHeader">Help</h1>
+                <p class="helpText">This is the help screen with information regarding how to use the program!</p>
+            </div>
+
+            <div class="userPageHidden">
+                <h1 class="userHeader">Welcome, Austin.</h1>
+                <h1 class="userAccountsHeader">Your Accounts:</h1>
+                <ul class="userAccountsList">
+                    <li id="youtube"><img src="CSS/img/YouTube-icon-full_color.png" width="50px"; height="50px";>   Youtube: austinVideoGuy</li>
+                    <li id="pintrest"><img src="CSS/img/Pinterest_logo-2.png" width="50px"; height="50px";>  Pintrest: austinPins</li>
+                    <li id="reddit"><img src="CSS/img/Reddit_logo.png" width="50px"; height="50px";>    Reddit: austinOnReddit</li>
+                </ul>
+            </div>
+
+
+        </div>
+
+        <!-- Start of parallax effect ------------------------------------------------->
+
+
+        <div class="panels">
+
+            <div id="mainparallax1" class="parallax_main parallax_main_1">
+                <div id="settingsButton1" class="settings-button" onclick="generic_settings( 1 )">
+                    <img src="CSS/img/settings-gear.jpg" height="20px" width="20px" />
+                </div>
+                <div id="showButton1" class="show-button" onclick="generic_show( 1 )">
+                    <img src="CSS/img/show.jpeg" height="20px" width="20px" />
+                </div>
+                <!--
+            <div class="embedded">
+                  <ul>
+                    <li><iframe width="500" height="315" src="https://www.youtube.com/embed/FhC9R9oCAVk" frameborder="0" allowfullscreen></iframe></li>
+                    <li><iframe width="500" height="315" src="https://www.youtube.com/embed/_Z-f3RSNUsQ" frameborder="0" allowfullscreen></iframe></li>
+                    <li><iframe width="500" height="315" src="https://www.youtube.com/embed/3rSer5Lqg5w" frameborder="0" allowfullscreen></iframe></li>
+                    <li><iframe width="500" height="315" src="https://www.youtube.com/embed/UXnJ95N0F8I" frameborder="0" allowfullscreen></iframe></li>
+                  </ul>
+            </div>
+            -->
+                <div id="parallaxSettings1" class="parallax-settings-wrap">
+                    <div class="parallax-settings">
+                        <form class="settings-form">
+                            <div class="settings-categoryName">
+                                Category:
+                                <br>
+                                <input type="text" id="categoryName1" placeholder="Name of category" class="categoryName">
+                                <input type="submit" value="Submit" onclick="updateMenuName( 1 )">
+                            </div>
+                            <div class="settings-categoryBackground">
+                                <br> Background Image:
+                                <br>
+                                <input type="file" id="categoryBackground1" class="categoryBackgroundSelect">
+                                <input type="submit" value="Submit" onclick="updateBackground( 1 )">
+                            </div>
+                            <div class="settings-categorySize">
+                                <br> Size:
+                                <br>
+                                <input type="range" id="categorySize1" class="categorySize">
+                                <input type="submit" value="Submit">
+                            </div>
+                            <div class="settings-categoryOrganized">
+                                <br> Organized:
+                                <br>
+                                <select id="categoryOrganized1" name="organized" style="width: 30%;" class="categoryOrganized">
+                                    <option value="a-z">
+                                        a-z:A-Z
+                                    </option>
+
+                                    <option value="z-a">
+                                        z-a:Z-A
+                                    </option>
+                                </select>
+                            </div>
+                        </form>
+                        <div class="panel-information">
+                            <div class="panel-information-accounts">
+                                <br> Account:
+                                <br>
+                                <select id="categoryAccounts1" name="accounts" style="width: 50%;" class="categoryAccounts">
+                                    <option value="YouTube">
+                                        Youtube
+                                    </option>
+                                    <option value="Pintrest">
+                                        Pintrest
+                                    </option>
+                                    <option value="Reddit">
+                                        Reddit
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="panel-information-subscriptions">
+                                <br> Subscriptions to Include:
+                                <br>
+                                <form class="categorySubscriptions">
+                                    <input type="checkbox" name="subscription" value="Science"> Science
+                                    <br>
+                                    <input type="checkbox" name="subscription" value="League of Legends"> League of Legends
+                                    <br>
+                                    <input type="checkbox" name="subscription" value="Art History"> Art History
+                                    <br>
+                                    <input type="checkbox" name="subscription" value="Wild Turtle Footage"> Wild Turtle Footage
+                                    <br>
+                                    <input type="submit">
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="mainparallax2" class="parallax_main parallax_main_2">
+                <div id="settingsButton2" class="settings-button" onclick="generic_settings( 2 )">
+                    <img src="CSS/img/settings-gear.jpg" height="20px" width="20px" />
+                </div>
+                <div id="showButton2" class="show-button" onclick="generic_show( 2 )">
+                    <img src="CSS/img/show.jpeg" height="20px" width="20px" />
+                </div>
+                <div id="parallaxSettings2" class="parallax-settings-wrap">
+                    <div class="parallax-settings">
+                        <form class="settings-form">
+                            <div>
+                                Category:
+                                <br>
+                                <input type="text" id="categoryName2" placeholder="Name of category" class="categoryName">
+                                <input type="submit" value="Submit" onclick="updateMenuName( 2 )">
+                            </div>
+                            <div>
+                                <br> Background Image:
+                                <br>
+                                <input type="file" id="categoryBackground2" class="categoryBackgroundSelect">
+                                <input type="submit" value="Submit" onclick="updateBackground( 2 )">
+                            </div>
+                            <div>
+                                <br> Size:
+                                <br>
+                                <input type="range" id="categorySize2" class="categorySize">
+                                <input type="submit" value="Submit">
+                            </div>
+                            <div>
+                                <br> Organized:
+                                <br>
+                                <select id="categoryOrganized2" name="organized" style="width: 180px;" class="categoryOrganized">
+                                    <option value="a-z">
+                                        a-z:A-Z
+                                    </option>
+
+                                    <option value="z-a">
+                                        z-a:Z-A
+                                    </option>
+                                </select>
+                            </div>
+                        </form>
+                        <div class="panel-information">
+                            <div class="panel-information-accounts">
+                                <br> Account:
+                                <br>
+                                <select id="categoryAccounts2" name="accounts" style="width: 50%;" class="categoryAccounts">
+                                    <option value="YouTube">
+                                        Youtube
+                                    </option>
+                                    <option value="Pintrest">
+                                        Pintrest
+                                    </option>
+                                    <option value="Reddit">
+                                        Reddit
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="panel-information-subscriptions">
+                                <br> Subscriptions to Include:
+                                <br>
+                                <form class="categorySubscriptions">
+                                    <input type="checkbox" name="subscription" value="Science"> Science
+                                    <br>
+                                    <input type="checkbox" name="subscription" value="League of Legends"> League of Legends
+                                    <br>
+                                    <input type="checkbox" name="subscription" value="Art History"> Art History
+                                    <br>
+                                    <input type="checkbox" name="subscription" value="Wild Turtle Footage"> Wild Turtle Footage
+                                    <br>
+                                    <input type="submit">
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="mainparallax3" class="parallax_main parallax_main_3">
+                <div id="settingsButton3" class="settings-button" onclick="generic_settings( 3 )">
+                    <img src="CSS/img/settings-gear.jpg" height="20px" width="20px" />
+                </div>
+                <div id="showButton3" class="show-button" onclick="generic_show( 3 )">
+                    <img src="CSS/img/show.jpeg" height="20px" width="20px" />
+                </div>
+                <div id="parallaxSettings3" class="parallax-settings-wrap">
+                    <div class="parallax-settings">
+                        <form class="settings-form">
+                            <div>
+                                Category:
+                                <br>
+                                <input type="text" id="categoryName3" placeholder="Name of category" class="categoryName">
+                                <input type="submit" value="Submit" onclick="updateMenuName( 3 )">
+                            </div>
+                            <div>
+                                <br> Background Image:
+                                <br>
+                                <input type="file" id="categoryBackground3" class="categoryBackgroundSelect">
+                                <input type="submit" value="Submit" onclick="updateBackground( 3 )">
+                            </div>
+                            <div>
+                                <br> Size:
+                                <br>
+                                <input type="range" id="categorySize3" class="categorySize">
+                                <input type="submit" value="Submit">
+                            </div>
+                            <div>
+                                <br> Organized:
+                                <br>
+                                <select id="categoryOrganized3" name="organized" style="width: 180px;" class="categoryOrganized">
+                                    <option value="a-z">
+                                        a-z:A-Z
+                                    </option>
+
+                                    <option value="z-a">
+                                        z-a:Z-A
+                                    </option>
+                                </select>
+                            </div>
+                        </form>
+                        <div class="panel-information">
+                            <div class="panel-information-accounts">
+                                <br> Account:
+                                <br>
+                                <select id="categoryAccounts3" name="accounts" style="width: 50%;" class="categoryAccounts">
+                                    <option value="YouTube">
+                                        Youtube
+                                    </option>
+                                    <option value="Pintrest">
+                                        Pintrest
+                                    </option>
+                                    <option value="Reddit">
+                                        Reddit
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="panel-information-subscriptions">
+                                <br> Subscriptions to Include:
+                                <br>
+                                <form class="categorySubscriptions">
+                                    <input type="checkbox" name="subscription" value="Science"> Science
+                                    <br>
+                                    <input type="checkbox" name="subscription" value="League of Legends"> League of Legends
+                                    <br>
+                                    <input type="checkbox" name="subscription" value="Art History"> Art History
+                                    <br>
+                                    <input type="checkbox" name="subscription" value="Wild Turtle Footage"> Wild Turtle Footage
+                                    <br>
+                                    <input type="submit">
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <h1>copyright: The Feed Team 2017</h1>
+
+</body>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js" type="text/javascript"></script>
+<script src="jquery.localscroll.js" type="text/javascript"></script>
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script type="text/javascript" src="javascript/hamburger.js"></script>
+<script type="text/javascript" src="javascript/addScreen.js"></script>
+<script type="text/javascript" src="javascript/dropdown.js"></script>
+<script type="text/javascript" src="javascript/settings-button.js"></script>
+<script type="text/javascript" src="javascript/parallax.js"></script>
+<script type="text/javascript" src="javascript/menu-sidebar.js"></script>
+<script type="text/javascript" src="javascript/navBarAction.js"></script>
+<script type="text/javascript" src="javascript/helpPage.js"></script>
+<script type="text/javascript" src="javascript/userPage.js"></script>
+
+<!--Scripts that use AJAX to talk to PHP -->
+<script type="text/javascript" src="javascript/displayUser.js"></script>
+<script type="text/javascript" src="javascript/category.js"></script>
+</html>
