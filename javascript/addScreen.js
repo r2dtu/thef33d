@@ -86,6 +86,8 @@ function updateBackground( id ){
 
     $('.parallax_main_1').css( 'background-image', 'img/snowy-mointain.jpg');
     */
+    
+    alert( "Changing background image ... " );
 
 }
 

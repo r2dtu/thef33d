@@ -73,7 +73,7 @@
                 <h1 class="userAccountsHeader">Your Accounts:</h1>
                 <ul class="userAccountsList">
                     <li id="youtube"><img src="CSS/img/YouTube-icon-full_color.png" width="50px"; height="50px";>   Youtube: austinVideoGuy</li>
-                    <li id="pintrest"><img src="CSS/img/Pinterest_logo-2.png" width="50px"; height="50px";>  Pintrest: austinPins</li>
+                    <li id="Pinterest"><img src="CSS/img/Pinterest_logo-2.png" width="50px"; height="50px";>  Pinterest: austinPins</li>
                     <li id="reddit"><img src="CSS/img/Reddit_logo.png" width="50px"; height="50px";>    Reddit: austinOnReddit</li>
                 </ul>
             </div>
@@ -93,16 +93,19 @@
                 <div id="showButton1" class="show-button" onclick="generic_show( 1 )">
                     <img src="CSS/img/show.jpeg" height="20px" width="20px" />
                 </div>
-                <!--
+              <!--  
             <div class="embedded">
                   <ul>
-                    <li><iframe width="500" height="315" src="https://www.youtube.com/embed/FhC9R9oCAVk" frameborder="0" allowfullscreen></iframe></li>
-                    <li><iframe width="500" height="315" src="https://www.youtube.com/embed/_Z-f3RSNUsQ" frameborder="0" allowfullscreen></iframe></li>
-                    <li><iframe width="500" height="315" src="https://www.youtube.com/embed/3rSer5Lqg5w" frameborder="0" allowfullscreen></iframe></li>
-                    <li><iframe width="500" height="315" src="https://www.youtube.com/embed/UXnJ95N0F8I" frameborder="0" allowfullscreen></iframe></li>
+                    <li><iframe width="250" height="157" src="https://www.youtube.com/embed/FhC9R9oCAVk" frameborder="0" allowfullscreen></iframe></li>
+                    <li><iframe width="250" height="157" src="https://www.youtube.com/embed/_Z-f3RSNUsQ" frameborder="0" allowfullscreen></iframe></li>
+                    <li><iframe width="250" height="157" src="https://www.youtube.com/embed/3rSer5Lqg5w" frameborder="0" allowfullscreen></iframe></li>
+                    <li><iframe width="250" height="157" src="https://www.youtube.com/embed/UXnJ95N0F8I" frameborder="0" allowfullscreen></iframe></li>
+                    <li><iframe width="250" height="157" src="https://www.youtube.com/embed/PQDvEJFdY1U" frameborder="0" allowfullscreen></iframe></li>
+                    <li><iframe width="250" height="157" src="https://www.youtube.com/embed/Noo4lN-vSvw" frameborder="0" allowfullscreen></iframe></li>
+                    <li><iframe width="250" height="157" src="https://www.youtube.com/embed/YQw124CtvO0" frameborder="0" allowfullscreen></iframe></li>
                   </ul>
             </div>
-            -->
+                -->
                 <div id="parallaxSettings1" class="parallax-settings-wrap">
                     <div class="parallax-settings">
                         <form class="settings-form">
@@ -142,32 +145,24 @@
                             <div class="panel-information-accounts">
                                 <br> Account:
                                 <br>
-                                <select id="categoryAccounts1" name="accounts" style="width: 50%;" class="categoryAccounts">
+                                <select id="categoryAccounts1" name="accounts" style="width: 50%;" class="categoryAccounts" onchange="fetchMedia(this.value, 1)">
+                                    <option value="default">
+                                        Please select an external media account ...
+                                    </option>
                                     <option value="YouTube">
                                         Youtube
                                     </option>
-                                    <option value="Pintrest">
-                                        Pintrest
+                                    <option value="Pinterest">
+                                        Pinterest
                                     </option>
                                     <option value="Reddit">
                                         Reddit
                                     </option>
                                 </select>
                             </div>
-                            <div class="panel-information-subscriptions">
+                            <div id="subs1" class="panel-information-subscriptions">
                                 <br> Subscriptions to Include:
                                 <br>
-                                <form class="categorySubscriptions">
-                                    <input type="checkbox" name="subscription" value="Science"> Science
-                                    <br>
-                                    <input type="checkbox" name="subscription" value="League of Legends"> League of Legends
-                                    <br>
-                                    <input type="checkbox" name="subscription" value="Art History"> Art History
-                                    <br>
-                                    <input type="checkbox" name="subscription" value="Wild Turtle Footage"> Wild Turtle Footage
-                                    <br>
-                                    <input type="submit">
-                                </form>
                             </div>
                         </div>
                     </div>
@@ -220,12 +215,15 @@
                             <div class="panel-information-accounts">
                                 <br> Account:
                                 <br>
-                                <select id="categoryAccounts2" name="accounts" style="width: 50%;" class="categoryAccounts">
+                                <select id="categoryAccounts2" name="accounts" style="width: 50%;" class="categoryAccounts" onchange="fetchMedia(this.value, 2)">
+                                    <option value="default">
+                                        Please select an external media account ...
+                                    </option>
                                     <option value="YouTube">
                                         Youtube
                                     </option>
-                                    <option value="Pintrest">
-                                        Pintrest
+                                    <option value="Pinterest">
+                                        Pinterest
                                     </option>
                                     <option value="Reddit">
                                         Reddit
@@ -298,12 +296,12 @@
                             <div class="panel-information-accounts">
                                 <br> Account:
                                 <br>
-                                <select id="categoryAccounts3" name="accounts" style="width: 50%;" class="categoryAccounts">
+                                <select id="categoryAccounts3" name="accounts" style="width: 50%;" class="categoryAccounts" onchange="fetchMedia(this.value, 3)">
                                     <option value="YouTube">
                                         Youtube
                                     </option>
-                                    <option value="Pintrest">
-                                        Pintrest
+                                    <option value="Pinterest">
+                                        Pinterest
                                     </option>
                                     <option value="Reddit">
                                         Reddit
@@ -355,4 +353,5 @@
 <!--Scripts that use AJAX to talk to PHP -->
 <script type="text/javascript" src="javascript/displayUser.js"></script>
 <script type="text/javascript" src="javascript/category.js"></script>
+
 </html>

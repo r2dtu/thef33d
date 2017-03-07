@@ -19,6 +19,8 @@ $(document).ready(function(){
       request.fail(function (jqXHR, textStatus, errorThrown){
           alert("HTTPRequest: " + textStatus + " " + errorThrown);
       });
+        
+        
     });
     
     $("#getSubs").click(function(){
@@ -61,6 +63,11 @@ $(document).ready(function(){
       request.fail(function (jqXHR, textStatus, errorThrown){
           alert("HTTPRequest: " + textStatus + " " + errorThrown);
       });
+        
+      // JUST TEST! NEED TO ADD TO CORRESPONDING PARALLAX
+      var $mainparallax1 = $('.mainparallax1');
+      
+
     });
 
 }
