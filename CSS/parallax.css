@@ -30,12 +30,14 @@
 .embedded ul {
     list-style: none;
     text-align: center;
-    z-index: 20000;
+    margin: 0;
+    z-index: 0;
 }
 
 .embedded li {
     display: inline-block;
-    z-index: 20000;
+    position: absolute;
+    /*top: 10%;*/
 }
 
 .parallax_main_shrink {
@@ -67,7 +69,7 @@
 }
 
 .parallax-settings-wrap {
-    background-color: rgba(255,255,255,0.7);
+    background-color: rgba(255,255,255,0.85);
     position: absolute;
     height: 100vh;
     width: 100%;
@@ -207,4 +209,12 @@
     border-top-style: double;
     border-top-color: black;
     z-index: 903;  
+}
+
+.testit{
+    
+    margin-top: 10;
+    background-color: aqua;
+    position: relative;
+    
 }

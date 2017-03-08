@@ -63,18 +63,18 @@
 
             <h1 class="addScreen">+</h1>
 
-            <div class="helpPageHidden">
+            <div id="helpPage" class="helpPageHidden">
                 <h1 class="helpHeader">Help</h1>
                 <p class="helpText">This is the help screen with information regarding how to use the program!</p>
             </div>
 
-            <div class="userPageHidden">
+            <div id="userPage" class="userPageHidden">
                 <h1 class="userHeader">Welcome, Austin.</h1>
                 <h1 class="userAccountsHeader">Your Accounts:</h1>
                 <ul class="userAccountsList">
-                    <li id="youtube"><img src="CSS/img/YouTube-icon-full_color.png" width="50px"; height="50px";>   Youtube: austinVideoGuy</li>
-                    <li id="Pinterest"><img src="CSS/img/Pinterest_logo-2.png" width="50px"; height="50px";>  Pinterest: austinPins</li>
-                    <li id="reddit"><img src="CSS/img/Reddit_logo.png" width="50px"; height="50px";>    Reddit: austinOnReddit</li>
+                    <li id="youtube"><img src="CSS/img/YouTube-icon-full_color.png" width="50px" ; height="50px" ;> Youtube: austinVideoGuy</li>
+                    <li id="pintrest"><img src="CSS/img/Pinterest_logo-2.png" width="50px" ; height="50px" ;> Pintrest: austinPins</li>
+                    <li id="reddit"><img src="CSS/img/Reddit_logo.png" width="50px" ; height="50px" ;> Reddit: austinOnReddit</li>
                 </ul>
             </div>
 
@@ -93,19 +93,14 @@
                 <div id="showButton1" class="show-button" onclick="generic_show( 1 )">
                     <img src="CSS/img/show.jpeg" height="20px" width="20px" />
                 </div>
-              <!--  
-            <div class="embedded">
-                  <ul>
-                    <li><iframe width="250" height="157" src="https://www.youtube.com/embed/FhC9R9oCAVk" frameborder="0" allowfullscreen></iframe></li>
-                    <li><iframe width="250" height="157" src="https://www.youtube.com/embed/_Z-f3RSNUsQ" frameborder="0" allowfullscreen></iframe></li>
-                    <li><iframe width="250" height="157" src="https://www.youtube.com/embed/3rSer5Lqg5w" frameborder="0" allowfullscreen></iframe></li>
-                    <li><iframe width="250" height="157" src="https://www.youtube.com/embed/UXnJ95N0F8I" frameborder="0" allowfullscreen></iframe></li>
-                    <li><iframe width="250" height="157" src="https://www.youtube.com/embed/PQDvEJFdY1U" frameborder="0" allowfullscreen></iframe></li>
-                    <li><iframe width="250" height="157" src="https://www.youtube.com/embed/Noo4lN-vSvw" frameborder="0" allowfullscreen></iframe></li>
-                    <li><iframe width="250" height="157" src="https://www.youtube.com/embed/YQw124CtvO0" frameborder="0" allowfullscreen></iframe></li>
-                  </ul>
-            </div>
-                -->
+
+
+                <div class="embedded">
+                    <ul id="mainparallax1-youtube">
+                    </ul>
+                </div>
+
+
                 <div id="parallaxSettings1" class="parallax-settings-wrap">
                     <div class="parallax-settings">
                         <form class="settings-form">
@@ -124,13 +119,13 @@
                             <div class="settings-categorySize">
                                 <br> Size:
                                 <br>
-                                <input type="range" id="categorySize1" class="categorySize">
-                                <input type="submit" value="Submit">
+                                <input id="range1" type="range" id="categorySize1" class="categorySize">
+                                <input type="submit" value="Submit" onclick="adjustSize( 75 )">
                             </div>
                             <div class="settings-categoryOrganized">
-                                <br> Organized:
+                                <br> Orangized:
                                 <br>
-                                <select id="categoryOrganized1" name="organized" style="width: 30%;" class="categoryOrganized">
+                                <select id="categoryOrganized1" name="organized" style="width: 50%;" class="categoryOrganized">
                                     <option value="a-z">
                                         a-z:A-Z
                                     </option>
@@ -145,24 +140,32 @@
                             <div class="panel-information-accounts">
                                 <br> Account:
                                 <br>
-                                <select id="categoryAccounts1" name="accounts" style="width: 50%;" class="categoryAccounts" onchange="fetchMedia(this.value, 1)">
-                                    <option value="default">
-                                        Please select an external media account ...
-                                    </option>
+                                <select id="categoryAccounts1" name="accounts" style="width: 70%;" class="categoryAccounts">
                                     <option value="YouTube">
                                         Youtube
                                     </option>
-                                    <option value="Pinterest">
-                                        Pinterest
+                                    <option value="Pintrest">
+                                        Pintrest
                                     </option>
                                     <option value="Reddit">
                                         Reddit
                                     </option>
                                 </select>
                             </div>
-                            <div id="subs1" class="panel-information-subscriptions">
+                            <div class="panel-information-subscriptions">
                                 <br> Subscriptions to Include:
                                 <br>
+                                <form class="categorySubscriptions">
+                                    <input type="checkbox" name="subscription" value="Science"> Science
+                                    <br>
+                                    <input type="checkbox" name="subscription" value="League of Legends"> League of Legends
+                                    <br>
+                                    <input type="checkbox" name="subscription" value="Art History"> Art History
+                                    <br>
+                                    <input type="checkbox" name="subscription" value="Wild Turtle Footage"> Wild Turtle Footage
+                                    <br>
+                                    <input type="submit">
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -198,9 +201,9 @@
                                 <input type="submit" value="Submit">
                             </div>
                             <div>
-                                <br> Organized:
+                                <br> Orangized:
                                 <br>
-                                <select id="categoryOrganized2" name="organized" style="width: 180px;" class="categoryOrganized">
+                                <select id="categoryOrganized2" name="organized" style="width: 50%;" class="categoryOrganized">
                                     <option value="a-z">
                                         a-z:A-Z
                                     </option>
@@ -215,15 +218,12 @@
                             <div class="panel-information-accounts">
                                 <br> Account:
                                 <br>
-                                <select id="categoryAccounts2" name="accounts" style="width: 50%;" class="categoryAccounts" onchange="fetchMedia(this.value, 2)">
-                                    <option value="default">
-                                        Please select an external media account ...
-                                    </option>
+                                <select id="categoryAccounts2" name="accounts" style="width: 70%;" class="categoryAccounts">
                                     <option value="YouTube">
                                         Youtube
                                     </option>
-                                    <option value="Pinterest">
-                                        Pinterest
+                                    <option value="Pintrest">
+                                        Pintrest
                                     </option>
                                     <option value="Reddit">
                                         Reddit
@@ -279,9 +279,9 @@
                                 <input type="submit" value="Submit">
                             </div>
                             <div>
-                                <br> Organized:
+                                <br> Orangized:
                                 <br>
-                                <select id="categoryOrganized3" name="organized" style="width: 180px;" class="categoryOrganized">
+                                <select id="categoryOrganized3" name="organized" style="width: 50%;" class="categoryOrganized">
                                     <option value="a-z">
                                         a-z:A-Z
                                     </option>
@@ -296,12 +296,12 @@
                             <div class="panel-information-accounts">
                                 <br> Account:
                                 <br>
-                                <select id="categoryAccounts3" name="accounts" style="width: 50%;" class="categoryAccounts" onchange="fetchMedia(this.value, 3)">
+                                <select id="categoryAccounts3" name="accounts" style="width: 70%;" class="categoryAccounts">
                                     <option value="YouTube">
                                         Youtube
                                     </option>
-                                    <option value="Pinterest">
-                                        Pinterest
+                                    <option value="Pintrest">
+                                        Pintrest
                                     </option>
                                     <option value="Reddit">
                                         Reddit
@@ -332,7 +332,7 @@
 
     </div>
 
-    <h1>copyright: The Feed Team 2017</h1>
+    <h1>The Feed Team 2017</h1>
 
 </body>
 
@@ -349,12 +349,6 @@
 <script type="text/javascript" src="javascript/navBarAction.js"></script>
 <script type="text/javascript" src="javascript/helpPage.js"></script>
 <script type="text/javascript" src="javascript/userPage.js"></script>
-
-<!--Scripts that use AJAX to talk to PHP -->
-<script type="text/javascript" src="javascript/displayUser.js"></script>
-<script type="text/javascript" src="javascript/category.js"></script>
-
-<script type="text/javascript" src="javascript/categorySettings.js"></script>
-<script type="text/javascript" src="javascript/getYouTube.js"></script>
+<script type="text/javascript" src="javascript/addYoutube.js"></script>
 
 </html>

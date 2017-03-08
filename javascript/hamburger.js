@@ -4,6 +4,9 @@ $(document).ready(function() {
         $navMenu = $('.nav-menu');
     
     $('a[href^="#"]').on('click',function (e) {
+        
+        window.scrollTo(0,0);
+        
 	    e.preventDefault();
 
 	    var target = this.hash;
@@ -28,14 +31,16 @@ $(document).ready(function() {
             index = -10000
             
             $navMenu.css('z-index',index);
-            $navMenu.css('opacity', '0');
+            $navMenu.css('opacity', '0.0');
+            $navMenu.css('background-color', 'rgba(0,0,0,0.0)');
             
         }else{
             
             index = 10000
             
             $navMenu.css('z-index',index);
-            $navMenu.css('opacity', '0.7');
+            $navMenu.css('opacity', '1');
+            $navMenu.css('background-color', 'rgba(0,0,0,0.7)');
             
         }
         

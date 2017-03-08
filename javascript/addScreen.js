@@ -1,10 +1,34 @@
 $(document).ready(function() {
 
     var $addButton = $('.addScreen');
-
+    
     var numPanels = 3;
 
-    var settings = '<div class="parallax-settings">' +
+    // + button
+    $addButton.on('mouseover', function() {
+        
+        $addButton.css('opacity','0.5');
+        //$addButton.toggleClass( 'animated' );
+        //$addButton.toggleClass( 'headShake' );
+        
+    });
+    
+    $addButton.on('mouseout', function() {
+        
+        $addButton.css('opacity','1.0');
+        //$addButton.toggleClass( 'animated' );
+        //$addButton.toggleClass( 'headShake' );
+        
+    });
+    
+    $addButton.on('click', function() {
+    
+        var $panels = $('.panels');
+        var $navList = $('.nav-menu-list');
+    
+        numPanels = numPanels + 1;
+        
+        var settings = '<div class="parallax-settings">' +
                         '<form class="settings-form">' +
                             '<div class="settings-categoryName">' +
                                 'Category:' +
@@ -19,9 +43,9 @@ $(document).ready(function() {
                                 '<input type="submit" value="Submit" onclick="updateBackground( ' + numPanels + ' )">' +
                             '</div>' +
                             '<div class="settings-categoryOrganized">' +
-                                '<br> Organized:' +
+                                '<br> Orangized:' +
                                 '<br>' +
-                                '<select id="categoryOrganized' + numPanels + '" name="organized" style="width: 180px;">' +
+                                '<select id="categoryOrganized' + numPanels + '" name="organized" style="width: 50%;">' +
                                     '<option value="a-z">' +
                                         'a-z:A-Z' +
                                     '</option>' +
@@ -35,12 +59,12 @@ $(document).ready(function() {
                             '<div class="panel-information-accounts">' +
                                 '<br> Account:' +
                                 '<br>' +
-                                '<select id="categoryAccounts3" name="accounts" style="width: 50%;" class="categoryAccounts" onchange="fetchMedia(this.value, 3)">' +
+                                '<select id="categoryAccounts' + numPanels + '" name="accounts" style="width: 70%;" class="categoryAccounts">' +
                                     '<option value="YouTube">' +
                                         'Youtube' +
                                     '</option>' +
-                                    '<option value="Pinterest">' +
-                                        'Pinterest' +
+                                    '<option value="Pintrest">' +
+                                        'Pintrest' +
                                     '</option>' +
                                     '<option value="Reddit">' +
                                         'Reddit' +
@@ -62,58 +86,44 @@ $(document).ready(function() {
                                     '<input type="submit">' +
                                 '</form>' +
                             '</div>' +
-                    '</div>';
-
-    // + button
-    $addButton.on('mouseover', function() {
-
-        $addButton.css('opacity','0.5');
-        //$addButton.toggleClass( 'animated' );
-        //$addButton.toggleClass( 'headShake' );
-
-    });
-
-    $addButton.on('mouseout', function() {
-
-        $addButton.css('opacity','1.0');
-        //$addButton.toggleClass( 'animated' );
-        //$addButton.toggleClass( 'headShake' );
-
-    });
-
-    $addButton.on('click', function() {
-
-        var $panels = $('.panels');
-        var $navList = $('.nav-menu-list');
-
-        numPanels = numPanels + 1;
-
-        $panels.append( '<div id="mainparallax' + numPanels + '" class="parallax_main parallax_main_general">\n\
-                          <div id="settingsButton' + numPanels + '" class="settings-button" onclick="generic_settings(' + numPanels + ')">\n\
-                              <img src="CSS/img/settings-gear.jpg" height="20px" width="20px" />\n\
-                          </div>\n\
-                          <div id="showButton' + numPanels + '" class="show-button" onclick="generic_show(' + numPanels + ')">\n\
-                              <img src="CSS/img/show.jpeg" height="20px" width="20px" />\n\
-                          </div>\n\
-                          <div id="parallaxSettings' + numPanels + '" class="parallax-settings-wrap">' +
-                          settings +
-                          '</div>\n\
-                        </div>' );
+                        '</div>' +
+                    '</div>'
+    
+        $panels.append( '<div id="mainparallax' + numPanels + '" class="parallax_main parallax_main_general"><div id="settingsButton' + numPanels + '" class="settings-button" onclick="generic_settings(' + numPanels + ')"><img src="CSS/img/settings-gear.jpg" height="20px" width="20px" /></div><div id="showButton' + numPanels + '" class="show-button" onclick="generic_show(' + numPanels + ')"><img src="CSS/img/show.jpeg" height="20px" width="20px" /></div><div id="parallaxSettings' + numPanels + '" class="parallax-settings-wrap">' + settings + '</div></div>');
+        
         /*$panels.append( '<div id="mainparallax' + numPanels + '" class="parallax_main parallax_main_general"><div id="settingsButton' + numPanels + '" class="settings-button" onclick="generic_settings(' + numPanels + ')"><img src="CSS/img/settings-gear.jpg" height="20px" width="20px" /></div><div id="showButton' + numPanels + '" class="show-button" onclick="generic_show(' + numPanels + ')"><img src="CSS/img/show.jpeg" height="20px" width="20px" /></div><div id="parallaxSettings' + numPanels + '" class="parallax-settings-wrap"><div class="parallax-settings"><form class="settings-form">Category:<br><input type="text" name="categoryName" placeholder="Name of category" class="categoryName"><br></form></div></div></div>');*/
-
-        $navList.append('<li draggable="true" onclick="hideMenu()"><a href="#mainparallax' + numPanels + '">Untitled</a></li>');
-
+        
+        $navList.append('<li draggable="true" onclick="hideMenu()"><a href="#mainparallax' + numPanels + '"><b id="name' + numPanels + '">Untitled</b></a></li>');
+        
         jump( ("mainparallax" + numPanels), numPanels );
 
     });
-
+    
 });
 
-function jump( h, id ){
+function updateMenuName( id ){
+    
+    name = document.getElementById("categoryName" + id).value;
+    
+    document.getElementById("name" + id).innerHTML = name;
+    
+}
 
+function updateBackground( id ){
+    
+    /*
+    pic = document.getElementById("categoryBackground" + id).value;
+    
+    $('.parallax_main_1').css( 'background-image', 'img/snowy-mointain.jpg');
+    */
+    
+}
+
+function jump( h, id ){
+    
     var loc = "#" + h;
     window.location.href = loc;
     $('.toggle-button').click();
     $("#settingsButton" + id).click();
-
+    
 }

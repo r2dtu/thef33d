@@ -1,55 +1,70 @@
 .settings-form {
     margin-top: 5%;
     margin-left: 3%;
-    font-size: 1.2em;
+    font-size: 1.7em;
     font-family: 'Ubuntu', sans-serif;
     opacity: 1.2;
     color: black;
     width: 50%;
 }
-.categoryBackgroundSelect {
-    margin-top: 2%;
-}
-.settings-categoryBackground {
-    display: inline-block;
-    width: 100%;
-}
+
+
 .categoryName {
-    margin-top: 2%;
+    margin-top: 5%;
 }
 .settings-categoryName {
     display: inline-block;
     width: 100%;
 }
+
+
+.categoryBackgroundSelect {
+    margin-top: 5%;
+}
+.settings-categoryBackground {
+    display: inline-block;
+    width: 100%;
+}
+
+
 .categoryOrganized {
-    margin-top: 2%;
+    margin-top: 5%;
 }
 .settings-categoryOrganized {
     display: inline-block;
     width: 100%;
 }
+
+
 .categorySize {
-    margin-top: 2%;
+    margin-top: 5%;
 }
 .settings-categorySize {
     display: inline-block;
     width: 100%;
 }
+
+
 input[type="text"] {
     padding: 10px;
-    width: 30%;
+    width: 50%;
     border: solid 2px #dcdcdc;
-    transition: box-shadow 0.3s, border 0.3s;
+    transition: box-shadow 0.3s, border 0.5s;
 }
+input[type="range"] {
+    padding: 10px;
+    width: 47.5%;
+    border: solid 2px #dcdcdc;
+    transition: box-shadow 0.3s, border 0.5s;
+}
+
 select {
     padding: 10px;
-    width: 30%;
+    width: 50%;
     border: solid 2px #dcdcdc;
-    transition: box-shadow 0.3s, border 0.3s;
+    transition: box-shadow 0.3s, border 0.4s;
 }
-.settings-categoryBackground {
-    margin-top: 1%;
-}
+
 .panel-information {
     position: absolute;
     float: right;
@@ -61,8 +76,8 @@ select {
     margin-top: 0;
 }
 .panel-information-accounts {
-    margin-top: 8%;
-    font-size: 1.2em;
+    margin-top: 7%;
+    font-size: 1.7em;
     font-family: 'Ubuntu', sans-serif;
     opacity: 1.2;
     color: black;
@@ -70,15 +85,15 @@ select {
 }
 .panel-information-subscriptions {
     margin-top: 2%;
-    font-size: 1.2em;
+    font-size: 1.7em;
     font-family: 'Ubuntu', sans-serif;
     opacity: 1.2;
     color: black;
     width: 70%;
 }
 .categoryAccounts {
-    margin-top: 3%;
+    margin-top: 5%;
 }
 .categorySubscriptions {
-    margin-top: 3%;
+    margin-top: 5%;
 }
