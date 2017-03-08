@@ -42,9 +42,9 @@ if (isset($_SESSION[$tokenSessionKey])) {
 
 // Check to ensure that the access token was successfully acquired.
 if ($client->getAccessToken()) {
-    
+
     try {
-        $result["hey"] = "what";
+        $result = array();
         switch ($_POST["action"]) {
             case "getCid":
 //                $channel_id = getChannelId();
@@ -54,18 +54,17 @@ if ($client->getAccessToken()) {
                 $result = getSubscriptions(getChannelIdFromDB());
                 break;
             case "getVids":
-//                $subs = getSubscriptions(getChannelIdFromDB());
-//                
-//                foreach ($subs as $sub_title => $sub_id) {
-//                    results[$sub_title] = getChannelVideos($sub_id);
-//                }
+               $subs = getSubscriptions(getChannelIdFromDB());
+               foreach ($subs as $sub_title => $sub_id) {
+                   $result[$sub_title] = getChannelVideos($sub_id);
+               }
                 break;
             default:
                 break;
         }
-        
+
         echo json_encode($result);
-        
+
     } catch (Google_Service_Exception $e) {
         $htmlBody .= sprintf('<p>A service error occurred: <code>%s</code></p>', htmlspecialchars($e->getMessage()));
     } catch (Google_Exception $e) {
@@ -77,7 +76,7 @@ if ($client->getAccessToken()) {
     exit();
 
 } else {
-    
+
     // If the user has not authorized the application, start the OAuth 2.0 flow.
     $state = mt_rand();
     $client->setState($state);
@@ -112,9 +111,8 @@ function getSubscriptions($channel_id) {
 
     $response = $youtube->subscriptions->listSubscriptions('snippet', array('channelId' => $channel_id));
     $subscriptions = $response->getItems();
-    $subs = array();
-
     foreach ($subscriptions as $subscription_channel) {
+
         $cid = $subscription_channel->getSnippet()->getResourceId()->getChannelId();
         $subs[$subscription_channel->getSnippet()->getTitle()] = $cid;
     }
@@ -128,7 +126,6 @@ function getChannelVideos($channel_id) {
     // Get a list of channel's videos
     $channels_response = $youtube->channels->listChannels('contentDetails', array('id' => $channel_id));
     $channels = $channels_response->getItems();
-
     $embed_videos = array();
 
     // Print each channel's videos
@@ -144,13 +141,11 @@ function getChannelVideos($channel_id) {
         $count = 1;
         foreach($videos as $video) {
             $embed_videos[$count] = generateEmbedLink($video->getSnippet()->getResourceId()->getVideoId(), 250, 157);
-    
+
             $count += 1;
         }
     }
-
-    echo json_encode($embed_videos);
-    exit();
+    return $embed_videos;
 }
 
 function generateEmbedLink($video_id, $width, $height) {
