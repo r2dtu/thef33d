@@ -1,73 +1,47 @@
-$(document).ready(function(){
-    
-    $("#getCid").click(function(){
+function getChannelId() {
+  var createData = {"action": "getCid"};
 
-      var createData = {"action": "getCid"};
+  var request = $.ajax({
+      url: "youtube_api/YouTube_API.php",
+      type: "POST",
+      data: createData
+  });
 
-      var request = $.ajax({
-          url: "youtube_api/YouTube_API.php",
-          type: "POST",
-          data: createData
-      });
+  // Callback handler that will be called on success
+  request.done(function (response, textStatus, jqXHR){
+      alert("Finished authorizing YouTube account and updating user Channel ID.");
+  });
 
-      // Callback handler that will be called on success
-      request.done(function (response, textStatus, jqXHR){
-          alert("Finished authorizing YouTube account and updating user Channel ID.");
-      });
+  // Callback handler that will be called on failure
+  request.fail(function (jqXHR, textStatus, errorThrown){
+    alert("You need to reauthorize your YouTube access. Please quit Chrome and retry again.");
+  });
+}
 
-      // Callback handler that will be called on failure
-      request.fail(function (jqXHR, textStatus, errorThrown){
-          alert("HTTPRequest: " + textStatus + " " + errorThrown);
-      });
-        
-        
-    });
-    
-    $("#getSubs").click(function(){
+function getVideos() {
+  var createData = {"action": "getVids"};
 
-      var createData = {"action": "getSubs"};
+  var request = $.ajax({
+      url: "youtube_api/YouTube_API.php",
+      type: "POST",
+      data: createData
+  });
 
-      var request = $.ajax({
-          url: "youtube_api/YouTube_API.php",
-          type: "POST",
-          data: createData
-      });
+  // Callback handler that will be called on success
+  request.done(function (response, textStatus, jqXHR) {
 
-      // Callback handler that will be called on success
-      request.done(function (response, textStatus, jqXHR){
-          alert("Finished authorizing YouTube account and updating user Subscriptions.");
-      });
+      var embed_videos = JSON.parse(response);
+      for (var title in embed_videos) {
+          console.log(embed_videos[title]);
+      }
+  });
 
-      // Callback handler that will be called on failure
-      request.fail(function (jqXHR, textStatus, errorThrown){
-          alert("HTTPRequest: " + textStatus + " " + errorThrown);
-      });
-    });
-    
-    $("#getVids").click(function(){
+  // Callback handler that will be called on failure
+  request.fail(function (jqXHR, textStatus, errorThrown){
+    alert("You need to reauthorize your YouTube access. Please quit Chrome and retry again.");
+  });
 
-      var createData = {"action": "getVids"};
-
-      var request = $.ajax({
-          url: "youtube_api/YouTube_API.php",
-          type: "POST",
-          data: createData
-      });
-
-      // Callback handler that will be called on success
-      request.done(function (response, textStatus, jqXHR){
-          alert("Finished authorizing YouTube account and updating user Subscriptions.");
-      });
-
-      // Callback handler that will be called on failure
-      request.fail(function (jqXHR, textStatus, errorThrown){
-          alert("HTTPRequest: " + textStatus + " " + errorThrown);
-      });
-        
-      // JUST TEST! NEED TO ADD TO CORRESPONDING PARALLAX
-      var $mainparallax1 = $('.mainparallax1');
-      
-
-    });
+  // JUST TEST! NEED TO ADD TO CORRESPONDING PARALLAX
+  var $mainparallax1 = $('.mainparallax1');
 
 }

@@ -7,7 +7,6 @@ $(document).ready(function(){
 
   // Callback handler that will be called on success
   request.done(function (response, textStatus, jqXHR){
-
     var c_data = JSON.parse(response);
     //var asdf = JSON.stringify(c_data, undefined, 2);
     //alert(asdf);
@@ -25,10 +24,23 @@ $(document).ready(function(){
 
       $panels.append( '<div id="mainparallax' + numPanels + '" cid="' + c_id + '"cname="' + c_data[c_id]["c_name"] + '"class="parallax_main parallax_main_general"><div id="settingsButton' + numPanels + '" class="settings-button" onclick="generic_settings(' + numPanels + ')"><img src="CSS/img/settings-gear.jpg" height="20px" width="20px" /></div><div id="showButton' + numPanels + '" class="show-button" onclick="generic_show(' + numPanels + ')"><img src="CSS/img/show.jpeg" height="20px" width="20px" /></div><div id="parallaxSettings' + numPanels + '" class="parallax-settings-wrap"><div class="parallax-settings"></div></div></div>');
       $navList.append('<li draggable="true" onclick="hideMenu()"><a href="#mainparallax' + numPanels + '">Untitled</a></li>');
-
+        
       //style each parallax div with .css
 
+      // Get all videos from subscriptions
       for(var y_sub in c_data[c_id]["y_subs"]){
+/*          var actionData = {"action": "getVids"};
+          var request = $.ajax({
+              url: "youtube_api/YouTube_API.php",
+              type: "POST",
+              data: action_data
+          });
+          
+          request.done(function (response, textStatus, jqXHR)) {
+            var sub_data = JSON.parse(response);
+          
+            // append embedded videos to panel
+          }*/
       }
 
       for(var r_sub in c_data[c_id]["r_subs"]){

@@ -69,7 +69,7 @@ try{
   /* LOOP THROUGH EVERY CATEGORY AND GET CATEGORY INFORMATION */
   foreach($monster_data as $c_id => $category_data){
 
-    $query = $conn->query("SELECT sub FROM y_subs WHERE c_id='$c_id'")->fetchAll(PDO::FETCH_COLUMN);
+    $query = $conn->query("SELECT channel_id FROM y_subs WHERE c_id='$c_id'")->fetchAll(PDO::FETCH_COLUMN);
     $y_subs = array();
     foreach($query as $sub){
       array_push($y_subs, $sub);
@@ -77,7 +77,7 @@ try{
     $monster_data["$c_id"]["y_subs"] = $y_subs;
 
 
-    $query = $conn->query("SELECT sub FROM r_subs WHERE c_id='$c_id'")->fetchAll(PDO::FETCH_COLUMN);
+    $query = $conn->query("SELECT sub_id FROM r_subs WHERE c_id='$c_id'")->fetchAll(PDO::FETCH_COLUMN);
     $r_subs = array();
     foreach($query as $sub){
       array_push($r_subs, $sub);
@@ -85,7 +85,7 @@ try{
     $monster_data["$c_id"]["r_subs"] = $r_subs;
 
 
-    $query = $conn->query("SELECT sub FROM p_subs WHERE c_id='$c_id'")->fetchAll(PDO::FETCH_COLUMN);
+    $query = $conn->query("SELECT board_id FROM p_subs WHERE c_id='$c_id'")->fetchAll(PDO::FETCH_COLUMN);
     $p_subs = array();
     foreach($query as $sub){
       array_push($p_subs, $sub);

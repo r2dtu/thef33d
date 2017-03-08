@@ -69,28 +69,6 @@ $(document).ready(function() {
 
 });
 
-function updateMenuName( id ){
-
-    name = document.getElementById("categoryName" + id).value;
-
-    document.getElementById("name" + id).innerHTML = name;
-
-    alert( "Changing name to: " + name );
-
-}
-
-function updateBackground( id ){
-
-    /*
-    pic = document.getElementById("categoryBackground" + id).value;
-
-    $('.parallax_main_1').css( 'background-image', 'img/snowy-mointain.jpg');
-    */
-    
-    alert( "Changing background image ... " );
-
-}
-
 function jump( h, id ){
 
     var loc = "#" + h;
