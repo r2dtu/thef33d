@@ -72,11 +72,11 @@ try{
   foreach($monster_data as $c_id => $category_data){
 
     $query = $conn->query("SELECT channel_id FROM y_subs WHERE c_id='$c_id'")->fetchAll(PDO::FETCH_COLUMN);
-    $y_subs = array();
-    foreach($query as $sub){
-      array_push($y_subs, $sub);
+    $y_links = array();
+    foreach($query as $channel_id){
+      array_push($y_subs, getChannelVideos($channel_id));
     }
-    $monster_data["$c_id"]["y_subs"] = $y_subs;
+    $monster_data["$c_id"]["y_links"] = $y_links;
 
 
     $query = $conn->query("SELECT sub_id FROM r_subs WHERE c_id='$c_id'")->fetchAll(PDO::FETCH_COLUMN);
