@@ -9,14 +9,12 @@ $(document).ready(function(){
   // Callback handler that will be called on success
   request.done(function (response, textStatus, jqXHR){
     var c_data = JSON.parse(response);
-    //var asdf = JSON.stringify(c_data, undefined, 2);
-    //alert(asdf);
+
     var $panels = $('.panels');
     var $navList = $('.nav-menu-list');
     var numPanels = 3;
 
-
-      var settings = '<div class="parallax-settings">' +
+    var settings = '<div class="parallax-settings">' +
                           '<form class="settings-form">' +
                               '<div class="settings-categoryName">' +
                                   'Category:' +
