@@ -1,6 +1,5 @@
 $(document).ready(function(){
 
-
   var request = $.ajax({
       url: "php/displayUser.php",
       type: "POST",
@@ -8,7 +7,10 @@ $(document).ready(function(){
 
   // Callback handler that will be called on success
   request.done(function (response, textStatus, jqXHR){
+
     var c_data = JSON.parse(response);
+
+    printData(c_data);
 
     var $panels = $('.panels');
     var $navList = $('.nav-menu-list');
@@ -74,7 +76,6 @@ $(document).ready(function(){
                               '</div>' +
                       '</div>';
 
-    printData(c_data);
 
     for(var c_id in c_data){
 
@@ -82,13 +83,13 @@ $(document).ready(function(){
 
       numPanels = numPanels + 1;
 
-      $panels.append( '<div id="mainparallax' + numPanels + '" class="parallax_main parallax_main_general">\n\
-                        <div id="settingsButton' + numPanels + '" class="settings-button" onclick="generic_settings(' + numPanels + ')">\n\
-                            <img src="CSS/img/settings-gear.jpg" height="20px" width="20px" />\n\
-                        </div>\n\
-                        <div id="showButton' + numPanels + '" class="show-button" onclick="generic_show(' + numPanels + ')">\n\
-                            <img src="CSS/img/show.jpeg" height="20px" width="20px" />\n\
-                        </div>\n\
+      $panels.append( '<div id="mainparallax' + numPanels + '" class="parallax_main parallax_main_general">\n
+                        <div id="settingsButton' + numPanels + '" class="settings-button" onclick="generic_settings(' + numPanels + ')">\n
+                            <img src="CSS/img/settings-gear.jpg" height="20px" width="20px" />\n
+                        </div>\n
+                        <div id="showButton' + numPanels + '" class="show-button" onclick="generic_show(' + numPanels + ')">\n
+                            <img src="CSS/img/show.jpeg" height="20px" width="20px" />\n
+                        </div>\n
                         <div id="parallaxSettings' + numPanels + '" class="parallax-settings-wrap">' +
                         settings +
                         '</div>\n\
@@ -96,42 +97,22 @@ $(document).ready(function(){
 
       /*$panels.append( '<div id="mainparallax' + numPanels + '" class="parallax_main parallax_main_general"><div id="settingsButton' + numPanels + '" class="settings-button" onclick="generic_settings(' + numPanels + ')"><img src="CSS/img/settings-gear.jpg" height="20px" width="20px" /></div><div id="showButton' + numPanels + '" class="show-button" onclick="generic_show(' + numPanels + ')"><img src="CSS/img/show.jpeg" height="20px" width="20px" /></div><div id="parallaxSettings' + numPanels + '" class="parallax-settings-wrap"><div class="parallax-settings"><form class="settings-form">Category:<br><input type="text" name="categoryName" placeholder="Name of category" class="categoryName"><br></form></div></div></div>');*/
 
-      $navList.append('<li draggable="true" onclick="hideMenu()"><a href="#mainparallax' + numPanels + '">Untitled</a></li>');
+       $navList.append('<li draggable="true" onclick="hideMenu()"><a href="#mainparallax' + numPanels + '">Untitled</a></li>');
 
 
-      //style each parallax div with .css
+       var y_links = c_data[c_id]["y_links"];
 
-      // Get all videos from subscriptions
-      for(var y_sub in c_data[c_id]["y_subs"]){
-/*          var actionData = {"action": "getVids"};
-          var request = $.ajax({
-              url: "youtube_api/YouTube_API.php",
-              type: "POST",
-              data: action_data
-          });
-
-          request.done(function (response, textStatus, jqXHR)) {
-            var sub_data = JSON.parse(response);
-
-            // append embedded videos to panel
-          }*/
-      }
-
-      for(var r_sub in c_data[c_id]["r_subs"]){
-      }
-
-      for(var p_sub in c_data[c_id]["p_subs"]){
-      }
     }
 
+  }); //End of request.done
 
-  });
 
-  // Callback handler that will be called on failure
+
   request.fail(function (jqXHR, textStatus, errorThrown){
       alert("HTTPRequest: " + textStatus + " " + errorThrown);
   });
-});
+
+}); //END OF $(document).ready
 
 
 
@@ -149,17 +130,18 @@ function printData(c_data){
     out += "c_name: " + c_data[c_id]["c_name"] + "\n";
     out += "background_img: " + c_data[c_id]["img"] + "\n";
 
-    for(var y_sub in c_data[c_id]["y_subs"]){
-      out += "  y_sub: " + c_data[c_id]["y_subs"][y_sub] + "\n";
+    for(var y_link in c_data[c_id]["y_links"]){
+      out += "  y_link: " + c_data[c_id]["y_links"][y_link] + "\n";
     }
 
-    for(var r_sub in c_data[c_id]["r_subs"]){
-      out += "  r_sub: " + c_data[c_id]["y_subs"][r_sub] + "\n";
+    for(var r_link in c_data[c_id]["r_links"]){
+      out += "  r_link: " + c_data[c_id]["r_links"][r_link] + "\n";
     }
 
-    for(var p_sub in c_data[c_id]["p_subs"]){
-      out += "  p_sub: " + c_data[c_id]["y_subs"][p_sub] + "\n";
+    for(var p_link in c_data[c_id]["p_links"]){
+      out += "  p_link: " + c_data[c_id]["p_links"][p_link] + "\n";
     }
+
     out += "\n";
   }
 

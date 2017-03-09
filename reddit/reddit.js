@@ -6,13 +6,6 @@ var userSecret = "";
 //var clientOAuth2 = require('client-oauth2');
   
 // Initialize Reddit Wrapper w/ Our credentials for now
-const reddit = new window.snoowrap({
-    userAgent: 'Testing accessing and sorting subscribed subreddits in javascript. By /u/teamfeed',
-    clientId: 'iP9RONfYAGMBuQ',
-    clientSecret: 'y50exuyycn8UJVp2YcRKADR3RqE',
-    username: 'teamfeed',
-    password: 'WTF110lecture'
-});
 
 /* Returns an unordered list object which contains a list of the relevant info
  * from a reddit post.
@@ -125,8 +118,22 @@ function mergeSubs(subreddits){
   }
 }
 
+var reddit;
+    
 $("#add").click(
   function () {
+
+    console.log(refresh);
+          
+    reddit = new window.snoowrap({
+    userAgent: 'Testing accessing and sorting subscribed subreddits in javascript. By /u/teamfeed',
+    clientId: 'IXBFNdCtseybUQ',
+    clientSecret: 'uT40Xr_nNlo-Yc03JYrE6CPDzTU',
+    refreshToken: refresh
+    //username: 'teamfeed',
+    //password: 'WTF110lecture'
+    });
+    //console.log()
 
     getSubs();
 
@@ -139,9 +146,7 @@ $("#add").click(
     
     var subreddits = reddit.getSubscriptions();
     mergeSubs(subreddits);
-
     var subredditName = prompt("Please enter a subreddit", "corgi");
-
     reddit.getHot(subredditName).then(console.log);
     var subredditHot = reddit.getHot(subredditName);
     */
