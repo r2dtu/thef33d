@@ -18,7 +18,9 @@ $client = new Google_Client();
 $client->setApplicationName("Getting YouTube Data...");
 $client->setClientId($OAUTH2_CLIENT_ID);
 $client->setClientSecret($OAUTH2_CLIENT_SECRET);
-$client->setScopes($SCOPES);$redirectURL = filter_var('http://' . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF'], FILTER_SANITIZE_URL);
+$client->setScopes($SCOPES);
+
+$redirectURL = filter_var('http://' . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF'], FILTER_SANITIZE_URL);
 $client->setRedirectUri($redirectURL);
 
 // Define an object that will be used to make all API requests.
@@ -43,6 +45,10 @@ if (isset($_SESSION[$tokenSessionKey])) {
 // Check to ensure that the access token was successfully acquired.
 if ($client->getAccessToken()) {
 
+    if($client->isAccessTokenExpired()) {
+        $authUrl = $client->createAuthUrl();
+        header('Location: ' . filter_var($authUrl, FILTER_SANITIZE_URL));
+    }
     try {
         $result = array();
         switch ($_POST["action"]) {
@@ -138,12 +144,11 @@ function getChannelVideos($channel_id) {
         $videos = $videos_response->getItems();
 
         // @TODO get nextPageToken and prevPageToken (use as input to $parts)
-        $count = 1;
         foreach($videos as $video) {
-            $embed_videos[$count] = generateEmbedLink($video->getSnippet()->getResourceId()->getVideoId(), 250, 157);
-
-            $count += 1;
+            $embed_videos[$video->getSnippet()->getTitle()] = generateEmbedLink($video->getSnippet()->getResourceId()->getVideoId(), 250, 157);
         }
+
+        
     }
     return $embed_videos;
 }
