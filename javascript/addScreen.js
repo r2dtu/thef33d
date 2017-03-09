@@ -98,7 +98,7 @@ $(document).ready(function() {
 
         numPanels = numPanels + 1;
 
-        createNewParallax(numPanels);
+        createNewParallax(numPanels, "");
 
         jump( ("mainparallax" + numPanels), numPanels );
 

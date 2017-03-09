@@ -22,12 +22,12 @@ $(document).ready(function(){
 
       numPanels = numPanels + 1;
 
-      createNewParallax(numPanels); //createNewParallax(numPanels, c_id);
+      createNewParallax(numPanels, c_id);
 
       var y_links = c_data[c_id]["y_links"];
 
       //embedd the videos
-      addList(y_links); //addList(y_links, numPanels)
+      addList(y_links, numPanels);
 
     }
 

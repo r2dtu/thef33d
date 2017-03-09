@@ -10,20 +10,15 @@ youtubeList = [
 
 ];
 
-function addList( list ){
+function addList( list, numPanel ){
 
     for( i = 0; i < youtubeList.length; i++ ){
 
-        addYoutubeVideo( youtubeList[ i ], i );
+        addYoutubeVideo( youtubeList[ i ], i, numPanel );
 
     }
 
-} addList( youtubeList );
-    'https://www.youtube.com/embed/0pdCW9-eiVU',
-    'https://www.youtube.com/embed/U5uRtxTax7w',
-    'https://www.youtube.com/embed/c5CSm8RjPJY'
-
-];
+} addList( youtubeList, 1 );
 
 pinList = [
 
@@ -46,20 +41,20 @@ var pinIndexEnd = 3;
 var redditIndexStart = 0;
 var redditIndexEnd = 3;
 
-function addYoutubeList( list ){
+function addYoutubeList( list, numPanel ){
 
     var spot = 0;
 
     for( i = 0; i < youtubeList.length; i++ ){
 
         if( i >= youtubeIndexStart && i <= youtubeIndexEnd ){
-            addYoutubeVideo( youtubeList[ i ], spot );
+            addYoutubeVideo( youtubeList[ i ], spot, numPanel );
             spot++;
         }
 
     }
 
-} addYoutubeList( youtubeList );
+} addYoutubeList( youtubeList, 1 );
 
 function addPinList( list ){
 
@@ -101,9 +96,9 @@ function removeChildren(){
 
 }
 
-function addYoutubeVideo( link, num ){
+function addYoutubeVideo( link, num, numPanel ){
 
-    $('#mainparallax1-youtube').append('<li class="youtubeVideo' + num + '"><iframe class="youtubeVideoFrame' + num + '" width="300" height="200" src="' + link + '" frameborder="0" allowfullscreen></iframe></li>');
+    $('#mainparallax' + numPanel + '-youtube').append('<li class="youtubeVideo' + num + '"><iframe class="youtubeVideoFrame' + num + '" width="300" height="200" src="' + link + '" frameborder="0" allowfullscreen></iframe></li>');
 
     $('.youtubeVideo' + num).css( 'top', '10%' );
     $('.youtubeVideo' + num).css( 'left', ((num*20) + 10) + '%' );
