@@ -1,0 +1,110 @@
+.hovered-test {
+    
+    transition: 0.5s;
+    opacity: 1.0;
+    font-size: 3.5em;
+    
+}
+
+.leftScrollYoutube {
+    
+    transition: 0.5s;
+    font-family: 'Ubuntu', sans-serif;
+    text-decoration: none;
+    color: #fff;
+    transition: 0.5s;
+    opacity: 0.5;
+    font-size: 3.0em;
+    display: inline-block;
+    
+    position: absolute;
+    top: 13%;
+    left: 4%; 
+    
+}
+
+.rightScrollYoutube {
+    
+    transition: 0.5s;
+    font-family: 'Ubuntu', sans-serif;
+    text-decoration: none;
+    color: #fff;
+    transition: 0.5s;
+    opacity: 0.5;
+    font-size: 3.0em;
+    display: inline-block;
+    
+    position: absolute;
+    top: 14%;
+    right: 4%;
+    
+}
+
+.leftScrollPin {
+    
+    transition: 0.5s;
+    font-family: 'Ubuntu', sans-serif;
+    text-decoration: none;
+    color: #fff;
+    transition: 0.5s;
+    opacity: 0.5;
+    font-size: 3.0em;
+    display: inline-block;
+    
+    position: absolute;
+    top: 45%;
+    left: 4%; 
+    
+}
+
+.rightScrollPin {
+    
+    transition: 0.5s;
+    font-family: 'Ubuntu', sans-serif;
+    text-decoration: none;
+    color: #fff;
+    transition: 0.5s;
+    opacity: 0.5;
+    font-size: 3.0em;
+    display: inline-block;
+    
+    position: absolute;
+    top: 46%;
+    right: 4%;
+    
+}
+
+.leftScrollReddit {
+    
+    transition: 0.5s;
+    font-family: 'Ubuntu', sans-serif;
+    text-decoration: none;
+    color: #fff;
+    transition: 0.5s;
+    opacity: 0.5;
+    font-size: 3.0em;
+    display: inline-block;
+    
+    position: absolute;
+    top: 70%;
+    left: 4%; 
+    
+}
+
+.rightScrollReddit {
+    
+    transition: 0.5s;
+    font-family: 'Ubuntu', sans-serif;
+    text-decoration: none;
+    color: #fff;
+    transition: 0.5s;
+    opacity: 0.5;
+    font-size: 3.0em;
+    display: inline-block;
+    
+    position: absolute;
+    top: 71%;
+    right: 4%;
+    
+}
+
