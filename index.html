@@ -16,6 +16,7 @@
     <link rel="stylesheet" type="text/css" href="CSS/hamburger.css">
     <link rel="stylesheet" type="text/css" href="CSS/main-panel.css">
     <link rel="stylesheet" type="text/css" href="CSS/main.css">
+    <link rel="stylesheet" type="text/css" href="CSS/scroll.css">
     <link rel="stylesheet" type="text/css" href="CSS/settings-panel.css">
     <link rel="stylesheet" href="animate.min.css">
     <link rel="stylesheet" type="text/css" media="all" href="css/animate.css">
@@ -96,8 +97,21 @@
 
 
                 <div class="embedded">
+                    <h1 id="leftScrollYoutube1" class="leftScrollYoutube" onmouseover="growLeft( 'youtube', 1 )" onmouseout="shrinkLeft('youtube', 1)" onclick="shiftLeft('youtube')">&lt;</h1>
                     <ul id="mainparallax1-youtube">
                     </ul>
+                    <h1 id="rightScrollYoutube1" class="rightScrollYoutube" onmouseover="growRight( 'youtube', 1 )" onmouseout="shrinkRight('youtube', 1)" onclick="shiftRight('youtube')">&gt;</h1>
+                    
+                    <h1 id="leftScrollPin1" class="leftScrollPin" onmouseover="growLeft( 'pin', 1 )" onmouseout="shrinkLeft('pin', 1)" onclick="shiftLeft('pin')">&lt;</h1>
+                    <ul id="mainparallax1-pin">
+                    </ul>
+                    <h1 id="rightScrollPin1" class="rightScrollPin" onmouseover="growRight( 'pin', 1 )" onmouseout="shrinkRight('pin', 1)" onclick="shiftRight('pin')">&gt;</h1>
+                    
+                    <h1 id="leftScrollReddit1" class="leftScrollReddit" onmouseover="growLeft( 'reddit', 1 )" onmouseout="shrinkLeft('reddit', 1)" onclick="shiftLeft('reddit')">&lt;</h1>
+                    <ul id="mainparallax1-reddit">
+                    </ul>
+                    <h1 id="rightScrollReddit1" class="rightScrollReddit" onmouseover="growRight( 'reddit', 1 )" onmouseout="shrinkRight('reddit', 1)" onclick="shiftRight('reddit')">&gt;</h1>
+                    
                 </div>
 
 
@@ -334,6 +348,7 @@
 
     <h1>The Feed Team 2017</h1>
 
+    <script async defer src="//assets.pinterest.com/js/pinit.js"></script>
 </body>
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js" type="text/javascript"></script>
@@ -350,5 +365,6 @@
 <script type="text/javascript" src="javascript/helpPage.js"></script>
 <script type="text/javascript" src="javascript/userPage.js"></script>
 <script type="text/javascript" src="javascript/addYoutube.js"></script>
+<script type="text/javascript" src="javascript/scroll.js"></script>
 
 </html>
