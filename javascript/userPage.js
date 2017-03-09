@@ -1,4 +1,4 @@
-$(document).ready(function() {
+/*$(document).ready(function() {
 
     var $user = $('.userInformation');
     
@@ -10,7 +10,6 @@ $(document).ready(function() {
         $('.userInformation').toggleClass('userInformationShift');
         $('.addScreen').toggleClass('addScreenShift');
         
-        
     });
     
-});
+});*/
