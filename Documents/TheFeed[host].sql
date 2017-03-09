@@ -48,8 +48,8 @@ DROP TABLE IF EXISTS `p_subs`;
 CREATE TABLE `p_subs` (
   `id` int(11) AUTO_INCREMENT,
   `c_id` varchar(128) NOT NULL,
-  `sub` varchar(128) NOT NULL,
-  `board_id` varchar(128) NOT NULL,
+  `sub_name` varchar(128) NOT NULL,
+  `sub_id` varchar(128) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -62,7 +62,7 @@ DROP TABLE IF EXISTS `r_subs`;
 CREATE TABLE `r_subs` (
   `id` int(11) AUTO_INCREMENT,
   `c_id` varchar(128) NOT NULL,
-  `sub` varchar(128) NOT NULL,
+  `sub_name` varchar(128) NOT NULL,
   `sub_id` varchar(128) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`)
@@ -76,8 +76,8 @@ DROP TABLE IF EXISTS `y_subs`;
 CREATE TABLE `y_subs` (
   `id` int(11) AUTO_INCREMENT,
   `c_id` varchar(128) NOT NULL,
-  `sub` varchar(128) NOT NULL,
-  `channel_id` varchar(128) NOT NULL,
+  `sub_name` varchar(128) NOT NULL,
+  `sub_id` varchar(128) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
