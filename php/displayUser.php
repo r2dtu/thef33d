@@ -1,8 +1,8 @@
 <?php
 
 session_start();
-
-include ("../youtube_api/YouTube_API.php");
+//include '../youtube_api/YouTube_API.php';
+include '../youtube_api/idek.php';
 
 /*
  * $monster_data => {
@@ -56,8 +56,8 @@ include ("../youtube_api/YouTube_API.php");
  *   };
  * };
  */
-
-include 'error.php';
+require_once '../youtube_api/YouTube_API.php';
+require_once 'error.php';
 
 try{
 
@@ -71,14 +71,17 @@ try{
   /* LOOP THROUGH EVERY CATEGORY AND GET CATEGORY INFORMATION */
   foreach($monster_data as $c_id => $category_data){
 
-    $query = $conn->query("SELECT channel_id FROM y_subs WHERE c_id='$c_id'")->fetchAll(PDO::FETCH_COLUMN);
+    $query = $conn->query("SELECT sub_id FROM y_subs WHERE c_id='$c_id'")->fetchAll(PDO::FETCH_COLUMN);
     $y_links = array();
-    foreach($query as $channel_id){
-      array_push($y_subs, getChannelVideos($channel_id));
+    foreach($query as $sub_id){
+       $tmp_links = getChannelVideos($sub_id);
+       foreach($tmp_links as $y_link){
+         array_push($y_links, $y_link);
+       }
     }
     $monster_data["$c_id"]["y_links"] = $y_links;
 
-
+/*
     $query = $conn->query("SELECT sub_id FROM r_subs WHERE c_id='$c_id'")->fetchAll(PDO::FETCH_COLUMN);
     $r_subs = array();
     foreach($query as $sub){
@@ -93,7 +96,7 @@ try{
       array_push($p_subs, $sub);
     }
     $monster_data["$c_id"]["p_subs"] = $p_subs;
-
+*/
   }
 
   $monster_data["username"] = $username;

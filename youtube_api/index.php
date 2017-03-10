@@ -20,9 +20,6 @@ $client->setScopes($SCOPES);
 $redirectURL = filter_var('http://' . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF'], FILTER_SANITIZE_URL);
 $client->setRedirectUri($redirectURL);
 
-$client->setAccessType('offline');
-
-
 // Define an object that will be used to make all API requests.
 $youtube = new Google_Service_YouTube($client);
 
@@ -34,9 +31,6 @@ if (isset($_GET['code'])) {
     }
     $client->authenticate($_GET['code']);
     $_SESSION[$tokenSessionKey] = $client->getAccessToken();
-    // $NewAccessToken = json_decode($client->getAccessToken());
-    // $client->refreshToken($NewAccessToken->refresh_token);
-
     header('Location: ' . $redirectURL);
 }
 
@@ -48,16 +42,13 @@ if (isset($_SESSION[$tokenSessionKey])) {
 // Check to ensure that the access token was successfully acquired.
 if ($client->getAccessToken()) {
     $htmlBody = '';
-
     if($client->isAccessTokenExpired()) {
-        // If the user has not authorized the application, start the OAuth 2.0 flow.
         $state = mt_rand();
         $client->setState($state);
         $_SESSION['state'] = $state;
         $authUrl = $client->createAuthUrl();
         header('Location: ' . filter_var($authUrl, FILTER_SANITIZE_URL));
     }
-
     try {
 
         // This commented code inserts a new subscription into the user's subscriptions list - it does not update immediately, and you must call listSubscriptions again.

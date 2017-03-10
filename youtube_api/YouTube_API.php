@@ -46,41 +46,42 @@ if (isset($_SESSION[$tokenSessionKey])) {
 if ($client->getAccessToken()) {
 
     if($client->isAccessTokenExpired()) {
+        $state = mt_rand();
+        $client->setState($state);
+        $_SESSION['state'] = $state;
         $authUrl = $client->createAuthUrl();
         header('Location: ' . filter_var($authUrl, FILTER_SANITIZE_URL));
-    }
-    try {
-        $result = array();
-        switch ($_POST["action"]) {
-            case "getCid":
-//                $channel_id = getChannelId();
-//                $result[$username] = $channel_id;
-                break;
-            case "getSubs":
-                $result = getSubscriptions(getChannelIdFromDB());
-                break;
-            case "getVids":
-               $subs = getSubscriptions(getChannelIdFromDB());
-               foreach ($subs as $sub_title => $sub_id) {
-                   $result[$sub_title] = getChannelVideos($sub_id);
-               }
-                break;
-            default:
-                break;
+    } else {
+
+        try {
+            $result = array();
+            switch ($_POST["action"]) {
+                case "getCid":
+    //                $channel_id = getChannelId();
+    //                $result[$username] = $channel_id;
+                    break;
+                case "getSubs":
+                    $result = getSubscriptions(getChannelIdFromDB());
+                    break;
+                case "getVids":
+                    $result = getChannelVideos($_POST["id"]);
+                    break;
+                default:
+                    break;
+            }
+
+            echo json_encode($result);
+
+        } catch (Google_Service_Exception $e) {
+            $htmlBody .= sprintf('<p>A service error occurred: <code>%s</code></p>', htmlspecialchars($e->getMessage()));
+        } catch (Google_Exception $e) {
+            $htmlBody .= sprintf('<p>An client error occurred: <code>%s</code></p>', htmlspecialchars($e->getMessage()));
         }
 
-        echo json_encode($result);
-
-    } catch (Google_Service_Exception $e) {
-        $htmlBody .= sprintf('<p>A service error occurred: <code>%s</code></p>', htmlspecialchars($e->getMessage()));
-    } catch (Google_Exception $e) {
-        $htmlBody .= sprintf('<p>An client error occurred: <code>%s</code></p>', htmlspecialchars($e->getMessage()));
+        // Update the access token
+        $_SESSION[$tokenSessionKey] = $client->getAccessToken();
+        exit();
     }
-
-    // Update the access token
-    $_SESSION[$tokenSessionKey] = $client->getAccessToken();
-    exit();
-
 } else {
 
     // If the user has not authorized the application, start the OAuth 2.0 flow.
@@ -126,7 +127,7 @@ function getSubscriptions($channel_id) {
     return $subs;
 }
 
-function getChannelVideos($channel_id) {
+function getChannelVideos($channel_id) { // TODO add sorting
     global $youtube;
 
     // Get a list of channel's videos
@@ -145,16 +146,14 @@ function getChannelVideos($channel_id) {
 
         // @TODO get nextPageToken and prevPageToken (use as input to $parts)
         foreach($videos as $video) {
-            $embed_videos[$video->getSnippet()->getTitle()] = generateEmbedLink($video->getSnippet()->getResourceId()->getVideoId(), 250, 157);
+            array_push($embed_videos, generateEmbedLink($video->getSnippet()->getResourceId()->getVideoId(), 250, 157));
         }
-
-        
     }
     return $embed_videos;
 }
 
 function generateEmbedLink($video_id, $width, $height) {
-    return '<iframe width="' . $width . '" height="' . $height . '" src="https://www.youtube.com/embed/' . $videoId . '" frameborder="0" allowfullscreen></iframe>';
+    return '<iframe width="' . $width . '" height="' . $height . '" src="https://www.youtube.com/embed/' . $video_id . '" frameborder="0" allowfullscreen></iframe>';
 }
 
 function insertSubscriptions($new_channel_id) {
