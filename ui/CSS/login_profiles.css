@@ -1,0 +1,131 @@
+/***** Profile picture CSS styling *****/
+
+#austinProf{
+  margin-top: 5%;
+  margin-left: 3%;
+
+  border: 2px;
+  border-radius: 50%;
+}
+#austinProf:hover {
+  transform: scale(1.5,1.5);
+
+}
+
+
+
+#georgeProf{
+  margin-top: 5%;
+  margin-left: 3%;
+
+  border: 2px;
+  border-radius: 50%;
+}
+#georgeProf:hover{
+  transform: scale(1.5,1.5);
+}
+
+
+
+#wyattProf{
+  margin-top: 5%;
+  margin-left: 3%;
+
+  border: 2px;
+  border-radius: 50%;
+}
+#wyattProf:hover{
+  transform: scale(1.5,1.5);
+}
+
+
+
+
+#davidProf{
+  margin-top: 5%;
+  margin-left: 3%;
+
+  border: 2px;
+  border-radius: 50%;
+}
+#davidProf:hover{
+  transform: scale(1.5,1.5);
+}
+
+
+
+#jasperProf{
+  margin-top: 5%;
+  margin-left: 3%;
+
+  border: 2px;
+  border-radius: 50%;
+}
+#jasperProf:hover{
+  transform: scale(1.5,1.5);
+}
+
+
+
+#joeProf{
+  margin-top: 5%;
+  margin-left: 3%;
+
+  border: 2px;
+  border-radius: 50%;
+}
+#joeProf:hover{
+  transform: scale(1.5,1.5);
+}
+
+
+
+#kendrickProf{
+  margin-top: 5%;
+  margin-left: 3%;
+
+  border: 2px;
+  border-radius: 50%;
+}
+#kendrickProf:hover{
+  transform: scale(1.5,1.5);
+}
+
+
+
+#laurelProf{
+  margin-top: 5%;
+  margin-left: 3%;
+
+  border: 2px;
+  border-radius: 50%;
+}
+#laurelProf:hover{
+  transform: scale(1.5,1.5);
+}
+
+
+
+#johnnyProf{
+  margin-top: 5%;
+  margin-left: 3%;
+
+  border: 2px;
+  border-radius: 50%;
+}
+#johnnyProf:hover{
+  transform: scale(1.5,1.5);
+}
+
+
+
+#isaacProf{
+  margin-top: 5%;
+  margin-left: 3%;
+
+  border: 2px;
+  border-radius: 50%;
+}
+#isaacProf:hover{
+  transform: scale(1.5,1.5);
+}

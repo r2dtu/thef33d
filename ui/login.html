@@ -8,53 +8,87 @@
 
   <link rel="stylesheet" type="text/css" href="CSS/login.css"/>
   <link rel="stylesheet" type="text/css" href="CSS/login_parallax.css"/>
-
-
+  <link rel="stylesheet" type="text/css" href="CSS/login_profiles.css"/>
 </head>
+
 <body id="loginPage">
+
   <div class="parallax_login">
     <div class="header">
       <h1>The Feed</h1>
     </div>
-  <img id="logo" src="CSS/img/logo.png" width="150px" height="100px" />
+  <img id="logo" src="CSS/img/logoMain.png" width="150px" height="100px" />
 
+<!-- ####### Main Login container ####### -->
 
 <div id="container">
-  <form action="file:///C:/Users/Wyatt/Desktop/Atom%20Dir/CSE_110/index.html" method="post" autocomplete="on">
+  <form  method="post" autocomplete="on">
     <div id="UpperLabels">
-      <lable for="username">Username:</label>
-      <input type="text" id="username" placeholder="Enter User Name"name="username" required autofocus>
+      <lable for="username">User Email:</label>
+      <input type="text" id="username" placeholder="Enter User Email"name="username" autofocus required>
       <label for="password">Password:</label>
       <input type="password" id="password" placeholder="Enter Password"name="password" required>
     </div>
     <div id="lower">
-      <button id="googleSignIn" type="submit"> Sign in with Google </button>
-      <!--<input type="checkbox"><label for="checkbox">Keep me logged in</label>-->
-      <!--<input type="submit" value="Login">-->
-      <button id="forgotPassword" type="button">Forgot Password</button>
+      <button id="googleSignIn" type="button"> <text id="sign">Sign</text> <text id="in">in</text> <text id="with">with</text>
+         <text id="google">Google</text> </button>
+      <button id="forgotPassword" type="button" onclick="generic_show()">Forgot Password</button>
       <button id="loginButton" type="sumbit">Login</button>
-    </div><!--/ lower-->
-  </form>
+    </div>
+    </form>
+</div>
+</div>
+
+<!-- ####### Forgot Password div for user to enter information and retrieve password ####### -->
+
+<div id="forgotPasswordCont" class="forgotPasswordContainer">
+
+  <div id="exitButton">
+    <img id="exitImage" src="CSS/img/exit.png" width="10px" height="10px" />
   </div>
 
+  <text id="forgotEmailHeader">Enter your Account's email:</text>
+  <input type="text" id="forgotEmail" placeholder="Enter email">
+
+  <text id="forgotDrowpdownHeader">Select your Security Question:</text>
+  <select id="forgotDropdown">
+    <option value="">What was your first pet's name?</option>
+    <option value="">Who is your best childhood friend</option>
+    <option value="">What was your dream car as a child</option>
+  </select><br>
+
+  <text id="forgotAnswerHeader">Enter your Answer:</text>
+  <input type="text" id="forgotAnswer" placeholder="Answer">
+
+  <button id="forgotSubmit" type="button">Retrieve Password</button>
 
 
 </div>
 
-<div class="parallax_layer">
-  <p id="CreateAccount">Tired of clutered media feeds spread across multiple websites?
+<!-- Front facing class that describes the website and its use. Slides upon button click -->
+
+<div id="test" class="createAccountInfo">
+
+  <p id="CreateAccount">Tired of cluttered media feeds spread across multiple websites?
   The FEED is your solution. Organize content like never before in your own, personal
   way. Create an account and get started now!
   </p>
-  <button id="createButton" type="submit">Create an Account</button>
+  <button id="createButton" onclick="generic_slide()">Create an Account</button>
+
 </div>
 
-<div id="createAccountLayer">
+<!-- Class in which users will enter their new account information to create and account -->
+
+<div class="createAccountLayer">
   <button id="submitAccount" type="submit"> Submit </button>
+
 
 <div id="left-fields">
   <p id="EmailHeader"> Email: </p>
   <input type="text" id="emailInput" placeholder="Enter email" name="emailInput" required />
+
+  <p id="NameHeader"> Name: </p>
+  <input type="text" id="nameInput" placeholder="Enter name" name="nameInput" required />
 
   <p id="PasswordHeader"> Password: </p>
   <input type="text" id="passwordInput" placeholder="Enter password" name="passwordInput" required />
@@ -72,18 +106,31 @@
   <input type="text" id="securityAnswer"
     placeholder="Enter answer to your security question" name="securityAnswer" required />
   </div>
-
-
 </div>
 
 <div class="parallax_login_2"> </div>
 
-<div class="parallax_layer">
+
+<!-- ########### Profiles Section ########### -->
+
+<div class="parallax_login_2">
+
+  <img id="austinProf" src="CSS/img/abc.jpg" width="100px" height= "100px" >
+  <img id="georgeProf" src="CSS/img/gerg.jpg" width="100px" height= "100px">
+  <img id="wyattProf" src="CSS/img/wyatt.jpg" width="100px" height= "100px">
+  <img id="davidProf" src="CSS/img/david.jpg" width="100px" height= "100px">
+  <img id="jasperProf" src="CSS/img/jasper.jpg" width="100px" height= "100px">
+  <img id="joeProf" src="CSS/img/joe.jpg" width="100px" height= "100px">
+  <img id="kendrickProf" src="CSS/img/kendrick.jpg" width="100px" height= "100px">
+  <img id="laurelProf" src="CSS/img/laurel.jpg" width="100px" height= "100px">
+  <img id="johnnyProf" src="CSS/img/genericUser.jpg" width="100px" height= "100px">
+  <img id="isaacProf" src="CSS/img/isaac.jpg" width="100px" height= "100px">
+
 </div>
 
 </body>
-<script type="text/javascript" src="javascript/login.js"></script>
-<script type="text/javascript" src="javascript/changeImage.js"></script
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script type="text/javascript" src="javascript/login.js"></script>
+<script type="text/javascript" src="javascript/changeImage.js"></script>
 <script type="text/javascript" src="javascript/login.js"></script>
 </html>

@@ -62,7 +62,7 @@ $(document).ready(function(){
           alert("HTTPRequest: " + textStatus + " " + errorThrown);
       });
     });
-
+/*
     $("#forgotPassword").click(function(){
 
       var email = $("#username").val();
@@ -83,6 +83,20 @@ $(document).ready(function(){
           alert("HTTPRequest: " + textStatus + " " + errorThrown);
       });
 
-
-    });
+    });*/
 });
+
+/***** Slide the accountInfo div to the left and display the createAccount fields *****/
+function generic_slide(){
+
+    $('#test').toggleClass('createAccountInfo-slide');
+    $('#CreateAccount').toggleClass('hide');
+
+}
+
+/***** Show the Forgot Password panel  and retrieval fields *****/
+function generic_show(){
+  alert( "sjow");
+  $('#container').toggleClass('forgotPassword-show');
+
+}
