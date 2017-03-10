@@ -8,16 +8,16 @@ if (isset($_GET["error"]))
 
 $authorizeUrl = 'https://ssl.reddit.com/api/v1/authorize';
 $accessTokenUrl = 'https://ssl.reddit.com/api/v1/access_token';
-$clientId = 'IXBFNdCtseybUQ';
-$clientSecret = 'uT40Xr_nNlo-Yc03JYrE6CPDzTU';
+$clientId = '8-kkjNXlTfpV0Q';
+$clientSecret = 'J6W5Y5UgCiJssMxapEGtsIX4Ebk';
 $userAgent = 'zhrong0725';
 
-$redirectUrl = "http://thef33d.me/reddit/";
+$redirectUrl = "http://167.160.173.105/reddit/";
 
 require("Client.php");
 require("GrantType/IGrantType.php");
 require("GrantType/AuthorizationCode.php");
-
+echo "HelloO";
 $client = new OAuth2\Client($clientId, $clientSecret, OAuth2\Client::AUTH_TYPE_AUTHORIZATION_BASIC);
 echo "hello";
 $client->setCurlOption(CURLOPT_USERAGENT,$userAgent);

@@ -23,12 +23,7 @@ $(document).ready(function(){
       numPanels = numPanels + 1;
 
       createNewParallax(numPanels, c_id);
-
-      var y_links = c_data[c_id]["y_links"];
-
-      //embedd the videos
-      addList(y_links, numPanels);
-
+      addList(c_data[c_id]["y_links"], numPanels);
     }
 
   }); //End of request.done
@@ -43,7 +38,6 @@ $(document).ready(function(){
 function printData(c_data){
 
   var out = "";
-
   out += "Category info for user: " + c_data["username"] + "\n\n";
 
   for(var c_id in c_data){
