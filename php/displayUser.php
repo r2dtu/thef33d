@@ -40,15 +40,15 @@ try{
       array_push($r_subs, $sub);
     }
     $monster_data["$c_id"]["r_subs"] = $r_subs;
+    */
 
-
-    $query = $conn->query("SELECT board_id FROM p_subs WHERE c_id='$c_id'")->fetchAll(PDO::FETCH_COLUMN);
+    $query = $conn->query("SELECT sub_id FROM p_subs WHERE c_id='$c_id'")->fetchAll(PDO::FETCH_COLUMN);
     $p_subs = array();
     foreach($query as $sub){
       array_push($p_subs, $sub);
     }
     $monster_data["$c_id"]["p_subs"] = $p_subs;
-    */
+
   }
   $monster_data["username"] = $username;
   echo json_encode($monster_data);

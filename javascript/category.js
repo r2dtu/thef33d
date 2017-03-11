@@ -5,7 +5,7 @@ $(document).ready(function(){
     var c_img = $("#c_img");
     var c_data = {"message": "create_category", "c_name": c_name, "c_img": c_img}
 
-    request = $.ajax({
+    var request = $.ajax({
         url: "php/category.php",
         type: "POST",
         data: c_data

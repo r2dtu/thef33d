@@ -63,8 +63,8 @@ function printData(c_data){
       out += "  r_link: " + c_data[c_id]["r_links"][r_link] + "\n";
     }
 
-    for(var p_link in c_data[c_id]["p_links"]){
-      out += "  p_link: " + c_data[c_id]["p_links"][p_link] + "\n";
+    for(var p_link in c_data[c_id]["p_subs"]){
+      out += "  p_sub: " + c_data[c_id]["p_subs"][p_link] + "\n";
     }
 
     out += "\n";

@@ -21,6 +21,13 @@
     transition: 0.7s;
 }
 
+.embedded-hide {
+    
+    transition: 0.7s;
+    opacity: 0.0;
+    
+}
+
 .embedded-video {
     white-space: nowrap;
     position: relative;
@@ -167,10 +174,9 @@
     margin-top: 1%
 }
 
-
 .parallax_main_1 {
     top: 0;
-    background-image: url("img/Lunar1.jpg");
+    background-color: darkslategrey;
     background-position: center;
     background-size: cover;
     position: sticky;
@@ -201,7 +207,7 @@
 .parallax_main_general {  
     top: 0; 
     position: sticky;
-    background-color: white;
+    background-color: darkslategrey;
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
