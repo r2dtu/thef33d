@@ -97,3 +97,25 @@ select {
 .categorySubscriptions {
     margin-top: 5%;
 }
+
+.updateSettingsButton {
+    
+    position: absolute;
+    bottom: 7%;
+    left: 3%;
+    width: 100px;
+    height: 50px;
+    
+}
+
+.deleteCategoryButton {
+    
+    position: absolute;
+    bottom: 7%;
+    left: 10%;
+    width: 150px;
+    height: 50px;
+    background-color: red;
+    color: white;
+    
+}

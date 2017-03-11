@@ -58,8 +58,7 @@
                 <!-- For drag and drop: http://syntaxxx.com/rearranging-web-page-items-with-html5-drag-and-drop/ -->
 
                 <li draggable="true" onclick="hideMenu()"><a href="#mainparallax1"><b id="name1">Moon</b></a></li>
-                <li draggable="true" onclick="hideMenu()"><a href="#mainparallax2"><b id="name2">Snowy Mountains</b></a></li>
-                <li draggable="true" onclick="hideMenu()"><a href="#mainparallax3"><b id="name3">Rainforest</b></a></li>
+                
             </ul>
 
             <h1 class="addScreen">+</h1>
@@ -71,11 +70,11 @@
 
             <div id="userPage" class="userPageHidden">
                 <h1 class="userHeader">Welcome, Austin.</h1>
-                <h1 class="userAccountsHeader">Your Accounts:</h1>
+                <h1 class="userAccountsHeader">Click to Link Accounts</h1>
                 <ul class="userAccountsList">
-                    <li id="youtube"><img src="CSS/img/YouTube-icon-full_color.png" width="50px" ; height="50px" ;> Youtube: austinVideoGuy</li>
-                    <li id="pintrest"><img src="CSS/img/Pinterest_logo-2.png" width="50px" ; height="50px" ;> Pintrest: austinPins</li>
-                    <li id="reddit"><img src="CSS/img/Reddit_logo.png" width="50px" ; height="50px" ;> Reddit: austinOnReddit</li>
+                    <li id="youtube"><img src="CSS/img/YouTube-icon-full_color.png" width="100px" ; height="100px" ; onclick=""></li>
+                    <li id="pintrest"><img src="CSS/img/Pinterest_logo-2.png" width="100px" ; height="100px" ; onclick=""></li>
+                    <li id="reddit"><img src="CSS/img/Reddit_logo.png" width="100px" ; height="110px" ; onclick=""></li>
                 </ul>
             </div>
 
@@ -96,21 +95,21 @@
                 </div>
 
 
-                <div class="embedded">
-                    <h1 id="leftScrollYoutube1" class="leftScrollYoutube" onmouseover="growLeft( 'youtube', 1 )" onmouseout="shrinkLeft('youtube', 1)" onclick="shiftLeft('youtube')">&lt;</h1>
+                <div id="embedded1" class="embedded">
+                    <h1 id="leftScrollYoutube1" class="leftScrollYoutube" onmouseover="growLeft( 'youtube', 1 )" onmouseout="shrinkLeft('youtube', 1)" onclick="shiftLeft('youtube', 1)">&lt;</h1>
                     <ul id="mainparallax1-youtube">
                     </ul>
-                    <h1 id="rightScrollYoutube1" class="rightScrollYoutube" onmouseover="growRight( 'youtube', 1 )" onmouseout="shrinkRight('youtube', 1)" onclick="shiftRight('youtube')">&gt;</h1>
+                    <h1 id="rightScrollYoutube1" class="rightScrollYoutube" onmouseover="growRight( 'youtube', 1 )" onmouseout="shrinkRight('youtube', 1)" onclick="shiftRight('youtube', 1)">&gt;</h1>
 
-                    <h1 id="leftScrollPin1" class="leftScrollPin" onmouseover="growLeft( 'pin', 1 )" onmouseout="shrinkLeft('pin', 1)" onclick="shiftLeft('pin')">&lt;</h1>
+                    <h1 id="leftScrollPin1" class="leftScrollPin" onmouseover="growLeft( 'pin', 1 )" onmouseout="shrinkLeft('pin', 1)" onclick="shiftLeft('pin', 1)">&lt;</h1>
                     <ul id="mainparallax1-pin">
                     </ul>
-                    <h1 id="rightScrollPin1" class="rightScrollPin" onmouseover="growRight( 'pin', 1 )" onmouseout="shrinkRight('pin', 1)" onclick="shiftRight('pin')">&gt;</h1>
+                    <h1 id="rightScrollPin1" class="rightScrollPin" onmouseover="growRight( 'pin', 1 )" onmouseout="shrinkRight('pin', 1)" onclick="shiftRight('pin', 1)">&gt;</h1>
 
-                    <h1 id="leftScrollReddit1" class="leftScrollReddit" onmouseover="growLeft( 'reddit', 1 )" onmouseout="shrinkLeft('reddit', 1)" onclick="shiftLeft('reddit')">&lt;</h1>
+                    <h1 id="leftScrollReddit1" class="leftScrollReddit" onmouseover="growLeft( 'reddit', 1 )" onmouseout="shrinkLeft('reddit', 1)" onclick="shiftLeft('reddit', 1)">&lt;</h1>
                     <ul id="mainparallax1-reddit">
                     </ul>
-                    <h1 id="rightScrollReddit1" class="rightScrollReddit" onmouseover="growRight( 'reddit', 1 )" onmouseout="shrinkRight('reddit', 1)" onclick="shiftRight('reddit')">&gt;</h1>
+                    <h1 id="rightScrollReddit1" class="rightScrollReddit" onmouseover="growRight( 'reddit', 1 )" onmouseout="shrinkRight('reddit', 1)" onclick="shiftRight('reddit', 1)">&gt;</h1>
 
                 </div>
 
@@ -121,25 +120,22 @@
                             <div class="settings-categoryName">
                                 Category:
                                 <br>
-                                <input type="text" id="categoryName1" placeholder="Name of category" class="categoryName">
-                                <input type="submit" value="Submit" onclick="updateMenuName( 1 )">
+                                <input type="text" id="categoryName1" placeholder="Name of category" class="categoryName"  oninput="nameFlag()">
                             </div>
                             <div class="settings-categoryBackground">
                                 <br> Background Image:
                                 <br>
-                                <input type="file" id="categoryBackground1" class="categoryBackgroundSelect">
-                                <input type="submit" value="Submit" onclick="updateBackground( 1 )">
+                                <input type='file' id="categoryBackground1" class="categoryBackgroundSelect" >
                             </div>
                             <div class="settings-categorySize">
                                 <br> Size:
                                 <br>
-                                <input id="range1" type="range" id="categorySize1" class="categorySize">
-                                <input type="submit" value="Submit" onclick="adjustSize( 75 )">
+                                <input id="range1" type="range" id="categorySize1" class="categorySize" onchange="sizeFlag()">
                             </div>
                             <div class="settings-categoryOrganized">
                                 <br> Orangized:
                                 <br>
-                                <select id="categoryOrganized1" name="organized" style="width: 50%;" class="categoryOrganized">
+                                <select id="categoryOrganized1" name="organized" style="width: 50%;" class="categoryOrganized" onchange="organizedFlag()">
                                     <option value="a-z">
                                         a-z:A-Z
                                     </option>
@@ -150,167 +146,13 @@
                                 </select>
                             </div>
                         </form>
+                        <input class="updateSettingsButton" type="submit" value="Save Settings" onclick="updateSettings( 1 )">
+                        <input class="deleteCategoryButton" type="submit" value="Delete Panel" onclick="deleteCategory( 1 )">
                         <div class="panel-information">
                             <div class="panel-information-accounts">
                                 <br> Account:
                                 <br>
                                 <select id="categoryAccounts1" name="accounts" style="width: 70%;" class="categoryAccounts">
-                                    <option value="YouTube">
-                                        Youtube
-                                    </option>
-                                    <option value="Pintrest">
-                                        Pintrest
-                                    </option>
-                                    <option value="Reddit">
-                                        Reddit
-                                    </option>
-                                </select>
-                            </div>
-                            <div class="panel-information-subscriptions">
-                                <br> Subscriptions to Include:
-                                <br>
-                                <form class="categorySubscriptions">
-                                    <input type="checkbox" name="subscription" value="Science"> Science
-                                    <br>
-                                    <input type="checkbox" name="subscription" value="League of Legends"> League of Legends
-                                    <br>
-                                    <input type="checkbox" name="subscription" value="Art History"> Art History
-                                    <br>
-                                    <input type="checkbox" name="subscription" value="Wild Turtle Footage"> Wild Turtle Footage
-                                    <br>
-                                    <input type="submit">
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div id="mainparallax2" class="parallax_main parallax_main_2">
-                <div id="settingsButton2" class="settings-button" onclick="generic_settings( 2 )">
-                    <img src="CSS/img/settings-gear.jpg" height="20px" width="20px" />
-                </div>
-                <div id="showButton2" class="show-button" onclick="generic_show( 2 )">
-                    <img src="CSS/img/show.jpeg" height="20px" width="20px" />
-                </div>
-                <div id="parallaxSettings2" class="parallax-settings-wrap">
-                    <div class="parallax-settings">
-                        <form class="settings-form">
-                            <div>
-                                Category:
-                                <br>
-                                <input type="text" id="categoryName2" placeholder="Name of category" class="categoryName">
-                                <input type="submit" value="Submit" onclick="updateMenuName( 2 )">
-                            </div>
-                            <div>
-                                <br> Background Image:
-                                <br>
-                                <input type="file" id="categoryBackground2" class="categoryBackgroundSelect">
-                                <input type="submit" value="Submit" onclick="updateBackground( 2 )">
-                            </div>
-                            <div>
-                                <br> Size:
-                                <br>
-                                <input type="range" id="categorySize2" class="categorySize">
-                                <input type="submit" value="Submit">
-                            </div>
-                            <div>
-                                <br> Orangized:
-                                <br>
-                                <select id="categoryOrganized2" name="organized" style="width: 50%;" class="categoryOrganized">
-                                    <option value="a-z">
-                                        a-z:A-Z
-                                    </option>
-
-                                    <option value="z-a">
-                                        z-a:Z-A
-                                    </option>
-                                </select>
-                            </div>
-                        </form>
-                        <div class="panel-information">
-                            <div class="panel-information-accounts">
-                                <br> Account:
-                                <br>
-                                <select id="categoryAccounts2" name="accounts" style="width: 70%;" class="categoryAccounts">
-                                    <option value="YouTube">
-                                        Youtube
-                                    </option>
-                                    <option value="Pintrest">
-                                        Pintrest
-                                    </option>
-                                    <option value="Reddit">
-                                        Reddit
-                                    </option>
-                                </select>
-                            </div>
-                            <div class="panel-information-subscriptions">
-                                <br> Subscriptions to Include:
-                                <br>
-                                <form class="categorySubscriptions">
-                                    <input type="checkbox" name="subscription" value="Science"> Science
-                                    <br>
-                                    <input type="checkbox" name="subscription" value="League of Legends"> League of Legends
-                                    <br>
-                                    <input type="checkbox" name="subscription" value="Art History"> Art History
-                                    <br>
-                                    <input type="checkbox" name="subscription" value="Wild Turtle Footage"> Wild Turtle Footage
-                                    <br>
-                                    <input type="submit">
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div id="mainparallax3" class="parallax_main parallax_main_3">
-                <div id="settingsButton3" class="settings-button" onclick="generic_settings( 3 )">
-                    <img src="CSS/img/settings-gear.jpg" height="20px" width="20px" />
-                </div>
-                <div id="showButton3" class="show-button" onclick="generic_show( 3 )">
-                    <img src="CSS/img/show.jpeg" height="20px" width="20px" />
-                </div>
-                <div id="parallaxSettings3" class="parallax-settings-wrap">
-                    <div class="parallax-settings">
-                        <form class="settings-form">
-                            <div>
-                                Category:
-                                <br>
-                                <input type="text" id="categoryName3" placeholder="Name of category" class="categoryName">
-                                <input type="submit" value="Submit" onclick="updateMenuName( 3 )">
-                            </div>
-                            <div>
-                                <br> Background Image:
-                                <br>
-                                <input type="file" id="categoryBackground3" class="categoryBackgroundSelect">
-                                <input type="submit" value="Submit" onclick="updateBackground( 3 )">
-                            </div>
-                            <div>
-                                <br> Size:
-                                <br>
-                                <input type="range" id="categorySize3" class="categorySize">
-                                <input type="submit" value="Submit">
-                            </div>
-                            <div>
-                                <br> Orangized:
-                                <br>
-                                <select id="categoryOrganized3" name="organized" style="width: 50%;" class="categoryOrganized">
-                                    <option value="a-z">
-                                        a-z:A-Z
-                                    </option>
-
-                                    <option value="z-a">
-                                        z-a:Z-A
-                                    </option>
-                                </select>
-                            </div>
-                        </form>
-                        <div class="panel-information">
-                            <div class="panel-information-accounts">
-                                <br> Account:
-                                <br>
-                                <select id="categoryAccounts3" name="accounts" style="width: 70%;" class="categoryAccounts">
                                     <option value="YouTube">
                                         Youtube
                                     </option>
@@ -356,7 +198,6 @@
 
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript" src="javascript/hamburger.js"></script>
-<script type="text/javascript" src="javascript/addScreen.js"></script>
 <script type="text/javascript" src="javascript/addYoutube.js"></script>
 <script type="text/javascript" src="javascript/dropdown.js"></script>
 <script type="text/javascript" src="javascript/settings-button.js"></script>
@@ -367,4 +208,6 @@
 <script type="text/javascript" src="javascript/userPage.js"></script>
 <script type="text/javascript" src="javascript/displayUser.js"></script>
 <script type="text/javascript" src="javascript/scroll.js"></script>
+<script type="text/javascript" src="javascript/update-settings.js"></script>
+<script type="text/javascript" src="javascript/addScreen.js"></script>
 </html>

@@ -1,12 +1,12 @@
 function growLeft( social_media, id ){
     
-    if( social_media == "youtube" ){
+    if( social_media == 1 ){
         
         $("#leftScrollYoutube" + id ).css('transition', '0.55s');
         $("#leftScrollYoutube" + id ).css('opacity', '1.0');
         $("#leftScrollYoutube" + id ).css('font-size', '3.5em');
         
-    }else if( social_media == "pin" ){
+    }else if( social_media == 2 ){
         
         $("#leftScrollPin" + id ).css('transition', '0.55s');
         $("#leftScrollPin" + id ).css('opacity', '1.0');
@@ -26,13 +26,13 @@ function growLeft( social_media, id ){
 
 function growRight( social_media, id ){
     
-    if( social_media == "youtube" ){
+    if( social_media == 1 ){
         
         $("#rightScrollYoutube" + id ).css('transition', '0.55s');
         $("#rightScrollYoutube" + id ).css('opacity', '1.0');
         $("#rightScrollYoutube" + id ).css('font-size', '3.5em');
         
-    }else if( social_media == "pin" ){
+    }else if( social_media == 2 ){
         
         $("#rightScrollPin" + id ).css('transition', '0.55s');
         $("#rightScrollPin" + id ).css('opacity', '1.0');
@@ -52,13 +52,13 @@ function growRight( social_media, id ){
 
 function shrinkLeft( social_media, id ){
     
-    if( social_media == "youtube" ){
+    if( social_media == 1 ){
         
         $("#leftScrollYoutube" + id ).css('transition', '0.55s');
         $("#leftScrollYoutube" + id ).css('opacity', '0.5');
         $("#leftScrollYoutube" + id ).css('font-size', '3.0em');
         
-    }else if( social_media == "pin" ){
+    }else if( social_media == 2 ){
         
         $("#leftScrollPin" + id ).css('transition', '0.55s');
         $("#leftScrollPin" + id ).css('opacity', '0.5');
@@ -78,13 +78,13 @@ function shrinkLeft( social_media, id ){
 
 function shrinkRight( social_media, id ){
     
-    if( social_media == "youtube" ){
+    if( social_media == 1 ){
         
         $("#rightScrollYoutube" + id ).css('transition', '0.55s');
         $("#rightScrollYoutube" + id ).css('opacity', '0.5');
         $("#rightScrollYoutube" + id ).css('font-size', '3.0em');
         
-    }else if( social_media == "pin" ){
+    }else if( social_media == 2 ){
         
         $("#rightScrollPin" + id ).css('transition', '0.55s');
         $("#rightScrollPin" + id ).css('opacity', '0.5');

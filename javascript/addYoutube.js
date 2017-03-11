@@ -10,26 +10,29 @@ youtubeList = [
 
 ];
 
-function addList( list, numPanel ){
-
-    for( i = 0; i < youtubeList.length; i++ ){
-
-        addYoutubeVideo( youtubeList[ i ], i, numPanel );
-    }
-
-} addList( youtubeList, 1 );
-
 pinList = [
 
-    'http://pin.it/A7zKBWU',
-    'http://pin.it/gf5mMMp',
-    'http://pin.it/xc9cZ8N',
-    'http://pin.it/xJu_gVe'
+    'https://www.pinterest.com/pin/99360735500167749/',
+    'https://www.pinterest.com/pin/99360735500167749/',
+    'https://www.pinterest.com/pin/99360735500167749/',
+    'https://www.pinterest.com/pin/99360735500167749/',
+    'https://www.pinterest.com/pin/99360735500167749/',
+    'https://www.pinterest.com/pin/99360735500167749/',
+    'https://www.pinterest.com/pin/99360735500167749/',
+    'https://www.pinterest.com/pin/99360735500167749/'
 
 ];
 
 redditList = [
 
+    'https://www.reddit.com/hot/.embed?limit=5&t=all',
+    'https://www.reddit.com/hot/.embed?limit=5&t=all',
+    'https://www.reddit.com/hot/.embed?limit=5&t=all',
+    'https://www.reddit.com/hot/.embed?limit=5&t=all',
+    'https://www.reddit.com/hot/.embed?limit=5&t=all',
+    'https://www.reddit.com/hot/.embed?limit=5&t=all',
+    'https://www.reddit.com/hot/.embed?limit=5&t=all',
+    'https://www.reddit.com/hot/.embed?limit=5&t=all'
 
 ];
 
@@ -55,43 +58,41 @@ function addYoutubeList( list, numPanel ){
 
 } addYoutubeList( youtubeList, 1 );
 
-function addPinList( list ){
+function addPinList( list, numPanel ){
 
     var spot = 0;
 
     for( i = 0; i < pinList.length; i++ ){
 
         if( i >= pinIndexStart && i <= pinIndexEnd ){
-            addPin( pinList[ i ], spot );
+            addPin( pinList[ i ], spot, numPanel );
             spot++;
         }
 
     }
 
-} addPinList( pinList );
+} addPinList( pinList, 1 );
 
-function addRedditList( list ){
+function addRedditList( list, numPanel ){
 
     var spot = 0;
 
     for( i = 0; i < redditList.length; i++ ){
 
         if( i >= redditIndexStart && i <= redditIndexEnd ){
-            addReddit( redditList[ i ], spot );
+            addReddit( redditList[ i ], spot, numPanel );
             spot++;
         }
 
     }
 
-} addRedditList( redditList );
+} addRedditList( redditList, 1 );
 
-function removeChildren(){
+function removeChildren( social, numPanel ){
 
-    $('#mainparallax1-youtube').find('li').each(function(){
+    $('#mainparallax' + numPanel + '-' + social ).find('li').each(function(){
         $(this).remove();
     });
-
-    //$('#mainparallax1-youtube').remove("li");
 
 }
 
@@ -99,94 +100,92 @@ function addYoutubeVideo( link, num, numPanel ){
 
     $('#mainparallax' + numPanel + '-youtube').append('<li class="youtubeVideo' + num + '"><iframe class="youtubeVideoFrame' + num + '" width="300" height="200" src="' + link + '" frameborder="0" allowfullscreen></iframe></li>');
 
-    $('.youtubeVideo' + num).css( 'top', '10%' );
+    $('.youtubeVideo' + num).css( 'top', '4%' );
     $('.youtubeVideo' + num).css( 'left', ((num*20) + 10) + '%' );
 
 }
 
 function adjustSize( size ){
 
-    alert( "yeah" );
-
     $('.youtubeVideo' + num).css( 'left', ((num*20) + 11) + '%' );
 
 }
 
-function addPin( link, num ){
+function addPin( link, num, numPanel ){
 
-    $('#mainparallax1-pin').append('<li class="pin' + num + '"><a data-pin-do="embedPin" href="https://www.pinterest.com/pin/99360735500167749/"></a></li>');
+    $('#mainparallax' + numPanel + '-pin').append('<li class="pin' + num + '"><a data-pin-do="embedPin" href="' + link + '"></a></li>');
 
-    $('.pin' + num).css( 'top', '10%' );
-    $('.pin' + num).css( 'left', ((num*20) + 11) + '%' );
+    $('.pin' + num).css( 'top', '30%' );
+    $('.pin' + num).css( 'left', ((num*20) + 12) + '%' );
 
 }
 
-function addReddit( link, num ){
+function addReddit( link, num, numPanel ){
 
-    $('#mainparallax1-reddit').append('<li class="reddit' + num + '"></li>');
+    $('#mainparallax' + numPanel + '-reddit').append('<li class="reddit' + num + '"><script src="' + link + '" type="text/javascript" async></script></li>');
 
-    $('.reddit' + num).css( 'top', '10%' );
+    $('.reddit' + num).css( 'top', '50%' );
     $('.reddit' + num).css( 'left', ((num*20) + 11) + '%' );
 
 }
 
-function shiftLeft( social ){
+function shiftLeft( social, numPanel ){
 
-    if(social == "youtube" && youtubeIndexStart != 0){
+    if(social == 1 && youtubeIndexStart != 0){
 
         youtubeIndexStart -= 3;
         youtubeIndexEnd -= 3;
-        removeChildren();
-        addYoutubeList( youtubeList );
+        removeChildren('youtube', numPanel);
+        addYoutubeList( youtubeList, numPanel );
 
     }
 
-    if(social == "pin" && pinIndexStart != 0){
+    if(social == 2 && pinIndexStart != 0){
 
         pinIndexStart -= 3;
         pinIndexEnd -= 3;
-        removeChildren();
-        addPinList( pinList );
+        removeChildren('pin', numPanel);
+        addPinList( pinList, numPanel );
 
     }
 
-    if(social == "reddit" && redditIndexStart != 0){
+    if(social == 3 && redditIndexStart != 0){
 
         redditIndexStart -= 3;
         redditIndexEnd -= 3;
-        removeChildren();
-        addRedditList( redditList );
+        removeChildren('reddit', numPanel);
+        addRedditList( redditList, numPanel );
 
     }
 
 }
 
-function shiftRight( social ){
+function shiftRight( social, numPanel ){
 
-    if( social == "youtube" && !(youtubeIndexEnd >= youtubeList.length) ){
+    if( social == 1 && !(youtubeIndexEnd >= youtubeList.length) ){
 
         youtubeIndexStart += 3;
         youtubeIndexEnd += 3;
-        removeChildren();
-        addYoutubeList( youtubeList );
+        removeChildren('youtube', numPanel);
+        addYoutubeList( youtubeList, numPanel );
 
     }
 
-    if( social == "pin" && !(pinIndexEnd >= pinList.length) ){
+    if( social == 2 && !(pinIndexEnd >= pinList.length) ){
 
         pinIndexStart += 3;
         pinIndexEnd += 3;
-        removeChildren();
-        addPinList( pinList );
+        removeChildren('pin', numPanel);
+        addPinList( pinList, numPanel );
 
     }
 
-    if( social == "reddit" && !(redditIndexEnd >= redditList.length) ){
+    if( social == 3 && !(redditIndexEnd >= redditList.length) ){
 
         redditIndexStart += 3;
         redditIndexEnd += 3;
-        removeChildren();
-        addRedditList( redditList );
+        removeChildren('reddit', numPanel);
+        addRedditList( redditList, numPanel );
 
     }
 

@@ -1,30 +1,3 @@
-function updateMenuName( id ){
-
-    name = document.getElementById("categoryName" + id).value;
-
-    document.getElementById("name" + id).innerHTML = name;
-
-    alert( "Changing name to: " + name );
-
-    // CHANGE NAME IN DATABASE
-
-}
-
-function updateBackground( id ){
-
-    /*
-    pic = document.getElementById("categoryBackground" + id).value;
-
-    $('.parallax_main_1').css( 'background-image', 'img/snowy-mointain.jpg');
-    */
-
-    alert( "Changing background image ... " );
-
-    // DELETE CURRENT BG_IMAGE
-    // UPLOAD NEW BG_IMAGE
-
-}
-
 function fetchMedia(name, id) {
     var subs = $("#subs1");
     subs.empty();

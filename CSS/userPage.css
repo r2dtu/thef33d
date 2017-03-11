@@ -42,7 +42,7 @@
 }
 
 .userAccountsHeader {
-    text-align: left;
+    text-align: center;
     margin-left: 5%;
     width: 100%;
     display: inline-block;
@@ -63,4 +63,29 @@
     text-decoration: none;
     opacity: 1.0;
     font-size: 0.5em;
+}
+
+#youtube {
+    
+    position: absolute;
+    left: 0%;
+    transition: 0.7s;
+    
+}
+
+#pintrest {
+    
+    position: absolute;
+    left: 40%;
+    transition: 0.7s;
+    
+}
+
+#reddit {
+    
+    position: absolute;
+    left: 75%;
+    top: 41%;
+    transition: 0.7s;
+    
 }
