@@ -15,7 +15,6 @@ function addList( list, numPanel ){
     for( i = 0; i < youtubeList.length; i++ ){
 
         addYoutubeVideo( youtubeList[ i ], i, numPanel );
-
     }
 
 } addList( youtubeList, 1 );

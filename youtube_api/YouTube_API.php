@@ -1,5 +1,4 @@
 <?php
-
 // Make sure composer is installed! Then just load Google's Client API Library
 require_once __DIR__ . '/vendor/autoload.php';
 include_once('pretty_json.php');
@@ -121,6 +120,7 @@ function getSubscriptions($channel_id) {
 }
 
 function getChannelVideos($channel_id) {
+
     global $youtube;
 
     // Get a list of channel's videos
