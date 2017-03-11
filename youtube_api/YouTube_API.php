@@ -1,5 +1,58 @@
 <?php
 
+/*
+ * $result => {
+
+ *   "$id" => {
+
+ *     "category_name" => "$category_name"
+ *     "background_img" => "$local_background_img_url";
+
+ *     "y_subs" => {
+ *       "$y_sub_id_1",
+ *       "$y_sub_id_2",
+ *       "$y_sub_id_3",
+ *     },
+
+ *     "$r_subs" => {
+ *       "$r_sub_id_1",
+ *       "$r_sub_id_2",
+ *     },
+
+ *     "p_subs" => {
+ *       "$p_sub_id_1",
+ *       "$p_sub_id_2",
+ *       "$p_sub_id_3",
+ *       "$p_sub_id_4",
+ *     };
+ *   },
+
+ *   "$id" => {
+
+ *     "category_name" => "$category_name"
+ *     "background_img" => "$local_background_img_url";
+
+ *     "y_subs" => {
+ *       "$y_sub_id_1",
+ *       "$y_sub_id_2",
+ *       "$y_sub_id_3",
+ *     },
+
+ *     "$r_subs" => {
+ *       "$r_sub_id_1",
+ *       "$r_sub_id_2",
+ *     },
+
+ *     "p_subs" => {
+ *       "$p_sub_id_1",
+ *       "$p_sub_id_2",
+ *       "$p_sub_id_3",
+ *       "$p_sub_id_4",
+ *     };
+ *   };
+ * };
+ */
+
 // Make sure composer is installed! Then just load Google's Client API Library
 require_once __DIR__ . '/vendor/autoload.php';
 include_once('pretty_json.php');
@@ -64,7 +117,36 @@ if ($client->getAccessToken()) {
                     $result = getSubscriptions(getChannelIdFromDB());
                     break;
                 case "getVids":
-                    $result = getChannelVideos($_POST["id"]);
+                    try {
+                      $conn = new PDO("mysql:host=localhost;dbname=thefeed", root, WTF110lecture);
+
+                      // $username = $_SESSION["username"];
+                      $username = "dctu@ucsd.edu";
+                      /* GET ALL OF USER'S CATEGORIES */
+                      $result = $conn->query("SELECT * FROM categories WHERE username='$username'")->fetchAll(PDO::FETCH_UNIQUE);
+
+                      /* LOOP THROUGH EVERY CATEGORY AND GET CATEGORY INFORMATION */
+                      foreach($result as $c_id => $category_data){
+
+                        $query = $conn->query("SELECT sub_id FROM y_subs WHERE c_id='$c_id'")->fetchAll(PDO::FETCH_COLUMN);
+                        $y_links = array();
+
+                        foreach($query as $sub_id){
+                           $tmp_links = getChannelVideos($sub_id);
+//                           $tmp_links = dummyIds();
+
+                           foreach($tmp_links as $y_link){
+                             array_push($y_links, $y_link);
+                           }
+                        }
+
+                        $result["$c_id"]["y_links"] = $y_links;
+                      }
+                      $result["username"] = $username;
+
+                    } catch(PDOException $e){
+                      error_out();
+                    }
                     break;
                 default:
                     break;
@@ -127,6 +209,7 @@ function getSubscriptions($channel_id) {
     return $subs;
 }
 
+
 function getChannelVideos($channel_id) { // TODO add sorting
     global $youtube;
 
@@ -153,7 +236,8 @@ function getChannelVideos($channel_id) { // TODO add sorting
 }
 
 function generateEmbedLink($video_id, $width, $height) {
-    return '<iframe width="' . $width . '" height="' . $height . '" src="https://www.youtube.com/embed/' . $video_id . '" frameborder="0" allowfullscreen></iframe>';
+  // https://www.youtube.com/embed/FhC9R9oCAVk
+    return 'https://www.youtube.com/embed/' . $video_id;
 }
 
 function insertSubscriptions($new_channel_id) {
@@ -172,6 +256,15 @@ function insertSubscriptions($new_channel_id) {
     // Execute the request and return an object containing information about the new subscription.
     $subscriptionResponse = $youtube->subscriptions->insert('id,snippet', $subscription, array());
     echo _format_json(json_encode($subscriptionResponse), true);
+}
+
+function dummyIds(){
+  $arr = array();
+  array_push($arr, uniqid());
+  array_push($arr, uniqid());
+  array_push($arr, uniqid());
+  array_push($arr, uniqid());
+  return $arr;
 }
 
 ?>

@@ -1,8 +1,11 @@
 $(document).ready(function(){
 
+  var actionData = {"action": "getVids"};
+
   var request = $.ajax({
-      url: "php/displayUser.php",
+      url: "youtube_api/YouTube_API.php",
       type: "POST",
+      data: actionData
   });
 
   // Callback handler that will be called on success
@@ -24,11 +27,9 @@ $(document).ready(function(){
 
       createNewParallax(numPanels, c_id);
 
-      var y_links = c_data[c_id]["y_links"];
+      addYoutubeList(c_data[c_id]["y_links"], numPanels);
 
-      //embedd the videos
-      addList(y_links, numPanels); // or addYoutubeList()?
-
+      console.log("success");
     }
 
   }); //End of request.done
@@ -44,7 +45,6 @@ $(document).ready(function(){
 function printData(c_data){
 
   var out = "";
-
   out += "Category info for user: " + c_data["username"] + "\n\n";
 
   for(var c_id in c_data){

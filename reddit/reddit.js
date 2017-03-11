@@ -127,8 +127,8 @@ $("#add").click(
           
     reddit = new window.snoowrap({
     userAgent: 'Testing accessing and sorting subscribed subreddits in javascript. By /u/teamfeed',
-    clientId: 'IXBFNdCtseybUQ',
-    clientSecret: 'uT40Xr_nNlo-Yc03JYrE6CPDzTU',
+    clientId: '8-kkjNXlTfpV0Q',
+    clientSecret: 'J6W5Y5UgCiJssMxapEGtsIX4Ebk',
     refreshToken: refresh
     //username: 'teamfeed',
     //password: 'WTF110lecture'

@@ -10,15 +10,13 @@ youtubeList = [
 
 ];
 
-function addList( list, numPanel ){
-
-    for( i = 0; i < list.length; i++ ){
-
-        addYoutubeVideo( list[ i ], i, numPanel );
-
-    }
-
-}
+// function addList( list, numPanel ){
+//
+//     for( i = 0; i < list.length; i++ ){
+//         addYoutubeVideo( youtubeList[ i ], i, numPanel );
+//     }
+//
+// }
 //addList( youtubeList, 1 );
 
 pinList = [
@@ -56,7 +54,7 @@ function addYoutubeList( list, numPanel ){
     }
 
 }
-addYoutubeList( youtubeList, 1 );
+//addYoutubeList( youtubeList, 1 );
 
 function addPinList( list ){
 
