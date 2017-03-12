@@ -94,7 +94,7 @@ $(document).ready(function(){
 
     if(c_id != ""){
 
-      request = $.ajax(({
+      request = $.ajax({
         url: "php/category.php",
 	type: "POST",
 	data: {"message" : "deleteCategory", "c_id" : c_id}

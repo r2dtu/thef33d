@@ -18,7 +18,7 @@ if($_FILES['photo']['name']) {
 		if($valid_file) {
 
 			$username = "dctu@ucsd.edu";
-			$targetfolder = "../bg_images/" + $username;
+			$targetfolder = getcwd()."bg_images/" + $username;
 			if (!file_exists($targetfolder)) {
 				// THIS DOES NOT WORK ON THE HOST SERVER!!!!!
 				mkdir($targetfolder, 0777, true);
