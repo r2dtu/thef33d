@@ -1,0 +1,68 @@
+:root {
+
+    /*Lite
+    --primary: #ffffff;
+    --secondary: #00FF7F;
+    */
+        
+    /*Dark
+    --primary: #0073df;
+    --secondary: #101111;
+    
+    /*Red*/
+    --primary: #101111;
+    --secondary: #990000;
+    
+
+}
+
+.nav {
+    border-bottom-style: solid;
+    border-bottom-width: 10px;
+    border-bottom-color: var( --secondary );
+}
+
+.hideNav {
+
+    bottom: 200px;
+
+}
+
+.nav ul {
+    list-style: none;
+    background-color: var( --secondary );
+    text-align: center;
+    padding: 0;
+    margin: 0;
+}
+
+.nav a {
+    text-decoration: none;
+    color: #fff;
+    display: block;
+    transition: .3s background-color;
+}
+
+.nav a:hover {
+    /*background-color: #0073df; was #005f5f */
+}
+
+.nav a.active {
+    background-color: #fff;
+    cursor: default;
+}
+
+
+/* If the screen is large enough (i.e. website) */
+
+@media screen and (min-width: 600px) {
+    .nav li {
+        width: 120px;
+        border-bottom: none;
+        height: 60px;
+        line-height: 60px;
+        font-size: 1.1em;
+        display: inline-block;
+        margin-right: -4px;
+    }
+}
