@@ -10,7 +10,7 @@ $(document).ready(function(){
 
   // Callback handler that will be called on success
   request.done(function (response, textStatus, jqXHR){
-    //console.log(response);
+
     var c_data = JSON.parse(response);
 
     //printData(c_data);
@@ -25,7 +25,7 @@ $(document).ready(function(){
 
       numPanels = numPanels + 1;
 
-      createNewParallax(numPanels, c_id);
+      createNewParallax(numPanels, c_id, c_data[c_id]["c_name"], c_data[c_id]["img"]);
 
       addYoutubeList(c_data[c_id]["y_links"], numPanels);
 

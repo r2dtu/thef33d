@@ -9,7 +9,6 @@ $(document).ready(function(){
     var c_newname = $("#categoryName" + numPanel).val();
 
     var category_data = {}
-    alert(name + "   " + background);
     if(name == "false" && !background){
       alert("You did not adjust any settings");
       return;
@@ -19,9 +18,9 @@ $(document).ready(function(){
       var fileSelect = document.getElementById('categoryBackground1');
       var file = fileSelect.files[0];
       var fileData = new FormData();
-      fileData.append("photo", file);
+      fileData.append("bg_image", file);
       var request1 = $.ajax({
-        url: 'php/acceptFile.php',
+        url: 'php/uploadFile.php',
         type: 'POST',
         contentType: false,
         processData: false,
@@ -70,7 +69,7 @@ $(document).ready(function(){
       if(response["can_update_or_create"] == "yes"){
 
         updateSettings(numPanel);
-	$parallax.attr({"c_id" : c_id});
+	      $parallax.attr({"c_id" : c_id});
 
       }else if(response["can_update_or_create"] == "no"){
 
