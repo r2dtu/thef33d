@@ -2,11 +2,11 @@ function createNewParallax(numPanels, c_id){
 
   var $panels = $('.panels');
   var $navList = $('.nav-menu-list');
-    
+
   var embed = '<div id="embedded'+numPanels+'" class="embedded">' +
                     '<h1 id="leftScrollYoutube' + numPanels + '" class="leftScrollYoutube" onmouseover="growLeft( 1, ' + numPanels + ' )" onmouseout="shrinkLeft(1, ' + numPanels + ')" onclick="shiftLeft(1, ' + numPanels + ')">&lt;</h1>' +
                     '<ul id="mainparallax' + numPanels + '-youtube">' +
-                    '</ul>' + 
+                    '</ul>' +
                     '<h1 id="rightScrollYoutube' + numPanels + '" class="rightScrollYoutube" onmouseover="growRight( 1, ' + numPanels + ' )" onmouseout="shrinkRight(1, ' + numPanels + ')" onclick="shiftRight(1, ' + numPanels + ')">&gt;</h1>' +
                     '<h1 id="leftScrollPin' + numPanels + '" class="leftScrollPin" onmouseover="growLeft( 2, '+numPanels+' )" onmouseout="shrinkLeft(2, '+numPanels+')" onclick="shiftLeft(2, '+numPanels+')">&lt;</h1>' +
                     '<ul id="mainparallax'+numPanels+'-pin">' +
@@ -89,14 +89,14 @@ function createNewParallax(numPanels, c_id){
   $navList.append('<li draggable="true" onclick="hideMenu()"><a href="#mainparallax' + numPanels + '"><b id="name' + numPanels + '">Untitled</b></a></li>');
 
   document.getElementById('categoryBackground' + numPanels).addEventListener('change', function(evt){ handleFileSelect(evt, numPanels) }, false);
-  addYoutubeList( youtubeList, numPanels );
-  addPinList( pinList, numPanels );
-  addRedditList( redditList, numPanels );
+  // addYoutubeList( youtubeList, numPanels );
+  // addPinList( pinList, numPanels );
+  // addRedditList( redditList, numPanels );
 
 }
 
 $(document).ready(function() {
-    
+
     var $addButton = $('.addScreen');
 
     var numPanels = 1;
