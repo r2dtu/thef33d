@@ -45,7 +45,9 @@ if($_POST['message'] == "login"){
     }
 
     $q_result["can_create"] = "yes";
-    $statement = $conn->prepare("INSERT INTO accounts (username, password) VALUES ('$username', '$password')")->execute();
+    $question = $_POST["security_question"];
+    $answer = $_POST["security_answer"];
+    $statement = $conn->prepare("INSERT INTO accounts (username, password, security_question, security_answer) VALUES ('$username', '$password', '$question', '$answer')")->execute();
     $_SESSION["username"] = $username;
     echo json_encode($q_result);
     exit();
@@ -61,18 +63,10 @@ if($_POST['message'] == "login"){
 
     $q_result = $conn->query("SELECT password FROM accounts WHERE username='$username'")->fetch(PDO::FETCH_ASSOC);
     if(!isset($q_result["password"])){
-      $email = $_POST["username"];
-      $subject = "The Feed Forgotten Password";
-      $message = "Hello. Looks like someone has tried to reset your The Feed password. However, we couldn't find this email in our system. Trying creating a new account! If this wasn't you, then ignore this message.";
-      mail($email, $subject, $message);
-      echo $email;
       exit();
     }
 
-    $email = $_POST["username"];
-    $subject = "The Feed Forgotten Password";
-    $message = "Hello. Looks like you have forgotten your password for The Feed. Try this: " + $q_result;
-    mail($email, $subject, $message);
+
     exit();
   }
   catch(PDOException $e){
