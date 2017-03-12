@@ -133,7 +133,6 @@ if ($client->getAccessToken()) {
 
                         foreach($query as $sub_id){
                            $tmp_links = getChannelVideos($sub_id);
-//                           $tmp_links = dummyIds();
 
                            foreach($tmp_links as $y_link){
                              array_push($y_links, $y_link);
@@ -256,15 +255,6 @@ function insertSubscriptions($new_channel_id) {
     // Execute the request and return an object containing information about the new subscription.
     $subscriptionResponse = $youtube->subscriptions->insert('id,snippet', $subscription, array());
     echo _format_json(json_encode($subscriptionResponse), true);
-}
-
-function dummyIds(){
-  $arr = array();
-  array_push($arr, uniqid());
-  array_push($arr, uniqid());
-  array_push($arr, uniqid());
-  array_push($arr, uniqid());
-  return $arr;
 }
 
 ?>
