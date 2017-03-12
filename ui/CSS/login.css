@@ -37,6 +37,7 @@ html, body {
   margin-left: -170px;
   border: 2px;
   border-radius: 5px;
+  z-index: 10;
 }
 
 #UpperLabels {
@@ -131,7 +132,6 @@ input[type=checkbox] {
 
   float: right;
   background-color: #0fadc3;
-  /*background-color: rgb(68, 196, 122);*/
   color: white;
 
   border: 2px;
@@ -146,7 +146,7 @@ input[type=checkbox] {
 }
 
 #createButton {
-  /*float: right;*/
+
   background-color: #0fadc3;
   color: white;
 
@@ -199,16 +199,17 @@ input[type=checkbox] {
 #left-fields{
     float: left;
     padding-top: 2%;
-}
+    display: block;
+  }
 
 #mid-fields{
-  float: left;
+
   padding-top: 2%;
+
 }
 
 #EmailHeader{
   font-size: 20px;
-  display: inline-block;
   color: white;
   padding-top: 1%;
   padding-left: 21%;
@@ -227,8 +228,6 @@ input[type=checkbox] {
   color: white;
   padding-left: 33%;
   font-size: 20px;
-  padding-top: 1%;
-
 }
 
 #PasswordHeader{
@@ -244,7 +243,8 @@ input[type=checkbox] {
   font-size: 20px;
   width: 400px;
   padding-left: 33%;
-  padding-top: 3%;
+  padding-top: .6%;
+
 }
 
 /****** Create Account Input Fields *****/
@@ -254,10 +254,11 @@ input[type=checkbox] {
 }
 
 #securityQuestionDropdown{
-  margin-left: 33%;
+  margin-left: 17%;
   padding-right: 70px;
   height: 40px;
-  margin-top: 3%;
+  margin-top: 1%;
+
 }
 
 #nameInput{
@@ -270,7 +271,8 @@ input[type=checkbox] {
 }
 
 #securityAnswer{
-  margin-left: 33%;
+  margin-left: 17%;
+
 }
 
 /***** Submit Button for Account Creation *****/
@@ -290,30 +292,31 @@ input[type=checkbox] {
   cursor: pointer;
 }
 
-.hide{
-  opacity: 0;
-  transform: translateX(-500px);
-}
 
-.forgotPassword-show{
-  transition: 0.7s;
-  opacity: 0%;
-}
-
-/***** Forgot Password Retrieval Screen *****/
+/********************* Forgot Password Retrieval Screen ***********************/
 
 .forgotPasswordContainer {
+  /* Color and dimensions of the container */
   background-color: rgb( 65, 63, 67);
-  position: absolute;
   width: 345px;
   height: 275px;
+
+  position: absolute;
+
   top: 50%;
   left: 50%;
   margin-top: -64px;
-  margin-left: 20%;
+  margin-left: -11.2%;
+
+  /* Give rounded edge effect */
   border: 2px;
   border-radius: 5px;
+
+  /* All text inside colored white */
   color: white;
+
+  z-index: 0;
+
 }
 
 #forgotEmailHeader{
@@ -371,5 +374,7 @@ input[type=checkbox] {
   float: right;
   margin-top: 2%;
   margin-right: 2%;
+
+  cursor: pointer;
 
 }

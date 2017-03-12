@@ -1,5 +1,7 @@
 /***** Profile picture CSS styling *****/
 
+
+
 #austinProf{
   margin-top: 5%;
   margin-left: 3%;
@@ -7,11 +9,11 @@
   border: 2px;
   border-radius: 50%;
 }
-#austinProf:hover {
+
+#austinProf:hover{
   transform: scale(1.5,1.5);
 
 }
-
 
 
 #georgeProf{
@@ -21,10 +23,10 @@
   border: 2px;
   border-radius: 50%;
 }
-#georgeProf:hover{
+
+#georgeProf:hover {
   transform: scale(1.5,1.5);
 }
-
 
 
 #wyattProf{
@@ -48,7 +50,7 @@
   border: 2px;
   border-radius: 50%;
 }
-#davidProf:hover{
+#davidProf:hover {
   transform: scale(1.5,1.5);
 }
 
@@ -128,4 +130,225 @@
 }
 #isaacProf:hover{
   transform: scale(1.5,1.5);
+}
+
+
+
+/*********************** Profile Descriptions ********************************/
+
+#austinText{
+  background-image: url("img/profileBorder.jpg");
+  color: white;
+  font-size: 50px;
+
+  /* Alignment of the box */
+  margin-left: 10%;
+  margin-top: 2%;
+  width: 75%;
+
+  /* Alignment of the text */
+  padding-left: 7%;
+
+  /* Border */
+  border: 2px;
+  border-radius: 40%;
+
+  position: absolute;
+  z-index: 1;
+  opacity: 0;
+
+}
+
+#georgeText{
+  background-image: url("img/profileBorder.jpg");
+  color: white;
+  font-size: 50px;
+
+  /* Alignment of the box */
+  margin-left: 15%;
+  margin-top: 2%;
+  width: 65%;
+
+  /* Alignment of the text */
+  padding-left: 7.5%;
+
+  /* Border */
+  border: 2px;
+  border-radius: 40%;
+
+  position: absolute;
+
+  z-index: 2;
+
+  opacity: 0;
+}
+
+#wyattText{
+  background-image: url("img/profileBorder.jpg");
+  color: white;
+  font-size: 50px;
+
+  /* Alignment of the box */
+  margin-left: 15%;
+  margin-top: 2%;
+  width: 65%;
+
+  /* Alignment of the text */
+  padding-left: 5%;
+
+  /* Border */
+  border: 2px;
+  border-radius: 40%;
+
+  position: absolute;
+  z-index: 3;
+  opacity: 0;
+}
+
+#davidText{
+  background-image: url("img/profileBorder.jpg");
+  color: white;
+  font-size: 50px;
+
+  /* Alignment of the box */
+  margin-left: 15%;
+  margin-top: 2%;
+  width: 65%;
+
+  /* Alignment of the text */
+  padding-left: 5%;
+
+  /* Border */
+  border: 2px;
+  border-radius: 40%;
+  position: absolute;
+  z-index: 4;
+  opacity: 0;
+}
+
+#jasperText{
+  background-image: url("img/profileBorder.jpg");
+  color: white;
+  font-size: 50px;
+
+  /* Alignment of the box */
+  margin-left: 22%;
+  margin-top: 2%;
+  width: 50%;
+
+  /* Alignment of the text */
+  padding-left: 7%;
+
+  /* Border */
+  border: 2px;
+  border-radius: 40%;
+  position: absolute;
+  z-index: 5;
+  opacity: 0;
+}
+
+#joeText{
+  background-image: url("img/profileBorder.jpg");
+  color: white;
+  font-size: 50px;
+
+  /* Alignment of the box */
+  margin-left: 15%;
+  margin-top: 2%;
+  width: 65%;
+
+  /* Alignment of the text */
+  padding-left: 5%;
+
+  /* Border */
+  border: 2px;
+  border-radius: 40%;
+  position: absolute;
+  z-index: 6;
+  opacity: 0;
+}
+
+#kendrickText{
+  background-image: url("img/profileBorder.jpg");
+  color: white;
+  font-size: 50px;
+
+  /* Alignment of the box */
+  margin-left: 5%;
+  margin-top: 2%;
+  width: 85%;
+
+  /* Alignment of the text */
+  padding-left: 9%;
+
+  /* Border */
+  border: 2px;
+  border-radius: 40%;
+  position: absolute;
+  z-index: 7;
+  opacity: 0;
+}
+
+#laurelText{
+  background-image: url("img/profileBorder.jpg");
+  color: white;
+  font-size: 50px;
+
+  /* Alignment of the box */
+  margin-left: 15%;
+  margin-top: 2%;
+  width: 65%;
+
+  /* Alignment of the text */
+  padding-left: 9%;
+
+  /* Border */
+  border: 2px;
+  border-radius: 40%;
+  position: absolute;
+  z-index:8;
+  opacity: 0;
+}
+
+#johnnyText{
+  background-image: url("img/profileBorder.jpg");
+  color: white;
+  font-size: 50px;
+
+  /* Alignment of the box */
+  margin-left: 22%;
+  margin-top: 2%;
+  width: 55%;
+
+  /* Alignment of the text */
+  padding-left: 7%;
+
+  /* Border */
+  border: 2px;
+  border-radius: 40%;
+  position: absolute;
+  z-index: 9;
+  opacity: 0;
+}
+
+#isaacText{
+  /*background-color: #0fadc3;*/
+  background-image: url("img/profileBorder.jpg");
+  color: white;
+  font-size: 50px;
+
+  /* Alignment of the box */
+  margin-left: 15%;
+  margin-top: 2%;
+  width: 65%;
+
+  /* Alignment of the text */
+  padding-left: 7%;
+
+  /* Border */
+  border: 2px;
+  border-radius: 40%;
+  position: absolute;
+  z-index: 10;
+  opacity: 0;
 }

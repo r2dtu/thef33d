@@ -13,30 +13,37 @@
 
 <body id="loginPage">
 
-  <div class="parallax_login">
+<div class="parallax_login">
     <div class="header">
       <h1>The Feed</h1>
     </div>
+
   <img id="logo" src="CSS/img/logoMain.png" width="150px" height="100px" />
 
 <!-- ####### Main Login container ####### -->
 
-<div id="container">
-  <form  method="post" autocomplete="on">
-    <div id="UpperLabels">
-      <lable for="username">User Email:</label>
-      <input type="text" id="username" placeholder="Enter User Email"name="username" autofocus required>
-      <label for="password">Password:</label>
-      <input type="password" id="password" placeholder="Enter Password"name="password" required>
-    </div>
-    <div id="lower">
-      <button id="googleSignIn" type="button"> <text id="sign">Sign</text> <text id="in">in</text> <text id="with">with</text>
-         <text id="google">Google</text> </button>
-      <button id="forgotPassword" type="button" onclick="generic_show()">Forgot Password</button>
-      <button id="loginButton" type="sumbit">Login</button>
-    </div>
-    </form>
-</div>
+  <div id="container" class="main_login">
+    <form  method="post" autocomplete="on">
+      <div id="UpperLabels">
+        <lable for="username">User Email:</label>
+        <input type="text" id="username" placeholder="Enter User Email"name="username" autofocus required>
+        <label for="password">Password:</label>
+        <input type="password" id="password" placeholder="Enter Password"name="password" required>
+      </div>
+
+      <div id="lower">
+        <button id="googleSignIn" type="button"> <text id="sign">Sign</text> <text id="in">in</text> <text id="with">with</text>
+           <text id="google">Google</text> </button>
+
+
+        <button id="forgotPassword" type="button" onclick="transition_forgot()">Forgot Password</button>
+
+
+        <button id="loginButton" type="sumbit">Login</button>
+      </div>
+      </form>
+  </div>
+
 </div>
 
 <!-- ####### Forgot Password div for user to enter information and retrieve password ####### -->
@@ -44,7 +51,7 @@
 <div id="forgotPasswordCont" class="forgotPasswordContainer">
 
   <div id="exitButton">
-    <img id="exitImage" src="CSS/img/exit.png" width="10px" height="10px" />
+    <img id="exitImage" src="CSS/img/exit.png" width="10px" height="10px" onclick="transition_forgot()"/>
   </div>
 
   <text id="forgotEmailHeader">Enter your Account's email:</text>
@@ -60,9 +67,7 @@
   <text id="forgotAnswerHeader">Enter your Answer:</text>
   <input type="text" id="forgotAnswer" placeholder="Answer">
 
-  <button id="forgotSubmit" type="button">Retrieve Password</button>
-
-
+  <button id="forgotSubmit" type="button" >Retrieve Password</button>
 </div>
 
 <!-- Front facing class that describes the website and its use. Slides upon button click -->
@@ -91,7 +96,7 @@
   <input type="text" id="nameInput" placeholder="Enter name" name="nameInput" required />
 
   <p id="PasswordHeader"> Password: </p>
-  <input type="text" id="passwordInput" placeholder="Enter password" name="passwordInput" required />
+  <input type="password" id="passwordInput" placeholder="Enter password" name="passwordInput" required />
 </div>
 
 <div id="mid-fields">
@@ -100,7 +105,7 @@
     <option value="">What was your first pet's name?</option>
     <option value="">Who is your best childhood friend</option>
     <option value="">What was your dream car as a child</option>
-  </select>
+  </select><br>
 
   <p id="SQAnswerHeader"> Security Question Answer: </p>
   <input type="text" id="securityAnswer"
@@ -115,16 +120,29 @@
 
 <div class="parallax_login_2">
 
-  <img id="austinProf" src="CSS/img/abc.jpg" width="100px" height= "100px" >
-  <img id="georgeProf" src="CSS/img/gerg.jpg" width="100px" height= "100px">
-  <img id="wyattProf" src="CSS/img/wyatt.jpg" width="100px" height= "100px">
-  <img id="davidProf" src="CSS/img/david.jpg" width="100px" height= "100px">
-  <img id="jasperProf" src="CSS/img/jasper.jpg" width="100px" height= "100px">
-  <img id="joeProf" src="CSS/img/joe.jpg" width="100px" height= "100px">
-  <img id="kendrickProf" src="CSS/img/kendrick.jpg" width="100px" height= "100px">
-  <img id="laurelProf" src="CSS/img/laurel.jpg" width="100px" height= "100px">
-  <img id="johnnyProf" src="CSS/img/genericUser.jpg" width="100px" height= "100px">
-  <img id="isaacProf" src="CSS/img/isaac.jpg" width="100px" height= "100px">
+  <img id="austinProf" src="CSS/img/abc.jpg" width="100px" height= "100px" onmouseover="showProfile( 'austinText' )" onmouseout="hideProfile( 'austinText')">
+  <img id="georgeProf" src="CSS/img/gerg.jpg" width="100px" height= "100px" onmouseover="showProfile( 'georgeText' )" onmouseout="hideProfile( 'georgeText')">
+  <img id="wyattProf" src="CSS/img/wyatt.jpg" width="100px" height= "100px" onmouseover="showProfile( 'wyattText' )" onmouseout="hideProfile( 'wyattText')">
+  <img id="davidProf" src="CSS/img/david.jpg" width="100px" height= "100px" onmouseover="showProfile( 'davidText' )" onmouseout="hideProfile( 'davidText')">
+  <img id="jasperProf" src="CSS/img/jasper.jpg" width="100px" height= "100px" onmouseover="showProfile( 'jasperText' )" onmouseout="hideProfile( 'jasperText')">
+  <img id="joeProf" src="CSS/img/joe.jpg" width="100px" height= "100px" onmouseover="showProfile( 'joeText' )" onmouseout="hideProfile( 'joeText')">
+  <img id="kendrickProf" src="CSS/img/kendrick.jpg" width="100px" height= "100px" onmouseover="showProfile( 'kendrickText' )" onmouseout="hideProfile( 'kendrickText')">
+  <img id="laurelProf" src="CSS/img/laurel.jpg" width="100px" height= "100px" onmouseover="showProfile( 'laurelText' )" onmouseout="hideProfile( 'laurelText')">
+  <img id="johnnyProf" src="CSS/img/johnny.jpg" width="100px" height= "100px" onmouseover="showProfile( 'johnnyText' )" onmouseout="hideProfile( 'johnnyText')">
+  <img id="isaacProf" src="CSS/img/isaac.jpg" width="100px" height= "100px" onmouseover="showProfile( 'isaacText' )" onmouseout="hideProfile( 'isaacText')">
+
+  <div id="profileTexts">
+    <p id="austinText">Austin Coleman: UI Specialist & Chief Developer</p>
+    <p id="georgeText">George Karma: Algorithms and Back-End</p>
+    <p id="wyattText">Wyatt Guidry: System Analyst and Front-End</p>
+    <p id="davidText">David Tu: Software Architect and Back-End</p>
+    <p id="jasperText">Jasper Travers: Project Manager</p>
+    <p id="joeText">Joe Rong: Web Developer & Reddit Specialist</p>
+    <p id="kendrickText">Kendrick Trinh: Quality Assurance & Pinterest Specialist</p>
+    <p id="laurelText">Laurel Fink: Software Development Lead</p>
+    <p id="johnnyText">Johnny Figueroa: Business Analyst</p>
+    <p id="isaacText">Yitzach "Isaac" Blank: Database Specialist</p>
+  </div>
 
 </div>
 

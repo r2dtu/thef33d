@@ -95,8 +95,32 @@ function generic_slide(){
 }
 
 /***** Show the Forgot Password panel  and retrieval fields *****/
-function generic_show(){
-  alert( "sjow");
-  $('#container').toggleClass('forgotPassword-show');
+var x = 0;
+
+function transition_forgot(){
+  if( x % 2 == 0){
+    $("#container").animate({left: '+=300px'}, 1000, function() {
+          $("#forgotPasswordCont").css('zIndex', '10000');
+          $("#container").animate({left: '-=300px'}, 1000);
+        });
+    x = x + 1;
+  }
+  else{
+    $("#forgotPasswordCont").animate({left: '+=300px'}, 1000, function() {
+          $("#forgotPasswordCont").css('zIndex', '0');
+          $("#forgotPasswordCont").animate({left: '-=300px'}, 1000);
+        });
+        x = x + 1;
+
+  }
+}
+
+
+function showProfile( idTag ){
+    $( '#' + idTag ).css( 'opacity', '100' );
+}
+
+function hideProfile( idTag ){
+  $( '#' + idTag ).css( 'opacity', '0' );
 
 }
