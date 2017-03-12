@@ -28,7 +28,7 @@ $(document).ready(function(){
  * Promise that resolves with refresh token if it exists. Rejects if not.
  */
 function redditLink(){
-    var promise = new Promise(function(resolved, reject){
+    var promise = new Promise(function(resolve, reject){
         var message = {"message" : "get_rtoken"}
         // Request refresh token from database.
         var request = $.ajax({

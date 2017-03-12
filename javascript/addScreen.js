@@ -54,11 +54,11 @@ function createNewParallax(numPanels, c_id){
                       '<div class="panel-information-accounts">' +
                           '<br> Account:' +
                           '<br>' +
-                          '<select id="categoryAccounts' + numPanels + '" name="accounts" style="width: 70%;" class="categoryAccounts">' +
+                          '<select id="categoryAccounts' + numPanels + '" name="accounts" style="width: 70%;" class="categoryAccounts" onchange="updateSubs('+numPanels+')">' +
                               '<option value="YouTube">' +
                                   'Youtube' +
                               '</option>' +
-                              '<option value="Pintrest">' +
+                              '<option value="Pinterest">' +
                                   'Pintrest' +
                               '</option>' +
                               '<option value="Reddit">' +
@@ -66,19 +66,10 @@ function createNewParallax(numPanels, c_id){
                               '</option>' +
                           '</select>' +
                       '</div>' +
-                      '<div class="panel-information-subscriptions">' +
+                      '<div id="subs'+numPanels+'" class="panel-information-subscriptions">' +
                           '<br> Subscriptions to Include:' +
                           '<br>' +
                           '<form class="categorySubscriptions">' +
-                              '<input type="checkbox" name="subscription" value="Science"> Science' +
-                              '<br>' +
-                              '<input type="checkbox" name="subscription" value="League of Legends"> League of Legends' +
-                              '<br>' +
-                              '<input type="checkbox" name="subscription" value="Art History"> Art History' +
-                              '<br>' +
-                              '<input type="checkbox" name="subscription" value="Wild Turtle Footage"> Wild Turtle Footage' +
-                              '<br>' +
-                              '<input type="submit">' +
                           '</form>' +
                       '</div>' +
                   '</div>' +
@@ -89,9 +80,11 @@ function createNewParallax(numPanels, c_id){
   $navList.append('<li draggable="true" onclick="hideMenu()"><a href="#mainparallax' + numPanels + '"><b id="name' + numPanels + '">Untitled</b></a></li>');
 
   document.getElementById('categoryBackground' + numPanels).addEventListener('change', function(evt){ handleFileSelect(evt, numPanels) }, false);
+
   addYoutubeList( youtubeList, numPanels );
   addPinList( pinList, numPanels );
   addRedditList( redditList, numPanels );
+  displaySubs( numPanels, youtube_subscriptions );
 
 }
 

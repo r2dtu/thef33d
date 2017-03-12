@@ -10,10 +10,10 @@ $(document).ready(function(){
 
   // Callback handler that will be called on success
   request.done(function (response, textStatus, jqXHR){
-    console.log(response);
+    //console.log(response);
     var c_data = JSON.parse(response);
 
-    printData(c_data);
+    //printData(c_data);
 
     var $panels = $('.panels');
     var $navList = $('.nav-menu-list');
@@ -38,6 +38,9 @@ $(document).ready(function(){
       alert("HTTPRequest: " + textStatus + " " + errorThrown);
       console.log(jqXHR);
   });
+
+  // TODO Get Pinterest data
+  // TODO Get Reddit data
 
 }); //END OF $(document).ready
 

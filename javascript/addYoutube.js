@@ -1,15 +1,3 @@
-youtubeList = [
-
-    'https://www.youtube.com/embed/FhC9R9oCAVk',
-    'https://www.youtube.com/embed/_Z-f3RSNUsQ',
-    'https://www.youtube.com/embed/3rSer5Lqg5w',
-    'https://www.youtube.com/embed/UXnJ95N0F8I',
-    'https://www.youtube.com/embed/_Z-f3RSNUsQ',
-    'https://www.youtube.com/embed/3rSer5Lqg5w',
-    'https://www.youtube.com/embed/UXnJ95N0F8I'
-
-];
-
 pinList = [
 
     'https://www.pinterest.com/pin/99360735500167749/',
@@ -57,7 +45,6 @@ function addYoutubeList( list, numPanel ){
     }
 
 }
-//addYoutubeList( youtubeList, 1 );
 
 function addPinList( list, numPanel ){
 
@@ -91,9 +78,7 @@ function addRedditList( list, numPanel ){
 
 function removeChildren( social, numPanel ){
 
-    $('#mainparallax' + numPanel + '-' + social ).find('li').each(function(){
-        $(this).remove();
-    });
+    $('#mainparallax' + numPanel + '-' + social ).empty();
 
 }
 

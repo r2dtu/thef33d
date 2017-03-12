@@ -1,5 +1,5 @@
 function fetchMedia(name, id) {
-    var subs = $("#subs1");
+    var subs = $("#subs" + id);
     subs.empty();
     subs.append('<br>Subscriptions to Include: <br>');
 
