@@ -10,12 +10,12 @@ $(document).ready(function(){
 
     var category_data = {}
     alert(name + "   " + background);
-    if(name == "false" && background == false){
+    if(name == "false" && !background){
       alert("You did not adjust any settings");
       return;
     }
 
-    if(background == true){
+    if(background){
       var fileSelect = document.getElementById('categoryBackground1');
       var file = fileSelect.files[0];
       var fileData = new FormData();
@@ -47,8 +47,10 @@ $(document).ready(function(){
       category_data["message"] = "update";
       category_data["c_id"] = c_id;
 
-      var filename = document.getElementById('categoryBackground1').files[0]["name"];
-      category_data["c_img"] = "http://thef33d.me/bg_images/dctu@ucsd.edu/" + filename; // TODO Change
+      if (background) {
+        var filename = document.getElementById('categoryBackground1').files[0]["name"];
+        category_data["c_img"] = "http://thef33d.me/bg_images/dctu@ucsd.edu/" + filename; // TODO Change
+      }
 
       if(name == "true"){
         category_data["c_newname"] = c_newname;
@@ -68,6 +70,7 @@ $(document).ready(function(){
       if(response["can_update_or_create"] == "yes"){
 
         updateSettings(numPanel);
+	$parallax.attr({"c_id" : c_id});
 
       }else if(response["can_update_or_create"] == "no"){
 
@@ -79,6 +82,37 @@ $(document).ready(function(){
       alert("HTTPRequest: " + textStatus + " " + errorThrown);
     });
 
+
+  });
+
+
+  $(".deleteCategoryButton").click(function(){
+
+    var $parallax = $(this).parent().parent().parent();
+    var c_id = $parallax.attr("c_id");
+    var numPanel = parallax_name.charAt(parallax_name.length - 1);
+
+    if(c_id != ""){
+
+      request = $.ajax(({
+        url: "php/category.php",
+	type: "POST",
+	data: {"message" : "deleteCategory", "c_id" : c_id}
+      });
+
+
+      request.done(function (response, textStatus, jqXHR){
+
+        var response = JSON.parse(response);
+
+      });
+
+      request.fail(function (jqXHR, textStatus, errorThrown){
+        alert("HTTPRequest: " + textStatus + " " + errorThrown);
+      });
+    }
+
+    deleteCategory(numPanel);
 
   });
 
