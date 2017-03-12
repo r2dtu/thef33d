@@ -1,3 +1,13 @@
+var youtube_subscriptions = [
+    
+    'Science',
+    'Engineering',
+    'Dogs',
+    'Clouds',
+    'Orange Dragons'
+    
+];
+
 function updateSettings( id ){
     
     if( name ){
@@ -107,6 +117,39 @@ function handleFileSelect(evt, id) {
 
 } document.getElementById('categoryBackground1').addEventListener('change', function(evt){ handleFileSelect(evt, 1) }, false);
 
+function displaySubs( id, subList ){
+    
+    for( i = 0; i < youtube_subscriptions.length; i++ ){
+        
+        $('#subs'+id).find('form').append( '<input type="checkbox" name="subscription" value="'+ youtube_subscriptions[ i ] +'">' + youtube_subscriptions[ i ] + '<br>' );
+        
+    }
+    
+} displaySubs( 1, youtube_subscriptions );
+
+function removeSubs( id ){
+    
+    $('#subs'+id).find('form').empty();
+    
+}
+
+function updateSubs( id ){
+    
+    removeSubs( id );
+    
+    var e = document.getElementById("categoryAccounts" + id);
+    var social = e.options[e.selectedIndex].value;
+    
+    if( social == 'YouTube' ){
+        displaySubs( id, youtube_subscriptions );
+    }else if( social == 'Pinterest' ){
+        alert("Pinterest");
+    }else{
+        alert("Reddit");
+    }
+
+}
+
 function generic_show(id){
     
     $("#mainparallax" + id).toggleClass('parallax_main_shrink');
@@ -127,6 +170,15 @@ function generic_settings(id){
 
 function deleteCategory( id ){
     
+    var element = 1;
+    
     $('.panels').find('#mainparallax' + id).remove();
+    $('.nav-menu-list').find('li').each(function(){
+        
+        if( element == id ){
+            $(this).remove();
+        }
+        element++;
+    });
     
 }

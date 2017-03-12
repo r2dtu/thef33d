@@ -90,9 +90,7 @@ function addRedditList( list, numPanel ){
 
 function removeChildren( social, numPanel ){
 
-    $('#mainparallax' + numPanel + '-' + social ).find('li').each(function(){
-        $(this).remove();
-    });
+    $('#mainparallax' + numPanel + '-' + social ).empty();
 
 }
 

@@ -176,7 +176,7 @@
 
 .parallax_main_1 {
     top: 0;
-    background-color: darkslategrey;
+    background-color: #0073df;
     background-position: center;
     background-size: cover;
     position: sticky;
@@ -207,7 +207,7 @@
 .parallax_main_general {  
     top: 0; 
     position: sticky;
-    background-color: darkslategrey;
+    background-color: #0073df;
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
