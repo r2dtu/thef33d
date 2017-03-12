@@ -37,9 +37,9 @@ $(document).ready(function(){
 
       var username = $("#emailInput").val();
       var password = $("#passwordInput").val();
-      var security_question = $("#securityQuestionDropdown").val();
-      var security_answer = $("#securityAnswer").val();
-      var createData = {"message": "create_account", "username": username, "password": password, "security_question" : security_question, "security_answer" : security_answer}
+      var question = $("#securityQuestionDropdown").val();
+      var answer = $("#securityAnswer").val();
+      var createData = {"message": "create_account", "username": username, "password": password, "security_question" : question, "security_answer" : answer}
 
       var request = $.ajax({
           url: "php/login.php",
@@ -68,7 +68,8 @@ $(document).ready(function(){
     $("#forgotPassword").click(function(){
 
       var email = $("#username").val();
-      var forgottenData = {"message": "forgot_password", "username": email}
+      //get questoin and answer
+      var forgottenData = {"message": "forgot_password", "username": email, "security_question" : question, "security_answer" : answer}
 
       var request = $.ajax({
           url: "php/login.php",
@@ -77,7 +78,12 @@ $(document).ready(function(){
       });
 
       request.done(function (response, textStatus, jqXHR){
-          alert("Response: " + response);
+          var response = JSON.parse(response);
+          if(response["display_password"] == "yes"){
+            //display password
+          }else{
+            alert("Wrong security answer");
+          }
       });
 
       // Callback handler that will be called on failure
