@@ -37,7 +37,9 @@ $(document).ready(function(){
 
       var username = $("#emailInput").val();
       var password = $("#passwordInput").val();
-      var createData = {"message": "create_account", "username": username, "password": password}
+      var security_question = $("#securityQuestionDropdown").val();
+      var security_answer = $("#securityAnswer").val();
+      var createData = {"message": "create_account", "username": username, "password": password, "security_question" : security_question, "security_answer" : security_answer}
 
       var request = $.ajax({
           url: "php/login.php",
