@@ -41,7 +41,7 @@ function redditLink(){
             resolve();
         });
         request.fail(function (jqXHR, textStatus, errorThrown){
-            console.log(error);
+            console.log(errorThrown);
             reject();
         });
     });
