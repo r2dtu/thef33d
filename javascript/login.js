@@ -47,7 +47,6 @@ $(document).ready(function(){
           data: createData
       });
 
-      // Callback handler that will be called on success
       request.done(function (response, textStatus, jqXHR){
           var user_info = JSON.parse(response);
           if(user_info.can_create == "yes"){
@@ -59,7 +58,6 @@ $(document).ready(function(){
           }
       });
 
-      // Callback handler that will be called on failure
       request.fail(function (jqXHR, textStatus, errorThrown){
           alert("HTTPRequest: " + textStatus + " " + errorThrown);
       });
@@ -67,8 +65,10 @@ $(document).ready(function(){
 
     $("#forgotPassword").click(function(){
 
-      var email = $("#username").val();
-      //get questoin and answer
+      var email = $("#forgotEmail").val();
+      var question = $("#forgotDropdown").val();
+      var answer = $("#forgotAnswer").val();
+
       var forgottenData = {"message": "forgot_password", "username": email, "security_question" : question, "security_answer" : answer}
 
       var request = $.ajax({
@@ -80,13 +80,12 @@ $(document).ready(function(){
       request.done(function (response, textStatus, jqXHR){
           var response = JSON.parse(response);
           if(response["display_password"] == "yes"){
-            //display password
+            alert("Your password is: \"" + response["password"] + "\"");
           }else{
             alert("Wrong security answer");
           }
       });
 
-      // Callback handler that will be called on failure
       request.fail(function (jqXHR, textStatus, errorThrown){
           alert("HTTPRequest: " + textStatus + " " + errorThrown);
       });
