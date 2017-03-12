@@ -127,45 +127,45 @@ document.getElementById('categoryBackground1').addEventListener('change', functi
 
 function updateBackground( id, c_img ) {
 
-  console.log("C_ID: " + id + ", " + c_img);
-
-  var reader = new FileReader();
-
-  // Closure to capture the file information.
-  reader.onload = (function(theFile) {
-    return function(e) {
-
-//        $('#mainparallax' + id ).css('background-image', 'url("' + e.target.result + '")' );
-
-        console.log("SAVING IMAGE TO THE DATABASE!");
-        console.log("Moving file: " + " to " + "");
-
-        var username = "dctu@ucsd.edu";
-        var link = "http://thef33d.me/bg_images/" + username + "/" + c_img[0].name;
-        var updateData = {"message": "update_img", "username": username, "c_id": id, "c_img": link};
-
-        var request = $.ajax({
-          url: "php/category.php",
-          type: "POST",
-          data: updateData
-        });
-
-        // Callback handler that will be called on success
-        request.done(function (response, textStatus, jqXHR){
-            var sub_data = JSON.parse(response);
-            console.log(sub_data);
-        });
-
-        // Callback handler that will be called on failure
-        request.fail(function (jqXHR, textStatus, errorThrown){
-            alert("HTTPRequest: " + textStatus + errorThrown);
-        });
-
-    };
-  })(c_img);
+//   console.log("C_ID: " + id + ", " + c_img);
+//
+//   var reader = new FileReader();
+//
+//   // Closure to capture the file information.
+//   reader.onload = (function(theFile) {
+//     return function(e) {
+//
+// //        $('#mainparallax' + id ).css('background-image', 'url("' + e.target.result + '")' );
+//
+//         console.log("SAVING IMAGE TO THE DATABASE!");
+//         console.log("Moving file: " + " to " + "");
+//
+//         var username = "dctu@ucsd.edu";
+//         var link = "http://thef33d.me/bg_images/" + username + "/" + c_img[0].name;
+//         var updateData = {"message": "update_img", "username": username, "c_id": id, "c_img": link};
+//
+//         var request = $.ajax({
+//           url: "php/category.php",
+//           type: "POST",
+//           data: updateData
+//         });
+//
+//         // Callback handler that will be called on success
+//         request.done(function (response, textStatus, jqXHR){
+//             var sub_data = JSON.parse(response);
+//             console.log(sub_data);
+//         });
+//
+//         // Callback handler that will be called on failure
+//         request.fail(function (jqXHR, textStatus, errorThrown){
+//             alert("HTTPRequest: " + textStatus + errorThrown);
+//         });
+//
+//     };
+//   })(c_img);
 
   // Read in the image file as a data URL.
-  reader.readAsDataURL(c_img);
+//  reader.readAsDataURL(c_img);
 }
 
 function adjustSize( id, size ) {

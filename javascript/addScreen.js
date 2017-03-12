@@ -81,10 +81,10 @@ function createNewParallax(numPanels, c_id){
 
   document.getElementById('categoryBackground' + numPanels).addEventListener('change', function(evt){ handleFileSelect(evt, numPanels) }, false);
 
-  addYoutubeList( youtubeList, numPanels );
-  addPinList( pinList, numPanels );
-  addRedditList( redditList, numPanels );
-  displaySubs( numPanels, youtube_subscriptions );
+  // addYoutubeList( youtubeList, numPanels );
+  // addPinList( pinList, numPanels );
+  // addRedditList( redditList, numPanels );
+  // displaySubs( numPanels, youtube_subscriptions );
 
 }
 

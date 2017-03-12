@@ -10,35 +10,55 @@ $(document).ready(function(){
 
     var category_data = {}
     alert(name + "   " + background);
-    if(name == "false" && background == "false"){
+    if(name == "false" && background == false){
       alert("You did not adjust any settings");
       return;
+    }
+
+    if(background == true){
+      var fileSelect = document.getElementById('categoryBackground1');
+      var file = fileSelect.files[0];
+      var fileData = new FormData();
+      fileData.append("photo", file);
+      var request1 = $.ajax({
+        url: 'php/acceptFile.php',
+        type: 'POST',
+        contentType: false,
+        processData: false,
+        data: fileData
+      });
+
+      request1.done(function(response, textStatus, jqXHR) {
+        console.log(response);
+      });
+      request1.fail(function(jqXHR, textStatus, errorThrown) {
+        alert("Upload failed: " + errorThrown);
+      });
     }
 
     if(c_id == ""){
 
       category_data["message"] = "create";
       category_data["c_newname"] = c_newname;
-      //deal with image. category_data["c_img"] = 
+      //deal with image. category_data["c_img"] =
 
     }else{
 
-      data["message"] = "update";
+      category_data["message"] = "update";
       category_data["c_id"] = c_id;
+
+      var filename = document.getElementById('categoryBackground1').files[0]["name"];
+      category_data["c_img"] = "http://thef33d.me/bg_images/dctu@ucsd.edu/" + filename; // TODO Change
 
       if(name == "true"){
         category_data["c_newname"] = c_newname;
-      }
-
-      if(background == "true"){
-        //deal with image. category_data["c_img"] = 
       }
     }
 
     var request = $.ajax({
     	url: "php/category.php",
-	type: "POST",
-	data: category_data
+    	type: "POST",
+    	data: category_data
     });
 
     request.done(function (response, textStatus, jqXHR){
