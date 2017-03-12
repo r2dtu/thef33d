@@ -1,11 +1,13 @@
 $(document).ready(function(){
 
   $(".updateSettingsButton").click(function(){
-
+    alert("here");
     var $parallax = $(this).parent().parent().parent();
     var c_id = $parallax.attr("c_id");
     var parallax_name = $parallax.attr("id");
     var numPanel = parallax_name.charAt(parallax_name.length - 1);
+    alert(parallax_name);
+    return;
 
     //check if parallax_name already exists. If so, alert. If not, continue
 
