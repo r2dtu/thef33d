@@ -1,4 +1,4 @@
-$(document).ready(function(){
+//$(document).ready(function(){
     // TODO DELETE THIS
     // var clientId = "V5gDAsfre7yTWg"
     // var clientSecret = "1-BXkiGXxLuENy3tPpU1aRizwN4"
@@ -9,8 +9,8 @@ $(document).ready(function(){
     //     console.log(fulfilled);
     // });
     //console.log(subscribed);
-    }
-});
+//    }
+//});
 
 /*
  * Returns true if user's reddit account is connected, false otherwise.
@@ -48,9 +48,9 @@ function linkReddit(){
 function unlinkReddit(username){
     // Request to remove refresh token from database.
     var request = $.ajax({
-        url: "php/reddit.php",
+        url: "php/redditAccount.php",
         type: "POST",
-        data: {"message": "clearRefresh", "username": username}
+        data: {"message": "store_rtoken", "rtoken": ""}
     });
 
 }
