@@ -57,8 +57,6 @@
 
                 <!-- For drag and drop: http://syntaxxx.com/rearranging-web-page-items-with-html5-drag-and-drop/ -->
 
-                <li draggable="true" onclick="hideMenu()"><a href="#mainparallax1"><b id="name1">Untitled</b></a></li>
-                
             </ul>
 
             <h1 class="addScreen">+</h1>
@@ -69,13 +67,7 @@
             </div>
 
             <div id="userPage" class="userPageHidden">
-                <h1 class="userHeader">Welcome, Austin.</h1>
-                <h1 class="userAccountsHeader">Click to Link Accounts</h1>
-                <ul class="userAccountsList">
-                    <li id="youtube"><img src="CSS/img/YouTube-icon-full_color.png" width="100px" ; height="100px" ; onclick=""></li>
-                    <li id="pintrest"><img src="CSS/img/Pinterest_logo-2.png" width="100px" ; height="100px" ; onclick=""></li>
-                    <li id="reddit"><img src="CSS/img/Reddit_logo.png" width="100px" ; height="110px" ; onclick="linkReddit();"></li>
-                </ul>
+                
             </div>
 
 
@@ -86,95 +78,6 @@
 
         <div class="panels">
 
-            <div id="mainparallax1" class="parallax_main parallax_main_1">
-                <div id="settingsButton1" class="settings-button" onclick="generic_settings( 1 )">
-                    <img src="CSS/img/settings-gear.jpg" height="20px" width="20px" />
-                </div>
-                <div id="showButton1" class="show-button" onclick="generic_show( 1 )">
-                    <img src="CSS/img/show.jpeg" height="20px" width="20px" />
-                </div>
-
-
-                <div id="embedded1" class="embedded">
-                    <h1 id="leftScrollYoutube1" class="leftScrollYoutube" onmouseover="growLeft( 1, 1 )" onmouseout="shrinkLeft(1, 1)" onclick="shiftLeft(1, 1)">&lt;</h1>
-                    <ul id="mainparallax1-youtube">
-                    </ul>
-                    <h1 id="rightScrollYoutube1" class="rightScrollYoutube" onmouseover="growRight( 1, 1 )" onmouseout="shrinkRight(1, 1)" onclick="shiftRight(1, 1)">&gt;</h1>
-
-                    <h1 id="leftScrollPin1" class="leftScrollPin" onmouseover="growLeft( 2, 1 )" onmouseout="shrinkLeft(2, 1)" onclick="shiftLeft(2, 1)">&lt;</h1>
-                    <ul id="mainparallax1-pin">
-                    </ul>
-                    <h1 id="rightScrollPin1" class="rightScrollPin" onmouseover="growRight( 2, 1 )" onmouseout="shrinkRight(2, 1)" onclick="shiftRight(2, 1)">&gt;</h1>
-
-                    <h1 id="leftScrollReddit1" class="leftScrollReddit" onmouseover="growLeft( 3, 1 )" onmouseout="shrinkLeft(3, 1)" onclick="shiftLeft(3, 1)">&lt;</h1>
-                    <ul id="mainparallax1-reddit">
-                    </ul>
-                    <h1 id="rightScrollReddit1" class="rightScrollReddit" onmouseover="growRight( 3, 1 )" onmouseout="shrinkRight(3, 1)" onclick="shiftRight(3, 1)">&gt;</h1>
-
-                </div>
-
-
-                <div id="parallaxSettings1" class="parallax-settings-wrap">
-                    <div class="parallax-settings">
-                        <form class="settings-form">
-                            <div class="settings-categoryName">
-                                Category:
-                                <br>
-                                <input type="text" id="categoryName1" placeholder="Name of category" class="categoryName"  oninput="nameFlag()">
-                            </div>
-                            <div class="settings-categoryBackground">
-                                <br> Background Image:
-                                <br>
-                                <input type='file' id="categoryBackground1" class="categoryBackgroundSelect" >
-                            </div>
-                            <div class="settings-categorySize">
-                                <br> Size:
-                                <br>
-                                <input id="range1" type="range" id="categorySize1" class="categorySize" onchange="sizeFlag()">
-                            </div>
-                            <div class="settings-categoryOrganized">
-                                <br> Organized:
-                                <br>
-                                <select id="categoryOrganized1" name="organized" style="width: 50%;" class="categoryOrganized" onchange="organizedFlag()">
-                                    <option value="a-z">
-                                        a-z:A-Z
-                                    </option>
-
-                                    <option value="z-a">
-                                        z-a:Z-A
-                                    </option>
-                                </select>
-                            </div>
-                        </form>
-                        <input class="updateSettingsButton" type="submit" value="Save Settings">
-                        <input class="deleteCategoryButton" type="submit" value="Delete Panel">
-                        <div class="panel-information">
-                            <div class="panel-information-accounts">
-                                <br> Account:
-                                <br>
-                                <select id="categoryAccounts1" name="accounts" style="width: 50%;" class="categoryAccounts" onchange="fetchMedia(this.value, 1)">
-                                    <option value="default">
-                                        Please select an external media account ...
-                                    </option>
-                                    <option value="YouTube">
-                                        Youtube
-                                    </option>
-                                    <option value="Pinterest">
-                                        Pintrest
-                                    </option>
-                                    <option value="Reddit">
-                                        Reddit
-                                    </option>
-                                </select>
-                            </div>
-                            <div id="subs1" class="panel-information-subscriptions">
-                                <br> Subscriptions to Include:
-                                <br>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
 
     </div>
@@ -200,7 +103,8 @@
 <script type="text/javascript" src="javascript/userPage.js"></script>
 <script type="text/javascript" src="javascript/displayUser.js"></script>
 <script type="text/javascript" src="javascript/scroll.js"></script>
-<script type="text/javascript" src="javascript/update-settings.js"></script>
+<script type="text/javascript" src="javascript/updateCategory.js"></script>
 <script type="text/javascript" src="javascript/addScreen.js"></script>
 <script type="text/javascript" src="javascript/reddit-integration.js"></script>
+<script type="text/javascript" src="javascript/category.js"></script>
 </html>

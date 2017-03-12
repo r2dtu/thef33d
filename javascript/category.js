@@ -1,70 +1,118 @@
 $(document).ready(function(){
 
   $(".updateSettingsButton").click(function(){
-    alert("here");
+
     var $parallax = $(this).parent().parent().parent();
     var c_id = $parallax.attr("c_id");
     var parallax_name = $parallax.attr("id");
     var numPanel = parallax_name.charAt(parallax_name.length - 1);
-    alert(parallax_name);
-    return;
+    var c_newname = $("#categoryName" + numPanel).val();
 
-    //check if parallax_name already exists. If so, alert. If not, continue
-
-    if(c_id == ""){
-      //possibly create category
-    }else{
-      //possibly update category
+    var category_data = {}
+    if(name == "false" && !background){
+      alert("You did not adjust any settings");
+      return;
     }
 
-    var c_img = $("#c_img");
+    if(background){
+      var fileSelect = document.getElementById('categoryBackground1');
+      var file = fileSelect.files[0];
+      var fileData = new FormData();
+      fileData.append("bg_image", file);
+      var request1 = $.ajax({
+        url: 'php/uploadFile.php',
+        type: 'POST',
+        contentType: false,
+        processData: false,
+        data: fileData
+      });
+
+      request1.done(function(response, textStatus, jqXHR) {
+        console.log(response);
+      });
+      request1.fail(function(jqXHR, textStatus, errorThrown) {
+        alert("Upload failed: " + errorThrown);
+      });
+    }
+
+    if(c_id == ""){
+
+      category_data["message"] = "create";
+      category_data["c_newname"] = c_newname;
+      //deal with image. category_data["c_img"] =
+
+    }else{
+
+      category_data["message"] = "update";
+      category_data["c_id"] = c_id;
+
+      if (background) {
+        var filename = document.getElementById('categoryBackground1').files[0]["name"];
+        category_data["c_img"] = "http://thef33d.me/bg_images/dctu@ucsd.edu/" + filename; // TODO Change
+      }
+
+      if(name == "true"){
+        category_data["c_newname"] = c_newname;
+      }
+    }
 
     var request = $.ajax({
-        url: "php/category.php",
-        type: "POST",
-        data: c_data
+    	url: "php/category.php",
+    	type: "POST",
+    	data: category_data
     });
 
     request.done(function (response, textStatus, jqXHR){
 
       var response = JSON.parse(response);
 
-      if(response["can_create"] == "yes"){
-        //create category on UI
-      }else if(response["can_create"] == "no"){
-        //notify that category name already exists
-      }else{
+      if(response["can_update_or_create"] == "yes"){
 
+        updateSettings(numPanel);
+	      $parallax.attr({"c_id" : c_id});
+
+      }else if(response["can_update_or_create"] == "no"){
+
+        alert("You already have a category with named \"" + c_newname + "\". Please pick another name.");
       }
-
     });
 
     request.fail(function (jqXHR, textStatus, errorThrown){
-
+      alert("HTTPRequest: " + textStatus + " " + errorThrown);
     });
 
 
   });
+
 
   $(".deleteCategoryButton").click(function(){
 
-    var request = $.ajax({
+    var $parallax = $(this).parent().parent().parent();
+    var c_id = $parallax.attr("c_id");
+    var numPanel = parallax_name.charAt(parallax_name.length - 1);
+
+    if(c_id != ""){
+
+      request = $.ajax({
         url: "php/category.php",
-        type: "POST",
-        data:
-    });
-
-    request.done(function (response, textStatus, jqXHR){
-
-      var response = JSON.parse(response);
+	type: "POST",
+	data: {"message" : "deleteCategory", "c_id" : c_id}
+      });
 
 
-    });
+      request.done(function (response, textStatus, jqXHR){
 
-    request.fail(function (jqXHR, textStatus, errorThrown){
+        var response = JSON.parse(response);
 
-    });
+      });
 
+      request.fail(function (jqXHR, textStatus, errorThrown){
+        alert("HTTPRequest: " + textStatus + " " + errorThrown);
+      });
+    }
+
+    deleteCategory(numPanel);
 
   });
+
 });
