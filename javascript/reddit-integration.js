@@ -1,5 +1,17 @@
-//$(document).ready(function(){
-    // TODO DELETE THIS
+$(document).ready(function(){
+    // Check if reddit account is linked.
+    const clientId = "8-kkjNXlTfpV0Q";
+    const clientSecret = "J6W5Y5UgCiJssMxapEGtsIX4Ebk";
+    var promiseLinked = redditLink();
+    var reddit;
+    var refresh;
+
+    // Evaluate promise
+    promiseLinked.then(function(){
+
+    })
+
+    // TODO DELET THIS
     // var clientId = "V5gDAsfre7yTWg"
     // var clientSecret = "1-BXkiGXxLuENy3tPpU1aRizwN4"
     // if(typeof refresh_token !== 'undefined'){
@@ -10,27 +22,30 @@
     // });
     //console.log(subscribed);
 //    }
-//});
+});
 
 /*
- * Returns true if user's reddit account is connected, false otherwise.
+ * Promise that resolves with refresh token if it exists. Rejects if not.
  */
-function redditIsLinked(username){
-    var message = {"message" : "get_rtoken"}
-    // Request refresh token from database.
-    var request = $.ajax({
-        url: "php/redditAccount.php",
-        type: "POST",
-        data: message
+function redditLink(){
+    var promise = new Promise(function(resolved, reject){
+        var message = {"message" : "get_rtoken"}
+        // Request refresh token from database.
+        var request = $.ajax({
+            url: "php/redditAccount.php",
+            type: "POST",
+            data: message
+        });
+        request.done(function (response, textStatus, jqXHR){
+            console.log(response);
+            resolve();
+        });
+        request.fail(function (jqXHR, textStatus, errorThrown){
+            console.log(error);
+            reject();
+        });
     });
-    request.done(function (response, textStatus, jqXHR){
-        console.log(response);
-        return true;
-    });
-    request.fail(function (jqXHR, textStatus, errorThrown){
-        console.log(error);
-        return false;
-    });
+    return promise;
 }
 
 /*
