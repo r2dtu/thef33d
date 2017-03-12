@@ -2,8 +2,9 @@
 
 session_start();
 
-//include '../youtube_api/YouTube_API.php';
-include 'error.php';
+
+//require_once '../youtube_api/YouTube_API.php';
+//require_once 'error.php';
 
 try{
   $conn = new PDO("mysql:host=localhost;dbname=thefeed", root, WTF110lecture);

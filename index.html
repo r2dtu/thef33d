@@ -58,7 +58,7 @@
                 <!-- For drag and drop: http://syntaxxx.com/rearranging-web-page-items-with-html5-drag-and-drop/ -->
 
                 <li draggable="true" onclick="hideMenu()"><a href="#mainparallax1"><b id="name1">Moon</b></a></li>
-                
+
             </ul>
 
             <h1 class="addScreen">+</h1>
@@ -133,7 +133,7 @@
                                 <input id="range1" type="range" id="categorySize1" class="categorySize" onchange="sizeFlag()">
                             </div>
                             <div class="settings-categoryOrganized">
-                                <br> Orangized:
+                                <br> Organized:
                                 <br>
                                 <select id="categoryOrganized1" name="organized" style="width: 50%;" class="categoryOrganized" onchange="organizedFlag()">
                                     <option value="a-z">
@@ -152,38 +152,29 @@
                             <div class="panel-information-accounts">
                                 <br> Account:
                                 <br>
-                                <select id="categoryAccounts1" name="accounts" style="width: 70%;" class="categoryAccounts">
+                                <select id="categoryAccounts1" name="accounts" style="width: 50%;" class="categoryAccounts" onchange="fetchMedia(this.value, 1)">
+                                    <option value="default">
+                                        Please select an external media account ...
+                                    </option>
                                     <option value="YouTube">
                                         Youtube
                                     </option>
-                                    <option value="Pintrest">
-                                        Pintrest
+                                    <option value="Pinterest">
+                                        Pinterest
                                     </option>
                                     <option value="Reddit">
                                         Reddit
                                     </option>
                                 </select>
                             </div>
-                            <div class="panel-information-subscriptions">
+                            <div id="subs1" class="panel-information-subscriptions">
                                 <br> Subscriptions to Include:
                                 <br>
-                                <form class="categorySubscriptions">
-                                    <input type="checkbox" name="subscription" value="Science"> Science
-                                    <br>
-                                    <input type="checkbox" name="subscription" value="League of Legends"> League of Legends
-                                    <br>
-                                    <input type="checkbox" name="subscription" value="Art History"> Art History
-                                    <br>
-                                    <input type="checkbox" name="subscription" value="Wild Turtle Footage"> Wild Turtle Footage
-                                    <br>
-                                    <input type="submit">
-                                </form>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
         </div>
 
     </div>
@@ -196,6 +187,7 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js" type="text/javascript"></script>
 <script src="jquery.localscroll.js" type="text/javascript"></script>
 
+<script type="text/javascript" src="javascript/categorySettings.js"></script>
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript" src="javascript/hamburger.js"></script>
 <script type="text/javascript" src="javascript/addYoutube.js"></script>
