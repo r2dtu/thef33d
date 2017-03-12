@@ -8,8 +8,7 @@ if($_FILES['photo']['name'])
 	//if no errors...
 	if(!$_FILES['photo']['error'])
 	{
-		//now is the time to modify the future file name and validate the file
-		$new_file_name = strtolower($_FILES['photo']['tmp_name']); //rename file
+
 		$valid_file = true;
 		if($_FILES['photo']['size'] > (1024000)) //can't be larger than 1 MB
 		{
@@ -22,12 +21,13 @@ if($_FILES['photo']['name'])
 		if($valid_file)
 		{
 			//move it to where we want it to be
-			if (!file_exists($_SERVER['HTTP_HOST']."uploads")) {
-				mkdir($_SERVER['HTTP_HOST']."uploads", 0777, true);
+			$targetfolder = "uploads/";
+			if (!file_exists($targetfolder)) {
+				mkdir($targetfolder, 0777, true);
 			}
-			if (move_uploaded_file($_FILES['photo']['tmp_name'], getcwd().'/uploads'.$new_file_name)) {
-				$message = 'Congratulations!  Your file was accepted. Stored in: '.getcwd().'/uploads'.$new_file_name;
-				echo $message;
+			$targetfolder = $targetfolder . basename( $_FILES['photo']['name']);
+			if (move_uploaded_file($_FILES['photo']['tmp_name'], $targetfolder)) {
+				echo "The file ". basename( $_FILES['photo']['name']). " is uploaded";
 			}
 			else {
 				echo "Problem :(";
