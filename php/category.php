@@ -13,11 +13,11 @@ $c_newname = $_POST['c_newname'];
 
 if(isset($c_newname)){
   $q_result = $conn->query("SELECT c_id FROM categories WHERE username='$username' AND c_name='$c_newname'")->fetchColumn();
-  if(isset($q_result){
+  if(isset($q_result)){
     $result["can_update_or_create"] = "no";
     echo json_encode($result);
     exit();
-  } 
+  }
 }
 
 

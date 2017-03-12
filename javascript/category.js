@@ -19,7 +19,7 @@ $(document).ready(function(){
 
       category_data["message"] = "create";
       category_data["c_newname"] = c_newname;
-      //deal with image. category_data["c_img"] = 
+      //deal with image. category_data["c_img"] =
 
     }else{
 
@@ -31,7 +31,7 @@ $(document).ready(function(){
       }
 
       if(background == "true"){
-        //deal with image. category_data["c_img"] = 
+        //deal with image. category_data["c_img"] =
       }
     }
 
