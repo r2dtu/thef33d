@@ -21,7 +21,7 @@ if(isset($c_newname)){
 }
 
 
-if($_POST['message'] == "create"){
+if($message == "create"){
 
     $c_id = uniqid();
     $statement = $conn->prepare("INSERT INTO categories (c_id, c_name, username, img) VALUES ('$c_id', '$c_newname', '$username', '$c_img')")->execute();
@@ -29,7 +29,7 @@ if($_POST['message'] == "create"){
     echo json_encode($result);
     exit();
 
-}else if($_POST['message'] == "update"){
+}else if($message == "update"){
 
 
     if(isset($c_newname)){
@@ -41,6 +41,13 @@ if($_POST['message'] == "create"){
 
       $statement = $conn->prepare("UPDATE categories SET img='$c_img' WHERE c_id='$c_id'")->execute();
     }
+}else if($message == "deleteCategory"){
+
+    $q_result = $conn->prepare("DELETE FROM categories WHERE c_id='$c_id'")->execute();
+    $q_result = $conn->prepare("DELETE FROM y-subs WHERE c_id='$c_id'")->execute();
+    $q_result = $conn->prepare("DELETE FROM p_subs WHERE c_id='$c_id'")->execute();
+    $q_result = $conn->prepare("DELETE FROM r_subs WHERE c_id='$c_id'")->execute();
+
 }
 
 $result["can_update_or_create"] = "yes";
