@@ -32,6 +32,8 @@ $(document).ready(function(){
       console.log("success");
     }
 
+    addUserInfo(c_data["username"]);
+
   }); //End of request.done
 
   request.fail(function (jqXHR, textStatus, errorThrown){
@@ -44,6 +46,17 @@ $(document).ready(function(){
 
 }); //END OF $(document).ready
 
+function addUserInfo(username) {
+  var userPage = $('#userPage');
+  var userInfo = '<h1 class="userHeader">Welcome, ' + username + '.</h1>' +
+                 '<h1 class="userAccountsHeader">Click to Link Accounts</h1>' +
+                 '<ul class="userAccountsList">' +
+                     '<li id="youtube"><img src="CSS/img/YouTube-icon-full_color.png" width="100px" ; height="100px" ; onclick="authorizeYouTube()"></li>' +
+                     '<li id="pintrest"><img src="CSS/img/Pinterest_logo-2.png" width="100px" ; height="100px" ; onclick=""></li>' +
+                     '<li id="reddit"><img src="CSS/img/Reddit_logo.png" width="100px" ; height="110px" ; onclick="linkReddit();"></li>' +
+                 '</ul>';
+  userPage.append(userInfo);
+}
 
 function printData(c_data){
 
