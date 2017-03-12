@@ -2,15 +2,12 @@
 
 session_start();
 
-
-//require_once '../youtube_api/YouTube_API.php';
-//require_once 'error.php';
+include 'error.php';
 
 try{
   $conn = new PDO("mysql:host=localhost;dbname=thefeed", root, WTF110lecture);
 
   $username = $_SESSION["username"];
-  $username = "dctu@ucsd.edu";
 
   /* GET ALL OF USER'S CATEGORIES */
   $monster_data = $conn->query("SELECT * FROM categories WHERE username='$username'")->fetchAll(PDO::FETCH_UNIQUE);
@@ -23,7 +20,6 @@ try{
     $y_links = array();
 
     foreach($query as $sub_id){
-       //$tmp_links = getChannelVideos($sub_id);
        $tmp_links = dummyIds();
 
        foreach($tmp_links as $y_link){
