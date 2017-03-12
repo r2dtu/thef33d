@@ -56,9 +56,6 @@ else
         error_out();
     }
 
-    // TODO Store $accessTokenResult["refresh_token"] to database per user
-
-
     //$client->setAccessToken($accessTokenResult["access_token"]);
     //$client->setAccessTokenType(OAuth2\Client::ACCESS_TOKEN_BEARER);
     //echo($accessTokenResult["access_token"]);
@@ -67,7 +64,7 @@ else
     //$response = $client->fetch("https://oauth.reddit.com/api/v1/me.json");
     //$_SESSION['reddit_refresh'] = $(accessTokenResult["refresh_token"]);
 
-    //header('Location: ../');
+    header('Location: http://thef33d.me/');
 
     //$response = $client->fetch("http://www.reddit.com/dev/api#GET_subreddits_mine_contributor");
 
@@ -90,9 +87,6 @@ else
     </script>
     <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js" type="text/javascript"></script>
-    <script type="text/javascript">
-        var refresh_token = "<?= $accessTokenResult["refresh_token"] ?>";
-    </script>
     <script type="text/javascript" src="../../javascript/reddit-integration.js">
     </script>
     <!--script src="jsoauth2/test/user.js" type="text/javascript"></script-->
