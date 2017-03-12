@@ -47,16 +47,17 @@ function addYoutubeList( list, numPanel ){
 
     var spot = 0;
 
-    for( i = 0; i < youtubeList.length; i++ ){
+    for( i = 0; i < list.length; i++ ){
 
         if( i >= youtubeIndexStart && i <= youtubeIndexEnd ){
-            addYoutubeVideo( youtubeList[ i ], spot, numPanel );
+            addYoutubeVideo( list[ i ], spot, numPanel );
             spot++;
         }
 
     }
 
-} addYoutubeList( youtubeList, 1 );
+}
+//addYoutubeList( youtubeList, 1 );
 
 function addPinList( list, numPanel ){
 

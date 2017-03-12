@@ -1,13 +1,16 @@
 $(document).ready(function(){
 
+  var actionData = {"action": "getVids"};
+
   var request = $.ajax({
-      url: "php/displayUser.php",
+      url: "youtube_api/YouTube_API.php",
       type: "POST",
+      data: actionData
   });
 
   // Callback handler that will be called on success
   request.done(function (response, textStatus, jqXHR){
-
+    console.log(response);
     var c_data = JSON.parse(response);
 
     printData(c_data);
@@ -23,13 +26,17 @@ $(document).ready(function(){
       numPanels = numPanels + 1;
 
       createNewParallax(numPanels, c_id);
-      addList(c_data[c_id]["y_links"], numPanels);
+
+      addYoutubeList(c_data[c_id]["y_links"], numPanels);
+
+      console.log("success");
     }
 
   }); //End of request.done
 
   request.fail(function (jqXHR, textStatus, errorThrown){
       alert("HTTPRequest: " + textStatus + " " + errorThrown);
+      console.log(jqXHR);
   });
 
 }); //END OF $(document).ready

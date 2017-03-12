@@ -2,11 +2,11 @@ function createNewParallax(numPanels, c_id){
 
   var $panels = $('.panels');
   var $navList = $('.nav-menu-list');
-    
+
   var embed = '<div id="embedded'+numPanels+'" class="embedded">' +
                     '<h1 id="leftScrollYoutube' + numPanels + '" class="leftScrollYoutube" onmouseover="growLeft( 1, ' + numPanels + ' )" onmouseout="shrinkLeft(1, ' + numPanels + ')" onclick="shiftLeft(1, ' + numPanels + ')">&lt;</h1>' +
                     '<ul id="mainparallax' + numPanels + '-youtube">' +
-                    '</ul>' + 
+                    '</ul>' +
                     '<h1 id="rightScrollYoutube' + numPanels + '" class="rightScrollYoutube" onmouseover="growRight( 1, ' + numPanels + ' )" onmouseout="shrinkRight(1, ' + numPanels + ')" onclick="shiftRight(1, ' + numPanels + ')">&gt;</h1>' +
                     '<h1 id="leftScrollPin' + numPanels + '" class="leftScrollPin" onmouseover="growLeft( 2, '+numPanels+' )" onmouseout="shrinkLeft(2, '+numPanels+')" onclick="shiftLeft(2, '+numPanels+')">&lt;</h1>' +
                     '<ul id="mainparallax'+numPanels+'-pin">' +
@@ -48,8 +48,8 @@ function createNewParallax(numPanels, c_id){
                           '</select>' +
                       '</div>' +
                   '</form>' +
-                  '<input class="updateSettingsButton" type="submit" value="Save Settings" onclick="updateSettings( '+numPanels+' )">' +
-                  '<input class="deleteCategoryButton" type="submit" value="Delete Panel" onclick="deleteCategory( '+numPanels+' )">' +
+                  '<input class="updateSettingsButton" type="submit" value="Save Settings">' +
+                  '<input class="deleteCategoryButton" type="submit" value="Delete Panel">' +
                   '<div class="panel-information">' +
                       '<div class="panel-information-accounts">' +
                           '<br> Account:' +
@@ -88,7 +88,7 @@ function createNewParallax(numPanels, c_id){
 }
 
 $(document).ready(function() {
-    
+
     var $addButton = $('.addScreen');
 
     var numPanels = 1;

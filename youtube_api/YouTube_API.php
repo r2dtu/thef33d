@@ -1,4 +1,58 @@
 <?php
+
+/*
+ * $result => {
+
+ *   "$id" => {
+
+ *     "category_name" => "$category_name"
+ *     "background_img" => "$local_background_img_url";
+
+ *     "y_subs" => {
+ *       "$y_sub_id_1",
+ *       "$y_sub_id_2",
+ *       "$y_sub_id_3",
+ *     },
+
+ *     "$r_subs" => {
+ *       "$r_sub_id_1",
+ *       "$r_sub_id_2",
+ *     },
+
+ *     "p_subs" => {
+ *       "$p_sub_id_1",
+ *       "$p_sub_id_2",
+ *       "$p_sub_id_3",
+ *       "$p_sub_id_4",
+ *     };
+ *   },
+
+ *   "$id" => {
+
+ *     "category_name" => "$category_name"
+ *     "background_img" => "$local_background_img_url";
+
+ *     "y_subs" => {
+ *       "$y_sub_id_1",
+ *       "$y_sub_id_2",
+ *       "$y_sub_id_3",
+ *     },
+
+ *     "$r_subs" => {
+ *       "$r_sub_id_1",
+ *       "$r_sub_id_2",
+ *     },
+
+ *     "p_subs" => {
+ *       "$p_sub_id_1",
+ *       "$p_sub_id_2",
+ *       "$p_sub_id_3",
+ *       "$p_sub_id_4",
+ *     };
+ *   };
+ * };
+ */
+
 // Make sure composer is installed! Then just load Google's Client API Library
 require_once __DIR__ . '/vendor/autoload.php';
 include_once('pretty_json.php');
@@ -17,7 +71,9 @@ $client = new Google_Client();
 $client->setApplicationName("Getting YouTube Data...");
 $client->setClientId($OAUTH2_CLIENT_ID);
 $client->setClientSecret($OAUTH2_CLIENT_SECRET);
-$client->setScopes($SCOPES);$redirectURL = filter_var('http://' . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF'], FILTER_SANITIZE_URL);
+$client->setScopes($SCOPES);
+
+$redirectURL = filter_var('http://' . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF'], FILTER_SANITIZE_URL);
 $client->setRedirectUri($redirectURL);
 
 // Define an object that will be used to make all API requests.
@@ -42,38 +98,71 @@ if (isset($_SESSION[$tokenSessionKey])) {
 // Check to ensure that the access token was successfully acquired.
 if ($client->getAccessToken()) {
 
-    try {
-        $result = array();
-        switch ($_POST["action"]) {
-            case "getCid":
-//                $channel_id = getChannelId();
-//                $result[$username] = $channel_id;
-                break;
-            case "getSubs":
-                $result = getSubscriptions(getChannelIdFromDB());
-                break;
-            case "getVids":
-               $subs = getSubscriptions(getChannelIdFromDB());
-               foreach ($subs as $sub_title => $sub_id) {
-                   $result[$sub_title] = getChannelVideos($sub_id);
-               }
-                break;
-            default:
-                break;
+    if($client->isAccessTokenExpired()) {
+        $state = mt_rand();
+        $client->setState($state);
+        $_SESSION['state'] = $state;
+        $authUrl = $client->createAuthUrl();
+        header('Location: ' . filter_var($authUrl, FILTER_SANITIZE_URL));
+    } else {
+
+        try {
+            $result = array();
+            switch ($_POST["action"]) {
+                case "getCid":
+    //                $channel_id = getChannelId();
+    //                $result[$username] = $channel_id;
+                    break;
+                case "getSubs":
+                    $result = getSubscriptions(getChannelIdFromDB());
+                    break;
+                case "getVids":
+                    try {
+                      $conn = new PDO("mysql:host=localhost;dbname=thefeed", root, WTF110lecture);
+
+                      // $username = $_SESSION["username"];
+                      $username = "dctu@ucsd.edu";
+                      /* GET ALL OF USER'S CATEGORIES */
+                      $result = $conn->query("SELECT * FROM categories WHERE username='$username'")->fetchAll(PDO::FETCH_UNIQUE);
+
+                      /* LOOP THROUGH EVERY CATEGORY AND GET CATEGORY INFORMATION */
+                      foreach($result as $c_id => $category_data){
+
+                        $query = $conn->query("SELECT sub_id FROM y_subs WHERE c_id='$c_id'")->fetchAll(PDO::FETCH_COLUMN);
+                        $y_links = array();
+
+                        foreach($query as $sub_id){
+                           $tmp_links = getChannelVideos($sub_id);
+
+                           foreach($tmp_links as $y_link){
+                             array_push($y_links, $y_link);
+                           }
+                        }
+
+                        $result["$c_id"]["y_links"] = $y_links;
+                      }
+                      $result["username"] = $username;
+
+                    } catch(PDOException $e){
+                      error_out();
+                    }
+                    break;
+                default:
+                    break;
+            }
+
+            echo json_encode($result);
+
+        } catch (Google_Service_Exception $e) {
+            $htmlBody .= sprintf('<p>A service error occurred: <code>%s</code></p>', htmlspecialchars($e->getMessage()));
+        } catch (Google_Exception $e) {
+            $htmlBody .= sprintf('<p>An client error occurred: <code>%s</code></p>', htmlspecialchars($e->getMessage()));
         }
 
-        echo json_encode($result);
-
-    } catch (Google_Service_Exception $e) {
-        $htmlBody .= sprintf('<p>A service error occurred: <code>%s</code></p>', htmlspecialchars($e->getMessage()));
-    } catch (Google_Exception $e) {
-        $htmlBody .= sprintf('<p>An client error occurred: <code>%s</code></p>', htmlspecialchars($e->getMessage()));
+        // Update the access token
+        $_SESSION[$tokenSessionKey] = $client->getAccessToken();
+        exit();
     }
-
-    // Update the access token
-    $_SESSION[$tokenSessionKey] = $client->getAccessToken();
-    exit();
-
 } else {
 
     // If the user has not authorized the application, start the OAuth 2.0 flow.
@@ -119,8 +208,8 @@ function getSubscriptions($channel_id) {
     return $subs;
 }
 
-function getChannelVideos($channel_id) {
 
+function getChannelVideos($channel_id) { // TODO add sorting
     global $youtube;
 
     // Get a list of channel's videos
@@ -138,18 +227,16 @@ function getChannelVideos($channel_id) {
         $videos = $videos_response->getItems();
 
         // @TODO get nextPageToken and prevPageToken (use as input to $parts)
-        $count = 1;
         foreach($videos as $video) {
-            $embed_videos[$count] = generateEmbedLink($video->getSnippet()->getResourceId()->getVideoId(), 250, 157);
-
-            $count += 1;
+            array_push($embed_videos, generateEmbedLink($video->getSnippet()->getResourceId()->getVideoId(), 250, 157));
         }
     }
     return $embed_videos;
 }
 
 function generateEmbedLink($video_id, $width, $height) {
-    return '<iframe width="' . $width . '" height="' . $height . '" src="https://www.youtube.com/embed/' . $videoId . '" frameborder="0" allowfullscreen></iframe>';
+  // https://www.youtube.com/embed/FhC9R9oCAVk
+    return 'https://www.youtube.com/embed/' . $video_id;
 }
 
 function insertSubscriptions($new_channel_id) {
