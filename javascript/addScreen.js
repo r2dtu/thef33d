@@ -81,6 +81,7 @@ function createNewParallax(numPanels, c_id, c_name, c_img){
 
   $('#mainparallax' + numPanels ).css('background-image', 'url("' + c_img + '")' );
 
+console.log(c_id + ": " + c_img);
   document.getElementById('categoryBackground' + numPanels).addEventListener('change', function(evt){ handleFileSelect(evt, numPanels) }, false);
 
   // addYoutubeList( youtubeList, numPanels );

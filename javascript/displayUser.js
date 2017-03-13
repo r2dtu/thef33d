@@ -78,7 +78,25 @@ $(document).ready(function() {
     addPinList( pinList, numPanels );
 
     // Get Reddit subscriptions
-    addRedditList( redditList, numPanels );
+//    addRedditList( redditList, numPanels );
+    var request2 = $.ajax({
+        url: "php/displayUser.php",
+        type: "POST"
+    });
+
+    request2.done(function (response, textStatus, jqXHR){
+        var parse = JSON.parse(response);
+        console.log(parse);
+        var r_subs = [];
+        for (var r_sub in parse["r_subs"]) {
+          r_subs.push(r_sub);
+        }
+        addRedditList( r_subs , numPanels );
+
+    });
+    request2.fail(function (jqXHR, textStatus, errorThrown) {
+        console.log("ERROR");
+    });
   });
 
 }); //END OF $(document).ready

@@ -189,7 +189,7 @@ function displayYouTubeSubs( id ) {
 
 function removeSubs( id ){
 
-    $('#subs'+id).find('form').empty();
+    $('#subs'+id).empty();
 
 }
 
@@ -202,15 +202,17 @@ function updateSubs( id ){
     var e = document.getElementById("categoryAccounts" + id);
     var social = e.options[e.selectedIndex].value;
 
+    $('#subs'+id).append('<br>Subscriptions to Include:<br>');
+
     if( social == 'YouTube' ){
       displayYouTubeSubs( id );
-      displayCheckMarks(id, c_id, "y_subs");
+//      displayCheckMarks(id, c_id, "y_subs");
     }else if( social == 'Pinterest' ){
       alert("Pinterest");
-      displayCheckMarks(id, c_id, "p_subs");
+//      displayCheckMarks(id, c_id, "p_subs");
     }else if( social == 'Reddit'){
       displayRedditSubs( id );
-      displayCheckMarks(id, c_id, "r_subs");
+//      displayCheckMarks(id, c_id, "r_subs");
     }
 }
 
