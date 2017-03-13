@@ -1,3 +1,7 @@
+function authorizeYouTube() {
+  location.href = "/youtube_api/authenticate.php";
+}
+
 var youtubeIndexStart = 0;
 var youtubeIndexEnd = 3;
 var pinIndexStart = 0;
@@ -82,7 +86,7 @@ function addPin( link, num, numPanel ){
 }
 
 function addReddit( link, num, numPanel ){
-    
+
     $('#mainparallax' + numPanel + '-reddit').append('<li class="reddit-card"><script src="https://www.reddit.com/r/'+link+'.embed?limit=2&sort=new" type="text/javascript"></script></li>');
 
     //$('.reddit' + num).css( 'top', '50%' );

@@ -14,7 +14,7 @@ function saveCategorySettings(id) {
   // }
 
   if(background){
-    var fileSelect = document.getElementById('categoryBackground1');
+    var fileSelect = document.getElementById('categoryBackground' + id);
     var file = fileSelect.files[0];
     var fileData = new FormData();
     fileData.append("bg_image", file);
@@ -57,7 +57,7 @@ function saveCategorySettings(id) {
     category_data["c_id"] = c_id;
 
     if (background) {
-      var filename = document.getElementById('categoryBackground1').files[0]["name"];
+      var filename = document.getElementById('categoryBackground' + id).files[0]["name"];
       category_data["c_img"] = "http://localhost/bg_images/dctu@ucsd.edu/" + filename; // TODO Change
     }
 
