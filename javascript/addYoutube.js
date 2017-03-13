@@ -28,7 +28,7 @@ function addPinList( list, numPanel ){
 
     var spot = 0;
 
-    for( i = 0; i < pinList.length; i++ ){
+    for( i = 0; i < list.length; i++ ){
 
         if( i >= pinIndexStart && i <= pinIndexEnd ){
             addPin( list[ i ], spot, numPanel );
@@ -44,7 +44,7 @@ function addRedditList( list, numPanel ){
 
     var spot = 0;
 
-    for( i = 0; i < redditList.length; i++ ){
+    for( i = 0; i < list.length; i++ ){
 
         if( i >= redditIndexStart && i <= redditIndexEnd ){
             addReddit( list[ i ], spot, numPanel );
@@ -105,7 +105,7 @@ function shiftLeft( social, numPanel ){
         youtubeIndexStart -= 3;
         youtubeIndexEnd -= 3;
         removeChildren('youtube', numPanel);
-        addYoutubeList( youtubeList, numPanel );
+        addYoutubeList( youtubeList[numPanel - 1], numPanel );
 
     }
 
@@ -134,12 +134,12 @@ function shiftRight( social, numPanel ){
     var $parallax = $(".mainparallax" + numPanel);
     var c_id = $parallax.attr("c_id");
 
-    if( social == 1 && !(youtubeIndexEnd >= youtubeList.length) ){
+    if( social == 1 && !(youtubeIndexEnd >= youtubeList[numPanel - 1].length) ){
 
         youtubeIndexStart += 3;
         youtubeIndexEnd += 3;
         removeChildren('youtube', numPanel);
-        addYoutubeList( youtubeList, numPanel );
+        addYoutubeList( youtubeList[numPanel - 1], numPanel );
 
     }
 

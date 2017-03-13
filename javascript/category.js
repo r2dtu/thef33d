@@ -8,10 +8,10 @@ function saveCategorySettings(id) {
 
   var category_data = {};
 
-  // if(name == "false" && !background){
-  //   alert("You did not adjust any settings");
-  //   return;
-  // }
+  if(name == "false" && !background){
+    alert("You did not adjust any settings");
+    return;
+  }
 
   if(background){
     var fileSelect = document.getElementById('categoryBackground' + id);

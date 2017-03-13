@@ -1,58 +1,5 @@
 <?php
 
-/*
- * $result => {
-
- *   "$id" => {
-
- *     "category_name" => "$category_name"
- *     "background_img" => "$local_background_img_url";
-
- *     "y_subs" => {
- *       "$y_sub_id_1",
- *       "$y_sub_id_2",
- *       "$y_sub_id_3",
- *     },
-
- *     "$r_subs" => {
- *       "$r_sub_id_1",
- *       "$r_sub_id_2",
- *     },
-
- *     "p_subs" => {
- *       "$p_sub_id_1",
- *       "$p_sub_id_2",
- *       "$p_sub_id_3",
- *       "$p_sub_id_4",
- *     };
- *   },
-
- *   "$id" => {
-
- *     "category_name" => "$category_name"
- *     "background_img" => "$local_background_img_url";
-
- *     "y_subs" => {
- *       "$y_sub_id_1",
- *       "$y_sub_id_2",
- *       "$y_sub_id_3",
- *     },
-
- *     "$r_subs" => {
- *       "$r_sub_id_1",
- *       "$r_sub_id_2",
- *     },
-
- *     "p_subs" => {
- *       "$p_sub_id_1",
- *       "$p_sub_id_2",
- *       "$p_sub_id_3",
- *       "$p_sub_id_4",
- *     };
- *   };
- * };
- */
-
 // Make sure composer is installed! Then just load Google's Client API Library
 require_once __DIR__ . '/vendor/autoload.php';
 include_once('pretty_json.php');
@@ -87,7 +34,7 @@ if (isset($_GET['code'])) {
     }
     $client->authenticate($_GET['code']);
     $_SESSION[$tokenSessionKey] = $client->getAccessToken();
-    header('Location: ' . $redirectURL);
+    echo $redirectURL;
 }
 
 // Set access token if we've retrieved one from authenticate()
@@ -103,7 +50,7 @@ if ($client->getAccessToken()) {
         $client->setState($state);
         $_SESSION['state'] = $state;
         $authUrl = $client->createAuthUrl();
-        header('Location: ' . filter_var($authUrl, FILTER_SANITIZE_URL));
+        echo $authUrl;
     } else {
 
         try {
@@ -117,35 +64,18 @@ if ($client->getAccessToken()) {
                     $result = getSubscriptions(getChannelIdFromDB());
                     break;
                 case "getVids":
-                    try {
-                      $conn = new PDO("mysql:host=localhost;dbname=thefeed", root, WTF110lecture);
-
-                      // $username = $_SESSION["username"];
-                      $username = "dctu@ucsd.edu";
-                      /* GET ALL OF USER'S CATEGORIES */
-                      $result = $conn->query("SELECT * FROM categories WHERE username='$username'")->fetchAll(PDO::FETCH_UNIQUE);
-
-                      /* LOOP THROUGH EVERY CATEGORY AND GET CATEGORY INFORMATION */
-                      foreach($result as $c_id => $category_data){
-
-                        $query = $conn->query("SELECT sub_id FROM y_subs WHERE c_id='$c_id'")->fetchAll(PDO::FETCH_COLUMN);
-                        $y_links = array();
-
-                        foreach($query as $sub_id){
-                           $tmp_links = getChannelVideos($sub_id);
-
-                           foreach($tmp_links as $y_link){
-                             array_push($y_links, $y_link);
-                           }
-                        }
-
-                        $result["$c_id"]["y_links"] = $y_links;
-                      }
-                      $result["username"] = $username;
-
-                    } catch(PDOException $e){
-                      error_out();
+                    $json = $_POST["sql_data"];
+                    foreach($json as $c_id => $c_data){
+                      foreach ($c_data["y_subs"] as $sub_id) {
+                       $tmp_links = getChannelVideos($sub_id);
+                       $y_links = array();
+                       foreach($tmp_links as $y_link){
+                         array_push($y_links, $y_link);
+                       }
+                     }
+                     $result[$c_id]["y_links"] = $y_links;
                     }
+
                     break;
                 default:
                     break;
@@ -165,13 +95,14 @@ if ($client->getAccessToken()) {
     }
 } else {
 
-    // If the user has not authorized the application, start the OAuth 2.0 flow.
-    $state = mt_rand();
-    $client->setState($state);
-    $_SESSION['state'] = $state;
+    // // If the user has not authorized the application, start the OAuth 2.0 flow.
+    // $state = mt_rand();
+    // $client->setState($state);
+    // $_SESSION['state'] = $state;
+    //
+    // $authUrl = $client->createAuthUrl();
+    // echo $authUrl;
 
-    $authUrl = $client->createAuthUrl();
-    header('Location: ' . $authUrl);
 }
 
 

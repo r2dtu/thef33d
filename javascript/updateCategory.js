@@ -205,7 +205,7 @@ function updateSubs( id ){
     }else if( social == 'Pinterest' ){
         alert("Pinterest");
     }else if( social == 'Reddit'){
-      displayRedditSubs( id );
+        displayRedditSubs( id );
     }
 }
 

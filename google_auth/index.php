@@ -17,14 +17,14 @@
     } else {
         $authUrl = $gClient->createAuthUrl();
 //        $output = '<a href="'.filter_var($authUrl, FILTER_SANITIZE_URL).'"><img src="images/glogin.png" alt=""/></a>';
-        
+
         header('Location: ' . filter_var($authUrl, FILTER_SANITIZE_URL));
         die();
     }
 
     // If we're signed in, we can retrieve the ID token
     if ($gClient->getAccessToken()) {
-        
+
         // Get user profile data from google
         $gpUserProfile = $google_oauthV2->userinfo->get();
 
@@ -40,10 +40,12 @@
             'email'         => $gpUserProfile['email'],
         );
         $userData = $user->checkUser($gpUserData);
-        
+
         //Storing user data into session
         $_SESSION['userData'] = $userData;
-        
+
+        $_SESSION['username'] = $gpUserData['email'];
+
         header('Location: http://'.$_SERVER['HTTP_HOST'].'/index.html');
         die();
     }

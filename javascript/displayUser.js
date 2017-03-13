@@ -1,4 +1,4 @@
-youtubeList = null;
+youtubeList = [];
 pinList = [
 
     'https://www.pinterest.com/makeuseof/gaming/',
@@ -24,56 +24,67 @@ redditList = [
 
 ];
 
-$(document).ready(function(){
+$(document).ready(function() {
   addUserInfo();
 
-  var actionData = {"action": "getVids"};
-
   var request = $.ajax({
-      url: "youtube_api/YouTube_API.php",
-      type: "POST",
-      data: actionData
+    url: "php/displayUser.php",
+    type: "POST"
   });
 
-  // Callback handler that will be called on success
-  request.done(function (response, textStatus, jqXHR){
+  // Now actually load the social media feed
+  request.done(function (response, textStatus, jqXHR) {
+
+    if (response == 'Please log into the site.') {
+      location.href = '../login.html';
+    }
 
     var c_data = JSON.parse(response);
-
-    //printData(c_data);
-
-    var $panels = $('.panels');
-    var $navList = $('.nav-menu-list');
+    // printData(c_data);
     var numPanels = 0;
 
-    for(var c_id in c_data){
-
+    for(var c_id in c_data) {
       if(c_id == "username") continue;
 
       numPanels = numPanels + 1;
 
       createNewParallax(numPanels, c_id, c_data[c_id]["c_name"], c_data[c_id]["img"]);
-
-      youtubeList = c_data[c_id]["y_links"];
-
-      addYoutubeList(c_data[c_id]["y_links"], numPanels);
-
-      console.log("success");
+//      document.getElementById('categoryBackground' + numPanels).addEventListener('change', function(evt){ handleFileSelect(evt, numPanels) }, false);
     }
 
-    //addPinList( pinList, 1 );
+    // Get YouTube subscriptions
+    var actionData = {"action": "getVids", "sql_data": c_data};
+    console.log(c_data);
+    var request = $.ajax({
+        url: "youtube_api/YouTube_API.php",
+        type: "POST",
+        data: actionData
+    });
 
-    addRedditList( redditList, 1 );
+    request.done(function (response, textStatus, jqXHR){
 
-  }); //End of request.done
+      if (response.includes("http://") || response.includes("https://")) {
+        location.href = response;
+      }
+      var i = 0;
+      var parsed_data = JSON.parse(response);
+      console.log(parsed_data);
+      for (var c_id in parsed_data) {
+        youtubeList.push(parsed_data[c_id]["y_links"]);
+        addYoutubeList(youtubeList[i], i + 1);
+        i += 1;
+      }
 
-  request.fail(function (jqXHR, textStatus, errorThrown){
-      alert("HTTPRequest: " + textStatus + " " + errorThrown);
-      console.log(jqXHR);
+//[c_id]["y_subs"]
+
+    });
+
+    // Get Pinterest subscriptions
+    //addPinList( pinList, numPanels );
+
+    // Get Reddit subscriptions
+    //addRedditList( redditList, numPanels );
   });
-
-  // TODO Get Pinterest data
-  // TODO Get Reddit data
 
 }); //END OF $(document).ready
 
@@ -83,7 +94,7 @@ function addUserInfo() {
                  '<h1 class="userAccountsHeader">Click to Link Accounts</h1>' +
                  '<ul class="userAccountsList">' +
                      '<li id="youtube"><img src="CSS/img/YouTube-icon-full_color.png" width="100px" ; height="100px" ; onclick="authorizeYouTube()"></li>' +
-                     '<li id="pintrest"><img src="CSS/img/Pinterest_logo-2.png" width="100px" ; height="100px" ; onclick=""></li>' +
+                     '<li id="pintrest"><img src="CSS/img/Pinterest_logo-2.png" width="100px" ; height="100px" ; onclick="pinterest.login()"></li>' +
                      '<li id="reddit"><img src="CSS/img/Reddit_logo.png" width="100px" ; height="110px" ; onclick="linkReddit();"></li>' +
                  '</ul>';
   userPage.append(userInfo);
@@ -102,12 +113,12 @@ function printData(c_data){
     out += "c_name: " + c_data[c_id]["c_name"] + "\n";
     out += "background_img: " + c_data[c_id]["img"] + "\n";
 
-    for(var y_link in c_data[c_id]["y_links"]){
-      out += "  y_link: " + c_data[c_id]["y_links"][y_link] + "\n";
+    for(var y_link in c_data[c_id]["y_subs"]){
+      out += "  y_link: " + c_data[c_id]["y_subs"][y_link] + "\n";
     }
 
-    for(var r_link in c_data[c_id]["r_links"]){
-      out += "  r_link: " + c_data[c_id]["r_links"][r_link] + "\n";
+    for(var r_link in c_data[c_id]["r_subs"]){
+      out += "  r_link: " + c_data[c_id]["r_subs"][r_link] + "\n";
     }
 
     for(var p_link in c_data[c_id]["p_subs"]){

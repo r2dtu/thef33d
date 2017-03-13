@@ -81,7 +81,7 @@ function createNewParallax(numPanels, c_id, c_name, c_img){
 
   $('#mainparallax' + c_id ).css('background-image', 'url("' + c_img + '")' );
 
-  //document.getElementById('categoryBackground' + numPanels).addEventListener('change', function(evt){ handleFileSelect(evt, numPanels) }, false);
+  document.getElementById('categoryBackground' + numPanels).addEventListener('change', function(evt){ handleFileSelect(evt, numPanels) }, false);
 
   // addYoutubeList( youtubeList, numPanels );
   // addPinList( pinList, numPanels );
@@ -95,7 +95,7 @@ $(document).ready(function() {
     var $addButton = $('.addScreen');
 
     var numPanels = 1;
-    
+
     $('.reddit-card').css('position', 'absolute');
 
     // + button
