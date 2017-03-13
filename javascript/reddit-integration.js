@@ -93,11 +93,17 @@ function getSubs(reddit){
   var subredditNames = [];
   var promise = new Promise(function(resolve, reject){
       subredditPromise.then(function(subreddits){
-        for(var i = 0; i < subreddits.length; i++){
-          subredditNames[i] = subreddits[i].display_name;
-        }
-        console.log(subredditNames);
-        resolve(subredditNames);
+        subredditsAllPromise = subreddits.fetchAll();
+        subredditsAllPromise.then(function(subredditAll){
+            for(var i = 0; i < subredditAll.length; i++){
+              subredditNames[i] = subredditAll[i].display_name;
+            }
+            console.log(subredditNames);
+            resolve(subredditNames);
+        })
+        .catch(function(error){
+            reject("Error fetching all subreddits!" + error);
+        })
       })
       .catch(function(error){
           reject("Error fetching subreddits!" + error);

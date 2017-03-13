@@ -1,13 +1,3 @@
-var youtube_subscriptions = [
-
-    'Science',
-    'Engineering',
-    'Dogs',
-    'Clouds',
-    'Orange Dragons'
-
-];
-
 function updateSettings( id ){
 
     if( name ){
@@ -123,65 +113,80 @@ function handleFileSelect(evt, id) {
     }
 
 }
-document.getElementById('categoryBackground1').addEventListener('change', function(evt){ handleFileSelect(evt, 1) }, false);
+//document.getElementById('categoryBackground1').addEventListener('change', function(evt){ handleFileSelect(evt, 1) }, false);
 
 function updateBackground( id, c_img ) {
 
-  console.log("C_ID: " + id + ", " + c_img);
-
-  var reader = new FileReader();
-
-  // Closure to capture the file information.
-  reader.onload = (function(theFile) {
-    return function(e) {
-
-//        $('#mainparallax' + id ).css('background-image', 'url("' + e.target.result + '")' );
-
-        console.log("SAVING IMAGE TO THE DATABASE!");
-        console.log("Moving file: " + " to " + "");
-
-        var username = "dctu@ucsd.edu";
-        var link = "http://thef33d.me/bg_images/" + username + "/" + c_img[0].name;
-        var updateData = {"message": "update_img", "username": username, "c_id": id, "c_img": link};
-
-        var request = $.ajax({
-          url: "php/category.php",
-          type: "POST",
-          data: updateData
-        });
-
-        // Callback handler that will be called on success
-        request.done(function (response, textStatus, jqXHR){
-            var sub_data = JSON.parse(response);
-            console.log(sub_data);
-        });
-
-        // Callback handler that will be called on failure
-        request.fail(function (jqXHR, textStatus, errorThrown){
-            alert("HTTPRequest: " + textStatus + errorThrown);
-        });
-
-    };
-  })(c_img);
+//   console.log("C_ID: " + id + ", " + c_img);
+//
+//   var reader = new FileReader();
+//
+//   // Closure to capture the file information.
+//   reader.onload = (function(theFile) {
+//     return function(e) {
+//
+// //        $('#mainparallax' + id ).css('background-image', 'url("' + e.target.result + '")' );
+//
+//         console.log("SAVING IMAGE TO THE DATABASE!");
+//         console.log("Moving file: " + " to " + "");
+//
+//         var username = "dctu@ucsd.edu";
+//         var link = "http://thef33d.me/bg_images/" + username + "/" + c_img[0].name;
+//         var updateData = {"message": "update_img", "username": username, "c_id": id, "c_img": link};
+//
+//         var request = $.ajax({
+//           url: "php/category.php",
+//           type: "POST",
+//           data: updateData
+//         });
+//
+//         // Callback handler that will be called on success
+//         request.done(function (response, textStatus, jqXHR){
+//             var sub_data = JSON.parse(response);
+//             console.log(sub_data);
+//         });
+//
+//         // Callback handler that will be called on failure
+//         request.fail(function (jqXHR, textStatus, errorThrown){
+//             alert("HTTPRequest: " + textStatus + errorThrown);
+//         });
+//
+//     };
+//   })(c_img);
 
   // Read in the image file as a data URL.
-  reader.readAsDataURL(c_img);
+//  reader.readAsDataURL(c_img);
 }
 
 function adjustSize( id, size ) {
 
 }
 
+function displayYouTubeSubs( id ) {
 
-function displaySubs( id, subList ){
+    var subs = $('#subs' + id).find('form');
 
-    for( i = 0; i < youtube_subscriptions.length; i++ ){
+    var createData = {"action": "getSubs"};
+    var request = $.ajax({
+      url: "youtube_api/YouTube_API.php",
+      type: "POST",
+      data: createData
+    });
 
-        $('#subs'+id).find('form').append( '<input type="checkbox" name="subscription" value="'+ youtube_subscriptions[ i ] +'">' + youtube_subscriptions[ i ] + '<br>' );
+    // Callback handler that will be called on success
+    request.done(function (response, textStatus, jqXHR){
+        var sub_data = JSON.parse(response);
+        for (var sub_name in sub_data) {
+            subs.append(
+                '<input type="checkbox" name="subscription" value="' + sub_name + '"> ' + sub_name + ' <br>');
+        }
+    });
 
-    }
-
-} displaySubs( 1, youtube_subscriptions );
+    // Callback handler that will be called on failure
+    request.fail(function (jqXHR, textStatus, errorThrown){
+        alert("You need to reauthorize your YouTube access. Please quit Chrome and retry again.");
+    });
+}
 
 function removeSubs( id ){
 
@@ -197,7 +202,7 @@ function updateSubs( id ){
     var social = e.options[e.selectedIndex].value;
 
     if( social == 'YouTube' ){
-        displaySubs( id, youtube_subscriptions );
+        displayYouTubeSubs( id );
     }else if( social == 'Pinterest' ){
         alert("Pinterest");
     }else{
