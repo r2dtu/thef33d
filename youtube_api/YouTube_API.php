@@ -56,10 +56,6 @@ if ($client->getAccessToken()) {
         try {
             $result = array();
             switch ($_POST["action"]) {
-                case "getCid":
-    //                $channel_id = getChannelId();
-    //                $result[$username] = $channel_id;
-                    break;
                 case "getSubs":
                     $result = getSubscriptions(getChannelIdFromDB());
                     break;

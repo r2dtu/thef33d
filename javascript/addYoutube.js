@@ -1,5 +1,6 @@
 function authorizeYouTube() {
-  location.href = "/youtube_api/authenticate.php";
+  console.log("CHANGING");
+  location.href = "./youtube_api/authenticate.php";
 }
 
 var youtubeIndexStart = 0;

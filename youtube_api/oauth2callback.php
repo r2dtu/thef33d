@@ -9,10 +9,10 @@ $scriptUri = "http://".$_SERVER["HTTP_HOST"].$_SERVER['PHP_SELF'];
 $client = new Google_Client();
 $client->setAccessType('online');
 $client->setApplicationName('The Feed');
-$client->setClientId('CLIENT_ID');
-$client->setClientSecret('CLIENT_SECRET');
+$client->setClientId('139115646685-qmbuj1k1tul57ns973bh2dtvqfi9tknd.apps.googleusercontent.com');
+$client->setClientSecret('cmB7NFc0s3NFVgumQ3nmvWc1');
 $client->setRedirectUri($scriptUri);
-$client->setDeveloperKey('API_KEY'); // API key
+$client->setDeveloperKey('AIzaSyA_dZuW2zI5FXBM63OsE7DIctXwhMAib3o'); // API key
 $client->addScope(Google_Service_Youtube::YOUTUBE);
 $client->addScope(Google_Service_Youtube::YOUTUBE_FORCE_SSL);
 $client->addScope(Google_Service_Youtube::YOUTUBE_READONLY);
@@ -22,7 +22,7 @@ $client->addScope(Google_Service_Youtube::YOUTUBEPARTNER);
 if (! isset($_GET['code'])) {
     $auth_url = $client->createAuthUrl();
     header('Location: ' . filter_var($auth_url, FILTER_SANITIZE_URL));
-} 
+}
 
 // Otherwise, we can exchange it for an access token, and redirect to the main site (if logged in)
 else {
@@ -33,4 +33,3 @@ else {
 }
 
 ?>
-

@@ -23,7 +23,7 @@ alert("SAVE CALLED");
   // }
 
   if(background){
-    var fileSelect = document.getElementById('categoryBackground1');
+    var fileSelect = document.getElementById('categoryBackground'+id);
     var file = fileSelect.files[0];
     var fileData = new FormData();
     fileData.append("bg_image", file);

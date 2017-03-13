@@ -61,25 +61,24 @@ $(document).ready(function() {
         location.href = response;
       }
       if (response) {
-      var i = 0;
-      var parsed_data = JSON.parse(response);
-      console.log(parsed_data);
-      for (var c_id in parsed_data) {
-        youtubeList.push(parsed_data[c_id]["y_links"]);
-        addYoutubeList(youtubeList[i], i + 1);
-        i += 1;
+        var i = 0;
+        var parsed_data = JSON.parse(response);
+        console.log(parsed_data);
+        for (var c_id in parsed_data) {
+          youtubeList.push(parsed_data[c_id]["y_links"]);
+          if (youtubeList[i]) {
+            addYoutubeList(youtubeList[i], i + 1);
+          }
+          i += 1;
+        }
       }
-      }
-
-//[c_id]["y_subs"]
-
     });
 
-    // Get Pinterest subscriptions
-    //addPinList( pinList, numPanels );
+    //Get Pinterest subscriptions
+    addPinList( pinList, numPanels );
 
     // Get Reddit subscriptions
-    //addRedditList( redditList, numPanels );
+    addRedditList( redditList, numPanels );
   });
 
 }); //END OF $(document).ready
