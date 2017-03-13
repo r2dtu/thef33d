@@ -1,5 +1,5 @@
 function saveCategorySettings(id) {
-
+alert("SAVE CALLED");
   var parallax = $('#mainparallax' + id);
   var c_id = parallax.attr("c_id");
   var c_newname = $("#categoryName" + id).val();
@@ -48,7 +48,7 @@ function saveCategorySettings(id) {
   category_data["subs"] = subs;
 
   if (background) {
-    var filename = document.getElementById('categoryBackground1').files[0]["name"];
+    var filename = document.getElementById('categoryBackground'+id).files[0]["name"];
     category_data["c_img"] = "http://localhost/bg_images/dctu@ucsd.edu/" + filename; // TODO Change
   }
 
@@ -93,7 +93,7 @@ function saveCategorySettings(id) {
 
     if(response["can_update_or_create"] == "yes"){
 
-      updateSettings(numPanel);
+      updateSettings(id);
       parallax.attr({"c_id" : c_id});
       parallax.attr({"c_name" : c_newname});
 
@@ -137,7 +137,7 @@ function displayCheckMarks(id, c_id, table){
     if (this.type == "checkbox") {
       sub_names.push(this.name);
     }
-  }
+  });
 
   var sub_name_data = {"message" : "subsInCat", "sub_names" : sub_names, "c_id" : c_id, "table" : table}
 

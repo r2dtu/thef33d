@@ -57,10 +57,10 @@ $(document).ready(function() {
     });
 
     request.done(function (response, textStatus, jqXHR){
-
       if (response.includes("http://") || response.includes("https://")) {
         location.href = response;
       }
+      if (response) {
       var i = 0;
       var parsed_data = JSON.parse(response);
       console.log(parsed_data);
@@ -68,6 +68,7 @@ $(document).ready(function() {
         youtubeList.push(parsed_data[c_id]["y_links"]);
         addYoutubeList(youtubeList[i], i + 1);
         i += 1;
+      }
       }
 
 //[c_id]["y_subs"]
