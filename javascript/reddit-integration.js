@@ -11,8 +11,8 @@ $(document).ready(function(){
 	greddit = newReddit(clientId, clientSecret, rtoken);
 	greddit.getHot().then(console.log);
     })
-    .catch(function(error){
-    	console.log(error);
+    .catch(function(){
+    	console.log("No reddit refresh token!");
     })
 
     // TODO DELET THIS
@@ -32,6 +32,7 @@ $(document).ready(function(){
  * Displays subreddit checkboxes in category settings
  */
 function displayRedditSubs( id ) {
+	redditLink().then(function(){
 	var subBox = $('#subs' + id);
 	subBox.css({'width': '350px', 'height': '400px', 'overflow-y': 'scroll'});
 	var subsPromise = getSubs(greddit);
@@ -44,7 +45,11 @@ function displayRedditSubs( id ) {
 		}
 	})
 	.catch(function(error){
-		alert("You need to reauthorize your Reddit access. Please quit and try again.");
+		alert("You need to reauthorize your Reddit account. Please quit and try again.");
+	});
+	})
+	.catch(function(){
+		alert("You need to reauthorize your Reddit account. Please quit and try again.");
 	});
 }
 

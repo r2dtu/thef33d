@@ -75,10 +75,9 @@ if($message == "create"){
   $result = array();
 
   foreach($sub_names as $sub_name){
-
     $q_result = $conn->query("SELECT sub_id FROM '$table' WHERE sub_name='$sub_name'")->fetcColumn();
-    if(isset($q_result)){
-      array_push($result, $sub_name);
+    if($q_result){
+	    array_push($result, $sub_name);
     }
   }
   echo json_encode($result);

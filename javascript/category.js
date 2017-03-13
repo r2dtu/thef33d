@@ -92,7 +92,9 @@ function saveCategorySettings(id) {
     var response = JSON.parse(response);
 
     if(response["can_update_or_create"] == "yes"){
-
+      if(c_id == ""){
+        c_id = response["c_id"];
+      }
       updateSettings(id);
       parallax.attr({"c_id" : c_id});
       parallax.attr({"c_name" : c_newname});
@@ -148,7 +150,8 @@ function displayCheckMarks(id, c_id, table){
   });
 
   request.done(function (response, textStatus, jqXHR){
-
+    alert(response);
+    return;
     var response = JSON.parse(response);
 
     for(var i in response){

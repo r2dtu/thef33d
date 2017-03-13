@@ -2,6 +2,7 @@
 var numPanels = 0;
 
 function createNewParallax(c_id, c_name, c_img){
+  numPanels = numPanels + 1;
 
   var $panels = $('.panels');
   var $navList = $('.nav-menu-list');
@@ -90,7 +91,6 @@ function createNewParallax(c_id, c_name, c_img){
   // addPinList( pinList, numPanels );
   // addRedditList( redditList, numPanels );
   // displaySubs( numPanels, youtube_subscriptions );
-  numPanels = numPanels + 1;
 }
 
 
@@ -127,10 +127,8 @@ $(document).ready(function() {
 });
 
 function jump( h, id ){
-
-    var loc = "#" + h;
-    window.location.href = loc;
-    $('.toggle-button').click();
-    $("#settingsButton" + id).click();
-
+  var loc = "#" + h;
+  window.location.href = loc;
+  $('.toggle-button').click();
+  $("#settingsButton" + id).click();
 }
