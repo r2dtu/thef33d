@@ -1,5 +1,7 @@
 <?php
 session_start();
+//ini_set('display_errors',1);
+//error_reporting(E_ALL);
 include 'error.php';
 
 try{
@@ -17,10 +19,12 @@ $question = $_POST["security_question"];
 $answer = $_POST["security_answer"];
 
 if($message == "login"){
-
-  $q_result = $conn->query("SELECT * FROM accounts WHERE username='$username'")->fetch(PDO::FETCH_ASSOC);
-  echo $username;
-  exit();
+  try{
+    $q_result = $conn->query("SELECT * FROM accounts WHERE username='$username'")->fetch(PDO::FETCH_ASSOC);
+  }
+  catch(PDOException $e){
+    error_out();
+  }
   if($q_result["password"] != $password){
     $q_result["can_login"] = "no";
     echo json_encode($q_result);
