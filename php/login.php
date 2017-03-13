@@ -1,7 +1,5 @@
 <?php
 session_start();
-//ini_set('display_errors',1);
-//error_reporting(E_ALL);
 include 'error.php';
 
 try{
@@ -36,7 +34,6 @@ if($message == "login"){
   $_SESSION["username"] = $username;
 
 }else if($message == "create_account"){ //CASE: user is trying to create account
-
   $q_result = $conn->query("SELECT * FROM accounts WHERE username='$username'")->fetch(PDO::FETCH_ASSOC);
 
   if(isset($q_result["username"])){
@@ -46,16 +43,20 @@ if($message == "login"){
   }
 
   $q_result["can_create"] = "yes";
-  $statement = $conn->prepare("INSERT INTO accounts (username, password, security_question, security_answer) VALUES ('$username', '$password', '$question', '$answer')")->execute();
+  $statement = $conn->prepare("INSERT INTO accounts (username, password) VALUES ('$username', '$password')")->execute();
+  $statement = $conn->prepare("UPDATE accounts SET security_answer='$answer' WHERE username='$username'")->execute();
+  $statement = $conn->prepare("UPDATE accounts SET s_question='$question' WHERE username='$username'")->execute();
   $_SESSION["username"] = $username;
   echo json_encode($q_result);
 
 }else if($message == "forgot_password"){
 
   $q_result = $conn->query("SELECT * FROM accounts WHERE username='$username'")->fetch(PDO::FETCH_ASSOC);
-  if($q_result["security_question"] == $question && $q_result["security_answer"] == $answer){
+  if($q_result["s_question"] == $question && $q_result["security_answer"] == $answer){
     $result["password"] = $q_result["password"];
     $result["display_password"] = "yes";
+  }else{
+    $result["display_password"] = "no";
   }
   echo json_encode($result);
 }
