@@ -99,7 +99,7 @@ function addReddit( link, num, numPanel ){
 
     //document.write( '<li class="reddit-card"><script src="https://www.reddit.com/r/'+link+'.embed?limit=2&sort=new" type="text/javascript"></script></li>' );
 
-    $('#mainparallax' + numPanel + '-reddit').append('<li class="reddit-card"><blockquote class="reddit-card" data-card-created="1489401185"><a href="https://www.reddit.com/r/gifs/comments/5z2yfb/someone_hates_you_wherever_you_go/?ref=share&ref_source=embed">Someone hates you, wherever you go</a> from <a href="http://www.reddit.com/r/gifs">gifs</a></blockquote></li>');
+    $('#mainparallax' + numPanel + '-reddit').append('<li class="reddit-card"><div class="reddit-frame"></div></li>');i
 
     //$('.reddit' + num).css( 'top', '50%' );
     //$('.reddit' + num).css( 'left', ((num*20) + 11) + '%' );

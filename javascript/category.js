@@ -127,7 +127,9 @@ function deletePanel(id){
 
 }
 
-function displayCheckMarks(sub_names, c_id, table){
+function displayCheckMarks(sub_names, id, c_id, table){
+
+  var sublist = $("#subs" + id);
 
   var sub_name_data = {"message" : "subsInCat", "sub_names" : sub_names, "c_id" : c_id, "table" : table}
 
@@ -144,7 +146,7 @@ function displayCheckMarks(sub_names, c_id, table){
     for(var i in response){
 
       var sub_name = response[i];
-//check the box!!!!!!!!!!
+
 
     }
 
