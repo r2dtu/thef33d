@@ -11,6 +11,30 @@ pinList = [
 
 ];
 
+pinList2 = [
+
+    'https://www.pinterest.com/pinterest/official-news/',
+    'https://www.pinterest.com/pinterest/official-news/',
+    'https://www.pinterest.com/pinterest/official-news/',
+    'https://www.pinterest.com/pinterest/official-news/',
+    'https://www.pinterest.com/pinterest/official-news/',
+    'https://www.pinterest.com/pinterest/official-news/'
+
+];
+
+pinList3 = [
+
+    'https://www.pinterest.com/pinterest/pin-tips/',
+    'https://www.pinterest.com/pinterest/pin-tips/',
+    'https://www.pinterest.com/pinterest/pin-tips/',
+    'https://www.pinterest.com/pinterest/pin-tips/',
+    'https://www.pinterest.com/pinterest/pin-tips/',
+    'https://www.pinterest.com/pinterest/pin-tips/'
+
+];
+
+
+
 redditList = [
 
     'funny',
@@ -19,6 +43,8 @@ redditList = [
     'AskReddit'
 
 ];
+
+var master_name;
 
 $(document).ready(function() {
   addUserInfo();
@@ -37,7 +63,10 @@ $(document).ready(function() {
 
     var c_data = JSON.parse(response);
     for(var c_id in c_data) {
-      if(c_id == "username") continue;
+      if(c_id == "username"){
+        master_name = c_data[c_id];
+	continue;
+      }
 
       createNewParallax(c_id, c_data[c_id]["c_name"], c_data[c_id]["img"]);
 //      document.getElementById('categoryBackground' + numPanels).addEventListener('change', function(evt){ handleFileSelect(evt, numPanels) }, false);
@@ -71,10 +100,33 @@ $(document).ready(function() {
     });
 
     //Get Pinterest subscriptions
-    addPinList( pinList, numPanels );
+
+    addPinList( pinList, 1);
+    addPinList( pinList2, 2); 
+    addPinList( pinList3, 3);
 
     // Get Reddit subscriptions
-    addRedditList( redditList, numPanels );
+    //addRedditList( redditList, numPanels );
+    var request2 = $.ajax({
+        url: "php/displayUser.php",
+        type: "POST"
+    });
+
+    request2.done(function (response, textStatus, jqXHR){
+        var parse = JSON.parse(response);
+        console.log(parse);
+	var userDisplay = 1;
+        for (var c_id in parse) {
+	  var r_subs = [];
+	  for (var r_sub in parse[c_id]["r_subs"]) {
+            r_subs.push(parse[c_id]["r_subs"][r_sub]);
+	  }
+          addRedditList( r_subs , userDisplay++ );
+        }
+    });
+    request2.fail(function (jqXHR, textStatus, errorThrown) {
+        console.log("ERROR");
+    });
   });
 
 }); //END OF $(document).ready

@@ -1,8 +1,9 @@
 /*** NUMPANELS GLOBAL VARIABLE ***/
-var numPanels = 0;
+var numPanels = 1;
+var id_stuff = 1;
 
 function createNewParallax(c_id, c_name, c_img){
-  numPanels = numPanels + 1;
+
 
   var $panels = $('.panels');
   var $navList = $('.nav-menu-list');
@@ -85,12 +86,10 @@ function createNewParallax(c_id, c_name, c_img){
 
   $('#mainparallax' + numPanels ).css('background-image', 'url("' + c_img + '")' );
 
-  document.getElementById('categoryBackground' + numPanels).addEventListener('change', function(evt){ handleFileSelect(evt, numPanels) }, false);
+ // document.getElementById('categoryBackground' + numPanels).addEventListener('change', function(evt){ handleFileSelect(evt, numPanels) }, false);
+  document.getElementById('categoryBackground' + numPanels).addEventListener('change', function(evt){ handleFileSelect(evt, id_stuff) }, false);
+  numPanels = numPanels + 1;
 
-  // addYoutubeList( youtubeList, numPanels );
-  // addPinList( pinList, numPanels );
-  // addRedditList( redditList, numPanels );
-  // displaySubs( numPanels, youtube_subscriptions );
 }
 
 

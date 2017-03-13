@@ -63,7 +63,7 @@ if ($client->getAccessToken()) {
           } catch (PDOException $e) {
             echo ("DATABASE ERROR");
           }
-          header('Location: http://' . $_SERVER["HTTP_HOST"]);
+          header('Location: http://thef33d.me/');
           // This commented code inserts a new subscription into the user's subscriptions list - it does not update immediately, and you must call listSubscriptions again.
 
           // This code subscribes the authenticated user to the specified channel.
