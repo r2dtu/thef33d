@@ -21,6 +21,7 @@
 
 .reddit-frame {
     width: 200px;
+    height: 120px;
     border-color: white;
     border-style: solid;
     border-width: medium;
@@ -28,9 +29,9 @@
 
 .reddit-alien {
     border-radius: 50%;
-    width: 40px;
+    width: 50px;
     height: 40px;
+    float: left;
     position: relative;
-    left: 40%;
     margin-bottom: 5%;
 }

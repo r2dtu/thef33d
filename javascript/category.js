@@ -127,9 +127,16 @@ function deletePanel(id){
 
 }
 
-function displayCheckMarks(sub_names, id, c_id, table){
+function displayCheckMarks(id, c_id, table){
+
+  var sub_names = [];
 
   var sublist = $("#subs" + id);
+  sublist.find('input').each(function () {
+    if (this.type == "checkbox") {
+      sub_names.push(this.name);
+    }
+  }
 
   var sub_name_data = {"message" : "subsInCat", "sub_names" : sub_names, "c_id" : c_id, "table" : table}
 
@@ -146,8 +153,8 @@ function displayCheckMarks(sub_names, id, c_id, table){
     for(var i in response){
 
       var sub_name = response[i];
-
-
+      var checkbox = sublist.children('name=' + sub_name + ']');
+      checkbox.toggle('click');
     }
 
   });
@@ -155,6 +162,5 @@ function displayCheckMarks(sub_names, id, c_id, table){
   request.fail(function (jqXHR, textStatus, errorThrown){
     alert("HTTPRequest: " + textStatus + " " + errorThrown);
   });
-
 
 }
