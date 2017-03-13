@@ -49,6 +49,26 @@ function redditLink(){
 }
 
 /*
+ * Returns a promise resolving into an array of hot posts.
+ *
+ * Takes a reddit, list of subreddit name STRINGS, and a number of posts to get
+ * for each one.
+ */
+function getHots(reddit, subreddits, num){
+    // Array of hot posts to return.
+    var hotArray[];
+    // Promise to return
+    var promise = new Promise(function(resolve, reject){
+        // Iterate through each subreddit
+        for(var i = 0; i < subreddits.length; i++){
+            var hotPromise = reddit.getHot(subreddit[i], {limit: num});
+            hotPromise.then(function())
+        }
+    });
+    return promise;
+}
+
+/*
  * Redirects user to reddit authentication page.
  */
 function linkReddit(){
@@ -93,16 +113,21 @@ function getSubs(reddit){
   var subredditNames = [];
   var promise = new Promise(function(resolve, reject){
       subredditPromise.then(function(subreddits){
-        for(var i = 0; i < subreddits.length; i++){
-          subredditNames[i] = subreddits[i].display_name;
-        }
-        console.log(subredditNames);
-        resolve(subredditNames);
+        subredditsAllPromise = subreddits.fetchAll();
+        subredditsAllPromise.then(function(subredditAll){
+            for(var i = 0; i < subredditAll.length; i++){
+              subredditNames[i] = subredditAll[i].display_name;
+            }
+            console.log(subredditNames);
+            resolve(subredditNames);
+        })
+        .catch(function(error){
+            reject("Error fetching all subreddits!" + error);
+        })
       })
       .catch(function(error){
           reject("Error fetching subreddits!" + error);
       })
   });
   return promise;
-
 }

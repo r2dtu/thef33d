@@ -81,8 +81,6 @@ function updateMenuName( id ){
     name = document.getElementById("categoryName" + id).value;
 
     document.getElementById("name" + id).innerHTML = name;
-
-    // TODO Save name to database
 }
 
 function handleFileSelect(evt, id) {
@@ -164,7 +162,7 @@ function adjustSize( id, size ) {
 
 function displayYouTubeSubs( id ) {
 
-    var subs = $('#subs' + id).find('form');
+    var subs = $('#subs' + id);
 
     var createData = {"action": "getSubs"};
     var request = $.ajax({
@@ -178,7 +176,7 @@ function displayYouTubeSubs( id ) {
         var sub_data = JSON.parse(response);
         for (var sub_name in sub_data) {
             subs.append(
-                '<input type="checkbox" name="subscription" value="' + sub_name + '"> ' + sub_name + ' <br>');
+                '<input type="checkbox" name="' + sub_name + '" value="' + sub_data[sub_name] + '"> ' + sub_name + ' <br>');
         }
     });
 
@@ -205,7 +203,7 @@ function updateSubs( id ){
         displayYouTubeSubs( id );
     }else if( social == 'Pinterest' ){
         alert("Pinterest");
-    }else{
+    }else if( social == 'Reddit'){
         alert("Reddit");
     }
 

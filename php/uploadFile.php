@@ -1,6 +1,4 @@
 <?php
-echo json_encode($_POST);
-echo json_encode($_FILES);
 
 if($_FILES['bg_image']['name']) {
 
@@ -9,17 +7,14 @@ if($_FILES['bg_image']['name']) {
 		$valid_file = true;
 
 		if($_FILES['bg_image']['size'] > (1024000 * 10)) {
-      echo ("HADFHFDA1");
 			$valid_file = false;
 			die('Your file\'s size is too large. File size must be <= 10MB');
 		}
 		if(!getimagesize($_FILES['bg_image']['tmp_name'])) {
-      echo ("HADFHFDA2");
 			die("Please make sure you are uploading an image.");
 		}
 
 		if($valid_file) {
-      echo ("HADFHFDA13125");
 
 			$username = "dctu@ucsd.edu";
 			$targetfolder = "../bg_images/" . $username ."/";
