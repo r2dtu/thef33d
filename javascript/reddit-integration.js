@@ -7,8 +7,12 @@ $(document).ready(function(){
     var refresh;
 
     // Evaluate promise
-    promiseLinked.then(function(){
-
+    promiseLinked.then(function(rtoken){
+	reddit = newReddit(clientId, clientSecret, rtoken);
+	reddit.getHot().then(console.log);
+    })
+    .catch(function(error){
+    	console.log(error);
     })
 
     // TODO DELET THIS
@@ -38,12 +42,39 @@ function redditLink(){
         });
         request.done(function (response, textStatus, jqXHR){
             console.log(response);
-            resolve();
+	    var decoded = JSON.parse(response);
+	    var rtoken = decoded.rtoken.r_rtoken;
+	    if(rtoken === null || rtoken === "" || rtoken === false){
+	    	reject();
+	    }
+	    else{
+            	resolve(rtoken);
+	    }
         });
         request.fail(function (jqXHR, textStatus, errorThrown){
             console.log(errorThrown);
             reject();
         });
+    });
+    return promise;
+}
+
+/*
+ * Returns a promise resolving into an array of hot posts.
+ *
+ * Takes a reddit, list of subreddit name STRINGS, and a number of posts to get
+ * for each one.
+ */
+function getHots(reddit, subreddits, num){
+    // Array of hot posts to return.
+    var hotArray;
+    // Promise to return
+    var promise = new Promise(function(resolve, reject){
+        // Iterate through each subreddit
+        for(var i = 0; i < subreddits.length; i++){
+            var hotPromise = reddit.getHot(subreddit[i], {limit: num});
+            //hotPromise.then(function())
+        }
     });
     return promise;
 }
@@ -110,5 +141,4 @@ function getSubs(reddit){
       })
   });
   return promise;
-
 }

@@ -14,7 +14,6 @@ $(document).ready(function(){
       });
 
       request.done(function (response, textStatus, jqXHR){
-
           var user_info = JSON.parse(response);
           if(user_info.can_login == "yes"){
             window.location.href = "index.html";
@@ -23,10 +22,11 @@ $(document).ready(function(){
           }else{
             alert("Database issue: " + user_info.error);
           }
+          console.log(response);
       });
 
       request.fail(function (jqXHR, textStatus, errorThrown){
-
+          console.log(jqXHR);
           alert("HTTPRequest: " + textStatus + " " + errorThrown);
       });
 
@@ -37,10 +37,10 @@ $(document).ready(function(){
 
       var username = $("#emailInput").val();
       var password = $("#passwordInput").val();
-      var question = $("#securityQuestionDropdown").val();
+      var question = $("#securityQuestionDropdown option:selected").text();
       var answer = $("#securityAnswer").val();
       var createData = {"message": "create_account", "username": username, "password": password, "security_question" : question, "security_answer" : answer}
-
+      
       var request = $.ajax({
           url: "php/login.php",
           type: "POST",
