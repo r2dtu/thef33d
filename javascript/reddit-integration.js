@@ -1,15 +1,15 @@
+var greddit;
 $(document).ready(function(){
     // Check if reddit account is linked.
     const clientId = "8-kkjNXlTfpV0Q";
     const clientSecret = "J6W5Y5UgCiJssMxapEGtsIX4Ebk";
     var promiseLinked = redditLink();
-    var reddit;
     var refresh;
 
     // Evaluate promise
     promiseLinked.then(function(rtoken){
-	reddit = newReddit(clientId, clientSecret, rtoken);
-	reddit.getHot().then(console.log);
+	greddit = newReddit(clientId, clientSecret, rtoken);
+	greddit.getHot().then(console.log);
     })
     .catch(function(error){
     	console.log(error);
@@ -27,6 +27,26 @@ $(document).ready(function(){
     //console.log(subscribed);
 //    }
 });
+
+/*
+ * Displays subreddit checkboxes in category settings
+ */
+function displayRedditSubs( id ) {
+	var subBox = $('#subs' + id).find('form');
+	subBox.css({'width': '350px', 'height': '400px', 'overflow-y': 'scroll'});
+	var subsPromise = getSubs(greddit);
+	subsPromise.then(function(subs){
+		console.log(subs);
+		for(var i = 0; i < subs.length; i++){
+			console.log(subs[i])
+			subBox.append(
+			'<input type="checkbox" name="subscription" value="' + subs[i] + '"> ' + subs[i] + ' <br>');
+		}
+	})
+	.catch(function(error){
+		alert("You need to reauthorize your Reddit access. Please quit and try again.");
+	});
+}
 
 /*
  * Promise that resolves with refresh token if it exists. Rejects if not.
