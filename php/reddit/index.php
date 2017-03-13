@@ -46,7 +46,7 @@ else
     $params = array("code" => $_GET["code"], "redirect_uri" => $redirectUrl);
     $response = $client->getAccessToken($accessTokenUrl, "authorization_code", $params);
     $accessTokenResult = $response["result"];
-    $rtoken = $accessToeknResult["refresh_token"];
+    $rtoken = $accessTokenResult["refresh_token"];
 
     // Store refresh token in database to be retrieved by javascript
     try{

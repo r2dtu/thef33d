@@ -1,51 +1,49 @@
-/*body{
-  background-image: url("img/work-desk-4.jpg");
-  background-size: cover;
-  background-repeat: no-repeat;
-} */
-
+/*** Some entire page settings ***/
 * {
        margin: 0;
 }
 
-.header{
-  color: white;
-  text-align: center;
-  font-size: 60px;
-  /*position: relative;
-  top: -10px;
-  left: -7px;
-  font-family: monospace;*/
-
-}
-
-#logo{
-  float: right;
-  margin-right: 15%;
-  margin-top: -110px;
-}
-
 html, body {
-
   width: 100%;
   height: 100%;
   -webkit-font-smoothing: antialiased;
 }
 
+
+
+/**************** THE FEED text ******************/
+.header{
+  color: white;
+  text-align: center;
+  font-size: 400%;
+}
+
+#logo{
+  float: right;
+  margin-right: 15%;
+  margin-top: -8%;
+}
+
+
+/************* Main container that provides login functionality ***************/
 #container   {
   background-color: rgb( 65, 63, 67);
   position: absolute;
-  width: 350px;
-  height: 205px;
+
+  width: 345px;
+  height: 275px;
+
   top: 50%;
   left: 50%;
-  margin-top: -64px;
-  margin-left: -170px;
+  margin-top: -4.2%;
+  margin-left: -12%;
+
   border: 2px;
   border-radius: 5px;
-
+  z-index: 10;
 }
 
+/***** Labels an input for User email and password *****/
 #UpperLabels {
   font-family: monospace;
   color: white;
@@ -53,16 +51,17 @@ html, body {
   margin-top: 4px;
   font-size: 15px;
 }
+
+/** Text descriptors for the container **/
 label{
   color: white;
   font-family: monospace;
 }
-
+/** Input entries **/
 input {
     font-size: 15px;
     outline: none;
 }
-
 
 input[type=text],
 input[type=password] {
@@ -74,6 +73,7 @@ input[type=password] {
     height: 35px;
 }
 
+/************* Lower div to hold buttons for login **************/
 #lower {
     width: 100%;
     height: 130px;
@@ -83,13 +83,12 @@ input[type=password] {
     border-radius: 5px;
 }
 
+/** Google sign in button **/
 #googleSignIn{
-  /*margin-left: 2%;
-  margin-top: 9%;*/
   margin-left: 2%;
 
-  background-color: #0fadc3;
-  /*background-color: rgb(68, 196, 122);*/
+  background-color: white;
+
   color: white;
 
   border: 2px;
@@ -98,30 +97,24 @@ input[type=password] {
   margin-top: 5.5%;
   padding: 2% 4%;
 
-
   cursor: pointer;
   width: 40%;
 }
-
-input[type=checkbox] {
-    margin-left: 20px;
-    margin-top: 30px;
+/** Colors for google sign in button text **/
+#sign{
+  color: rgb(37, 181, 43);
 }
-/* Original
-#loginButton {
-  float: right;
-  background-color: rgb(68, 196, 122);
-  color: white;
-  padding: 14px 20px;
-  margin: 15px 0;
-  margin-right: 29px;
+#in{
+  color: rgb(255, 214, 0);
+}
+#with{
+  color: red;
+}
+#google{
+  color:blue;
+}
 
-  cursor: pointer;
-  width: 23%;
-  border: 2px;
-  border-radius: 5px;
-} */
-
+/** Main login button **/
 #loginButton {
   background-color: #0fadc3;
   /*background-color: rgb(68, 196, 122);*/
@@ -138,11 +131,11 @@ input[type=checkbox] {
   border-radius: 5px;
 }
 
+/** Forgot password button **/
 #forgotPassword {
 
   float: right;
   background-color: #0fadc3;
-  /*background-color: rgb(68, 196, 122);*/
   color: white;
 
   border: 2px;
@@ -156,56 +149,91 @@ input[type=checkbox] {
   width: 40%;
 }
 
+/************************* Create an Account Section **************************/
+/** Create account Button **/
 #createButton {
-  float: right;
+
   background-color: #0fadc3;
   color: white;
 
   padding: 20px 20px;
-  margin: 100px 200px;
 
-  font-size: 20px;
+  margin-top: 120px;
+  font-size: 150%;
+
+  position: absolute;
+  right: 15%;
 
   border: 2px;
   border-radius: 5px;
   cursor: pointer;
+  transition: 0.5s;
 }
 
+/** Paragraph containing information about the website **/
 #CreateAccount{
   color: white;
   font-size: 25px;
 
+  font-family: Lucida Sans Unicode;
+
   width: 550px;
   height: 150px;
 
-  position: static;
-  display: inline-block;
+  position: absolute;
+  left: 5%;
+
   padding: 15px 15px;
   margin: 60px 100px;
+  transition: 0.2s;
 }
 
-/***** Create An Account Layer *****/
+/*********************** New Create An Account Layer **************************/
 
-#createAccountLayer{
+.createAccountLayer{
+
   background-color: rgb( 65, 63, 67);
-  height: 300px;
+  height: 320px;
+  position: absolute;
+  z-index: 9;
+  width: 100%;
+
 }
 
-/***** Headers for Create Account Layer *****/
-
+/** Email, Name, Password **/
 #left-fields{
     float: left;
-    padding-top: 3%;
+    padding-top: 2%;
+    display: block;
+    /*background-color: red;*/
+
 }
 
+/** Security Q&A **/
 #mid-fields{
-  float: left;
-  padding-top: 3%;
+
+  padding-top: 2%;
+  display: inline-block;
+
+  position: absolute;
+
+  margin-left: 10%;
+  /*left: 30%;*/
+
 }
+
+/** Headers for Create Account Layer **/
 
 #EmailHeader{
   font-size: 20px;
-  display: inline-block;
+  color: white;
+  padding-top: 1%;
+  padding-left: 21%;
+
+}
+
+#NameHeader{
+  font-size: 20px;
   color: white;
   padding-top: 1%;
   padding-left: 21%;
@@ -214,9 +242,8 @@ input[type=checkbox] {
 
 #SecQuestionHeader{
   color: white;
-  padding-left: 33%;
   font-size: 20px;
-  padding-top: 1%;
+  padding-left: 14%;
 
 }
 
@@ -232,35 +259,41 @@ input[type=checkbox] {
   color:white;
   font-size: 20px;
   width: 400px;
-  padding-left: 33%;
   padding-top: 5%;
+  padding-left: 14%;
+
 
 }
 
 /****** Create Account Input Fields *****/
 
 #emailInput{
-  margin-left: 100px;
+  margin-left: 25%;
 }
 
 #securityQuestionDropdown{
-  margin-left: 33%;
+  margin-left: 17%;
   padding-right: 70px;
   height: 40px;
-  margin-top: 4%;
+  margin-top: 3%;
+
+}
+
+#nameInput{
+  margin-left: 25%;
 }
 
 #passwordInput{
 
-  margin-left: 100px;
+  margin-left: 25%;
 }
 
 #securityAnswer{
+  margin-left: 17%;
 
-  margin-left: 33%;
 }
 
-/***** Submit Button for Account Creation *****/
+/** Submit Button for Account Creation **/
 
 #submitAccount{
   float: right;
@@ -268,11 +301,100 @@ input[type=checkbox] {
   color: white;
 
   padding: 20px 20px;
-  margin: 100px 250px;
+  margin-right: 20%;
+  margin-top: 8%;
 
   font-size: 20px;
 
   border: 2px;
   border-radius: 5px;
   cursor: pointer;
+}
+
+
+/********************* Forgot Password Retrieval Screen ***********************/
+
+.forgotPasswordContainer {
+  /* Color and dimensions of the container */
+  background-color: rgb( 65, 63, 67);
+  width: 345px;
+  height: 275px;
+
+  position: absolute;
+
+  top: 50%;
+  left: 50%;
+  left: 50%;
+  margin-top: -4.2%;
+  margin-left: -12%;
+
+  /* Give rounded edge effect */
+  border: 2px;
+  border-radius: 5px;
+
+  /* All text inside colored white */
+  color: white;
+
+  z-index: 0;
+
+}
+
+#forgotEmailHeader{
+  display: inline-block;
+  margin-top: 2%;
+  margin-left: 5%;
+  margin-bottom: 1%;
+}
+
+#forgotEmail{
+  margin-top: 0;
+}
+
+#forgotDrowpdownHeader{
+  display: inline-block;
+  margin-left: 5%;
+  margin-bottom: 1%;
+}
+
+#forgotDropdown{
+  margin-left: 5%;
+  width: 305px;
+  height: 30px;
+  margin-bottom: 2%;
+}
+
+#forgotAnswerHeader{
+  display: inline-block;
+  margin-left: 5%;
+  margin-bottom: 1%;
+
+}
+
+#forgotAnswer{
+  margin-top: 0;
+}
+
+#forgotSubmit{
+  background-color: #0fadc3;
+  /*background-color: rgb(68, 196, 122);*/
+  color: white;
+  padding: 14px 20px;
+
+  margin-top: 4%;
+  margin-left: 2.5%;
+
+  cursor: pointer;
+
+  width: 95%;
+  border: 2px;
+  border-radius: 5px;
+}
+
+#exitImage{
+  float: right;
+  margin-top: 2%;
+  margin-right: 2%;
+
+  cursor: pointer;
+
 }

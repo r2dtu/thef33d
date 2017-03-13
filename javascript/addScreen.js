@@ -1,4 +1,4 @@
-function createNewParallax(numPanels, c_id){
+function createNewParallax(numPanels, c_id, c_name, c_img){
 
   var $panels = $('.panels');
   var $navList = $('.nav-menu-list');
@@ -28,7 +28,7 @@ function createNewParallax(numPanels, c_id){
                       '<div class="settings-categoryBackground">' +
                           '<br> Background Image:' +
                           '<br>' +
-                          '<input type="file" id="categoryBackground' + numPanels + '" class="categoryBackgroundSelect">' +
+                          '<input type="file" id="categoryBackground' + numPanels + '" class="categoryBackgroundSelect" onchange="backgroundFlag(this.files)">' +
                       '</div>' +
                       '<div class="settings-categorySize">' +
                                 '<br> Size:' +
@@ -36,7 +36,7 @@ function createNewParallax(numPanels, c_id){
                                 '<input id="range'+numPanels+'" type="range" id="categorySize'+numPanels+'" class="categorySize" onchange="sizeFlag()">' +
                       '</div>' +
                       '<div class="settings-categoryOrganized">' +
-                          '<br> Orangized:' +
+                          '<br> Organized:' +
                           '<br>' +
                           '<select id="categoryOrganized' + numPanels + '" name="organized" style="width: 50%;">' +
                               '<option value="a-z">' +
@@ -48,13 +48,16 @@ function createNewParallax(numPanels, c_id){
                           '</select>' +
                       '</div>' +
                   '</form>' +
-                  '<input class="updateSettingsButton" type="submit" value="Save Settings">' +
+                  '<input class="updateSettingsButton" type="submit" value="Save Settings" onclick="saveCategorySettings(' + numPanels + ')">' +
                   '<input class="deleteCategoryButton" type="submit" value="Delete Panel">' +
                   '<div class="panel-information">' +
                       '<div class="panel-information-accounts">' +
                           '<br> Account:' +
                           '<br>' +
                           '<select id="categoryAccounts' + numPanels + '" name="accounts" style="width: 70%;" class="categoryAccounts" onchange="updateSubs('+numPanels+')">' +
+                              '<option value="default">' +
+                                  'Please select a media account to sync with...' +
+                              '</option>' +
                               '<option value="YouTube">' +
                                   'Youtube' +
                               '</option>' +
@@ -69,21 +72,21 @@ function createNewParallax(numPanels, c_id){
                       '<div id="subs'+numPanels+'" class="panel-information-subscriptions">' +
                           '<br> Subscriptions to Include:' +
                           '<br>' +
-                          '<form class="categorySubscriptions">' +
-                          '</form>' +
                       '</div>' +
                   '</div>' +
-              '</div>'
+              '</div>';
 
   $panels.append( '<div id="mainparallax' + numPanels + '" c_id="' + c_id + '" class="parallax_main parallax_main_general"><div id="settingsButton' + numPanels + '" class="settings-button" onclick="generic_settings(' + numPanels + ')"><img src="CSS/img/settings-gear.jpg" height="20px" width="20px" /></div><div id="showButton' + numPanels + '" class="show-button" onclick="generic_show(' + numPanels + ')"><img src="CSS/img/show.jpeg" height="20px" width="20px" /></div>' + embed + '<div id="parallaxSettings' + numPanels + '" class="parallax-settings-wrap">' + settings + '</div></div>');
+  $navList.append('<li draggable="true" onclick="hideMenu()"><a href="#mainparallax' + numPanels + '"><b id="name' + numPanels + '">' + c_name + '</b></a></li>');
 
-  $navList.append('<li draggable="true" onclick="hideMenu()"><a href="#mainparallax' + numPanels + '"><b id="name' + numPanels + '">Untitled</b></a></li>');
+  $('#mainparallax' + c_id ).css('background-image', 'url("' + c_img + '")' );
 
-  document.getElementById('categoryBackground' + numPanels).addEventListener('change', function(evt){ handleFileSelect(evt, numPanels) }, false);
-  addYoutubeList( youtubeList, numPanels );
-  addPinList( pinList, numPanels );
-  addRedditList( redditList, numPanels );
-  displaySubs( numPanels, youtube_subscriptions );
+  //document.getElementById('categoryBackground' + numPanels).addEventListener('change', function(evt){ handleFileSelect(evt, numPanels) }, false);
+
+  // addYoutubeList( youtubeList, numPanels );
+  // addPinList( pinList, numPanels );
+  // addRedditList( redditList, numPanels );
+  // displaySubs( numPanels, youtube_subscriptions );
 
 }
 
@@ -115,7 +118,7 @@ $(document).ready(function() {
     $addButton.on('click', function() {
 
         numPanels = numPanels + 1;
-
+        console.log("ADDSCREEN");
         createNewParallax(numPanels, "");
 
         jump( ("mainparallax" + numPanels), numPanels );

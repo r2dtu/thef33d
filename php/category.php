@@ -1,77 +1,63 @@
 <?php
 session_start();
 
-include 'error.php';
-
 /********* OPEN PDO DATABASE CONNECTION *********/
-try{
-  $conn = new PDO("mysql:host=localhost;dbname=thefeed", root, WTF110lecture);
-}
-catch(PDOException $e){
-  error_out();
-}
+$conn = new PDO("mysql:host=localhost;dbname=thefeed", root, WTF110lecture);
 
-$c_name = $_POST['c_name'];
-$c_img = $_POST['c_img'];
 $username = $_SESSION["username"];
+$message = $_POST["message"];
+$c_id = $_POST["c_id"];
+$c_newname = $_POST["c_newname"];
+$subs = $_POST["subs"];
+$c_img = $_POST["c_img"];
+$table = $_POST["table"];
 
-if($_POST['message'] == "create_category"){
-
-  try {
-
-    $q_result = $conn->query("SELECT * FROM categories WHERE username='$username' AND c_name='$c_name'")->fetch(PDO::FETCH_ASSOC);
-
-    if(isset($q_result["category_name"])){
-      $q_result["can_create"] = "no";
-      echo json_encode($q_result);
-      exit();
-    }
-    $c_id = uniqid();
-    $statement = $conn->prepare("INSERT INTO categories (c_id, c_name, username, img) VALUES ('$c_id', '$c_name', '$username', '$c_img')")->execute();
-    $q_result["can_create"] = "yes";
-    echo json_encode($q_result);
+if($c_newname){
+  $q_result = $conn->query("SELECT c_id FROM categories WHERE username='$username' AND c_name='$c_newname'")->fetchColumn();
+  if($q_result){
+    $result["can_update_or_create"] = "no";
+    echo json_encode($result);
     exit();
-
-  }
-  catch(PDOException $e){
-    error_out();
-  }
-
-}else if($_POST['message'] == "update_img"){
-
-  try{
-
-    $statement = $conn->prepare("UPDATE categories SET img='$c_img' WHERE username='$username' AND c_name='$c_name'")->execute();
-
-  }
-  catch(PDOException $e){
-    error_out();
-  }
-
-}else if($_POST['message'] == "update_name"){
-
-  try{
-
-    $new_name = $_POST['new_name'];
-
-    $q_result = $conn->query("SELECT * FROM categories WHERE username='$username' AND c_name='$new_name'")->fetch(PDO::FETCH_ASSOC);
-
-    if(isset($q_result["category_name"])){
-      $q_result["can_update"] = "no";
-      echo json_encode($q_result);
-      exit();
-    }
-
-    $statement = $conn->prepare("UPDATE categories SET category_name='$new_name' WHERE username='$username' AND category_name='$category_name'")->execute();
-
-    $q_result["can_update"] = "yes";
-    echo json_encode($q_result);
-    exit();
-
-  }
-  catch(PDOException $e){
-    error_out();
   }
 }
+
+if($message == "create"){
+
+    $c_id = uniqid();
+    $statement = $conn->prepare("INSERT INTO categories (c_id, c_name, username, img) VALUES ('$c_id', '$c_newname', '$username', '$c_img')")->execute();
+    $result["can_create"] = "yes";
+    echo json_encode($result);
+    exit();
+
+} else if($message == "update"){
+
+    if($c_newname){
+
+      $statement = $conn->prepare("UPDATE categories SET c_name='$c_newname' WHERE c_id='$c_id'")->execute();
+    }
+
+    if($c_img){
+
+      $statement = $conn->prepare("UPDATE categories SET img='$c_img' WHERE c_id='$c_id'")->execute();
+    }
+
+    if ($subs) {
+      $result = $conn->prepare("DELETE FROM $table WHERE c_id='$c_id'")->execute();
+      foreach ($subs as $sub_name => $sub_id) {
+        $result = $conn->prepare("INSERT INTO $table (c_id, sub_name, sub_id) VALUES ('$c_id', '$sub_name', '$sub_id')")->execute();
+      }
+    }
+
+} else if($message == "deleteCategory"){
+
+    $q_result = $conn->prepare("DELETE FROM categories WHERE c_id='$c_id'")->execute();
+    $q_result = $conn->prepare("DELETE FROM y-subs WHERE c_id='$c_id'")->execute();
+    $q_result = $conn->prepare("DELETE FROM p_subs WHERE c_id='$c_id'")->execute();
+    $q_result = $conn->prepare("DELETE FROM r_subs WHERE c_id='$c_id'")->execute();
+
+}
+
+$result["can_update_or_create"] = "yes";
+echo json_encode($result);
 
 ?>

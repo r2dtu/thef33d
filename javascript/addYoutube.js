@@ -1,34 +1,3 @@
-youtubeList = [
-
-    'https://www.youtube.com/embed/FhC9R9oCAVk',
-    'https://www.youtube.com/embed/_Z-f3RSNUsQ',
-    'https://www.youtube.com/embed/3rSer5Lqg5w',
-    'https://www.youtube.com/embed/UXnJ95N0F8I',
-    'https://www.youtube.com/embed/_Z-f3RSNUsQ',
-    'https://www.youtube.com/embed/3rSer5Lqg5w',
-    'https://www.youtube.com/embed/UXnJ95N0F8I'
-
-];
-
-pinList = [
-
-    'https://www.pinterest.com/pin/99360735500167749/',
-    'https://www.pinterest.com/pin/99360735500167749/',
-    'https://www.pinterest.com/pin/99360735500167749/',
-    'https://www.pinterest.com/pin/99360735500167749/',
-    'https://www.pinterest.com/pin/99360735500167749/',
-    'https://www.pinterest.com/pin/99360735500167749/',
-    'https://www.pinterest.com/pin/99360735500167749/',
-    'https://www.pinterest.com/pin/99360735500167749/'
-
-];
-
-redditList = [
-
-    
-
-];
-
 var youtubeIndexStart = 0;
 var youtubeIndexEnd = 3;
 var pinIndexStart = 0;
@@ -50,7 +19,6 @@ function addYoutubeList( list, numPanel ){
     }
 
 }
-//addYoutubeList( youtubeList, 1 );
 
 function addPinList( list, numPanel ){
 
@@ -59,13 +27,14 @@ function addPinList( list, numPanel ){
     for( i = 0; i < pinList.length; i++ ){
 
         if( i >= pinIndexStart && i <= pinIndexEnd ){
-            addPin( pinList[ i ], spot, numPanel );
+            addPin( list[ i ], spot, numPanel );
             spot++;
         }
 
     }
+    window.build();
 
-} addPinList( pinList, 1 );
+}
 
 function addRedditList( list, numPanel ){
 
@@ -74,13 +43,13 @@ function addRedditList( list, numPanel ){
     for( i = 0; i < redditList.length; i++ ){
 
         if( i >= redditIndexStart && i <= redditIndexEnd ){
-            addReddit( redditList[ i ], spot, numPanel );
+            addReddit( list[ i ], spot, numPanel );
             spot++;
         }
 
     }
 
-} addRedditList( redditList, 1 );
+}
 
 function removeChildren( social, numPanel ){
 
@@ -123,6 +92,9 @@ function addReddit( link, num, numPanel ){
 
 function shiftLeft( social, numPanel ){
 
+    var $parallax = $(".mainparallax" + numPanel);
+    var c_id = $parallax.attr("c_id");
+
     if(social == 1 && youtubeIndexStart != 0){
 
         youtubeIndexStart -= 3;
@@ -153,6 +125,9 @@ function shiftLeft( social, numPanel ){
 }
 
 function shiftRight( social, numPanel ){
+
+    var $parallax = $(".mainparallax" + numPanel);
+    var c_id = $parallax.attr("c_id");
 
     if( social == 1 && !(youtubeIndexEnd >= youtubeList.length) ){
 

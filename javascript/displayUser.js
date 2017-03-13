@@ -1,3 +1,30 @@
+youtubeList = null;
+pinList = [
+
+    'https://www.pinterest.com/pin/99360735500167749/',
+    'https://www.pinterest.com/pin/99360735500167749/',
+    'https://www.pinterest.com/pin/99360735500167749/',
+    'https://www.pinterest.com/pin/99360735500167749/',
+    'https://www.pinterest.com/pin/99360735500167749/',
+    'https://www.pinterest.com/pin/99360735500167749/',
+    'https://www.pinterest.com/pin/99360735500167749/',
+    'https://www.pinterest.com/pin/99360735500167749/'
+
+];
+
+redditList = [
+
+    'https://www.reddit.com/hot/.embed?limit=5&t=all',
+    'https://www.reddit.com/hot/.embed?limit=5&t=all',
+    'https://www.reddit.com/hot/.embed?limit=5&t=all',
+    'https://www.reddit.com/hot/.embed?limit=5&t=all',
+    'https://www.reddit.com/hot/.embed?limit=5&t=all',
+    'https://www.reddit.com/hot/.embed?limit=5&t=all',
+    'https://www.reddit.com/hot/.embed?limit=5&t=all',
+    'https://www.reddit.com/hot/.embed?limit=5&t=all'
+
+];
+
 $(document).ready(function(){
 
   var actionData = {"action": "getVids"};
@@ -10,10 +37,10 @@ $(document).ready(function(){
 
   // Callback handler that will be called on success
   request.done(function (response, textStatus, jqXHR){
-    console.log(response);
+
     var c_data = JSON.parse(response);
 
-    printData(c_data);
+    //printData(c_data);
 
     var $panels = $('.panels');
     var $navList = $('.nav-menu-list');
@@ -25,12 +52,20 @@ $(document).ready(function(){
 
       numPanels = numPanels + 1;
 
-      createNewParallax(numPanels, c_id);
+      createNewParallax(numPanels, c_id, c_data[c_id]["c_name"], c_data[c_id]["img"]);
+
+      youtubeList = c_data[c_id]["y_links"];
 
       addYoutubeList(c_data[c_id]["y_links"], numPanels);
 
       console.log("success");
     }
+
+    addPinList( pinList, 1 );
+
+    addRedditList( redditList, 1 );
+
+    addUserInfo(c_data["username"]);
 
   }); //End of request.done
 
@@ -39,8 +74,22 @@ $(document).ready(function(){
       console.log(jqXHR);
   });
 
+  // TODO Get Pinterest data
+  // TODO Get Reddit data
+
 }); //END OF $(document).ready
 
+function addUserInfo(username) {
+  var userPage = $('#userPage');
+  var userInfo = '<h1 class="userHeader">Welcome, User.</h1>' +
+                 '<h1 class="userAccountsHeader">Click to Link Accounts</h1>' +
+                 '<ul class="userAccountsList">' +
+                     '<li id="youtube"><img src="CSS/img/YouTube-icon-full_color.png" width="100px" ; height="100px" ; onclick="authorizeYouTube()"></li>' +
+                     '<li id="pintrest"><img src="CSS/img/Pinterest_logo-2.png" width="100px" ; height="100px" ; onclick=""></li>' +
+                     '<li id="reddit"><img src="CSS/img/Reddit_logo.png" width="100px" ; height="110px" ; onclick="linkReddit();"></li>' +
+                 '</ul>';
+  userPage.append(userInfo);
+}
 
 function printData(c_data){
 

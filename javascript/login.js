@@ -14,19 +14,22 @@ $(document).ready(function(){
       });
 
       request.done(function (response, textStatus, jqXHR){
-
           var user_info = JSON.parse(response);
           if(user_info.can_login == "yes"){
             window.location.href = "index.html";
           }else if(user_info.can_login == "no"){
             alert("Wrong username or password. Try again or make an account below.");
+	    $("#username").val("");
+	    $("#password").val("");
+	    $("#username").focus();
           }else{
             alert("Database issue: " + user_info.error);
           }
+          console.log(response);
       });
 
       request.fail(function (jqXHR, textStatus, errorThrown){
-
+          console.log(jqXHR);
           alert("HTTPRequest: " + textStatus + " " + errorThrown);
       });
 
@@ -37,15 +40,20 @@ $(document).ready(function(){
 
       var username = $("#emailInput").val();
       var password = $("#passwordInput").val();
-      var createData = {"message": "create_account", "username": username, "password": password}
+      var question = $("#securityQuestionDropdown option:selected").text();
+      var answer = $("#securityAnswer").val();
+      var createData = {"message": "create_account", "username": username, "password": password, "security_question" : question, "security_answer" : answer}
+
+     if(username == "" || password == "" || question == ""){
+       alert("Please enter values for all input fields");
+       return;
+     }
 
       var request = $.ajax({
           url: "php/login.php",
           type: "POST",
           data: createData
       });
-
-      // Callback handler that will be called on success
       request.done(function (response, textStatus, jqXHR){
           var user_info = JSON.parse(response);
           if(user_info.can_create == "yes"){
@@ -57,28 +65,32 @@ $(document).ready(function(){
           }
       });
 
-      // Callback handler that will be called on failure
       request.fail(function (jqXHR, textStatus, errorThrown){
           alert("HTTPRequest: " + textStatus + " " + errorThrown);
       });
     });
 
-    $("#forgotPassword").click(function(){
+    $("#forgotSubmit").click(function(){
+      var email = $("#forgotEmail").val();
+      var question = $("#forgotDropdown option:selected").text();
+      var answer = $("#forgotAnswer").val();
 
-      var email = $("#username").val();
-      var forgottenData = {"message": "forgot_password", "username": email}
+      var forgottenData = {"message": "forgot_password", "username": email, "security_question" : question, "security_answer" : answer}
 
       var request = $.ajax({
           url: "php/login.php",
           type: "POST",
           data: forgottenData
       });
-
       request.done(function (response, textStatus, jqXHR){
-          alert("Response: " + response);
+          var response = JSON.parse(response);
+          if(response["display_password"] == "yes"){
+            alert("Your password is: \"" + response["password"] + "\"");
+          }else{
+            alert("Incorrect email or security answer");
+          }
       });
 
-      // Callback handler that will be called on failure
       request.fail(function (jqXHR, textStatus, errorThrown){
           alert("HTTPRequest: " + textStatus + " " + errorThrown);
       });
@@ -86,3 +98,41 @@ $(document).ready(function(){
 
     });
 });
+/***** Slide the accountInfo div to the left and display the createAccount fields *****/
+function generic_slide(){
+
+    $('#test').toggleClass('createAccountInfo-slide');
+    $('#CreateAccount').toggleClass('hide');
+
+}
+
+/***** Show the Forgot Password panel  and retrieval fields *****/
+var x = 0;
+
+function transition_forgot(){
+  if( x % 2 == 0){
+    $("#container").animate({left: '+=300px'}, 1000, function() {
+          $("#forgotPasswordCont").css('zIndex', '10000');
+          $("#container").animate({left: '-=300px'}, 1000);
+        });
+    x = x + 1;
+  }
+  else{
+    $("#forgotPasswordCont").animate({left: '+=300px'}, 1000, function() {
+          $("#forgotPasswordCont").css('zIndex', '0');
+          $("#forgotPasswordCont").animate({left: '-=300px'}, 1000);
+        });
+        x = x + 1;
+
+  }
+}
+
+
+function showProfile( idTag ){
+    $( '#' + idTag ).css( 'opacity', '100' );
+}
+
+function hideProfile( idTag ){
+  $( '#' + idTag ).css( 'opacity', '0' );
+
+}

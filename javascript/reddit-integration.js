@@ -1,14 +1,18 @@
+var greddit;
 $(document).ready(function(){
     // Check if reddit account is linked.
     const clientId = "8-kkjNXlTfpV0Q";
     const clientSecret = "J6W5Y5UgCiJssMxapEGtsIX4Ebk";
     var promiseLinked = redditLink();
-    var reddit;
     var refresh;
 
     // Evaluate promise
-    promiseLinked.then(function(){
-
+    promiseLinked.then(function(rtoken){
+	greddit = newReddit(clientId, clientSecret, rtoken);
+	greddit.getHot().then(console.log);
+    })
+    .catch(function(error){
+    	console.log(error);
     })
 
     // TODO DELET THIS
@@ -25,10 +29,30 @@ $(document).ready(function(){
 });
 
 /*
+ * Displays subreddit checkboxes in category settings
+ */
+function displayRedditSubs( id ) {
+	var subBox = $('#subs' + id).find('form');
+	subBox.css({'width': '350px', 'height': '400px', 'overflow-y': 'scroll'});
+	var subsPromise = getSubs(greddit);
+	subsPromise.then(function(subs){
+		console.log(subs);
+		for(var i = 0; i < subs.length; i++){
+			console.log(subs[i]);
+			subBox.append(
+			'<input type="checkbox" value="0" name="' + subs[i] + '"> ' + subs[i] + ' <br>');
+		}
+	})
+	.catch(function(error){
+		alert("You need to reauthorize your Reddit access. Please quit and try again.");
+	});
+}
+
+/*
  * Promise that resolves with refresh token if it exists. Rejects if not.
  */
 function redditLink(){
-    var promise = new Promise(function(resolved, reject){
+    var promise = new Promise(function(resolve, reject){
         var message = {"message" : "get_rtoken"}
         // Request refresh token from database.
         var request = $.ajax({
@@ -38,12 +62,39 @@ function redditLink(){
         });
         request.done(function (response, textStatus, jqXHR){
             console.log(response);
-            resolve();
+	    var decoded = JSON.parse(response);
+	    var rtoken = decoded.rtoken.r_rtoken;
+	    if(rtoken === null || rtoken === "" || rtoken === false){
+	    	reject();
+	    }
+	    else{
+            	resolve(rtoken);
+	    }
         });
         request.fail(function (jqXHR, textStatus, errorThrown){
             console.log(errorThrown);
             reject();
         });
+    });
+    return promise;
+}
+
+/*
+ * Returns a promise resolving into an array of hot posts.
+ *
+ * Takes a reddit, list of subreddit name STRINGS, and a number of posts to get
+ * for each one.
+ */
+function getHots(reddit, subreddits, num){
+    // Array of hot posts to return.
+    var hotArray;
+    // Promise to return
+    var promise = new Promise(function(resolve, reject){
+        // Iterate through each subreddit
+        for(var i = 0; i < subreddits.length; i++){
+            var hotPromise = reddit.getHot(subreddit[i], {limit: num});
+            //hotPromise.then(function())
+        }
     });
     return promise;
 }
@@ -93,16 +144,21 @@ function getSubs(reddit){
   var subredditNames = [];
   var promise = new Promise(function(resolve, reject){
       subredditPromise.then(function(subreddits){
-        for(var i = 0; i < subreddits.length; i++){
-          subredditNames[i] = subreddits[i].display_name;
-        }
-        console.log(subredditNames);
-        resolve(subredditNames);
+        subredditsAllPromise = subreddits.fetchAll();
+        subredditsAllPromise.then(function(subredditAll){
+            for(var i = 0; i < subredditAll.length; i++){
+              subredditNames[i] = subredditAll[i].display_name;
+            }
+            console.log(subredditNames);
+            resolve(subredditNames);
+        })
+        .catch(function(error){
+            reject("Error fetching all subreddits!" + error);
+        })
       })
       .catch(function(error){
           reject("Error fetching subreddits!" + error);
       })
   });
   return promise;
-
 }

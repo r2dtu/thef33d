@@ -15,6 +15,7 @@
 
 <div class="parallax_login">
 
+
 <!-- ############ Title and Logo ############# -->
     <div class="header">
       <h1>The Feed</h1>
@@ -27,7 +28,8 @@
   <div id="container" class="main_login">
     <form action="file:///C:/Users/index.html" method="post" autocomplete="on">
       <div id="UpperLabels">
-        <label for="username">User Email:</label>
+
+        <lable for="username">User Email:</label>
         <input type="text" id="username" placeholder="Enter Your Email"name="username" autofocus required>
         <label for="password">Password:</label>
         <input type="password" id="password" placeholder="Enter Password"name="password" required>
@@ -35,8 +37,8 @@
 
 <!-- ###### Main container buttons ##### -->
       <div id="lower">
-        <a href="./google_auth/index.php"><button id="googleSignIn" type="button"> <text id="sign">Sign</text> <text id="in">in</text> <text id="with">with</text>
-           <text id="google">Google</text> </button></a>
+        <button id="googleSignIn" type="button"> <text id="sign">Sign</text> <text id="in">in</text> <text id="with">with</text>
+           <text id="google">Google</text> </button>
         <button id="forgotPassword" type="button" onclick="transition_forgot()">Forgot Password</button>
         <button id="loginButton" type="sumbit">Login</button>
       </div>
