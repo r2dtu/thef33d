@@ -3,7 +3,6 @@
 if($_FILES['bg_image']['name']) {
 
 	if(!$_FILES['bg_image']['error']) {
-    echo ("HADFHFDA");
 		$valid_file = true;
 
 		if($_FILES['bg_image']['size'] > (1024000 * 10)) {
