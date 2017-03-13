@@ -8,37 +8,37 @@
 
   <link rel="stylesheet" type="text/css" href="CSS/login.css"/>
   <link rel="stylesheet" type="text/css" href="CSS/login_parallax.css"/>
+  <link rel="stylesheet" type="text/css" href="CSS/login_profiles.css"/>
 
 </head>
+
 <body id="loginPage">
-  <div class="parallax_login">
-    <div class="header">
-      <h1>The Feed</h1>
-    </div>
-  <img id="logo" src="CSS/img/logo.png" width="150px" height="100px" />
 
-
-<div id="container">
-  <form action="file:///C:/Users/Wyatt/Desktop/Atom%20Dir/CSE_110/index.html" method="post" autocomplete="on">
-    <div id="UpperLabels">
-      <lable for="username">Username:</label>
-      <input type="text" id="username" placeholder="Enter User Name"name="username" required autofocus>
-      <label for="password">Password:</label>
-      <input type="password" id="password" placeholder="Enter Password"name="password" required>
-    </div>
-    <div id="lower">
-      <button id="googleSignIn" type="submit"><a href="./google_auth/index.php">Sign in with Google</a></button>
-      <!--<input type="checkbox"><label for="checkbox">Keep me logged in</label>-->
-      <!--<input type="submit" value="Login">-->
-      <button id="forgotPassword" type="button">Forgot Password</button>
-      <button id="loginButton" type="submit">Login</button>
-    </div><!--/ lower-->
-  </form>
+<div class="parallax_login">
+  <div class="header">
+    <h1>The Feed</h1>
   </div>
-
-
-
+  <img id="logo" src="CSS/img/logoMain.png" width="150px" height="100px" />
+  <div id="container" class="main_login">
+    <form  method="post" autocomplete="on">
+      <div id="UpperLabels">
+        <label for="username">User Email:</label>
+        <input type="text" id="username" placeholder="Enter User Email"name="username" autofocus required>
+        <label for="password">Password:</label>
+        <input type="password" id="password" placeholder="Enter Password"name="password" required>
+      </div>
+      <div id="lower">
+        <button id="googleSignIn" type="button"> <text id="sign">Sign</text> <text id="in">in</text> <text id="with">with</text>
+           <text id="google">Google</text> </button>
+        <button id="forgotPassword" type="button" onclick="transition_forgot()">Forgot Password</button>
+        <button id="loginButton" type="sumbit">Login</button>
+      </div>
+      </form>
+  </div>
 </div>
+
+
+
 
 <div class="parallax_layer">
   <p id="CreateAccount">Tired of clutered media feeds spread across multiple websites?
@@ -50,39 +50,30 @@
 
 <div id="createAccountLayer">
   <button id="submitAccount" type="submit"> Submit </button>
+  <div id="left-fields">
+    <p id="EmailHeader"> Email: </p>
+    <input type="text" id="emailInput" placeholder="Enter email" name="emailInput" required />
 
-<div id="left-fields">
-  <p id="EmailHeader"> Email: </p>
-  <input type="text" id="emailInput" placeholder="Enter email" name="emailInput" required />
-
-  <p id="PasswordHeader"> Password: </p>
-  <input type="text" id="passwordInput" placeholder="Enter password" name="passwordInput" required />
-</div>
-
-<div id="mid-fields">
-  <p id="SecQuestionHeader"> Security Question: </p>
-  <select id="securityQuestionDropdown">
-    <option value="">What was your first pet's name?</option>
-    <option value="">Who is your best childhood friend</option>
-    <option value="">What was your dream car as a child</option>
-  </select>
-
-  <p id="SQAnswerHeader"> Security Question Answer: </p>
-  <input type="text" id="securityAnswer"
-    placeholder="Enter answer to your security question" name="securityAnswer" required />
+    <p id="PasswordHeader"> Password: </p>
+    <input type="text" id="passwordInput" placeholder="Enter password" name="passwordInput" required />
   </div>
 
+  <div id="mid-fields">
+    <p id="SecQuestionHeader"> Security Question: </p>
+    <select id="securityQuestionDropdown">
+      <option value="">What was your first pet's name?</option>
+      <option value="">Who is your best childhood friend</option>
+      <option value="">What was your dream car as a child</option>
+    </select>
 
+    <p id="SQAnswerHeader"> Security Question Answer: </p>
+    <input type="text" id="securityAnswer"
+      placeholder="Enter answer to your security question" name="securityAnswer" required />
+  </div>
 </div>
 
-<div class="parallax_login_2"> </div>
-
-<div class="parallax_layer">
-</div>
 
 </body>
-<script type="text/javascript" src="javascript/login.js"></script>
-<script type="text/javascript" src="javascript/changeImage.js"></script>
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript" src="javascript/login.js"></script>
 </html>
