@@ -51,15 +51,19 @@ if ($client->getAccessToken()) {
     } else {
       try {
           $username = $_SESSION['username'];
-          $channel_id = $youtube->subscriptions->listSubscriptions('snippet', array('mine' => 'true'))->getItems()[0]->getChannelId();
-          echo $channel_id;
-          // try{
-          //   $conn = new PDO("mysql:host=localhost;dbname=thefeed", root, WTF110lecture);
-          //   $statement = $conn->prepare("UPDATE accounts SET y_id='$channel_id' WHERE username='$username'")->execute();
-          // } catch (PDOException $e) {
-          //   echo ("DATABASE ERROR");
-          // }
-//          header('Location: http://' . $_SERVER["HTTP_HOST"]);
+          $channel_id = "";
+          $items = $youtube->subscriptions->listSubscriptions('snippet', array('mine' => 'true'))->getItems();
+          foreach($items as $sub_ch) {
+            $channel_id = $sub_ch->getSnippet()->getChannelId();
+            break;
+          }
+          try{
+            $conn = new PDO("mysql:host=localhost;dbname=thefeed", root, WTF110lecture);
+            $statement = $conn->prepare("UPDATE accounts SET y_id='$channel_id' WHERE username='$username'")->execute();
+          } catch (PDOException $e) {
+            echo ("DATABASE ERROR");
+          }
+          header('Location: http://' . $_SERVER["HTTP_HOST"]);
           // This commented code inserts a new subscription into the user's subscriptions list - it does not update immediately, and you must call listSubscriptions again.
 
           // This code subscribes the authenticated user to the specified channel.
