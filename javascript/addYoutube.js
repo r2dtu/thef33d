@@ -80,7 +80,7 @@ function addPin( link, num, numPanel ){
 
     $('#mainparallax' + numPanel + '-pin').append('<a data-pin-do="embedBoard" data-pin-board-width="250" data-pin-scale-height="200" data-pin-scale-width="80" href="'+link+'"></a>');
 
-    $('.pin' + num).css( 'position', 'absolute');
+    //$('.pin' + num).css( 'position', 'absolute');
     $('.pin' + num).css( 'top', '30%' );
     $('.pin' + num).css( 'left', ((num*20) + 12) + '%' );
 
