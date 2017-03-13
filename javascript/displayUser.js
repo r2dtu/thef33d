@@ -26,6 +26,7 @@ redditList = [
 ];
 
 $(document).ready(function(){
+  addUserInfo(c_data["username"]);
 
   var actionData = {"action": "getVids"};
 
@@ -64,8 +65,6 @@ $(document).ready(function(){
     addPinList( pinList, 1 );
 
     addRedditList( redditList, 1 );
-
-    addUserInfo(c_data["username"]);
 
   }); //End of request.done
 
