@@ -13,14 +13,10 @@ pinList = [
 
 redditList = [
 
-    'https://www.reddit.com/hot/.embed?limit=5&t=all',
-    'https://www.reddit.com/hot/.embed?limit=5&t=all',
-    'https://www.reddit.com/hot/.embed?limit=5&t=all',
-    'https://www.reddit.com/hot/.embed?limit=5&t=all',
-    'https://www.reddit.com/hot/.embed?limit=5&t=all',
-    'https://www.reddit.com/hot/.embed?limit=5&t=all',
-    'https://www.reddit.com/hot/.embed?limit=5&t=all',
-    'https://www.reddit.com/hot/.embed?limit=5&t=all'
+    'funny',
+    'worldnews',
+    'gaming',
+    'AskReddit'
 
 ];
 
