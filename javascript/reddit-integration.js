@@ -38,9 +38,9 @@ function displayRedditSubs( id ) {
 	subsPromise.then(function(subs){
 		console.log(subs);
 		for(var i = 0; i < subs.length; i++){
-			console.log(subs[i])
+			console.log(subs[i]);
 			subBox.append(
-			'<input type="checkbox" name="subscription" value="' + subs[i] + '"> ' + subs[i] + ' <br>');
+			'<input type="checkbox" value="0" name="' + subs[i] + '"> ' + subs[i] + ' <br>');
 		}
 	})
 	.catch(function(error){

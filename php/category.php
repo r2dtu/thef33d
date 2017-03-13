@@ -7,19 +7,19 @@ $conn = new PDO("mysql:host=localhost;dbname=thefeed", root, WTF110lecture);
 $username = $_SESSION["username"];
 $message = $_POST["message"];
 $c_id = $_POST["c_id"];
-$c_newname = $_POST['c_newname'];
-//$c_img
+$c_newname = $_POST["c_newname"];
+$subs = $_POST["subs"];
+$c_img = $_POST["c_img"];
+$table = $_POST["table"];
 
-
-if(isset($c_newname)){
+if($c_newname){
   $q_result = $conn->query("SELECT c_id FROM categories WHERE username='$username' AND c_name='$c_newname'")->fetchColumn();
-  if(isset($q_result)){
+  if($q_result){
     $result["can_update_or_create"] = "no";
     echo json_encode($result);
     exit();
   }
 }
-
 
 if($message == "create"){
 
@@ -29,19 +29,26 @@ if($message == "create"){
     echo json_encode($result);
     exit();
 
-}else if($message == "update"){
+} else if($message == "update"){
 
-
-    if(isset($c_newname)){
+    if($c_newname){
 
       $statement = $conn->prepare("UPDATE categories SET c_name='$c_newname' WHERE c_id='$c_id'")->execute();
     }
 
-    if(isset($c_img)){
+    if($c_img){
 
       $statement = $conn->prepare("UPDATE categories SET img='$c_img' WHERE c_id='$c_id'")->execute();
     }
-}else if($message == "deleteCategory"){
+
+    if ($subs) {
+      $result = $conn->prepare("DELETE FROM $table WHERE c_id='$c_id'")->execute();
+      foreach ($subs as $sub_name => $sub_id) {
+        $result = $conn->prepare("INSERT INTO $table (c_id, sub_name, sub_id) VALUES ('$c_id', '$sub_name', '$sub_id')")->execute();
+      }
+    }
+
+} else if($message == "deleteCategory"){
 
     $q_result = $conn->prepare("DELETE FROM categories WHERE c_id='$c_id'")->execute();
     $q_result = $conn->prepare("DELETE FROM y-subs WHERE c_id='$c_id'")->execute();

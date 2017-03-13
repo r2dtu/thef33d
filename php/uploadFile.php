@@ -1,13 +1,11 @@
 <?php
 
-ini_set('display_errors',1);
-error_reporting(E_ALL);
-
-echo json_encode($_FILES);
 if($_FILES['bg_image']['name']) {
 
 	if(!$_FILES['bg_image']['error']) {
+    echo ("HADFHFDA");
 		$valid_file = true;
+
 		if($_FILES['bg_image']['size'] > (1024000 * 10)) {
 			$valid_file = false;
 			die('Your file\'s size is too large. File size must be <= 10MB');
