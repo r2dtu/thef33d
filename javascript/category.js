@@ -2,19 +2,28 @@ function saveCategorySettings(id) {
 
   var parallax = $('#mainparallax' + id);
   var c_id = parallax.attr("c_id");
-  var parallax_name = parallax.attr("id");
-  var numPanel = parallax_name.charAt(parallax_name.length - 1);
-  var c_newname = $("#categoryName" + numPanel).val();
+  var c_newname = $("#categoryName" + id).val();
+  var c_oldname = parallax.attr("c_name");
 
   var category_data = {};
 
-  if(name == "false" && !background){
-    alert("You did not adjust any settings");
+
+  if(c_newname == ""){
+    alert("Please enter a category name");
     return;
   }
 
+  if(c_newname == c_oldname){
+    name = false;
+  }
+
+  // if(name == "false" && !background){
+  //   alert("You did not adjust any settings");
+  //   return;
+  // }
+
   if(background){
-    var fileSelect = document.getElementById('categoryBackground' + id);
+    var fileSelect = document.getElementById('categoryBackground1');
     var file = fileSelect.files[0];
     var fileData = new FormData();
     fileData.append("bg_image", file);
@@ -24,13 +33,6 @@ function saveCategorySettings(id) {
       contentType: false,
       processData: false,
       data: fileData
-    });
-
-    request1.done(function(response, textStatus, jqXHR) {
-      console.log(response);
-    });
-    request1.fail(function(jqXHR, textStatus, errorThrown) {
-      alert("Upload failed: " + errorThrown);
     });
   }
 
@@ -45,22 +47,21 @@ function saveCategorySettings(id) {
   console.log(subs);
   category_data["subs"] = subs;
 
-  if(c_id == ""){
+  if (background) {
+    var filename = document.getElementById('categoryBackground1').files[0]["name"];
+    category_data["c_img"] = "http://localhost/bg_images/dctu@ucsd.edu/" + filename; // TODO Change
+  }
+
+
+  if(c_id == ""){ //CREATE CATEGORY
 
     category_data["message"] = "create";
     category_data["c_newname"] = c_newname;
-    //deal with image. category_data["c_img"] =
 
-  }else{
+  }else{ //UPDATE CATEGORY
 
     category_data["message"] = "update";
     category_data["c_id"] = c_id;
-
-    if (background) {
-      var filename = document.getElementById('categoryBackground' + id).files[0]["name"];
-      category_data["c_img"] = "http://localhost/bg_images/dctu@ucsd.edu/" + filename; // TODO Change
-    }
-
     if(name == "true"){
       category_data["c_newname"] = c_newname;
     }
@@ -94,6 +95,7 @@ function saveCategorySettings(id) {
 
       updateSettings(numPanel);
       parallax.attr({"c_id" : c_id});
+      parallax.attr({"c_name" : c_newname});
 
     }else if(response["can_update_or_create"] == "no"){
 
@@ -106,40 +108,60 @@ function saveCategorySettings(id) {
   });
 }
 
-$(document).ready(function(){
 
-  $(".updateSettingsButton").click(function(){
-  });
+function deletePanel(id){
+  var parallax = $('#mainparallax' + id);
+  var c_id = parallax.attr("c_id");
 
+  if(c_id != ""){
 
-  $(".deleteCategoryButton").click(function(){
-
-    var $parallax = $(this).parent().parent().parent();
-    var c_id = $parallax.attr("c_id");
-    var numPanel = parallax_name.charAt(parallax_name.length - 1);
-
-    if(c_id != ""){
-
-      request = $.ajax({
+    var request = $.ajax({
         url: "php/category.php",
 	type: "POST",
 	data: {"message" : "deleteCategory", "c_id" : c_id}
-      });
+    });
 
 
-      request.done(function (response, textStatus, jqXHR){
+  }
 
-        var response = JSON.parse(response);
+  deleteCategory(id);
 
-      });
+}
 
-      request.fail(function (jqXHR, textStatus, errorThrown){
-        alert("HTTPRequest: " + textStatus + " " + errorThrown);
-      });
+function displayCheckMarks(id, c_id, table){
+
+  var sub_names = [];
+
+  var sublist = $("#subs" + id);
+  sublist.find('input').each(function () {
+    if (this.type == "checkbox") {
+      sub_names.push(this.name);
     }
+  }
 
-    deleteCategory(numPanel);
+  var sub_name_data = {"message" : "subsInCat", "sub_names" : sub_names, "c_id" : c_id, "table" : table}
+
+  var request = $.ajax({
+    url: "php/category.php",
+    type: "POST",
+    data: sub_name_data
+  });
+
+  request.done(function (response, textStatus, jqXHR){
+
+    var response = JSON.parse(response);
+
+    for(var i in response){
+
+      var sub_name = response[i];
+      var checkbox = sublist.children('name=' + sub_name + ']');
+      checkbox.toggle('click');
+    }
 
   });
 
-});
+  request.fail(function (jqXHR, textStatus, errorThrown){
+    alert("HTTPRequest: " + textStatus + " " + errorThrown);
+  });
+
+}

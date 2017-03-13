@@ -44,7 +44,7 @@ $(document).ready(function(){
       var answer = $("#securityAnswer").val();
       var createData = {"message": "create_account", "username": username, "password": password, "security_question" : question, "security_answer" : answer}
 
-     if(username == "" || password == "" || question == ""){
+     if(username == "" || password == "" || answer == ""){
        alert("Please enter values for all input fields");
        return;
      }
@@ -74,7 +74,6 @@ $(document).ready(function(){
       var email = $("#forgotEmail").val();
       var question = $("#forgotDropdown option:selected").text();
       var answer = $("#forgotAnswer").val();
-
       var forgottenData = {"message": "forgot_password", "username": email, "security_question" : question, "security_answer" : answer}
 
       var request = $.ajax({

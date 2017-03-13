@@ -49,7 +49,7 @@ function createNewParallax(numPanels, c_id, c_name, c_img){
                       '</div>' +
                   '</form>' +
                   '<input class="updateSettingsButton" type="submit" value="Save Settings" onclick="saveCategorySettings(' + numPanels + ')">' +
-                  '<input class="deleteCategoryButton" type="submit" value="Delete Panel">' +
+                  '<input class="deleteCategoryButton" type="submit" value="Delete Panel" onclick="deletePanel(' + numPanels + ')">' +
                   '<div class="panel-information">' +
                       '<div class="panel-information-accounts">' +
                           '<br> Account:' +
@@ -76,7 +76,7 @@ function createNewParallax(numPanels, c_id, c_name, c_img){
                   '</div>' +
               '</div>';
 
-  $panels.append( '<div id="mainparallax' + numPanels + '" c_id="' + c_id + '" class="parallax_main parallax_main_general"><div id="settingsButton' + numPanels + '" class="settings-button" onclick="generic_settings(' + numPanels + ')"><img src="CSS/img/settings-gear.jpg" height="20px" width="20px" /></div><div id="showButton' + numPanels + '" class="show-button" onclick="generic_show(' + numPanels + ')"><img src="CSS/img/show.jpeg" height="20px" width="20px" /></div>' + embed + '<div id="parallaxSettings' + numPanels + '" class="parallax-settings-wrap">' + settings + '</div></div>');
+  $panels.append( '<div id="mainparallax' + numPanels + '" c_id="' + c_id + '" c_name="' + c_name + '" class="parallax_main parallax_main_general"><div id="settingsButton' + numPanels + '" class="settings-button" onclick="generic_settings(' + numPanels + ')"><img src="CSS/img/settings-gear.jpg" height="20px" width="20px" /></div><div id="showButton' + numPanels + '" class="show-button" onclick="generic_show(' + numPanels + ')"><img src="CSS/img/show.jpeg" height="20px" width="20px" /></div>' + embed + '<div id="parallaxSettings' + numPanels + '" class="parallax-settings-wrap">' + settings + '</div></div>');
   $navList.append('<li draggable="true" onclick="hideMenu()"><a href="#mainparallax' + numPanels + '"><b id="name' + numPanels + '">' + c_name + '</b></a></li>');
 
   $('#mainparallax' + c_id ).css('background-image', 'url("' + c_img + '")' );
@@ -90,11 +90,11 @@ function createNewParallax(numPanels, c_id, c_name, c_img){
 
 }
 
+var numPanels = 0;
+
 $(document).ready(function() {
 
     var $addButton = $('.addScreen');
-
-    var numPanels = 1;
 
     $('.reddit-card').css('position', 'absolute');
 
@@ -119,7 +119,7 @@ $(document).ready(function() {
 
         numPanels = numPanels + 1;
         console.log("ADDSCREEN");
-        createNewParallax(numPanels, "");
+        createNewParallax(numPanels, "", "", "");
 
         jump( ("mainparallax" + numPanels), numPanels );
 

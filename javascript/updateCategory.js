@@ -195,17 +195,22 @@ function removeSubs( id ){
 
 function updateSubs( id ){
 
+    var c_id = $("#mainparallax" + id).attr("c_id");
+
     removeSubs( id );
 
     var e = document.getElementById("categoryAccounts" + id);
     var social = e.options[e.selectedIndex].value;
 
     if( social == 'YouTube' ){
-        displayYouTubeSubs( id );
+      displayYouTubeSubs( id );
+      displayCheckMarks(id, c_id, "y_subs");
     }else if( social == 'Pinterest' ){
-        alert("Pinterest");
+      alert("Pinterest");
+      displayCheckMarks(id, c_id, "p_subs");
     }else if( social == 'Reddit'){
-        displayRedditSubs( id );
+      displayRedditSubs( id );
+      displayCheckMarks(id, c_id, "r_subs");
     }
 }
 
@@ -223,6 +228,8 @@ function generic_settings(id){
 
     $("#settingsButton" + id).toggleClass('settings-button-open');
     $("#parallaxSettings" +id).toggleClass('parallax-settings');
+    var c_name = $("#mainparallax" + id).attr("c_name");
+    $("#categoryName" + id).val(c_name);
     resetFlags();
 
 }

@@ -7,7 +7,7 @@ var youtubeIndexEnd = 3;
 var pinIndexStart = 0;
 var pinIndexEnd = 3;
 var redditIndexStart = 0;
-var redditIndexEnd = 1;
+var redditIndexEnd = 3;
 
 function addYoutubeList( list, numPanel ){
 
@@ -78,20 +78,31 @@ function adjustSize( size ){
 
 function addPin( link, num, numPanel ){
 
-    $('#mainparallax' + numPanel + '-pin').append('<a data-pin-do="embedBoard" data-pin-board-width="250" data-pin-scale-height="200" data-pin-scale-width="80" href="'+link+'"></a>');
+    $('#mainparallax' + numPanel + '-pin').append('<li class="pin'+num+'"><a data-pin-do="embedBoard" data-pin-board-width="250" data-pin-scale-height="200" data-pin-scale-width="80" href="'+link+'"></a></li>');
 
-    $('.pin' + num).css( 'position', 'absolute');
-    $('.pin' + num).css( 'top', '30%' );
+    //$('.pin' + num).css( 'position', 'absolute');
+    $('.pin' + num).css( 'top', '33%' );
     $('.pin' + num).css( 'left', ((num*20) + 12) + '%' );
 
 }
 
 function addReddit( link, num, numPanel ){
 
-    $('#mainparallax' + numPanel + '-reddit').append('<li class="reddit-card"><script src="https://www.reddit.com/r/'+link+'.embed?limit=2&sort=new" type="text/javascript"></script></li>');
+    //var myList = document.createElement('li');
+    //var myAwesomeScript = document.createElement('script');
+    //var theSrc = "https://www.reddit.com/r/'+link+'.embed?limit=2&sort=new";
+    //myAwesomeScript.setAttribute('src', theSrc);
+    //myAwesomeScript.setAttribute('type', 'text/javascript');
+    //myList.setAttribute('class', 'reddit-card');
+    //myList.appendChild(myAwesomeScript);
+    //document.getElementById("mainparallax"+numPanel+"-reddit").appendChild(myList);
 
-    //$('.reddit' + num).css( 'top', '50%' );
-    //$('.reddit' + num).css( 'left', ((num*20) + 11) + '%' );
+    //document.write( '<li class="reddit-card"><script src="https://www.reddit.com/r/'+link+'.embed?limit=2&sort=new" type="text/javascript"></script></li>' );
+
+    $('#mainparallax' + numPanel + '-reddit').append('<li class="reddit-card" id="reddit'+num+'"><div class="reddit-card"><div class="reddit-frame"><h1 class="sub-reddit">'+link+'</h1><img class="reddit-alien" src="/CSS/img/reddit-alien.jpg"/></div></div></li>');
+
+    $('#reddit' + num).css( 'top', '78%' );
+    $('#reddit' + num).css( 'left', ((num*20) + 12.5) + '%' );
 
 }
 

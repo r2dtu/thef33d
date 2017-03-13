@@ -13,14 +13,10 @@ pinList = [
 
 redditList = [
 
-    'https://www.reddit.com/hot/.embed?limit=5&t=all',
-    'https://www.reddit.com/hot/.embed?limit=5&t=all',
-    'https://www.reddit.com/hot/.embed?limit=5&t=all',
-    'https://www.reddit.com/hot/.embed?limit=5&t=all',
-    'https://www.reddit.com/hot/.embed?limit=5&t=all',
-    'https://www.reddit.com/hot/.embed?limit=5&t=all',
-    'https://www.reddit.com/hot/.embed?limit=5&t=all',
-    'https://www.reddit.com/hot/.embed?limit=5&t=all'
+    'funny',
+    'worldnews',
+    'gaming',
+    'AskReddit'
 
 ];
 
@@ -42,7 +38,6 @@ $(document).ready(function() {
     var c_data = JSON.parse(response);
     // printData(c_data);
     var numPanels = 0;
-
     for(var c_id in c_data) {
       if(c_id == "username") continue;
 
