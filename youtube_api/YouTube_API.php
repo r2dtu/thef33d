@@ -95,13 +95,13 @@ if ($client->getAccessToken()) {
     }
 } else {
 
-    // // If the user has not authorized the application, start the OAuth 2.0 flow.
-    // $state = mt_rand();
-    // $client->setState($state);
-    // $_SESSION['state'] = $state;
+     // If the user has not authorized the application, start the OAuth 2.0 flow.
+     //$state = mt_rand();
+     //$client->setState($state);
+     //$_SESSION['state'] = $state;
     //
-    // $authUrl = $client->createAuthUrl();
-    // echo $authUrl;
+     //$authUrl = $client->createAuthUrl();
+     //echo $authUrl;
 
 }
 

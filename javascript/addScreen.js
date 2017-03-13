@@ -79,7 +79,7 @@ function createNewParallax(numPanels, c_id, c_name, c_img){
   $panels.append( '<div id="mainparallax' + numPanels + '" c_id="' + c_id + '" c_name="' + c_name + '" class="parallax_main parallax_main_general"><div id="settingsButton' + numPanels + '" class="settings-button" onclick="generic_settings(' + numPanels + ')"><img src="CSS/img/settings-gear.jpg" height="20px" width="20px" /></div><div id="showButton' + numPanels + '" class="show-button" onclick="generic_show(' + numPanels + ')"><img src="CSS/img/show.jpeg" height="20px" width="20px" /></div>' + embed + '<div id="parallaxSettings' + numPanels + '" class="parallax-settings-wrap">' + settings + '</div></div>');
   $navList.append('<li draggable="true" onclick="hideMenu()"><a href="#mainparallax' + numPanels + '"><b id="name' + numPanels + '">' + c_name + '</b></a></li>');
 
-  $('#mainparallax' + c_id ).css('background-image', 'url("' + c_img + '")' );
+  $('#mainparallax' + numPanels ).css('background-image', 'url("' + c_img + '")' );
 
   document.getElementById('categoryBackground' + numPanels).addEventListener('change', function(evt){ handleFileSelect(evt, numPanels) }, false);
 

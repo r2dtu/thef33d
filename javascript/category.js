@@ -1,5 +1,5 @@
 function saveCategorySettings(id) {
-alert("SAVE CALLED");
+
   var parallax = $('#mainparallax' + id);
   var c_id = parallax.attr("c_id");
   var c_newname = $("#categoryName" + id).val();
@@ -23,7 +23,7 @@ alert("SAVE CALLED");
   // }
 
   if(background){
-    var fileSelect = document.getElementById('categoryBackground1');
+    var fileSelect = document.getElementById('categoryBackground' + id);
     var file = fileSelect.files[0];
     var fileData = new FormData();
     fileData.append("bg_image", file);
@@ -44,7 +44,6 @@ alert("SAVE CALLED");
     }
   });
 
-  console.log(subs);
   category_data["subs"] = subs;
 
   if (background) {
@@ -90,9 +89,10 @@ alert("SAVE CALLED");
   request.done(function (response, textStatus, jqXHR){
 
     var response = JSON.parse(response);
-
     if(response["can_update_or_create"] == "yes"){
-
+      if(c_id == ""){
+        c_id = response["c_id"];
+      }
       updateSettings(id);
       parallax.attr({"c_id" : c_id});
       parallax.attr({"c_name" : c_newname});

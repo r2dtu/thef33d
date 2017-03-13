@@ -1,5 +1,5 @@
 function authorizeYouTube() {
-  location.href = "/youtube_api/authenticate.php";
+  location.href = "./youtube_api/authenticate.php";
 }
 
 var youtubeIndexStart = 0;
@@ -13,7 +13,7 @@ function addYoutubeList( list, numPanel ){
 
     var spot = 0;
 
-    for( i = 0; i < list.length; i++ ){
+    for( i = 0; i < Object.keys(list).length; i++ ){
 
         if( i >= youtubeIndexStart && i <= youtubeIndexEnd ){
             addYoutubeVideo( list[ i ], spot, numPanel );
@@ -28,7 +28,7 @@ function addPinList( list, numPanel ){
 
     var spot = 0;
 
-    for( i = 0; i < list.length; i++ ){
+    for( i = 0; i < Object.keys(list).length; i++ ){
 
         if( i >= pinIndexStart && i <= pinIndexEnd ){
             addPin( list[ i ], spot, numPanel );
@@ -44,7 +44,7 @@ function addRedditList( list, numPanel ){
 
     var spot = 0;
 
-    for( i = 0; i < list.length; i++ ){
+    for( i = 0; i < Object.keys(list).length; i++ ){
 
         if( i >= redditIndexStart && i <= redditIndexEnd ){
             addReddit( list[ i ], spot, numPanel );
