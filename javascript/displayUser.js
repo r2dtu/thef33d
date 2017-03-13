@@ -10,7 +10,7 @@ $(document).ready(function(){
 
   // Callback handler that will be called on success
   request.done(function (response, textStatus, jqXHR){
-    //console.log(response);
+
     var c_data = JSON.parse(response);
 
     //printData(c_data);
@@ -25,12 +25,14 @@ $(document).ready(function(){
 
       numPanels = numPanels + 1;
 
-      createNewParallax(numPanels, c_id);
+      createNewParallax(numPanels, c_id, c_data[c_id]["c_name"], c_data[c_id]["img"]);
 
       addYoutubeList(c_data[c_id]["y_links"], numPanels);
 
       console.log("success");
     }
+
+    addUserInfo(c_data["username"]);
 
   }); //End of request.done
 
@@ -44,6 +46,11 @@ $(document).ready(function(){
 
 }); //END OF $(document).ready
 
+function addUserInfo(username) {
+  var userPage = $('#userPage');
+  var userInfo = '<h1 class="userHeader">Welcome, user.</h1>  <h1 class="userAccountsHeader">Click to Link Accounts</h1>  <ul class="userAccountsList">      <li id="youtube"><img src="CSS/img/YouTube-icon-full_color.png" width="100px" ; height="100px" ; onclick=""></li>      <li id="pintrest"><img src="CSS/img/Pinterest_logo-2.png" width="100px" ; height="100px" ; onclick=""></li>      <li id="reddit"><img src="CSS/img/Reddit_logo.png" width="100px" ; height="110px" ; onclick="linkReddit();"></li>  </ul>';
+  userPage.append(userInfo);
+}
 
 function printData(c_data){
 

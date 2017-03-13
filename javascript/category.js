@@ -19,9 +19,9 @@ $(document).ready(function(){
       var fileSelect = document.getElementById('categoryBackground1');
       var file = fileSelect.files[0];
       var fileData = new FormData();
-      fileData.append("photo", file);
+      fileData.append("bg_image", file);
       var request1 = $.ajax({
-        url: 'php/acceptFile.php',
+        url: 'php/uploadFile.php',
         type: 'POST',
         contentType: false,
         processData: false,

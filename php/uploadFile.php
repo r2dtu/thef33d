@@ -1,52 +1,43 @@
 <?php
-/*
- * Currently only supports image uploading.
- */
- ini_set('display_errors',1);
- error_reporting(E_ALL);
+echo json_encode($_POST);
+echo json_encode($_FILES);
 
- if($_FILES['file-0']['name'])
- {
- 	//if no errors...
- 	if(!$_FILES['file-0']['error'])
- 	{
+if($_FILES['bg_image']['name']) {
 
- 		$valid_file = true;
- 		if($_FILES['file-0']['size'] > (1024000)) //can't be larger than 1 MB
- 		{
- 			$valid_file = false;
- 			$message = 'Oops!  Your file\'s size is to large.';
- 			echo $message;
- 		}
+	if(!$_FILES['bg_image']['error']) {
+    echo ("HADFHFDA");
+		$valid_file = true;
 
- 		//if the file has passed the test
- 		if($valid_file)
- 		{
- 			//move it to where we want it to be
- 			$targetfolder = "uploads/";
- 			if (!file_exists($targetfolder)) {
+		if($_FILES['bg_image']['size'] > (1024000 * 10)) {
+      echo ("HADFHFDA1");
+			$valid_file = false;
+			die('Your file\'s size is too large. File size must be <= 10MB');
+		}
+		if(!getimagesize($_FILES['bg_image']['tmp_name'])) {
+      echo ("HADFHFDA2");
+			die("Please make sure you are uploading an image.");
+		}
 
- 				// THIS DOES NOT WORK ON THE HOST SERVER!!!!!
- 				mkdir($targetfolder, 0777, true);
- 			}
- 			$targetfolder = $targetfolder . basename( $_FILES['file-0']['name']);
- 			if (move_uploaded_file($_FILES['file-0']['tmp_name'], $targetfolder)) {
- 				echo "The file ". basename( $_FILES['file-0']['name']). " is uploaded";
- 			}
- 			else {
- 				echo "Problem :(";
- 			}
- 		}
- 	}
- 	//if there is an error...
- 	else
- 	{
- 		//set that to be the returned message
- 		$message = 'Ooops!  Your upload triggered the following error:  '.$_FILES['file-0']['error'];
- 		echo $message;
- 	}
+		if($valid_file) {
+      echo ("HADFHFDA13125");
 
- }
- echo "END";
+			$username = "dctu@ucsd.edu";
+			$targetfolder = "../bg_images/" . $username ."/";
 
+			if (!file_exists($targetfolder)) {
+				// THIS DOES NOT WORK ON THE HOST SERVER!!!!!
+				mkdir($targetfolder, 0777, true);
+			}
+			$targetfolder = $targetfolder . basename($_FILES['bg_image']['name']);
+			if (move_uploaded_file($_FILES['bg_image']['tmp_name'], $targetfolder)) {
+				echo("The file ". basename( $_FILES['bg_image']['name']). " is uploaded");
+			}
+			else {
+				die("Problem uploading file. Please try again later.");
+			}
+		}
+	}	else {
+		die('Your upload triggered the following error:  '.$_FILES['bg_image']['error']);
+	}
+}
 ?>
