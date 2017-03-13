@@ -29,7 +29,7 @@ INSERT INTO `thefeed`.`accounts` (`username`, `password`, `first_name`, `y_id`) 
 
 DROP TABLE IF EXISTS `categories`;
 CREATE TABLE `categories` (
-  `c_id` int(13) NOT NULL,
+  `c_id` varchar(13) NOT NULL,
   `username` varchar(128) NOT NULL,
   `c_name` varchar(128) NOT NULL,
   `img` varchar(255) DEFAULT NULL,

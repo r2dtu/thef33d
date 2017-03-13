@@ -1,5 +1,5 @@
 function saveCategorySettings(id) {
-
+alert("SAVE CALLED");
   var parallax = $('#mainparallax' + id);
   var c_id = parallax.attr("c_id");
   var c_newname = $("#categoryName" + id).val();
@@ -23,7 +23,7 @@ function saveCategorySettings(id) {
   // }
 
   if(background){
-    var fileSelect = document.getElementById('categoryBackground'+id);
+    var fileSelect = document.getElementById('categoryBackground1');
     var file = fileSelect.files[0];
     var fileData = new FormData();
     fileData.append("bg_image", file);

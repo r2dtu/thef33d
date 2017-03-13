@@ -14,13 +14,14 @@ $table = $_POST["table"];
 
 //USER IS TRYING TO UPDATE C_NAME OR CREATE NEW CATEGORY
 if($c_newname){
-  $q_result = $conn->query("SELECT c_id FROM categories WHERE username='$username' AND c_name='$c_newname'")->fetcColumn();
+  $q_result = $conn->query("SELECT c_id FROM categories WHERE username='$username' AND c_name='$c_newname'")->fetchColumn();
   if($q_result){
     $result["can_update_or_create"] = "no";
     echo json_encode($result);
     exit();
   }
 }
+
 
 if($message == "create"){
 
@@ -33,8 +34,8 @@ if($message == "create"){
         $result = $conn->prepare("INSERT INTO $table (c_id, sub_name, sub_id) VALUES ('$c_id', '$sub_name', '$sub_id')")->execute();
       }
     }
-
-    $result["can_create"] = "yes";
+    $result["c_id"] = $c_id;
+    $result["can_update_or_create"] = "yes";
     echo json_encode($result);
 
 }else if($message == "update"){
