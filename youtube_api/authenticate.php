@@ -51,6 +51,7 @@ if ($client->getAccessToken()) {
     }
     try {
 
+        header('Location: http://' . $_SERVER["HTTP_HOST"]);
         // This commented code inserts a new subscription into the user's subscriptions list - it does not update immediately, and you must call listSubscriptions again.
 
         // This code subscribes the authenticated user to the specified channel.
@@ -73,44 +74,44 @@ if ($client->getAccessToken()) {
         echo _format_json(json_encode($subscriptionResponse), true);*/
 
         // Get an object returning information about all of a user's subscriptions
-        $sub = $youtube->subscriptions->listSubscriptions('snippet', array('mine' => 'true'));
-        echo "<br>";
-        $sub1 = $sub->getItems();
-        foreach ($sub1 as $subscription_channel) {
-
-            echo "Title: ";
-            echo $subscription_channel->getSnippet()->getTitle();
-            echo ", ";
-            echo "Channel ID: ";
-            $cid = $subscription_channel->getSnippet()->getResourceId()->getChannelId();
-            echo $cid;
-            echo "<br>";
-
-            // Get a list of channel's videos
-            $channelsResponse = $youtube->channels->listChannels('contentDetails', array('id' => $cid));
-            $channels = $channelsResponse->getItems();
-
-            // Print each channel's videos
-            foreach ($channels as $channel) {
-
-                // Grab the upload channel id
-                $uploadId = $channel->getContentDetails()->getRelatedPlaylists()->getUploads();
-
-                // Grab the videos from playlistItems
-                $videosResponse = $youtube->playlistItems->listPlaylistItems('snippet', array('playlistId' =>                               $uploadId, 'maxResults' => '50'));
-                $videos = $videosResponse->getItems();
-
-                // @TODO get nextPageToken and prevPageToken (use as input to $parts)
-                foreach($videos as $video) {
-                    echo "Title: ";
-                    echo $video->getSnippet()->getTitle();
-                    echo "<br>";
-                    echo "http://www.youtube.com/watch?v=";
-                    echo $video->getSnippet()->getResourceId()->getVideoId();
-                    echo "<br>";
-                }
-            }
-        }
+        // $sub = $youtube->subscriptions->listSubscriptions('snippet', array('mine' => 'true'));
+        // echo "<br>";
+        // $sub1 = $sub->getItems();
+        // foreach ($sub1 as $subscription_channel) {
+        //
+        //     echo "Title: ";
+        //     echo $subscription_channel->getSnippet()->getTitle();
+        //     echo ", ";
+        //     echo "Channel ID: ";
+        //     $cid = $subscription_channel->getSnippet()->getResourceId()->getChannelId();
+        //     echo $cid;
+        //     echo "<br>";
+        //
+        //     // Get a list of channel's videos
+        //     $channelsResponse = $youtube->channels->listChannels('contentDetails', array('id' => $cid));
+        //     $channels = $channelsResponse->getItems();
+        //
+        //     // Print each channel's videos
+        //     foreach ($channels as $channel) {
+        //
+        //         // Grab the upload channel id
+        //         $uploadId = $channel->getContentDetails()->getRelatedPlaylists()->getUploads();
+        //
+        //         // Grab the videos from playlistItems
+        //         $videosResponse = $youtube->playlistItems->listPlaylistItems('snippet', array('playlistId' =>                               $uploadId, 'maxResults' => '50'));
+        //         $videos = $videosResponse->getItems();
+        //
+        //         // @TODO get nextPageToken and prevPageToken (use as input to $parts)
+        //         foreach($videos as $video) {
+        //             echo "Title: ";
+        //             echo $video->getSnippet()->getTitle();
+        //             echo "<br>";
+        //             echo "http://www.youtube.com/watch?v=";
+        //             echo $video->getSnippet()->getResourceId()->getVideoId();
+        //             echo "<br>";
+        //         }
+        //     }
+        // }
 
     } catch (Google_Service_Exception $e) {
         $htmlBody .= sprintf('<p>A service error occurred: <code>%s</code></p>', htmlspecialchars($e->getMessage()));
@@ -129,10 +130,7 @@ if ($client->getAccessToken()) {
     $_SESSION['state'] = $state;
 
     $authUrl = $client->createAuthUrl();
-    $htmlBody = <<<END
-    <h3>Authorization Required</h3>
-    <p>You need to <a href="$authUrl">authorize access</a> before proceeding.<p>
-END;
+    header('Location: ' . $authUrl);
 }
 
     function getChannelId() {
