@@ -7,7 +7,7 @@ var youtubeIndexEnd = 3;
 var pinIndexStart = 0;
 var pinIndexEnd = 3;
 var redditIndexStart = 0;
-var redditIndexEnd = 3;
+var redditIndexEnd = 1;
 
 function addYoutubeList( list, numPanel ){
 
@@ -78,8 +78,9 @@ function adjustSize( size ){
 
 function addPin( link, num, numPanel ){
 
-    $('#mainparallax' + numPanel + '-pin').append('<a data-pin-do="embedBoard" data-pin-board-width="300" data-pin-scale-height="240" data-pin-scale-width="80" href="'+link+'"></a>');
+    $('#mainparallax' + numPanel + '-pin').append('<a data-pin-do="embedBoard" data-pin-board-width="250" data-pin-scale-height="200" data-pin-scale-width="80" href="'+link+'"></a>');
 
+    $('.pin' + num).css( 'position', 'absolute');
     $('.pin' + num).css( 'top', '30%' );
     $('.pin' + num).css( 'left', ((num*20) + 12) + '%' );
 
