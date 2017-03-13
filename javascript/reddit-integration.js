@@ -33,7 +33,7 @@ $(document).ready(function(){
  */
 function displayRedditSubs( id ) {
 	var subBox = $('#subs' + id).find('form');
-
+	subBox.css({'width': '350px', 'height': '400px', 'overflow-y': 'scroll'});
 	var subsPromise = getSubs(greddit);
 	subsPromise.then(function(subs){
 		console.log(subs);
