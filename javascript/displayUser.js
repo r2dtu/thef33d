@@ -44,7 +44,6 @@ $(document).ready(function(){
 
     var $panels = $('.panels');
     var $navList = $('.nav-menu-list');
-    var numPanels = 0;
 
     for(var c_id in c_data){
 
