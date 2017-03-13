@@ -66,6 +66,20 @@ function saveCategorySettings(id) {
     }
   }
 
+  var e = document.getElementById("categoryAccounts" + id);
+  var social = e.options[e.selectedIndex].value;
+  switch (social) {
+    case 'YouTube':
+      category_data["table"] = "y_subs";
+      break;
+    case 'Pinterest':
+      category_data["table"] = "p_subs";
+      break;
+    case 'Reddit':
+      category_data["table"] = "r_subs";
+      break;
+  }
+
   var request = $.ajax({
     url: "php/category.php",
     type: "POST",

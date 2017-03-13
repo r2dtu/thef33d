@@ -10,6 +10,7 @@ $c_id = $_POST["c_id"];
 $c_newname = $_POST["c_newname"];
 $subs = $_POST["subs"];
 $c_img = $_POST["c_img"];
+$table = $_POST["table"];
 
 if($c_newname){
   $q_result = $conn->query("SELECT c_id FROM categories WHERE username='$username' AND c_name='$c_newname'")->fetchColumn();
@@ -41,9 +42,9 @@ if($message == "create"){
     }
 
     if ($subs) {
-      $result = $conn->prepare("DELETE FROM y_subs WHERE c_id='$c_id'")->execute();
+      $result = $conn->prepare("DELETE FROM $table WHERE c_id='$c_id'")->execute();
       foreach ($subs as $sub_name => $sub_id) {
-        $result = $conn->prepare("INSERT INTO y_subs (c_id, sub_name, sub_id) VALUES ('$c_id', '$sub_name', '$sub_id')")->execute();
+        $result = $conn->prepare("INSERT INTO $table (c_id, sub_name, sub_id) VALUES ('$c_id', '$sub_name', '$sub_id')")->execute();
       }
     }
 

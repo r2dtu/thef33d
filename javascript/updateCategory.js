@@ -186,6 +186,7 @@ function displayYouTubeSubs( id ) {
     });
 }
 
+
 function removeSubs( id ){
 
     $('#subs'+id).find('form').empty();
@@ -204,9 +205,8 @@ function updateSubs( id ){
     }else if( social == 'Pinterest' ){
         alert("Pinterest");
     }else if( social == 'Reddit'){
-        alert("Reddit");
+      displayRedditSubs( id );
     }
-
 }
 
 function generic_show(id){

@@ -1,6 +1,8 @@
 /***** Profile picture CSS styling *****/
 
-
+*{
+  margin: 0;
+}
 
 #austinProf{
   margin-top: 5%;
@@ -14,7 +16,6 @@
   transform: scale(1.5,1.5);
 
 }
-
 
 #georgeProf{
   margin-top: 5%;
