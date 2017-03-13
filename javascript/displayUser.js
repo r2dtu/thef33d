@@ -26,7 +26,7 @@ redditList = [
 ];
 
 $(document).ready(function(){
-  addUserInfo(c_data["username"]);
+  addUserInfo();
 
   var actionData = {"action": "getVids"};
 
@@ -78,7 +78,7 @@ $(document).ready(function(){
 
 }); //END OF $(document).ready
 
-function addUserInfo(username) {
+function addUserInfo() {
   var userPage = $('#userPage');
   var userInfo = '<h1 class="userHeader">Welcome, User.</h1>' +
                  '<h1 class="userAccountsHeader">Click to Link Accounts</h1>' +
