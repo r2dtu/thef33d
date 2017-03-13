@@ -62,7 +62,7 @@ $(document).ready(function(){
           alert("HTTPRequest: " + textStatus + " " + errorThrown);
       });
     });
-
+/*
     $("#forgotPassword").click(function(){
 
       var email = $("#forgotEmail").val();
@@ -91,7 +91,7 @@ $(document).ready(function(){
       });
 
 
-    });
+    });*/
 });
 /***** Slide the accountInfo div to the left and display the createAccount fields *****/
 function generic_slide(){
