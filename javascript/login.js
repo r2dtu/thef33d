@@ -19,6 +19,9 @@ $(document).ready(function(){
             window.location.href = "index.html";
           }else if(user_info.can_login == "no"){
             alert("Wrong username or password. Try again or make an account below.");
+	    $("#username").val("");
+	    $("#password").val("");
+	    $("#username").focus();
           }else{
             alert("Database issue: " + user_info.error);
           }
@@ -40,13 +43,17 @@ $(document).ready(function(){
       var question = $("#securityQuestionDropdown option:selected").text();
       var answer = $("#securityAnswer").val();
       var createData = {"message": "create_account", "username": username, "password": password, "security_question" : question, "security_answer" : answer}
-      
+
+     if(username == "" || password == "" || question == ""){
+       alert("Please enter values for all input fields");
+       return;
+     }
+
       var request = $.ajax({
           url: "php/login.php",
           type: "POST",
           data: createData
       });
-
       request.done(function (response, textStatus, jqXHR){
           var user_info = JSON.parse(response);
           if(user_info.can_create == "yes"){
@@ -62,11 +69,10 @@ $(document).ready(function(){
           alert("HTTPRequest: " + textStatus + " " + errorThrown);
       });
     });
-/*
-    $("#forgotPassword").click(function(){
 
+    $("#forgotSubmit").click(function(){
       var email = $("#forgotEmail").val();
-      var question = $("#forgotDropdown").val();
+      var question = $("#forgotDropdown option:selected").text();
       var answer = $("#forgotAnswer").val();
 
       var forgottenData = {"message": "forgot_password", "username": email, "security_question" : question, "security_answer" : answer}
@@ -76,13 +82,12 @@ $(document).ready(function(){
           type: "POST",
           data: forgottenData
       });
-
       request.done(function (response, textStatus, jqXHR){
           var response = JSON.parse(response);
           if(response["display_password"] == "yes"){
             alert("Your password is: \"" + response["password"] + "\"");
           }else{
-            alert("Wrong security answer");
+            alert("Incorrect email or security answer");
           }
       });
 
@@ -91,7 +96,7 @@ $(document).ready(function(){
       });
 
 
-    });*/
+    });
 });
 /***** Slide the accountInfo div to the left and display the createAccount fields *****/
 function generic_slide(){
