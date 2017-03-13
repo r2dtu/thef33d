@@ -74,7 +74,7 @@ function adjustSize( size ){
 
 function addPin( link, num, numPanel ){
 
-    $('#mainparallax' + numPanel + '-pin').append('<li class="pin' + num + '"><a data-pin-do="embedPin" href="' + link + '"></a></li>');
+    $('#mainparallax' + numPanel + '-pin').append('<a data-pin-do="embedBoard" data-pin-board-width="300" data-pin-scale-height="240" data-pin-scale-width="80" href="'+link+'"></a>');
 
     $('.pin' + num).css( 'top', '30%' );
     $('.pin' + num).css( 'left', ((num*20) + 12) + '%' );
@@ -82,11 +82,11 @@ function addPin( link, num, numPanel ){
 }
 
 function addReddit( link, num, numPanel ){
+    
+    $('#mainparallax' + numPanel + '-reddit').append('<li class="reddit-card"><script src="https://www.reddit.com/r/'+link+'.embed?limit=2&sort=new" type="text/javascript"></script></li>');
 
-    $('#mainparallax' + numPanel + '-reddit').append('<li class="reddit' + num + '"><script src="' + link + '" type="text/javascript" async></script></li>');
-
-    $('.reddit' + num).css( 'top', '50%' );
-    $('.reddit' + num).css( 'left', ((num*20) + 11) + '%' );
+    //$('.reddit' + num).css( 'top', '50%' );
+    //$('.reddit' + num).css( 'left', ((num*20) + 11) + '%' );
 
 }
 
