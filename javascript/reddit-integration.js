@@ -32,7 +32,7 @@ $(document).ready(function(){
  * Displays subreddit checkboxes in category settings
  */
 function displayRedditSubs( id ) {
-	var subBox = $('#subs' + id).find('form');
+	var subBox = $('#subs' + id);
 	subBox.css({'width': '350px', 'height': '400px', 'overflow-y': 'scroll'});
 	var subsPromise = getSubs(greddit);
 	subsPromise.then(function(subs){
