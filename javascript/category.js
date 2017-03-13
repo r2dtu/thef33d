@@ -106,6 +106,9 @@ function saveCategorySettings(id) {
   });
 }
 
+
+function 
+
 $(document).ready(function(){
 
   $(".updateSettingsButton").click(function(){

@@ -103,7 +103,8 @@ function getHots(reddit, subreddits, num){
  * Redirects user to reddit authentication page.
  */
 function linkReddit(){
-    location.href = "/php/reddit/index.php";
+    var redditPromise = redditLink();
+    redditPromise.catch(function(){location.href = "/php/reddit/index.php";});
 }
 
 /*
