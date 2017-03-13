@@ -49,7 +49,7 @@ function createNewParallax(numPanels, c_id, c_name, c_img){
                       '</div>' +
                   '</form>' +
                   '<input class="updateSettingsButton" type="submit" value="Save Settings" onclick="saveCategorySettings(' + numPanels + ')">' +
-                  '<input class="deleteCategoryButton" type="submit" value="Delete Panel">' +
+                  '<input class="deleteCategoryButton" type="submit" value="Delete Panel" onclick="deletePanel(' + numPanels + ')">' +
                   '<div class="panel-information">' +
                       '<div class="panel-information-accounts">' +
                           '<br> Account:' +
@@ -90,11 +90,12 @@ function createNewParallax(numPanels, c_id, c_name, c_img){
 
 }
 
+var numPanels = 0;
+
 $(document).ready(function() {
 
     var $addButton = $('.addScreen');
 
-    var numPanels = 1;
     
     $('.reddit-card').css('position', 'absolute');
 

@@ -2,9 +2,7 @@ function saveCategorySettings(id) {
 
   var parallax = $('#mainparallax' + id);
   var c_id = parallax.attr("c_id");
-  var parallax_name = parallax.attr("id");
-  var numPanel = parallax_name.charAt(parallax_name.length - 1);
-  var c_newname = $("#categoryName" + numPanel).val();
+  var c_newname = $("#categoryName" + i).val();
 
   var category_data = {};
 
@@ -14,7 +12,7 @@ function saveCategorySettings(id) {
   // }
 
   if(background){
-    var fileSelect = document.getElementById('categoryBackground' + id);
+    var fileSelect = document.getElementById('categoryBackground1');
     var file = fileSelect.files[0];
     var fileData = new FormData();
     fileData.append("bg_image", file);
@@ -57,7 +55,7 @@ function saveCategorySettings(id) {
     category_data["c_id"] = c_id;
 
     if (background) {
-      var filename = document.getElementById('categoryBackground' + id).files[0]["name"];
+      var filename = document.getElementById('categoryBackground1').files[0]["name"];
       category_data["c_img"] = "http://localhost/bg_images/dctu@ucsd.edu/" + filename; // TODO Change
     }
 
@@ -106,40 +104,32 @@ function saveCategorySettings(id) {
   });
 }
 
-$(document).ready(function(){
 
-  $(".updateSettingsButton").click(function(){
-  });
+function deletePanel(id){
 
+  var parallax = $('#mainparallax' + id);
+  var c_id = parallax.attr("c_id");
+  
+  if(c_id != ""){
 
-  $(".deleteCategoryButton").click(function(){
-
-    var $parallax = $(this).parent().parent().parent();
-    var c_id = $parallax.attr("c_id");
-    var numPanel = parallax_name.charAt(parallax_name.length - 1);
-
-    if(c_id != ""){
-
-      request = $.ajax({
+    var request = $.ajax({
         url: "php/category.php",
 	type: "POST",
 	data: {"message" : "deleteCategory", "c_id" : c_id}
-      });
+    });
 
 
-      request.done(function (response, textStatus, jqXHR){
+    request.done(function (response, textStatus, jqXHR){
 
-        var response = JSON.parse(response);
+      var response = JSON.parse(response);
 
-      });
+    });
 
-      request.fail(function (jqXHR, textStatus, errorThrown){
-        alert("HTTPRequest: " + textStatus + " " + errorThrown);
-      });
-    }
+    request.fail(function (jqXHR, textStatus, errorThrown){
+      alert("HTTPRequest: " + textStatus + " " + errorThrown);
+    });
+  }
 
-    deleteCategory(numPanel);
+  deleteCategory(numPanel);
 
-  });
-
-});
+}
