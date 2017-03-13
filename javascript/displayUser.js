@@ -1,14 +1,13 @@
 youtubeList = null;
 pinList = [
 
-    'https://www.pinterest.com/pin/99360735500167749/',
-    'https://www.pinterest.com/pin/99360735500167749/',
-    'https://www.pinterest.com/pin/99360735500167749/',
-    'https://www.pinterest.com/pin/99360735500167749/',
-    'https://www.pinterest.com/pin/99360735500167749/',
-    'https://www.pinterest.com/pin/99360735500167749/',
-    'https://www.pinterest.com/pin/99360735500167749/',
-    'https://www.pinterest.com/pin/99360735500167749/'
+    'https://www.pinterest.com/makeuseof/gaming/',
+    'https://www.pinterest.com/makeuseof/gaming/',
+    'https://www.pinterest.com/makeuseof/gaming/',
+    'https://www.pinterest.com/makeuseof/gaming/',
+    'https://www.pinterest.com/makeuseof/gaming/',
+    'https://www.pinterest.com/makeuseof/gaming/',
+    'https://www.pinterest.com/makeuseof/gaming/'
 
 ];
 
