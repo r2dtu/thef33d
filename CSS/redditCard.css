@@ -8,9 +8,29 @@
 }
 .reddit-card {
     position: absolute;
-    top: 75%;
+    top: 30%;
     left: 20%;
-    width: 60%;
-    height: 1%;
-    font-size: 0.6em;
+}
+
+.sub-reddit {
+    text-decoration: none;
+    font-size: 1.7em;
+    font-family: 'Ubuntu', sans-serif;
+    color: white;
+}
+
+.reddit-frame {
+    width: 200px;
+    border-color: white;
+    border-style: solid;
+    border-width: medium;
+}
+
+.reddit-alien {
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    position: relative;
+    left: 40%;
+    margin-bottom: 5%;
 }
