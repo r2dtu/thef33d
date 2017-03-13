@@ -2,9 +2,19 @@ function saveCategorySettings(id) {
 
   var parallax = $('#mainparallax' + id);
   var c_id = parallax.attr("c_id");
-  var c_newname = $("#categoryName" + i).val();
+  var c_newname = $("#categoryName" + id).val();
+  var c_oldname = parallax.attr("c_name");
 
   var category_data = {};
+
+  if(c_newname == ""){
+    alert("Please enter a category name");
+    return;
+  }
+  
+  if(c_newname == c_oldname){
+    name = false;
+  }
 
   // if(name == "false" && !background){
   //   alert("You did not adjust any settings");
@@ -23,13 +33,6 @@ function saveCategorySettings(id) {
       processData: false,
       data: fileData
     });
-
-    request1.done(function(response, textStatus, jqXHR) {
-      console.log(response);
-    });
-    request1.fail(function(jqXHR, textStatus, errorThrown) {
-      alert("Upload failed: " + errorThrown);
-    });
   }
 
   var subs = {};
@@ -43,22 +46,21 @@ function saveCategorySettings(id) {
   console.log(subs);
   category_data["subs"] = subs;
 
-  if(c_id == ""){
+  if (background) {
+    var filename = document.getElementById('categoryBackground1').files[0]["name"];
+    category_data["c_img"] = "http://localhost/bg_images/dctu@ucsd.edu/" + filename; // TODO Change
+  }
+
+
+  if(c_id == ""){ //CREATE CATEGORY
 
     category_data["message"] = "create";
     category_data["c_newname"] = c_newname;
-    //deal with image. category_data["c_img"] =
 
-  }else{
+  }else{ //UPDATE CATEGORY
 
     category_data["message"] = "update";
     category_data["c_id"] = c_id;
-
-    if (background) {
-      var filename = document.getElementById('categoryBackground1').files[0]["name"];
-      category_data["c_img"] = "http://localhost/bg_images/dctu@ucsd.edu/" + filename; // TODO Change
-    }
-
     if(name == "true"){
       category_data["c_newname"] = c_newname;
     }
@@ -92,6 +94,7 @@ function saveCategorySettings(id) {
 
       updateSettings(numPanel);
       parallax.attr({"c_id" : c_id});
+      parallax.attr({"c_name" : c_newname});
 
     }else if(response["can_update_or_create"] == "no"){
 
@@ -106,7 +109,6 @@ function saveCategorySettings(id) {
 
 
 function deletePanel(id){
-
   var parallax = $('#mainparallax' + id);
   var c_id = parallax.attr("c_id");
   
@@ -119,17 +121,38 @@ function deletePanel(id){
     });
 
 
-    request.done(function (response, textStatus, jqXHR){
-
-      var response = JSON.parse(response);
-
-    });
-
-    request.fail(function (jqXHR, textStatus, errorThrown){
-      alert("HTTPRequest: " + textStatus + " " + errorThrown);
-    });
   }
 
-  deleteCategory(numPanel);
+  deleteCategory(id);
+
+}
+
+function displayCheckMarks(sub_names, c_id, table){
+
+  var sub_name_data = {"message" : "subsInCat", "sub_names" : sub_names, "c_id" : c_id, "table" : table}
+
+  var request = $.ajax({
+    url: "php/category.php",
+    type: "POST",
+    data: sub_name_data
+  });
+   
+  request.done(function (response, textStatus, jqXHR){
+
+    var response = JSON.parse(response);
+    
+    for(var i in response){
+
+      var sub_name = response[i];
+//check the box!!!!!!!!!!
+
+    }
+
+  });
+
+  request.fail(function (jqXHR, textStatus, errorThrown){
+    alert("HTTPRequest: " + textStatus + " " + errorThrown);
+  });
+
 
 }

@@ -223,6 +223,8 @@ function generic_settings(id){
 
     $("#settingsButton" + id).toggleClass('settings-button-open');
     $("#parallaxSettings" +id).toggleClass('parallax-settings');
+    var c_name = $("#mainparallax" + id).attr("c_name");
+    $("#categoryName" + id).val(c_name);
     resetFlags();
 
 }

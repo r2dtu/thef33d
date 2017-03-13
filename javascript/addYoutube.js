@@ -46,7 +46,7 @@ function addRedditList( list, numPanel ){
 
     for( i = 0; i < redditList.length; i++ ){
 
-        if( i >= redditIndexStart && i <= redditIndexEnd ){
+        if( i >= redditIndexStart && i < redditIndexEnd ){
             addReddit( list[ i ], spot, numPanel );
             spot++;
         }
@@ -88,7 +88,18 @@ function addPin( link, num, numPanel ){
 
 function addReddit( link, num, numPanel ){
 
-    $('#mainparallax' + numPanel + '-reddit').append('<li class="reddit-card"><script src="https://www.reddit.com/r/'+link+'.embed?limit=2&sort=new" type="text/javascript"></script></li>');
+    //var myList = document.createElement('li');
+    //var myAwesomeScript = document.createElement('script');
+    //var theSrc = "https://www.reddit.com/r/'+link+'.embed?limit=2&sort=new";
+    //myAwesomeScript.setAttribute('src', theSrc);
+    //myAwesomeScript.setAttribute('type', 'text/javascript');
+    //myList.setAttribute('class', 'reddit-card');
+    //myList.appendChild(myAwesomeScript);
+    //document.getElementById("mainparallax"+numPanel+"-reddit").appendChild(myList);
+
+    //document.write( '<li class="reddit-card"><script src="https://www.reddit.com/r/'+link+'.embed?limit=2&sort=new" type="text/javascript"></script></li>' );
+
+    $('#mainparallax' + numPanel + '-reddit').append('<li class="reddit-card"><blockquote class="reddit-card" data-card-created="1489401185"><a href="https://www.reddit.com/r/gifs/comments/5z2yfb/someone_hates_you_wherever_you_go/?ref=share&ref_source=embed">Someone hates you, wherever you go</a> from <a href="http://www.reddit.com/r/gifs">gifs</a></blockquote></li>');
 
     //$('.reddit' + num).css( 'top', '50%' );
     //$('.reddit' + num).css( 'left', ((num*20) + 11) + '%' );
@@ -120,8 +131,8 @@ function shiftLeft( social, numPanel ){
 
     if(social == 3 && redditIndexStart != 0){
 
-        redditIndexStart -= 3;
-        redditIndexEnd -= 3;
+        redditIndexStart -= 1;
+        redditIndexEnd -= 1;
         removeChildren('reddit', numPanel);
         addRedditList( redditList, numPanel );
 
@@ -154,8 +165,8 @@ function shiftRight( social, numPanel ){
 
     if( social == 3 && !(redditIndexEnd >= redditList.length) ){
 
-        redditIndexStart += 3;
-        redditIndexEnd += 3;
+        redditIndexStart += 1;
+        redditIndexEnd += 1;
         removeChildren('reddit', numPanel);
         addRedditList( redditList, numPanel );
 
