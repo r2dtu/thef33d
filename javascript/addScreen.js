@@ -92,6 +92,8 @@ $(document).ready(function() {
     var $addButton = $('.addScreen');
 
     var numPanels = 1;
+    
+    $('.reddit-card').css('position', 'absolute');
 
     // + button
     $addButton.on('mouseover', function() {

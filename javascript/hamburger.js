@@ -40,7 +40,7 @@ $(document).ready(function() {
             
             $navMenu.css('z-index',index);
             $navMenu.css('opacity', '1');
-            $navMenu.css('background-color', 'rgba(0,0,0,0.7)');
+            $navMenu.css('background-color', 'rgba(0,0,0,0.8)');
             
         }
         

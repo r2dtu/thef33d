@@ -17,6 +17,7 @@
     <link rel="stylesheet" type="text/css" href="CSS/main-panel.css">
     <link rel="stylesheet" type="text/css" href="CSS/main.css">
     <link rel="stylesheet" type="text/css" href="CSS/scroll.css">
+    <link rel="stylesheet" type="text/css" href="CSS/redditCard.css">
     <link rel="stylesheet" type="text/css" href="CSS/settings-panel.css">
     <link rel="stylesheet" href="animate.min.css">
     <link rel="stylesheet" type="text/css" media="all" href="css/animate.css">
@@ -58,7 +59,7 @@
                 <!-- For drag and drop: http://syntaxxx.com/rearranging-web-page-items-with-html5-drag-and-drop/ -->
 
                 <li draggable="true" onclick="hideMenu()"><a href="#mainparallax1"><b id="name1">Untitled</b></a></li>
-                
+
             </ul>
 
             <h1 class="addScreen">+</h1>
@@ -108,6 +109,7 @@
 
                     <h1 id="leftScrollReddit1" class="leftScrollReddit" onmouseover="growLeft( 3, 1 )" onmouseout="shrinkLeft(3, 1)" onclick="shiftLeft(3, 1)">&lt;</h1>
                     <ul id="mainparallax1-reddit">
+                        <li class="reddit-card"><script src="https://www.reddit.com/r/worldnews.embed?limit=2&sort=new" type="text/javascript"></script></li>
                     </ul>
                     <h1 id="rightScrollReddit1" class="rightScrollReddit" onmouseover="growRight( 3, 1 )" onmouseout="shrinkRight(3, 1)" onclick="shiftRight(3, 1)">&gt;</h1>
 
@@ -120,12 +122,12 @@
                             <div class="settings-categoryName">
                                 Category:
                                 <br>
-                                <input type="text" id="categoryName1" placeholder="Name of category" class="categoryName"  oninput="nameFlag()">
+                                <input type="text" id="categoryName1" placeholder="Name of category" class="categoryName" oninput="nameFlag()">
                             </div>
                             <div class="settings-categoryBackground">
                                 <br> Background Image:
                                 <br>
-                                <input type='file' id="categoryBackground1" class="categoryBackgroundSelect" >
+                                <input type='file' id="categoryBackground1" class="categoryBackgroundSelect">
                             </div>
                             <div class="settings-categorySize">
                                 <br> Size:
@@ -179,7 +181,7 @@
 
     </div>
 
-    <h1>The Feed Team 2017</h1>
+    <h1 class="theFeeed">The Feed Team 2017</h1>
 
     <script async defer src="//assets.pinterest.com/js/pinit.js"></script>
 </body>
@@ -203,4 +205,6 @@
 <script type="text/javascript" src="javascript/update-settings.js"></script>
 <script type="text/javascript" src="javascript/addScreen.js"></script>
 <script type="text/javascript" src="javascript/reddit-integration.js"></script>
+<script async src="//embed.redditmedia.com/widgets/platform.js" charset="UTF-8"></script>
+
 </html>

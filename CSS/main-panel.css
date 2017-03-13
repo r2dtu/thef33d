@@ -103,7 +103,7 @@
 
 .main-panel {
     transition: .5s;
-    background-color: var(--primary);
+    background-color: black;
     height: 100%;
     margin-bottom: 0;
 }
