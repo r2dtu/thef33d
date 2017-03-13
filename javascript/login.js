@@ -15,6 +15,8 @@ $(document).ready(function(){
 
       request.done(function (response, textStatus, jqXHR){
 
+          alert(response);
+          /*
           var user_info = JSON.parse(response);
           if(user_info.can_login == "yes"){
             window.location.href = "index.html";
@@ -22,7 +24,7 @@ $(document).ready(function(){
             alert("Wrong username or password. Try again or make an account below.");
           }else{
             alert("Database issue: " + user_info.error);
-          }
+          }*/
       });
 
       request.fail(function (jqXHR, textStatus, errorThrown){
