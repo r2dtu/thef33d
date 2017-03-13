@@ -8,29 +8,28 @@
 
   <link rel="stylesheet" type="text/css" href="CSS/login.css"/>
   <link rel="stylesheet" type="text/css" href="CSS/login_parallax.css"/>
-  <link rel="stylesheet" type="text/css" href="CSS/login_profiles.css"/>
 
 </head>
-
 <body id="loginPage">
-
   <div class="parallax_login">
     <div class="header">
       <h1>The Feed</h1>
     </div>
-    <img id="logo" src="CSS/img/logoMain.png" width="150px" height="100px" />
+  <img id="logo" src="CSS/img/logo.png" width="150px" height="100px" />
 
-<div id="container" class="main_login">
-  <form method="post" autocomplete="on">
+
+<div id="container">
+  <form action="file:///C:/Users/Wyatt/Desktop/Atom%20Dir/CSE_110/index.html" method="post" autocomplete="on">
     <div id="UpperLabels">
-      <label for="username">Username:</label>
-      <input type="text" id="username" placeholder="Enter User Name"name="username" autofocus required>
+      <lable for="username">Username:</label>
+      <input type="text" id="username" placeholder="Enter User Name"name="username" required autofocus>
       <label for="password">Password:</label>
       <input type="password" id="password" placeholder="Enter Password"name="password" required>
     </div>
     <div id="lower">
-      <button id="googleSignIn" type="button"> <text id="sign">Sign</text> <text id="in">in</text> <text id="with">with</text>
-         <text id="google">Google</text> </button>
+      <button id="googleSignIn" type="submit"><a href="./google_auth/index.php">Sign in with Google</a></button>
+      <!--<input type="checkbox"><label for="checkbox">Keep me logged in</label>-->
+      <!--<input type="submit" value="Login">-->
       <button id="forgotPassword" type="button">Forgot Password</button>
       <button id="loginButton" type="submit">Login</button>
     </div><!--/ lower-->
