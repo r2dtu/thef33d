@@ -36,14 +36,10 @@ $(document).ready(function() {
     }
 
     var c_data = JSON.parse(response);
-    // printData(c_data);
-    var numPanels = 0;
     for(var c_id in c_data) {
       if(c_id == "username") continue;
 
-      numPanels = numPanels + 1;
-
-      createNewParallax(numPanels, c_id, c_data[c_id]["c_name"], c_data[c_id]["img"]);
+      createNewParallax(c_id, c_data[c_id]["c_name"], c_data[c_id]["img"]);
 //      document.getElementById('categoryBackground' + numPanels).addEventListener('change', function(evt){ handleFileSelect(evt, numPanels) }, false);
     }
 

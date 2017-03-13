@@ -1,4 +1,7 @@
-function createNewParallax(numPanels, c_id, c_name, c_img){
+/*** NUMPANELS GLOBAL VARIABLE ***/
+var numPanels = 0;
+
+function createNewParallax(c_id, c_name, c_img){
 
   var $panels = $('.panels');
   var $navList = $('.nav-menu-list');
@@ -87,10 +90,9 @@ function createNewParallax(numPanels, c_id, c_name, c_img){
   // addPinList( pinList, numPanels );
   // addRedditList( redditList, numPanels );
   // displaySubs( numPanels, youtube_subscriptions );
-
+  numPanels = numPanels + 1;
 }
 
-var numPanels = 0;
 
 $(document).ready(function() {
 
@@ -117,10 +119,7 @@ $(document).ready(function() {
 
     $addButton.on('click', function() {
 
-        numPanels = numPanels + 1;
-        console.log("ADDSCREEN");
-        createNewParallax(numPanels, "", "", "");
-
+        createNewParallax("", "", "");
         jump( ("mainparallax" + numPanels), numPanels );
 
     });
