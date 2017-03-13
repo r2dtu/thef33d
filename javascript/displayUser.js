@@ -61,7 +61,7 @@ $(document).ready(function(){
       console.log("success");
     }
 
-    addPinList( pinList, 1 );
+    //addPinList( pinList, 1 );
 
     addRedditList( redditList, 1 );
 
