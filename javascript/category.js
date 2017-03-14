@@ -1,12 +1,10 @@
 function saveCategorySettings(id) {
-
   var parallax = $('#mainparallax' + id);
   var c_id = parallax.attr("c_id");
   var c_newname = $("#categoryName" + id).val();
   var c_oldname = parallax.attr("c_name");
 
   var category_data = {};
-
 
   if(c_newname == ""){
     alert("Please enter a category name");
@@ -16,11 +14,6 @@ function saveCategorySettings(id) {
   if(c_newname == c_oldname){
     name = false;
   }
-
-  // if(name == "false" && !background){
-  //   alert("You did not adjust any settings");
-  //   return;
-  // }
 
   if(background){
     var fileSelect = document.getElementById('categoryBackground'+id);
@@ -49,7 +42,7 @@ function saveCategorySettings(id) {
 
   if (background) {
     var filename = document.getElementById('categoryBackground'+id).files[0]["name"];
-    category_data["c_img"] = "http://localhost/bg_images/dctu@ucsd.edu/" + filename; // TODO Change
+    category_data["c_img"] = "http://thef33d.me/bg_images/" + master_name + "/" + filename;
   }
 
 
@@ -92,7 +85,9 @@ function saveCategorySettings(id) {
     var response = JSON.parse(response);
 
     if(response["can_update_or_create"] == "yes"){
-
+      if(c_id == ""){
+        c_id = response["c_id"];
+      }
       updateSettings(id);
       parallax.attr({"c_id" : c_id});
       parallax.attr({"c_name" : c_newname});
@@ -100,7 +95,15 @@ function saveCategorySettings(id) {
     }else if(response["can_update_or_create"] == "no"){
 
       alert("You already have a category with named \"" + c_newname + "\". Please pick another name.");
+    }else{
+      if(c_id == ""){
+        c_id = response["c_id"];
+      }
+      updateSettings(id);
+      parallax.attr({"c_id" : c_id});
+      parallax.attr({"c_name" : c_newname});
     }
+    
   });
 
   request.fail(function (jqXHR, textStatus, errorThrown){
@@ -120,7 +123,6 @@ function deletePanel(id){
 	type: "POST",
 	data: {"message" : "deleteCategory", "c_id" : c_id}
     });
-
 
   }
 
@@ -148,11 +150,9 @@ function displayCheckMarks(id, c_id, table){
   });
 
   request.done(function (response, textStatus, jqXHR){
-
     var response = JSON.parse(response);
 
     for(var i in response){
-
       var sub_name = response[i];
       var checkbox = sublist.children('name=' + sub_name + ']');
       checkbox.toggle('click');

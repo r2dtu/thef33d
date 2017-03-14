@@ -13,6 +13,9 @@ $username = $_POST['username'];
 $password = $_POST['password'];
 $message = $_POST["message"];
 
+// BCrypt the password
+$enc_pwd = password_hash($password);
+
 $question = $_POST["security_question"];
 $answer = $_POST["security_answer"];
 
@@ -23,7 +26,7 @@ if($message == "login"){
   catch(PDOException $e){
     error_out();
   }
-  if($q_result["password"] != $password){
+  if(!$username || !$password || $q_result["password"] != $enc_pwd){
     $q_result["can_login"] = "no";
     echo json_encode($q_result);
     exit();
@@ -43,7 +46,7 @@ if($message == "login"){
   }
 
   $q_result["can_create"] = "yes";
-  $statement = $conn->prepare("INSERT INTO accounts (username, password) VALUES ('$username', '$password')")->execute();
+  $statement = $conn->prepare("INSERT INTO accounts (username, password) VALUES ('$username', '$enc_pwd')")->execute();
   $statement = $conn->prepare("UPDATE accounts SET security_answer='$answer' WHERE username='$username'")->execute();
   $statement = $conn->prepare("UPDATE accounts SET s_question='$question' WHERE username='$username'")->execute();
   $_SESSION["username"] = $username;

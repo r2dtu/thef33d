@@ -75,9 +75,14 @@ if($message == "create"){
   $result = array();
 
   foreach($sub_names as $sub_name){
-
-    $q_result = $conn->query("SELECT sub_id FROM '$table' WHERE sub_name='$sub_name'")->fetcColumn();
-    if(isset($q_result)){
+    if($table == "y_subs"){
+      $q_result = $conn->query("SELECT sub_id FROM y_subs WHERE sub_name='$sub_name'")->fetchColumn();
+    }else if($table == "p_subs"){
+      $q_result = $conn->query("SELECT sub_id FROM p_subs WHERE sub_name='$sub_name'")->fetchColumn();
+    }else{
+      $q_result = $conn->query("SELECT sub_id FROM r_subs WHERE sub_name='$sub_name'")->fetchColumn();
+    }
+    if($q_result){
       array_push($result, $sub_name);
     }
   }

@@ -1,4 +1,9 @@
-function createNewParallax(numPanels, c_id, c_name, c_img){
+/*** NUMPANELS GLOBAL VARIABLE ***/
+var numPanels = 1;
+var id_stuff = 1;
+
+function createNewParallax(c_id, c_name, c_img){
+
 
   var $panels = $('.panels');
   var $navList = $('.nav-menu-list');
@@ -81,7 +86,6 @@ function createNewParallax(numPanels, c_id, c_name, c_img){
 
   $('#mainparallax' + numPanels ).css('background-image', 'url("' + c_img + '")' );
 
-console.log(c_id + ": " + c_img);
   document.getElementById('categoryBackground' + numPanels).addEventListener('change', function(evt){ handleFileSelect(evt, numPanels) }, false);
 
   // addYoutubeList( youtubeList, numPanels );
@@ -89,9 +93,9 @@ console.log(c_id + ": " + c_img);
   // addRedditList( redditList, numPanels );
   // displaySubs( numPanels, youtube_subscriptions );
 
+  numPanels = numPanels + 1;
 }
 
-var numPanels = 0;
 
 $(document).ready(function() {
 
@@ -118,10 +122,7 @@ $(document).ready(function() {
 
     $addButton.on('click', function() {
 
-        numPanels = numPanels + 1;
-        console.log("ADDSCREEN");
-        createNewParallax(numPanels, "", "", "");
-
+        createNewParallax("", "", "");
         jump( ("mainparallax" + numPanels), numPanels );
 
     });
@@ -129,10 +130,8 @@ $(document).ready(function() {
 });
 
 function jump( h, id ){
-
-    var loc = "#" + h;
-    window.location.href = loc;
-    $('.toggle-button').click();
-    $("#settingsButton" + id).click();
-
+  var loc = "#" + h;
+  window.location.href = loc;
+  $('.toggle-button').click();
+  $("#settingsButton" + id).click();
 }

@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 if($_FILES['bg_image']['name']) {
 
@@ -15,7 +16,7 @@ if($_FILES['bg_image']['name']) {
 
 		if($valid_file) {
 
-			$username = "dctu@ucsd.edu";
+			$username = $_SESSION['username'];
 			$targetfolder = "../bg_images/" . $username ."/";
 
 			if (!file_exists($targetfolder)) {

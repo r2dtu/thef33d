@@ -84,7 +84,6 @@ function updateMenuName( id ){
 }
 
 function handleFileSelect(evt, id) {
-
     var files = evt.target.files; // FileList object
 
     // Loop through the FileList and render image files as thumbnails.
@@ -111,7 +110,7 @@ function handleFileSelect(evt, id) {
     }
 
 }
-//document.getElementById('categoryBackground1').addEventListener('change', function(evt){ handleFileSelect(evt, 1) }, false);
+//document.getElementById('categoryBackground' + numPanels).addEventListener('change', function(evt){ handleFileSelect(evt, numPanels) }, false);
 
 function updateBackground( id, c_img ) {
 
@@ -232,13 +231,14 @@ function generic_settings(id){
     $("#parallaxSettings" +id).toggleClass('parallax-settings');
     var c_name = $("#mainparallax" + id).attr("c_name");
     $("#categoryName" + id).val(c_name);
+    id_stuff = id;
     resetFlags();
 
 }
 
 function deleteCategory( id ){
     var element = 1;
-
+  
     $('.panels').find('#mainparallax' + id).remove();
     $('.nav-menu-list').find('li').each(function(){
 

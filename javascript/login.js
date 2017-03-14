@@ -6,7 +6,7 @@ $(document).ready(function(){
       var username = $("#username").val();
       var password = $("#password").val();
       var loginData = {"message": "login", "username": username, "password": password}
-
+      console.log(username + " " + password);
       request = $.ajax({
           url: "php/login.php",
           type: "POST",
@@ -19,9 +19,9 @@ $(document).ready(function(){
             window.location.href = "index.html";
           }else if(user_info.can_login == "no"){
             alert("Wrong username or password. Try again or make an account below.");
-	    $("#username").val("");
-	    $("#password").val("");
-	    $("#username").focus();
+      	    $("#username").val("");
+      	    $("#password").val("");
+      	    $("#username").focus();
           }else{
             alert("Database issue: " + user_info.error);
           }

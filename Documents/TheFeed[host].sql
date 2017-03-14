@@ -22,7 +22,6 @@ CREATE TABLE `accounts` (
   UNIQUE KEY `username` (`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-INSERT INTO `thefeed`.`accounts` (`username`, `password`, `first_name`, `y_id`) VALUES ('dctu@ucsd.edu', 'WTF110lecture', 'David', 'UCsWFLT73oruDCILtslNbaVQ');
 --
 -- Table structure for table `categories`
 --
@@ -37,11 +36,6 @@ CREATE TABLE `categories` (
   PRIMARY KEY (`c_id`),
   UNIQUE KEY `c_id` (`c_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-
-INSERT INTO `thefeed`.`categories` (`c_id`, `username`, `c_name`, `img`, `organized`) VALUES (1, 'dctu@ucsd.edu', 'Development', 'http://thef33d.me/bg_images/dctu@ucsd.edu/Lunar1.jpg', 'a-z:A-Z');
-INSERT INTO `thefeed`.`categories` (`c_id`, `username`, `c_name`, `img`, `organized`) VALUES (2, 'dctu@ucsd.edu', 'Disney', 'http://thef33d.me/bg_images/dctu@ucsd.edu/snowy-mointain.jpg', 'a-z:A-Z');
-INSERT INTO `thefeed`.`categories` (`c_id`, `username`, `c_name`, `img`, `organized`) VALUES (3, 'dctu@ucsd.edu', 'Math', 'http://thef33d.me/bg_images/dctu@ucsd.edu/rainforest.jpg', 'a-z:A-Z');
 
 --
 -- Table structure for table `pinterest_subs`
@@ -84,9 +78,3 @@ CREATE TABLE `y_subs` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-INSERT INTO `thefeed`.`y_subs` (`sub_name`, `sub_id`, `c_id`) VALUES ('YouTube for Developers', 'UCtVd0c0tGXuTSbU5d8cSBUg', '1');
-INSERT INTO `thefeed`.`y_subs` (`sub_name`, `sub_id`, `c_id`) VALUES ('DisneyMusicVEVO', 'UCgwv23FVv3lqh567yagXfNg', '2');
-INSERT INTO `thefeed`.`y_subs` (`sub_name`, `sub_id`, `c_id`) VALUES ('Mathematics - Topic', 'UCT4-UAcRfvBtO76gX2vexpA', '3');
-INSERT INTO `thefeed`.`y_subs` (`sub_name`, `sub_id`, `c_id`) VALUES ('Numberphile', 'UCoxcjq-8xIDTYp3uz647V5A', '3');
-

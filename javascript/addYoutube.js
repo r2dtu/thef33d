@@ -99,10 +99,10 @@ function addReddit( link, num, numPanel ){
 
     //document.write( '<li class="reddit-card"><script src="https://www.reddit.com/r/'+link+'.embed?limit=2&sort=new" type="text/javascript"></script></li>' );
 
-    $('#mainparallax' + numPanel + '-reddit').append('<li class="reddit-card" id="reddit'+num+'"><div class="reddit-card"><div class="reddit-frame"><h1 class="sub-reddit">'+link+'</h1><img class="reddit-alien" src="/CSS/img/reddit-alien.jpg"/></div></div></li>');
+    $('#mainparallax' + numPanel + '-reddit').append('<li class="reddit'+num+'"><div class="reddit-frame"><h1 class="sub-reddit"><a href="https://www.reddit.com/r/'+link+'/">'+link+'</a></h1><img class="reddit-alien" src="/CSS/img/reddit-alien.jpg"/></div></li>');
 
-    $('#reddit' + num).css( 'top', '78%' );
-    $('#reddit' + num).css( 'left', ((num*20) + 12.5) + '%' );
+    $('.reddit'+num).css( 'top', '78%' );
+    $('.reddit'+num).css( 'left', ((num*20) + 12.5) + '%' );
 
 }
 
