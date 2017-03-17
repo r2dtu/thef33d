@@ -1,8 +1,10 @@
 var greddit;
 $(document).ready(function(){
     // Check if reddit account is linked.
-    const clientId = "V5gDAsfre7yTWg";
-    const clientSecret = "1-BXkiGXxLuENy3tPpU1aRizwN4";
+    const clientId = "8-kkjNXlTfpV0Q";
+    const clientSecret = "J6W5Y5UgCiJssMxapEGtsIX4Ebk";
+//    const clientId = "V5gDAsfre7yTWg";
+//    const clientSecret = "1-BXkiGXxLuENy3tPpU1aRizwN4";
     var promiseLinked = redditLink();
     var refresh;
 
@@ -77,7 +79,7 @@ function redditLink(){
 	    }
         });
         request.fail(function (jqXHR, textStatus, errorThrown){
-            console.log(errorThrown);
+            console.log("BAD" + errorThrown);
             reject();
         });
     });
@@ -168,3 +170,4 @@ function getSubs(reddit){
   });
   return promise;
 }
+
