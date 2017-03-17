@@ -33,14 +33,7 @@ pinList3 = [
 
 ];
 
-// redditList = [
-//
-//     'funny',
-//     'worldnews',
-//     'gaming',
-//     'AskReddit'
-//
-// ];
+redditList = [[]];
 
 var master_name;
 
@@ -84,7 +77,6 @@ $(document).ready(function() {
       if (response) {
         var panel = 1;
         var parsed_data = JSON.parse(response);
-        console.log(parsed_data);
         for (var c_id in parsed_data) {
           youtubeList[panel] = [];
           if (c_id == "username") continue;
@@ -112,13 +104,14 @@ $(document).ready(function() {
 
     request2.done(function (response, textStatus, jqXHR) {
       var parse = JSON.parse(response);
-    	var userDisplay = 1;
+    	var panel = 1;
       for (var c_id in parse) {
-    	  var r_subs = [];
+    	  redditList[panel] = [];
     	  for (var r_sub in parse[c_id]["r_subs"]) {
-          r_subs.push(parse[c_id]["r_subs"][r_sub]);
+          redditList[panel].push(parse[c_id]["r_subs"][r_sub]);
     	  }
-        addRedditList( r_subs , userDisplay++ );
+        addRListFirst(redditList[panel], panel);
+        panel += 1;
       }
     });
       request2.fail(function (jqXHR, textStatus, errorThrown) {
