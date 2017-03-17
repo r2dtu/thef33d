@@ -1,15 +1,15 @@
 .reddit-post {
-    
+
     text-decoration: none;
     font-size: 1.7em;
     font-family: 'Ubuntu', sans-serif;
     color: white;
-    
+
 }
 .reddit-card {
     position: absolute;
-    top: 30%;
-    left: 20%;
+/*    top: 76%;
+    left: 12%;*/
 }
 
 .sub-reddit {
@@ -17,6 +17,11 @@
     font-size: 1.7em;
     font-family: 'Ubuntu', sans-serif;
     color: white;
+}
+
+.sub-reddit a {
+  color: white;
+  text-decoration: none;
 }
 
 .reddit-frame {

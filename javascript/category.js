@@ -8,21 +8,16 @@ function saveCategorySettings(id) {
   var category_data = {};
 
 
-  if(c_newname == ""){
+  if (c_newname == "") {
     alert("Please enter a category name");
     return;
   }
 
-  if(c_newname == c_oldname){
+  if (c_newname == c_oldname) {
     name = false;
   }
 
-  // if(name == "false" && !background){
-  //   alert("You did not adjust any settings");
-  //   return;
-  // }
-
-  if(background){
+  if (background) {
     var fileSelect = document.getElementById('categoryBackground'+id);
     var file = fileSelect.files[0];
     var fileData = new FormData();
@@ -37,32 +32,29 @@ function saveCategorySettings(id) {
   }
 
   var subs = {};
-
   $('#subs' + id).find('input').each(function () {
     if (this.type == "checkbox" && this.checked == true) {
       subs[this.name] = this.value;
     }
   });
-
-  console.log(subs);
   category_data["subs"] = subs;
 
   if (background) {
     var filename = document.getElementById('categoryBackground'+id).files[0]["name"];
-    category_data["c_img"] = "http://localhost/bg_images/dctu@ucsd.edu/" + filename; // TODO Change
+    category_data["c_img"] = "http://" + window.location.hostname + "/bg_images/" + master_name + "/" + filename;
   }
 
 
-  if(c_id == ""){ //CREATE CATEGORY
+  if (c_id == "") { //CREATE CATEGORY
 
     category_data["message"] = "create";
     category_data["c_newname"] = c_newname;
 
-  }else{ //UPDATE CATEGORY
+  } else { //UPDATE CATEGORY
 
     category_data["message"] = "update";
     category_data["c_id"] = c_id;
-    if(name == "true"){
+    if (name == "true") {
       category_data["c_newname"] = c_newname;
     }
   }
@@ -87,35 +79,42 @@ function saveCategorySettings(id) {
     data: category_data
   });
 
-  request.done(function (response, textStatus, jqXHR){
+  request.done(function (response, textStatus, jqXHR) {
 
     var response = JSON.parse(response);
 
-    if(response["can_update_or_create"] == "yes"){
+    if (response["can_update_or_create"] == "yes") {
+      if (c_id == "") {
+        c_id = response["c_id"];
+      }
+      updateSettings(id);
+      parallax.attr({"c_id" : c_id});
+      parallax.attr({"c_name" : c_newname});
+    }
+    else if (response["can_update_or_create"] == "no") {
+      alert("You already have a category with named \"" + c_newname + "\". Please pick another name.");
+    }
+    else {
       if(c_id == ""){
         c_id = response["c_id"];
       }
       updateSettings(id);
       parallax.attr({"c_id" : c_id});
       parallax.attr({"c_name" : c_newname});
-
-    }else if(response["can_update_or_create"] == "no"){
-
-      alert("You already have a category with named \"" + c_newname + "\". Please pick another name.");
     }
   });
 
-  request.fail(function (jqXHR, textStatus, errorThrown){
+  request.fail(function (jqXHR, textStatus, errorThrown) {
     alert("HTTPRequest: " + textStatus + " " + errorThrown);
   });
 }
 
 
-function deletePanel(id){
+function deletePanel(id) {
   var parallax = $('#mainparallax' + id);
   var c_id = parallax.attr("c_id");
 
-  if(c_id != ""){
+  if (c_id != "") {
 
     var request = $.ajax({
         url: "php/category.php",
@@ -130,7 +129,7 @@ function deletePanel(id){
 
 }
 
-function displayCheckMarks(id, c_id, table){
+function displayCheckMarks(id, c_id, table) {
 
   var sub_names = [];
 
@@ -149,12 +148,12 @@ function displayCheckMarks(id, c_id, table){
     data: sub_name_data
   });
 
-  request.done(function (response, textStatus, jqXHR){
+  request.done(function (response, textStatus, jqXHR) {
     alert(response);
     return;
     var response = JSON.parse(response);
 
-    for(var i in response){
+    for(var i in response) {
 
       var sub_name = response[i];
       var checkbox = sublist.children('name=' + sub_name + ']');
@@ -163,7 +162,7 @@ function displayCheckMarks(id, c_id, table){
 
   });
 
-  request.fail(function (jqXHR, textStatus, errorThrown){
+  request.fail(function (jqXHR, textStatus, errorThrown) {
     alert("HTTPRequest: " + textStatus + " " + errorThrown);
   });
 
