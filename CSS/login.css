@@ -21,7 +21,7 @@ html, body {
 #logo{
   float: right;
   margin-right: 15%;
-  margin-top: -8%;
+  margin-top: -8%; /*-150px*/
 }
 
 

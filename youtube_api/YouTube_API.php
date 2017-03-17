@@ -7,11 +7,6 @@ include '../php/error.php';
 
 session_start();
 
-if (!isset($_SESSION["username"])) {
-  echo 'http://' . $_SERVER['HTTP_HOST'] . '/login.html';
-  exit();
-}
-
 // We will be using YouTube's Data API
 $SCOPES = 'https://www.googleapis.com/auth/youtube';
 
@@ -33,70 +28,79 @@ $youtube = new Google_Service_YouTube($client);
 
 // Check if an auth token exists for the required scopes
 $tokenSessionKey = 'token-' . $client->prepareScopes();
-
-try {
-
-  // Set access token if we've retrieved one from authenticate()
-  if (isset($_SESSION[$tokenSessionKey])) {
-    $client->setAccessToken($_SESSION[$tokenSessionKey]);
-  }
-
-  // Check to ensure that the access token was successfully acquired.
-  if ($client->getAccessToken()) {
-
-      if($client->isAccessTokenExpired()) {
-        $conn = new PDO("mysql:host=localhost;dbname=thefeed", root, WTF110lecture);
-        $username = $_SESSION['username'];
-        $result = $conn->query("SELECT y_rtoken FROM accounts WHERE username='$username'")->fetch(PDO::FETCH_ASSOC);
-
-        if ($result["y_rtoken"] !== null) {
-            $refreshToken = $result["y_rtoken"];
-            $client->authenticate($refreshToken);
-            $_SESSION[$tokenSessionKey] = $client->getAccessToken();
-        }
-      }
-
-      try {
-          $result = array();
-          switch ($_POST["action"]) {
-            case "getSubs":
-              $result = getSubscriptions(getChannelIdFromDB());
-              break;
-            case "getVids":
-              $json = $_POST["sql_data"];
-              foreach($json as $c_id => $c_data) {
-                foreach ($c_data["y_subs"] as $sub_id) {
-                  $tmp_links = getChannelVideos($sub_id);
-                  $y_links = array();
-                  foreach($tmp_links as $y_link){
-                    array_push($y_links, $y_link);
-                  }
-                }
-                $result[$c_id]["y_links"] = $y_links;
-              }
-              break;
-            default:
-              break;
-          }
-
-          echo json_encode($result);
-
-      } catch (Google_Service_Exception $e) {
-        $htmlBody .= sprintf('<p>A service error occurred: <code>%s</code></p>', htmlspecialchars($e->getMessage()));
-      } catch (Google_Exception $e) {
-        $htmlBody .= sprintf('<p>An client error occurred: <code>%s</code></p>', htmlspecialchars($e->getMessage()));
-      }
-
-      // Update the access token
-      $_SESSION[$tokenSessionKey] = $client->getAccessToken();
-      exit();
-
-  }
-
-} catch (PDOException $e) {
-  echo ("Database error");
-  exit();
+if (isset($_GET['code'])) {
+    if (strval($_SESSION['state']) !== strval($_GET['state'])) {
+        die('The session state did not match.');
+    }
+    $client->authenticate($_GET['code']);
+    $_SESSION[$tokenSessionKey] = $client->getAccessToken();
+    echo $redirectURL;
 }
+
+// Set access token if we've retrieved one from authenticate()
+if (isset($_SESSION[$tokenSessionKey])) {
+  $client->setAccessToken($_SESSION[$tokenSessionKey]);
+}
+
+// Check to ensure that the access token was successfully acquired.
+if ($client->getAccessToken()) {
+
+    if($client->isAccessTokenExpired()) {
+        $state = mt_rand();
+        $client->setState($state);
+        $_SESSION['state'] = $state;
+        $authUrl = $client->createAuthUrl();
+        echo $authUrl;
+    } else {
+
+        try {
+            $result = array();
+            switch ($_POST["action"]) {
+                case "getSubs":
+                    $result = getSubscriptions(getChannelIdFromDB());
+                    break;
+                case "getVids":
+                    $json = $_POST["sql_data"];
+                    foreach($json as $c_id => $c_data){
+                      foreach ($c_data["y_subs"] as $sub_id) {
+                       $tmp_links = getChannelVideos($sub_id);
+                       $y_links = array();
+                       foreach($tmp_links as $y_link){
+                         array_push($y_links, $y_link);
+                       }
+                     }
+                     $result[$c_id]["y_links"] = $y_links;
+                    }
+
+                    break;
+                default:
+                    break;
+            }
+
+            echo json_encode($result);
+
+        } catch (Google_Service_Exception $e) {
+            $htmlBody .= sprintf('<p>A service error occurred: <code>%s</code></p>', htmlspecialchars($e->getMessage()));
+        } catch (Google_Exception $e) {
+            $htmlBody .= sprintf('<p>An client error occurred: <code>%s</code></p>', htmlspecialchars($e->getMessage()));
+        }
+
+        // Update the access token
+        $_SESSION[$tokenSessionKey] = $client->getAccessToken();
+        exit();
+    }
+} else {
+
+     // If the user has not authorized the application, start the OAuth 2.0 flow.
+     //$state = mt_rand();
+     //$client->setState($state);
+     //$_SESSION['state'] = $state;
+    //
+     //$authUrl = $client->createAuthUrl();
+     //echo $authUrl;
+
+}
+
 
 function getChannelId() {
     global $youtube;

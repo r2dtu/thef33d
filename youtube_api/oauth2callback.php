@@ -21,23 +21,15 @@ $client->addScope(Google_Service_Youtube::YOUTUBEPARTNER);
 // If we haven't yet received auth code from a session, call Google's Auth URL creator
 if (! isset($_GET['code'])) {
     $auth_url = $client->createAuthUrl();
-    echo "GET CODE IS NOT SET";
-    echo $auth_url;
-    //header('Location: ' . filter_var($auth_url, FILTER_SANITIZE_URL));
+    header('Location: ' . filter_var($auth_url, FILTER_SANITIZE_URL));
 }
 
 // Otherwise, we can exchange it for an access token, and redirect to the main site (if logged in)
 else {
     $client->authenticate($_GET['code']);
     $_SESSION['youtube_access_token'] = $client->getAccessToken();
-    $_SESSION['youtube_refresh_token'] = $client->getRefreshToken();
     $redirect_uri = 'http://' . $_SERVER['HTTP_HOST'] . '/';
-    echo "GET CODE IS SET IN OAUTH2";
-    echo $_GET['code'];
-    echo $client->getAccessToken();
-    echo $client->getRefreshToken();
-    echo $redirect_uri;
-    //header('Location: ' . filter_var($redirect_uri, FILTER_SANITIZE_URL));
+    header('Location: ' . filter_var($redirect_uri, FILTER_SANITIZE_URL));
 }
 
 ?>
