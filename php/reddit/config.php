@@ -5,7 +5,7 @@ class redditConfig{
     static $ENDPOINT_OAUTH = 'https://oauth.reddit.com';
     static $ENDPOINT_OAUTH_AUTHORIZE = 'https://www.reddit.com/api/v1/authorize';
     static $ENDPOINT_OAUTH_TOKEN = 'https://www.reddit.com/api/v1/access_token';
-    static $ENDPOINT_OAUTH_REDIRECT = "http://thef33d.me/callback/try.php";
+    static $ENDPOINT_OAUTH_REDIRECT = "http://localhost/callback/try.php";
     // can't use "http://" . $_SERVER['HTTP_HOST'] . " here, since it's static
 
     //access token configuration from https://ssl.reddit.com/prefs/apps
