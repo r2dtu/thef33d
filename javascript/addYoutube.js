@@ -119,14 +119,14 @@ function shiftLeft( social, numPanel ){
         pinIndexStart -= 3;
         pinIndexEnd -= 3;
         removeChildren('pin', numPanel);
-        addPinList( pinList, numPanel );
+        addPinList( pListRef[numPanel - 1], numPanel );
     }
 
     if(social == 3 && redditIndexStart != 0) {
         redditIndexStart -= 3;
         redditIndexEnd -= 3;
         removeChildren('reddit', numPanel);
-        addRedditList( redditList, numPanel );
+        addRedditList( rListRef[numPanel - 1], numPanel );
     }
 }
 
@@ -136,22 +136,22 @@ function shiftRight( social, numPanel ){
     var c_id = $parallax.attr("c_id");
 
     if( social == 1 && !(youtubeIndexEnd >= yListRef[numPanel - 1].length) ){
-        youtubeIndexStart += 3;
-        youtubeIndexEnd += 3;
+        youtubeIndexStart += 4;
+        youtubeIndexEnd += 4;
         removeChildren('youtube', numPanel);
         addYoutubeList( yListRef[numPanel - 1], numPanel );
     }
 
     if( social == 2 && !(pinIndexEnd >= pListRef[numPanel - 1].length) ){
-        pinIndexStart += 3;
-        pinIndexEnd += 3;
+        pinIndexStart += 4;
+        pinIndexEnd += 4;
         removeChildren('pin', numPanel);
         addPinList( pListRef[numPanel - 1], numPanel );
     }
 
     if( social == 3 && !(redditIndexEnd >= rListRef[numPanel - 1].length) ){
-        redditIndexStart += 3;
-        redditIndexEnd += 3;
+        redditIndexStart += 4;
+        redditIndexEnd += 4;
         removeChildren('reddit', numPanel);
         addRedditList( rListRef[numPanel - 1], numPanel );
     }
