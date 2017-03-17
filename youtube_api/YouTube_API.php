@@ -92,6 +92,26 @@ try {
       exit();
 
   }
+  else {
+    $conn = new PDO("mysql:host=localhost;dbname=thefeed", root, WTF110lecture);
+    $username = $_SESSION['username'];
+    $result = $conn->query("SELECT y_rtoken FROM accounts WHERE username='$username'")->fetch(PDO::FETCH_ASSOC);
+
+    if ($result["y_rtoken"] !== null) {
+        $refreshToken = $result["y_rtoken"];
+        $client->authenticate($refreshToken);
+        $_SESSION[$tokenSessionKey] = $client->getAccessToken();
+        $client->setAccessToken($_SESSION[$tokenSessionKey]);
+    } else {
+      $state = mt_rand();
+      $client->setState($state);
+      $_SESSION['state'] = $state;
+
+      $authUrl = $client->createAuthUrl();
+
+      header('Location: ' . $authUrl);
+    }
+  }
 
 } catch (PDOException $e) {
   echo ("Database error");

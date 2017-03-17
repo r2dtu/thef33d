@@ -1,5 +1,4 @@
 function saveCategorySettings(id) {
-
   var parallax = $('#mainparallax' + id);
   var c_id = parallax.attr("c_id");
   var c_newname = $("#categoryName" + id).val();
@@ -7,8 +6,7 @@ function saveCategorySettings(id) {
 
   var category_data = {};
 
-
-  if (c_newname == "") {
+  if(c_newname == ""){
     alert("Please enter a category name");
     return;
   }
@@ -122,7 +120,6 @@ function deletePanel(id) {
 	data: {"message" : "deleteCategory", "c_id" : c_id}
     });
 
-
   }
 
   deleteCategory(id);
@@ -134,14 +131,16 @@ function displayCheckMarks(id, c_id, table) {
   var sub_names = [];
 
   var sublist = $("#subs" + id);
+  console.log(sublist);
   sublist.find('input').each(function () {
+    console.log(this.type);
     if (this.type == "checkbox") {
       sub_names.push(this.name);
     }
   });
 
   var sub_name_data = {"message" : "subsInCat", "sub_names" : sub_names, "c_id" : c_id, "table" : table}
-
+  console.log(sub_names);
   var request = $.ajax({
     url: "php/category.php",
     type: "POST",
@@ -149,15 +148,12 @@ function displayCheckMarks(id, c_id, table) {
   });
 
   request.done(function (response, textStatus, jqXHR) {
-    alert(response);
-    return;
     var response = JSON.parse(response);
 
     for(var i in response) {
-
       var sub_name = response[i];
-      var checkbox = sublist.children('name=' + sub_name + ']');
-      checkbox.toggle('click');
+      var checkbox = sublist.children('[name=' + sub_name + ']');
+      checkbox.toggle('checked');
     }
 
   });

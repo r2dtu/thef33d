@@ -39,6 +39,8 @@ $client->setClientSecret($OAUTH2_CLIENT_SECRET);
 $client->setScopes($SCOPES);
 $redirectURL = filter_var('http://' . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF'], FILTER_SANITIZE_URL);
 $client->setRedirectUri($redirectURL);
+$client->setAccessType('offline');
+$client->setApprovalPrompt('force');
 
 // Define an object that will be used to make all API requests.
 $youtube = new Google_Service_YouTube($client);
@@ -49,9 +51,9 @@ if (isset($_GET['code'])) {
     if (strval($_SESSION['state']) !== strval($_GET['state'])) {
         die('The session state did not match.');
     }
-    $refreshToken = $_GET['code'];
-    $client->authenticate($refreshToken);
+    $client->authenticate($_GET['code']);
     $_SESSION[$tokenSessionKey] = $client->getAccessToken();
+    $refreshToken = $client->getRefreshToken();
 
     // Store refresh token in database
     try {

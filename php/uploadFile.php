@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 if($_FILES['bg_image']['name']) {
 
 	if(!$_FILES['bg_image']['error']) {

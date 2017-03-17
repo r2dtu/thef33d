@@ -2,10 +2,10 @@
 var numPanels = 0;
 
 function createNewParallax (c_id, c_name, c_img) {
-  numPanels = numPanels + 1;
 
   var $panels = $('.panels');
   var $navList = $('.nav-menu-list');
+  numPanels = numPanels + 1;
 
   var embed = '<div id="embedded'+numPanels+'" class="embedded">' +
                     '<h1 id="leftScrollYoutube' + numPanels + '" class="leftScrollYoutube" onmouseover="growLeft( 1, ' + numPanels + ' )" onmouseout="shrinkLeft(1, ' + numPanels + ')" onclick="shiftLeft(1, ' + numPanels + ')">&lt;</h1>' +

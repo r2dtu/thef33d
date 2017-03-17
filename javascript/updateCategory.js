@@ -86,7 +86,7 @@ function adjustSize( id, size ) {
 
 }
 
-function displayYouTubeSubs( id ) {
+function displayYouTubeSubs( id, c_id ) {
 
     var subs = $('#subs' + id);
 
@@ -104,6 +104,7 @@ function displayYouTubeSubs( id ) {
             subs.append(
                 '<input type="checkbox" name="' + sub_name + '" value="' + sub_data[sub_name] + '"> ' + sub_name + ' <br>');
         }
+        displayCheckMarks(id, c_id, "y_subs");
     });
 
     // Callback handler that will be called on failure
@@ -129,8 +130,7 @@ function updateSubs( id ) {
     var social = e.options[e.selectedIndex].value;
 
     if ( social == 'YouTube' ) {
-      displayYouTubeSubs( id );
-      displayCheckMarks(id, c_id, "y_subs");
+      displayYouTubeSubs( id, c_id );
     } else if ( social == 'Pinterest' ) {
       alert("Pinterest");
       displayCheckMarks(id, c_id, "p_subs");
@@ -156,6 +156,7 @@ function generic_settings(id) {
     $("#parallaxSettings" +id).toggleClass('parallax-settings');
     var c_name = $("#mainparallax" + id).attr("c_name");
     $("#categoryName" + id).val(c_name);
+    id_stuff = id;
     resetFlags();
 
 }
