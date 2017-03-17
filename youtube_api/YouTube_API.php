@@ -55,7 +55,6 @@ try {
             $_SESSION[$tokenSessionKey] = $client->getAccessToken();
         }
       }
-
       try {
           $result = array();
           switch ($_POST["action"]) {
@@ -99,7 +98,7 @@ try {
 
     if ($result["y_rtoken"] !== null) {
         $refreshToken = $result["y_rtoken"];
-        $client->authenticate($refreshToken);
+        $client->refreshToken($refreshToken);
         $_SESSION[$tokenSessionKey] = $client->getAccessToken();
         $client->setAccessToken($_SESSION[$tokenSessionKey]);
     } else {
