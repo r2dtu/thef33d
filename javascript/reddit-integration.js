@@ -39,12 +39,11 @@ function displayRedditSubs( id ) {
 	subBox.css({'width': '350px', 'height': '400px', 'overflow-y': 'scroll'});
 	var subsPromise = getSubs(greddit);
 	subsPromise.then(function(subs){
-		console.log(subs);
 		for(var i = 0; i < subs.length; i++){
-			console.log(subs[i]);
 			subBox.append(
 			'<input type="checkbox" value="0" name="' + subs[i] + '"> ' + subs[i] + ' <br>');
 		}
+    displayCheckMarks(id, c_id, "r_subs");
 	})
 	.catch(function(error){
 		alert("You need to reauthorize your Reddit account. Please quit and try again.");
@@ -68,7 +67,6 @@ function redditLink(){
             data: message
         });
         request.done(function (response, textStatus, jqXHR){
-            console.log(response);
 	    var decoded = JSON.parse(response);
 	    var rtoken = decoded.rtoken.r_rtoken;
 	    if(rtoken === null || rtoken === "" || rtoken === false){
@@ -79,7 +77,6 @@ function redditLink(){
 	    }
         });
         request.fail(function (jqXHR, textStatus, errorThrown){
-            console.log("BAD" + errorThrown);
             reject();
         });
     });
@@ -157,7 +154,6 @@ function getSubs(reddit){
             for(var i = 0; i < subredditAll.length; i++){
               subredditNames[i] = subredditAll[i].display_name;
             }
-            console.log(subredditNames);
             resolve(subredditNames);
         })
         .catch(function(error){
@@ -170,4 +166,3 @@ function getSubs(reddit){
   });
   return promise;
 }
-
