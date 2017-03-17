@@ -19,7 +19,7 @@
     $gClient->setClientSecret($clientSecret);
     $gClient->setRedirectUri($redirectURL);
     $gClient->setAccessType('offline');
-    $gClient->setApprovalPrompt('force');
+    //$gClient->setApprovalPrompt('force');
 
 
     // Call Google's OAuth 2.0

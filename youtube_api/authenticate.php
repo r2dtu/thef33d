@@ -40,7 +40,7 @@ $client->setScopes($SCOPES);
 $redirectURL = filter_var('http://' . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF'], FILTER_SANITIZE_URL);
 $client->setRedirectUri($redirectURL);
 $client->setAccessType('offline');
-$client->setApprovalPrompt('force');
+//$client->setApprovalPrompt('force');
 
 // Define an object that will be used to make all API requests.
 $youtube = new Google_Service_YouTube($client);
@@ -157,7 +157,16 @@ if ($client->getAccessToken()) {
 
 } else {
 
-    // If the user has not authorized the application, start the OAuth 2.0 flow.
+  $conn = new PDO("mysql:host=localhost;dbname=thefeed", root, WTF110lecture);
+  $username = $_SESSION['username'];
+  $result = $conn->query("SELECT y_rtoken FROM accounts WHERE username='$username'")->fetch(PDO::FETCH_ASSOC);
+
+  if ($result["y_rtoken"] !== null) {
+      $refreshToken = $result["y_rtoken"];
+      $client->refreshToken($refreshToken);
+      $_SESSION[$tokenSessionKey] = $client->getAccessToken();
+      $client->setAccessToken($_SESSION[$tokenSessionKey]);
+  } else {
     $state = mt_rand();
     $client->setState($state);
     $_SESSION['state'] = $state;
@@ -165,5 +174,6 @@ if ($client->getAccessToken()) {
     $authUrl = $client->createAuthUrl();
 
     header('Location: ' . $authUrl);
+  }
 }
 ?>

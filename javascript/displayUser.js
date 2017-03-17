@@ -1,4 +1,4 @@
-youtubeList = [];
+youtubeList = [[]];
 pinList = [
 
     'https://www.pinterest.com/makeuseof/gaming/',
@@ -33,14 +33,14 @@ pinList3 = [
 
 ];
 
-redditList = [
-
-    'funny',
-    'worldnews',
-    'gaming',
-    'AskReddit'
-
-];
+// redditList = [
+//
+//     'funny',
+//     'worldnews',
+//     'gaming',
+//     'AskReddit'
+//
+// ];
 
 var master_name;
 
@@ -82,14 +82,18 @@ $(document).ready(function() {
         location.href = response;
       }
       if (response) {
-        var i = 0;
+        var panel = 1;
         var parsed_data = JSON.parse(response);
+        console.log(parsed_data);
         for (var c_id in parsed_data) {
-          youtubeList.push(parsed_data[c_id]["y_links"]);
-          if (youtubeList[i]) {
-            addYoutubeList(youtubeList[i], i + 1);
+          youtubeList[panel] = [];
+          if (c_id == "username") continue;
+          for (var link in parsed_data[c_id]["y_links"]) {
+            youtubeList[panel].push(parsed_data[c_id]["y_links"][link]);
           }
-          i += 1;
+          shuffle(youtubeList[panel]);
+          addYListFirst(youtubeList[panel], panel);
+          panel += 1;
         }
       }
     });
@@ -147,6 +151,25 @@ function addUserInfo() {
   });
   request.fail(function (jqXHR, textStatus, errorThrown) {
   });
+}
+
+function shuffle(array) {
+  var currentIndex = array.length, temporaryValue, randomIndex;
+
+  // While there remain elements to shuffle...
+  while (0 !== currentIndex) {
+
+    // Pick a remaining element...
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+
+    // And swap it with the current element.
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
+  }
+
+  return array;
 }
 
 function printData(c_data) {

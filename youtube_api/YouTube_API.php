@@ -36,9 +36,15 @@ $tokenSessionKey = 'token-' . $client->prepareScopes();
 
 try {
 
-  // Set access token if we've retrieved one from authenticate()
-  if (isset($_SESSION[$tokenSessionKey])) {
-    $client->setAccessToken($_SESSION[$tokenSessionKey]);
+  $conn = new PDO("mysql:host=localhost;dbname=thefeed", root, WTF110lecture);
+  $username = $_SESSION['username'];
+  $result = $conn->query("SELECT y_rtoken FROM accounts WHERE username='$username'")->fetch(PDO::FETCH_ASSOC);
+
+  if ($result["y_rtoken"] !== null) {
+      $refreshToken = $result["y_rtoken"];
+      $client->refreshToken($refreshToken);
+      $_SESSION[$tokenSessionKey] = $client->getAccessToken();
+      $client->setAccessToken($_SESSION[$tokenSessionKey]);
   }
 
   // Check to ensure that the access token was successfully acquired.
@@ -64,9 +70,9 @@ try {
             case "getVids":
               $json = $_POST["sql_data"];
               foreach($json as $c_id => $c_data) {
+                $y_links = array();
                 foreach ($c_data["y_subs"] as $sub_id) {
                   $tmp_links = getChannelVideos($sub_id);
-                  $y_links = array();
                   foreach($tmp_links as $y_link){
                     array_push($y_links, $y_link);
                   }
@@ -92,24 +98,13 @@ try {
 
   }
   else {
-    $conn = new PDO("mysql:host=localhost;dbname=thefeed", root, WTF110lecture);
-    $username = $_SESSION['username'];
-    $result = $conn->query("SELECT y_rtoken FROM accounts WHERE username='$username'")->fetch(PDO::FETCH_ASSOC);
+    $state = mt_rand();
+    $client->setState($state);
+    $_SESSION['state'] = $state;
 
-    if ($result["y_rtoken"] !== null) {
-        $refreshToken = $result["y_rtoken"];
-        $client->refreshToken($refreshToken);
-        $_SESSION[$tokenSessionKey] = $client->getAccessToken();
-        $client->setAccessToken($_SESSION[$tokenSessionKey]);
-    } else {
-      $state = mt_rand();
-      $client->setState($state);
-      $_SESSION['state'] = $state;
+    $authUrl = $client->createAuthUrl();
 
-      $authUrl = $client->createAuthUrl();
-
-      header('Location: ' . $authUrl);
-    }
+    header('Location: ' . $authUrl);
   }
 
 } catch (PDOException $e) {
@@ -139,13 +134,24 @@ function getChannelIdFromDB() {
 function getSubscriptions($channel_id) {
     global $youtube;
 
-    $response = $youtube->subscriptions->listSubscriptions('snippet', array('channelId' => $channel_id));
+    $response = $youtube->subscriptions->listSubscriptions('snippet', array('channelId' => $channel_id, 'maxResults' => '50'));
     $subscriptions = $response->getItems();
     foreach ($subscriptions as $subscription_channel) {
 
         $cid = $subscription_channel->getSnippet()->getResourceId()->getChannelId();
         $subs[$subscription_channel->getSnippet()->getTitle()] = $cid;
     }
+    // $nextPageToken = $response->getNextPageToken();
+    // while ($nextPageToken !== "") {
+    //   $response1 = $youtube->subscriptions->listSubscriptions('snippet', array('channelId' => $channel_id, 'pageToken' => '$nextPageToken'));
+    //   $subscriptions = $response1->getItems();
+    //   foreach ($subscriptions as $subscription_channel) {
+    //
+    //       $cid = $subscription_channel->getSnippet()->getResourceId()->getChannelId();
+    //       $subs[$subscription_channel->getSnippet()->getTitle()] = $cid;
+    //   }
+    //   $nextPageToken = $response1->getNextPageToken();
+    // }
 
     return $subs;
 }
@@ -165,7 +171,7 @@ function getChannelVideos($channel_id) { // TODO add sorting
         // Grab the upload channel id
         $upload_id = $channel->getContentDetails()->getRelatedPlaylists()->getUploads();
         // Grab the videos from playlistItems
-        $videos_response = $youtube->playlistItems->listPlaylistItems('snippet', array('playlistId' => $upload_id, 'maxResults' => '50'));
+        $videos_response = $youtube->playlistItems->listPlaylistItems('snippet', array('playlistId' => $upload_id, 'maxResults' => '15'));
         $videos = $videos_response->getItems();
 
         // @TODO get nextPageToken and prevPageToken (use as input to $parts)

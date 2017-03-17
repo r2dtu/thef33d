@@ -89,7 +89,7 @@ function adjustSize( id, size ) {
 function displayYouTubeSubs( id, c_id ) {
 
     var subs = $('#subs' + id);
-
+    subs.css({'width': '500px', 'height': '400px', 'overflow-y': 'scroll'});
     var createData = {"action": "getSubs"};
     var request = $.ajax({
       url: "youtube_api/YouTube_API.php",
@@ -99,7 +99,8 @@ function displayYouTubeSubs( id, c_id ) {
 
     // Callback handler that will be called on success
     request.done(function (response, textStatus, jqXHR) {
-        var sub_data = JSON.parse(response);
+      console.log(response);
+var sub_data = JSON.parse(response);
         for (var sub_name in sub_data) {
             subs.append(
                 '<input type="checkbox" name="' + sub_name + '" value="' + sub_data[sub_name] + '"> ' + sub_name + ' <br>');
@@ -117,6 +118,7 @@ function displayYouTubeSubs( id, c_id ) {
 function removeSubs( id ) {
 
     $('#subs' + id).empty();
+    $('#subs' + id).append("<br> Subscriptions to Include: <br>");
 
 }
 
