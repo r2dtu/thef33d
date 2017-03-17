@@ -83,8 +83,8 @@ function addReddit( link, num, numPanel ) {
 
     $('#mainparallax' + numPanel + '-reddit').append('<li class="reddit'+num+'"><div class="reddit-frame"><h1 class="sub-reddit"><a href="https://www.reddit.com/r/'+link+'/">'+link+'</a></h1><img class="reddit-alien" src="/CSS/img/reddit-alien.jpg"/></div></li>');
 
-    $('#reddit' + num).css( 'top', '78%' );
-    $('#reddit' + num).css( 'left', ((num*20) + 12.5) + '%' );
+    $('.reddit'+num).css( 'top', '78%' );
+    $('.reddit'+num).css( 'left', ((num*20) + 12.5) + '%' );
 
 }
 

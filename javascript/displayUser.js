@@ -71,7 +71,6 @@ $(document).ready(function() {
 
     // Get YouTube subscriptions
     var actionData = {"action": "getVids", "sql_data": c_data};
-    console.log(c_data);
     var request = $.ajax({
         url: "youtube_api/YouTube_API.php",
         type: "POST",
@@ -101,6 +100,7 @@ $(document).ready(function() {
     // addPinList( pinList3, 3);
 
     // Get Reddit subscriptions
+
     var request2 = $.ajax({
         url: "php/displayUser.php",
         type: "POST"
@@ -108,7 +108,6 @@ $(document).ready(function() {
 
     request2.done(function (response, textStatus, jqXHR) {
       var parse = JSON.parse(response);
-      console.log(parse);
     	var userDisplay = 1;
       for (var c_id in parse) {
     	  var r_subs = [];
