@@ -124,15 +124,16 @@ $(document).ready(function() {
 }); //END OF $(document).ready
 
 function addUserInfo() {
+  console.log("Adding user info");
   var request = $.ajax({
     url: 'php/getUser.php',
     type: 'POST'
   });
   request.done(function (response, textStatus, jqXHR) {
-    var f_name = "";
     var parsed_data = JSON.parse(response);
+    var f_name = "";
     for (var name in parsed_data) {
-      f_name = name;
+      f_name = parsed_data[name]["first_name"];
     }
     var userPage = $('#userPage');
     var userInfo = '<h1 class="userHeader">Welcome, ' + f_name + '.</h1>' +
