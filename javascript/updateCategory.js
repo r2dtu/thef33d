@@ -137,8 +137,7 @@ function updateSubs( id ) {
       alert("Pinterest");
       displayCheckMarks(id, c_id, "p_subs");
     } else if ( social == 'Reddit') {
-      displayRedditSubs( id );
-      displayCheckMarks(id, c_id, "r_subs");
+      displayRedditSubs( id, c_id );
     }
 }
 
