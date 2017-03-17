@@ -149,8 +149,8 @@ function displayCheckMarks(id, c_id, table) {
 
     for(var i in response) {
       var sub_name = response[i];
-      var checkbox = sublist.children('[name=' + sub_name + ']');
-      checkbox.toggle('checked');
+      var checkbox = sublist.children('[name="' + sub_name + '"]');
+      checkbox.attr('checked', 'true');
     }
 
   });
