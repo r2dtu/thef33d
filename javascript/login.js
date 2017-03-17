@@ -1,7 +1,7 @@
-$(document).ready(function(){
+$(document).ready(function() {
 
     /***** LOG IN TO ACCOUNT *****/
-    $("#loginButton").click(function(){
+    $("#loginButton").click(function() {
 
       var username = $("#username").val();
       var password = $("#password").val();
@@ -13,22 +13,23 @@ $(document).ready(function(){
           data: loginData
       });
 
-      request.done(function (response, textStatus, jqXHR){
+      request.done(function (response, textStatus, jqXHR) {
           var user_info = JSON.parse(response);
-          if(user_info.can_login == "yes"){
+          if (user_info.can_login == "yes") {
             window.location.href = "index.html";
-          }else if(user_info.can_login == "no"){
+          } else if (user_info.can_login == "no") {
             alert("Wrong username or password. Try again or make an account below.");
       	    $("#username").val("");
       	    $("#password").val("");
       	    $("#username").focus();
-          }else{
+          } else if (user_info.can_login == "google") {
+            alert("You signed up with an e-mail linked to Google. Please sign-in using Google.");
+          } else {
             alert("Database issue: " + user_info.error);
           }
-          console.log(response);
       });
 
-      request.fail(function (jqXHR, textStatus, errorThrown){
+      request.fail(function (jqXHR, textStatus, errorThrown) {
           console.log(jqXHR);
           alert("HTTPRequest: " + textStatus + " " + errorThrown);
       });
@@ -36,7 +37,7 @@ $(document).ready(function(){
     });
 
     /***** SUBMIT ACCOUNT *****/
-    $("#submitAccount").click(function(){
+    $("#submitAccount").click(function() {
 
       var username = $("#emailInput").val();
       var password = $("#passwordInput").val();
@@ -44,7 +45,7 @@ $(document).ready(function(){
       var answer = $("#securityAnswer").val();
       var createData = {"message": "create_account", "username": username, "password": password, "security_question" : question, "security_answer" : answer}
 
-     if(username == "" || password == "" || answer == ""){
+     if (username == "" || password == "" || answer == "") {
        alert("Please enter values for all input fields");
        return;
      }
@@ -54,23 +55,24 @@ $(document).ready(function(){
           type: "POST",
           data: createData
       });
-      request.done(function (response, textStatus, jqXHR){
+      request.done(function (response, textStatus, jqXHR) {
+          console.log(response);
           var user_info = JSON.parse(response);
-          if(user_info.can_create == "yes"){
+          if (user_info.can_create == "yes") {
             window.location.href = "index.html";
-          }else if(user_info.can_create == "no"){
+          }else if (user_info.can_create == "no") {
             alert("Email already exists with a current account");
           }else{
             alert("Database issue: " + user_info["error"]);
           }
       });
 
-      request.fail(function (jqXHR, textStatus, errorThrown){
+      request.fail(function (jqXHR, textStatus, errorThrown) {
           alert("HTTPRequest: " + textStatus + " " + errorThrown);
       });
     });
 
-    $("#forgotSubmit").click(function(){
+    $("#forgotSubmit").click(function() {
       var email = $("#forgotEmail").val();
       var question = $("#forgotDropdown option:selected").text();
       var answer = $("#forgotAnswer").val();
@@ -81,16 +83,16 @@ $(document).ready(function(){
           type: "POST",
           data: forgottenData
       });
-      request.done(function (response, textStatus, jqXHR){
+      request.done(function (response, textStatus, jqXHR) {
           var response = JSON.parse(response);
-          if(response["display_password"] == "yes"){
+          if (response["display_password"] == "yes") {
             alert("Your password is: \"" + response["password"] + "\"");
           }else{
             alert("Incorrect email or security answer");
           }
       });
 
-      request.fail(function (jqXHR, textStatus, errorThrown){
+      request.fail(function (jqXHR, textStatus, errorThrown) {
           alert("HTTPRequest: " + textStatus + " " + errorThrown);
       });
 
@@ -98,7 +100,7 @@ $(document).ready(function(){
     });
 });
 /***** Slide the accountInfo div to the left and display the createAccount fields *****/
-function generic_slide(){
+function generic_slide() {
 
     $('#test').toggleClass('createAccountInfo-slide');
     $('#CreateAccount').toggleClass('hide');
@@ -107,31 +109,38 @@ function generic_slide(){
 
 /***** Show the Forgot Password panel  and retrieval fields *****/
 var x = 0;
+var locked = false;
+function transition_forgot() {
+  if (!locked) {
+    locked = true;
+    if ( x % 2 == 0) {
+      $("#container").animate({left: '+=300px'}, 1000, function() {
+            $("#forgotPasswordCont").css('zIndex', '10000');
+            $("#container").animate({left: '-=300px'}, 1000);
+          });
+      x = x + 1;
+    }
+    else {
+      $("#forgotPasswordCont").animate({left: '+=300px'}, 1000, function() {
+            $("#forgotPasswordCont").css('zIndex', '0');
+            $("#forgotPasswordCont").animate({left: '-=300px'}, 1000);
+          });
+          x = x + 1;
 
-function transition_forgot(){
-  if( x % 2 == 0){
-    $("#container").animate({left: '+=300px'}, 1000, function() {
-          $("#forgotPasswordCont").css('zIndex', '10000');
-          $("#container").animate({left: '-=300px'}, 1000);
-        });
-    x = x + 1;
-  }
-  else{
-    $("#forgotPasswordCont").animate({left: '+=300px'}, 1000, function() {
-          $("#forgotPasswordCont").css('zIndex', '0');
-          $("#forgotPasswordCont").animate({left: '-=300px'}, 1000);
-        });
-        x = x + 1;
-
+    }
+    setTimeout(unlock, 1000);
   }
 }
 
+function unlock() {
+  locked = false;
+}
 
-function showProfile( idTag ){
+function showProfile( idTag ) {
     $( '#' + idTag ).css( 'opacity', '100' );
 }
 
-function hideProfile( idTag ){
+function hideProfile( idTag ) {
   $( '#' + idTag ).css( 'opacity', '0' );
 
 }

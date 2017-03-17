@@ -18,6 +18,8 @@ CREATE TABLE `accounts` (
   `p_rtoken` varchar(255) DEFAULT NULL,
   `logged_in` int(11) NOT NULL,
   `hwid` varchar(12) NOT NULL DEFAULT "",
+  `security_answer` varchar(128)  DEFAULT NULL,
+  `s_question` varchar(128) DEFAULT NULL,
   PRIMARY KEY (`username`),
   UNIQUE KEY `username` (`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;

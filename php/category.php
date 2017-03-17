@@ -71,16 +71,17 @@ if($message == "create"){
 
   $sub_names = $_POST['sub_names'];
   $table = $_POST['table'];
+  $c_id = $_POST['c_id'];
 
   $result = array();
 
   foreach($sub_names as $sub_name){
     if($table == "y_subs"){
-      $q_result = $conn->query("SELECT sub_id FROM y_subs WHERE sub_name='$sub_name'")->fetchColumn();
+      $q_result = $conn->query("SELECT sub_id FROM y_subs WHERE sub_name='$sub_name' AND c_id='$c_id'")->fetch(PDO::FETCH_ASSOC);
     }else if($table == "p_subs"){
-      $q_result = $conn->query("SELECT sub_id FROM p_subs WHERE sub_name='$sub_name'")->fetchColumn();
+      $q_result = $conn->query("SELECT sub_id FROM p_subs WHERE sub_name='$sub_name' AND c_id='$c_id'")->fetch(PDO::FETCH_ASSOC);;
     }else{
-      $q_result = $conn->query("SELECT sub_id FROM r_subs WHERE sub_name='$sub_name'")->fetchColumn();
+      $q_result = $conn->query("SELECT sub_id FROM r_subs WHERE sub_name='$sub_name' AND c_id='$c_id'")->fetch(PDO::FETCH_ASSOC);;
     }
     if($q_result){
       array_push($result, $sub_name);
