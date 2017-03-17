@@ -39,14 +39,15 @@ $(document).ready(function() {
     /***** SUBMIT ACCOUNT *****/
     $("#submitAccount").click(function() {
 
+      var first_name = $("#nameInput").val();
       var username = $("#emailInput").val();
       var password = $("#passwordInput").val();
       var question = $("#securityQuestionDropdown option:selected").text();
       var answer = $("#securityAnswer").val();
-      var createData = {"message": "create_account", "username": username, "password": password, "security_question" : question, "security_answer" : answer}
+      var createData = {"message": "create_account", "first_name": first_name, "username": username, "password": password, "security_question" : question, "security_answer" : answer}
 
-     if (username == "" || password == "" || answer == "") {
-       alert("Please enter values for all input fields");
+     if (first_name == "" || username == "" || password == "" || answer == "") {
+       alert("Please enter values for all input fields.");
        return;
      }
 

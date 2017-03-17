@@ -19,6 +19,7 @@ catch(PDOException $e) {
 }
 
 // Get the user name, password, and what kind of account mode we're in
+$first_name = $_POST['first_name'];
 $username = $_POST['username'];
 $password = $_POST['password'];
 $message = $_POST["message"];
@@ -65,7 +66,7 @@ if ($message == "login") {
   }
 
   $q_result["can_create"] = "yes";
-  $statement = $conn->prepare("INSERT INTO accounts (username, password) VALUES ('$username', '$enc_pwd')")->execute();
+  $statement = $conn->prepare("INSERT INTO accounts (username, password, first_name) VALUES ('$username', '$enc_pwd', '$first_name')")->execute();
   $statement = $conn->prepare("UPDATE accounts SET security_answer='$answer' WHERE username='$username'")->execute();
   $statement = $conn->prepare("UPDATE accounts SET s_question='$question' WHERE username='$username'")->execute();
   $_SESSION["username"] = $username;

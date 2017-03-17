@@ -12,7 +12,21 @@
 </head>
 
 <body id="loginPage">
-
+<!--     <script>
+      THREE.ShapeUtils.triangulateShape = (function () {
+              var pnlTriangulator = new PNLTRI.Triangulator();
+              return function triangulateShape(contour, holes) {
+                  return pnlTriangulator.triangulate_polygon([contour].concat(holes));
+              };
+          })();
+          </script>
+  <div class="parallax_login">
+     <div>
+     <div id="three-container">
+     </div>
+     <img id="logo" src="CSS/img/logoMain.png" width="150px" height="100px" />
+     </div>
+-->
 <div class="parallax_login">
 
 <!-- ############ Title and Logo ############# -->
@@ -20,7 +34,7 @@
       <h1>The Feed</h1>
       <img id="logo" src="CSS/img/logoMain.png" width="150px" height="100px" />
 
-    </div>
+</div>
 
 <!-- #################### Main Login container #################### -->
 
@@ -57,9 +71,9 @@
 
   <text id="forgotDrowpdownHeader">Select your Security Question:</text>
   <select id="forgotDropdown">
-    <option value="">What was the name of your first pet?</option>
-    <option value="">Who is your best childhood friend?</option>
-    <option value="">What was your dream car as a child?</option>
+    <option value="">What was your first pet's name?</option>
+    <option value="">Who is your best childhood friend</option>
+    <option value="">What was your dream car as a child</option>
   </select><br>
 
   <text id="forgotAnswerHeader">Enter your Answer:</text>
@@ -100,7 +114,7 @@
 <div id="mid-fields">
   <p id="SecQuestionHeader"> Security Question: </p>
   <select id="securityQuestionDropdown">
-    <option value="">What was the name of your first pet?</option>
+    <option value="">What was your first pet's name?</option>
     <option value="">Who is your best childhood friend</option>
     <option value="">What was your dream car as a child</option>
   </select><br>
@@ -140,7 +154,7 @@
     <p id="kendrickText">Kendrick Trinh: Quality Assurance & Pinterest Specialist</p>
     <p id="laurelText">Laurel Fink: Software Development Lead</p>
     <p id="johnnyText">Johnny Figueroa: Business Analyst</p>
-    <p id="isaacText">Yitzchak "Isaac" Blank: Database Specialist</p>
+    <p id="isaacText">Yitzack "Isaac" Blank: Database Specialist</p>
   </div>
 
 </div>
@@ -148,4 +162,12 @@
 </body>
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript" src="javascript/login.js"></script>
+<script src='http://cdnjs.cloudflare.com/ajax/libs/three.js/r75/three.min.js'></script>
+<script src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/175711/bas.js'></script>
+<script src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/175711/TextGeometry.js'></script>
+<script src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/175711/FontUtils.js'></script>
+<script src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/175711/pnltri.min.js'></script>
+<script src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/175711/droid_sans_bold.typeface.js'></script>
+<script src='http://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.0/TweenMax.min.js'></script>
+<!--<script src="javascript/index.js"></script>-->
 </html>

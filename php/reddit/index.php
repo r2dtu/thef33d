@@ -21,11 +21,11 @@ if (isset($_GET["error"]))
 
 $authorizeUrl = 'https://ssl.reddit.com/api/v1/authorize';
 $accessTokenUrl = 'https://ssl.reddit.com/api/v1/access_token';
-$clientId = '8-kkjNXlTfpV0Q';
-$clientSecret = 'J6W5Y5UgCiJssMxapEGtsIX4Ebk';
+$clientId = 'V5gDAsfre7yTWg';
+$clientSecret = '1-BXkiGXxLuENy3tPpU1aRizwN4';
 $userAgent = 'Reddit Functionality for thef33d.me by /u/teamfeed';
 
-$redirectUrl = "http://thef33d.me/php/reddit/";
+$redirectUrl = "http://" . $_SERVER['HTTP_HOST'] . "/php/reddit/";
 
 require("Client.php");
 require("GrantType/IGrantType.php");
