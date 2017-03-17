@@ -67,7 +67,7 @@ function addYoutubeVideo( link, num, numPanel ) {
 
     $('#mainparallax' + numPanel + '-youtube').append('<li class="youtubeVideo' + num + '"><iframe class="youtubeVideoFrame' + num + '" width="300" height="200" src="' + link + '" frameborder="0" allowfullscreen></iframe></li>');
 
-    $('.youtubeVideo' + num).css( 'top', '4%' );
+    $('.youtubeVideo' + num).css( 'top', '10%' );
     $('.youtubeVideo' + num).css( 'left', ((num*20) + 10) + '%' );
 }
 
@@ -84,6 +84,7 @@ function addPin( link, num, numPanel ) {
     $('.pin' + num).css( 'top', '33%' );
     $('.pin' + num).css( 'left', ((num*20) + 12) + '%' );
 }
+*/
 
 function addReddit( link, num, numPanel ) {
     //var myList = document.createElement('li');
@@ -99,7 +100,7 @@ function addReddit( link, num, numPanel ) {
 
     $('#mainparallax' + numPanel + '-reddit').append('<li class="reddit'+num+'"><div class="reddit-frame"><h1 class="sub-reddit"><a href="https://www.reddit.com/r/'+link+'/">'+link+'</a></h1><img class="reddit-alien" src="/CSS/img/reddit-alien.jpg"/></div></li>');
 
-    $('.reddit'+num).css( 'top', '78%' );
+    $('.reddit'+num).css( 'top', '60%' );
     $('.reddit'+num).css( 'left', ((num*20) + 12.5) + '%' );
 }
 
@@ -121,6 +122,7 @@ function shiftLeft( social, numPanel ) {
         removeChildren('pin', numPanel);
         addPinList( pListRef[numPanel - 1], numPanel );
     }
+    */
 
     if(social == 3 && redditIndexStart != 0) {
         redditIndexStart -= 4;
@@ -148,6 +150,7 @@ function shiftRight( social, numPanel ) {
         removeChildren('pin', numPanel);
         addPinList( pListRef[numPanel - 1], numPanel );
     }
+    */
 
     if( social == 3 && !(redditIndexEnd >= rListRef[numPanel - 1].length) ){
         redditIndexStart += 4;

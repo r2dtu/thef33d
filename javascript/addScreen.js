@@ -12,10 +12,12 @@ function createNewParallax (c_id, c_name, c_img) {
                     '<ul id="mainparallax' + numPanels + '-youtube">' +
                     '</ul>' +
                     '<h1 id="rightScrollYoutube' + numPanels + '" class="rightScrollYoutube" onmouseover="growRight( 1, ' + numPanels + ' )" onmouseout="shrinkRight(1, ' + numPanels + ')" onclick="shiftRight(1, ' + numPanels + ')">&gt;</h1>' +
+                    /*
                     '<h1 id="leftScrollPin' + numPanels + '" class="leftScrollPin" onmouseover="growLeft( 2, '+numPanels+' )" onmouseout="shrinkLeft(2, '+numPanels+')" onclick="shiftLeft(2, '+numPanels+')">&lt;</h1>' +
                     '<ul id="mainparallax'+numPanels+'-pin">' +
                     '</ul>' +
                     '<h1 id="rightScrollPin'+numPanels+'" class="rightScrollPin" onmouseover="growRight( 2, '+numPanels+' )" onmouseout="shrinkRight(2, '+numPanels+')" onclick="shiftRight(2, '+numPanels+')">&gt;</h1>' +
+                    */
                     '<h1 id="leftScrollReddit'+numPanels+'" class="leftScrollReddit" onmouseover="growLeft( 3, '+numPanels+' )" onmouseout="shrinkLeft(3, '+numPanels+')" onclick="shiftLeft(3, '+numPanels+')">&lt;</h1>' +
                     '<ul id="mainparallax'+numPanels+'-reddit">' +
                     '</ul>' +
@@ -34,6 +36,7 @@ function createNewParallax (c_id, c_name, c_img) {
                           '<br>' +
                           '<input type="file" id="categoryBackground' + numPanels + '" class="categoryBackgroundSelect" onchange="backgroundFlag(this.files)">' +
                       '</div>' +
+                        /*
                       '<div class="settings-categorySize">' +
                                 '<br> Size:' +
                                 '<br>' +
@@ -51,6 +54,7 @@ function createNewParallax (c_id, c_name, c_img) {
                               '</option>' +
                           '</select>' +
                       '</div>' +
+                      */
                   '</form>' +
                   '<input class="updateSettingsButton" type="submit" value="Save Settings" onclick="saveCategorySettings(' + numPanels + ')">' +
                   '<input class="deleteCategoryButton" type="submit" value="Delete Panel" onclick="deletePanel(' + numPanels + ')">' +
@@ -65,9 +69,11 @@ function createNewParallax (c_id, c_name, c_img) {
                               '<option value="YouTube">' +
                                   'Youtube' +
                               '</option>' +
+                                /*
                               '<option value="Pinterest">' +
                                   'Pintrest' +
                               '</option>' +
+                              */
                               '<option value="Reddit">' +
                                   'Reddit' +
                               '</option>' +

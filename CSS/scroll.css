@@ -18,7 +18,7 @@
     display: inline-block;
     
     position: absolute;
-    top: 7%;
+    top: 15%;
     left: 3%; 
     
 }
@@ -35,7 +35,7 @@
     display: inline-block;
     
     position: absolute;
-    top: 8%;
+    top: 16%;
     right: 3%;
     
 }
@@ -86,7 +86,7 @@
     display: inline-block;
     
     position: absolute;
-    top: 75%;
+    top: 65%;
     left: 3%; 
     
 }
@@ -103,7 +103,7 @@
     display: inline-block;
     
     position: absolute;
-    top: 76%;
+    top: 66%;
     right: 3%;
     
 }
