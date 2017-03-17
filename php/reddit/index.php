@@ -25,7 +25,7 @@ $clientId = 'V5gDAsfre7yTWg';
 $clientSecret = '1-BXkiGXxLuENy3tPpU1aRizwN4';
 $userAgent = 'Reddit Functionality for thef33d.me by /u/teamfeed';
 
-$redirectUrl = "http://" . $_SERVER['HTTP_HOST'] . "/php/reddit/";
+$redirectUrl = "http://localhost/php/reddit/";
 
 require("Client.php");
 require("GrantType/IGrantType.php");
