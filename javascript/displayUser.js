@@ -121,7 +121,6 @@ $(document).ready(function() {
 }); //END OF $(document).ready
 
 function addUserInfo() {
-  console.log("Adding user info");
   var request = $.ajax({
     url: 'php/getUser.php',
     type: 'POST'
