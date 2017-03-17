@@ -17,10 +17,10 @@ function addYListFirst( list, numPanel ) {
   addYoutubeList( yListRef[numPanel - 1], numPanel)
 }
 
-function addYoutubeList( list, numPanel ){
+function addYoutubeList( list, numPanel ) {
     var spot = 0;
-    for( i = 0; i < list.length; i++ ){
-        if( i >= youtubeIndexStart && i <= youtubeIndexEnd ){
+    for( i = 0; i < list.length; i++ ) {
+        if( i >= youtubeIndexStart && i <= youtubeIndexEnd ) {
             addYoutubeVideo( list[ i ], spot, numPanel );
             spot++;
         }
@@ -32,10 +32,10 @@ function addPListFirst( list, numPanel ) {
   addPinList( pListRef[numPanel - 1], numPanel)
 }
 
-function addPinList( list, numPanel ){
+function addPinList( list, numPanel ) {
     var spot = 0;
-    for( i = 0; i < list.length; i++ ){
-        if( i >= pinIndexStart && i <= pinIndexEnd ){
+    for( i = 0; i < list.length; i++ ) {
+        if( i >= pinIndexStart && i <= pinIndexEnd ) {
             addPin( list[ i ], spot, numPanel );
             spot++;
         }
@@ -48,21 +48,21 @@ function addRListFirst( list, numPanel ) {
   addRedditList( rListRef[numPanel - 1], numPanel)
 }
 
-function addRedditList( list, numPanel ){
+function addRedditList( list, numPanel ) {
     var spot = 0;
-    for( i = 0; i < list.length; i++ ){
-        if( i >= redditIndexStart && i <= redditIndexEnd ){
+    for( i = 0; i < list.length; i++ ) {
+        if( i >= redditIndexStart && i <= redditIndexEnd ) {
             addReddit( list[ i ], spot, numPanel );
             spot++;
         }
     }
 }
 
-function removeChildren( social, numPanel ){
+function removeChildren( social, numPanel ) {
     $('#mainparallax' + numPanel + '-' + social ).empty();
 }
 
-function addYoutubeVideo( link, num, numPanel ){
+function addYoutubeVideo( link, num, numPanel ) {
 
     $('#mainparallax' + numPanel + '-youtube').append('<li class="youtubeVideo' + num + '"><iframe class="youtubeVideoFrame' + num + '" width="300" height="200" src="' + link + '" frameborder="0" allowfullscreen></iframe></li>');
 
@@ -70,12 +70,12 @@ function addYoutubeVideo( link, num, numPanel ){
     $('.youtubeVideo' + num).css( 'left', ((num*20) + 10) + '%' );
 }
 
-function adjustSize( size ){
+function adjustSize( size ) {
 
     $('.youtubeVideo' + num).css( 'left', ((num*20) + 11) + '%' );
 }
 
-function addPin( link, num, numPanel ){
+function addPin( link, num, numPanel ) {
 
     $('#mainparallax' + numPanel + '-pin').append('<li class="pin'+num+'"><a data-pin-do="embedBoard" data-pin-board-width="250" data-pin-scale-height="200" data-pin-scale-width="80" href="'+link+'"></a></li>');
 
@@ -84,8 +84,7 @@ function addPin( link, num, numPanel ){
     $('.pin' + num).css( 'left', ((num*20) + 12) + '%' );
 }
 
-function addReddit( link, num, numPanel ){
-
+function addReddit( link, num, numPanel ) {
     //var myList = document.createElement('li');
     //var myAwesomeScript = document.createElement('script');
     //var theSrc = "https://www.reddit.com/r/'+link+'.embed?limit=2&sort=new";
@@ -103,7 +102,7 @@ function addReddit( link, num, numPanel ){
     $('.reddit'+num).css( 'left', ((num*20) + 12.5) + '%' );
 }
 
-function shiftLeft( social, numPanel ){
+function shiftLeft( social, numPanel ) {
 
     var $parallax = $(".mainparallax" + numPanel);
     var c_id = $parallax.attr("c_id");
@@ -130,26 +129,26 @@ function shiftLeft( social, numPanel ){
     }
 }
 
-function shiftRight( social, numPanel ){
+function shiftRight( social, numPanel ) {
 
     var $parallax = $(".mainparallax" + numPanel);
     var c_id = $parallax.attr("c_id");
 
-    if( social == 1 && !(youtubeIndexEnd >= yListRef[numPanel - 1].length) ){
+    if( social == 1 && !(youtubeIndexEnd >= yListRef[numPanel - 1].length) ) {
         youtubeIndexStart += 3;
         youtubeIndexEnd += 3;
         removeChildren('youtube', numPanel);
         addYoutubeList( yListRef[numPanel - 1], numPanel );
     }
 
-    if( social == 2 && !(pinIndexEnd >= pListRef[numPanel - 1].length) ){
+    if( social == 2 && !(pinIndexEnd >= pListRef[numPanel - 1].length) ) {
         pinIndexStart += 3;
         pinIndexEnd += 3;
         removeChildren('pin', numPanel);
         addPinList( pListRef[numPanel - 1], numPanel );
     }
 
-    if( social == 3 && !(redditIndexEnd >= rListRef[numPanel - 1].length) ){
+    if( social == 3 && !(redditIndexEnd >= rListRef[numPanel - 1].length) ) {
         redditIndexStart += 3;
         redditIndexEnd += 3;
         removeChildren('reddit', numPanel);
@@ -157,8 +156,8 @@ function shiftRight( social, numPanel ){
     }
 }
 
-function adjustSize( size ){
-    for( i = 0; i < youtubeList.length; i++ ){
+function adjustSize( size ) {
+    for( i = 0; i < youtubeList.length; i++ ) {
         //$('.youtubeVideoFrame' + num).css( 'width', ((size*2) + 200) +'px' );
         //$('.youtubeVideoFrame' + num).css( 'height', ((size*2) + 100) +'px' );
     }
