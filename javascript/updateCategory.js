@@ -116,7 +116,7 @@ function displayYouTubeSubs( id, c_id ) {
 
 function removeSubs( id ) {
 
-    $('#subs'+id).empty();
+    $('#subs'+id).find('form').empty();
 
 }
 

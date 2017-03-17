@@ -24,7 +24,6 @@ CREATE TABLE `accounts` (
   UNIQUE KEY `username` (`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
 -- Table structure for table `categories`
 --
 

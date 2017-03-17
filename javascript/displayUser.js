@@ -117,7 +117,7 @@ $(document).ready(function() {
         addRedditList( r_subs , userDisplay++ );
       }
     });
-    request2.fail(function (jqXHR, textStatus, errorThrown) {
+      request2.fail(function (jqXHR, textStatus, errorThrown) {
           console.log("ERROR");
     });
   });

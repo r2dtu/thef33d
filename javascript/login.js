@@ -6,7 +6,7 @@ $(document).ready(function() {
       var username = $("#username").val();
       var password = $("#password").val();
       var loginData = {"message": "login", "username": username, "password": password}
-      console.log(username + " " + password);
+
       request = $.ajax({
           url: "php/login.php",
           type: "POST",
