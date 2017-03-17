@@ -123,7 +123,6 @@ function deletePanel(id) {
   }
 
   deleteCategory(id);
-
 }
 
 function displayCheckMarks(id, c_id, table) {
