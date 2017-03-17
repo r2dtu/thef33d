@@ -126,7 +126,6 @@ function deletePanel(id) {
 }
 
 function displayCheckMarks(id, c_id, table) {
-
   var sub_names = [];
 
   var sublist = $("#subs" + id);
@@ -145,7 +144,6 @@ function displayCheckMarks(id, c_id, table) {
 
   request.done(function (response, textStatus, jqXHR) {
     var response = JSON.parse(response);
-
     for(var i in response) {
       var sub_name = response[i];
       var checkbox = sublist.children('[name="' + sub_name + '"]');

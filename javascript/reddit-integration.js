@@ -33,7 +33,7 @@ $(document).ready(function(){
 /*
  * Displays subreddit checkboxes in category settings
  */
-function displayRedditSubs( id ) {
+function displayRedditSubs( id, c_id ) {
 	redditLink().then(function(){
 	var subBox = $('#subs' + id);
 	subBox.css({'width': '350px', 'height': '400px', 'overflow-y': 'scroll'});
