@@ -131,16 +131,13 @@ function displayCheckMarks(id, c_id, table) {
   var sub_names = [];
 
   var sublist = $("#subs" + id);
-  console.log(sublist);
   sublist.find('input').each(function () {
-    console.log(this.type);
     if (this.type == "checkbox") {
       sub_names.push(this.name);
     }
   });
 
   var sub_name_data = {"message" : "subsInCat", "sub_names" : sub_names, "c_id" : c_id, "table" : table}
-  console.log(sub_names);
   var request = $.ajax({
     url: "php/category.php",
     type: "POST",
