@@ -1,44 +1,42 @@
 youtubeList = [[]];
-pinList = [
-
-    'https://www.pinterest.com/makeuseof/gaming/',
-    'https://www.pinterest.com/makeuseof/gaming/',
-    'https://www.pinterest.com/makeuseof/gaming/',
-    'https://www.pinterest.com/makeuseof/gaming/',
-    'https://www.pinterest.com/makeuseof/gaming/',
-    'https://www.pinterest.com/makeuseof/gaming/',
-    'https://www.pinterest.com/makeuseof/gaming/'
-
-];
-
-pinList2 = [
-
-    'https://www.pinterest.com/pinterest/official-news/',
-    'https://www.pinterest.com/pinterest/official-news/',
-    'https://www.pinterest.com/pinterest/official-news/',
-    'https://www.pinterest.com/pinterest/official-news/',
-    'https://www.pinterest.com/pinterest/official-news/',
-    'https://www.pinterest.com/pinterest/official-news/'
-
-];
-
-pinList3 = [
-
-    'https://www.pinterest.com/pinterest/pin-tips/',
-    'https://www.pinterest.com/pinterest/pin-tips/',
-    'https://www.pinterest.com/pinterest/pin-tips/',
-    'https://www.pinterest.com/pinterest/pin-tips/',
-    'https://www.pinterest.com/pinterest/pin-tips/',
-    'https://www.pinterest.com/pinterest/pin-tips/'
-
-];
-
+pinList = [[]];
 redditList = [[]];
 
 var master_name;
 
 $(document).ready(function() {
   addUserInfo();
+
+  displayUserMedia(true);
+
+}); //END OF $(document).ready
+
+function addUserInfo() {
+  var request = $.ajax({
+    url: 'controller/getUser.php',
+    type: 'POST'
+  });
+  request.done(function (response, textStatus, jqXHR) {
+    var parsed_data = JSON.parse(response);
+    var f_name = "";
+    for (var name in parsed_data) {
+      f_name = parsed_data[name]["first_name"];
+    }
+    var userPage = $('#userPage');
+    var userInfo = '<h1 class="userHeader">Welcome, ' + f_name + '.</h1>' +
+                   '<h1 class="userAccountsHeader">Click to Link Accounts</h1>' +
+                   '<ul class="userAccountsList">' +
+                       '<li id="youtube"><img src="CSS/img/YouTube-icon-full_color.png" width="100px" ; height="100px" ; onclick="authorizeYouTube()"></li>' +
+                       '<li id="reddit"><img src="CSS/img/Reddit_logo.png" width="100px" ; height="110px" ; onclick="linkReddit();"></li>' +
+                   '</ul>' +
+                   '<h1 class="logout" onclick='logout()'>Logout</h1>';
+    userPage.append(userInfo);
+  });
+  request.fail(function (jqXHR, textStatus, errorThrown) {
+  });
+}
+
+function displayUserMedia (onload = false) {
 
   var request = $.ajax({
     url: "controller/displayUser.php",
@@ -58,8 +56,9 @@ $(document).ready(function() {
         master_name = c_data[c_id];
         continue;
       }
-
-      createNewParallax(c_id, c_data[c_id]["c_name"], c_data[c_id]["img"]);
+      if (onload) {
+        createNewParallax(c_id, c_data[c_id]["c_name"], c_data[c_id]["img"]);        
+      }
     }
 
     // Get YouTube subscriptions
@@ -118,33 +117,7 @@ $(document).ready(function() {
           console.log("ERROR");
     });
   });
-}); //END OF $(document).ready
-
-function addUserInfo() {
-  var request = $.ajax({
-    url: 'controller/getUser.php',
-    type: 'POST'
-  });
-  request.done(function (response, textStatus, jqXHR) {
-    var parsed_data = JSON.parse(response);
-    var f_name = "";
-    for (var name in parsed_data) {
-      f_name = parsed_data[name]["first_name"];
-    }
-    var userPage = $('#userPage');
-    var userInfo = '<h1 class="userHeader">Welcome, ' + f_name + '.</h1>' +
-                   '<h1 class="userAccountsHeader">Click to Link Accounts</h1>' +
-                   '<ul class="userAccountsList">' +
-                       '<li id="youtube"><img src="CSS/img/YouTube-icon-full_color.png" width="100px" ; height="100px" ; onclick="authorizeYouTube()"></li>' +
-                       '<li id="reddit"><img src="CSS/img/Reddit_logo.png" width="100px" ; height="110px" ; onclick="linkReddit();"></li>' +
-                   '</ul>' +
-                   '<h1 class="logout" onclick='logout()'>Logout</h1>';
-    userPage.append(userInfo);
-  });
-  request.fail(function (jqXHR, textStatus, errorThrown) {
-  });
 }
-
 function shuffle(array) {
   var currentIndex = array.length, temporaryValue, randomIndex;
 
