@@ -154,7 +154,7 @@ function logout() {
     url: 'controller/logout.php',
     type: 'POST'
   });
-  request.done(function() {
+  request.done(function(response) {
     window.location.href = "../../login.html";
   });
 }

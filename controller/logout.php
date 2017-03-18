@@ -1,4 +1,6 @@
 <?php
+session_start();
+unset($_SESSION["username"]);
 session_destroy();
-die("Logged off");
+header('Location: '. '../login.html');
 ?>
