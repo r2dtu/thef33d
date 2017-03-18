@@ -444,7 +444,7 @@ class Stream
 
         // stream_metadata was introduced in PHP 5.4.0 but as of 5.4.11 the constants haven't been defined
         // see http://www.php.net/streamwrapper.stream-metadata and https://bugs.php.net/64246
-        //     and https://github.com/php/php-src/blob/master/main/php_streams.h#L592
+        //     and https://github.com/controllerphp-src/blob/master/main/php_streams.h#L592
         switch ($option) {
             case 1: // PHP_STREAM_META_TOUCH
                 return $this->sftp->touch($path, $var[0], $var[1]);

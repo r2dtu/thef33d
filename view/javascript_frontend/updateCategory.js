@@ -92,7 +92,7 @@ function displayYouTubeSubs( id, c_id ) {
     subs.css({'width': '500px', 'height': '400px', 'overflow-y': 'scroll'});
     var createData = {"action": "getSubs"};
     var request = $.ajax({
-      url: "youtube_api/YouTube_API.php",
+      url: "model/youtube_api/YouTube_API.php",
       type: "POST",
       data: createData
     });

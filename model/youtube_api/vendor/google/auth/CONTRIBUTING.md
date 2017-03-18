@@ -55,12 +55,12 @@ Here are a few examples:
 
 ```
 * ADC Support for User Refresh Tokens (@tbetbetbe[])
-* [#16](https://github.com/google/google-auth-library-php/issues/16): ADC Support for User Refresh Tokens ([@tbetbetbe][])
+* [#16](https://github.com/google/google-auth-library-controllerissues/16): ADC Support for User Refresh Tokens ([@tbetbetbe][])
 ```
 
 * Mark it up in [Markdown syntax][6].
 * The entry line should start with `* ` (an asterisk and a space).
-* If the change has a related GitHub issue (e.g. a bug fix for a reported issue), put a link to the issue as `[#16](https://github.com/google/google-auth-library-php/issues/16): `.
+* If the change has a related GitHub issue (e.g. a bug fix for a reported issue), put a link to the issue as `[#16](https://github.com/google/google-auth-library-controllerissues/16): `.
 * Describe the brief of the change. The sentence should end with a punctuation.
 * At the end of the entry, add an implicit link to your GitHub user page as `([@username][])`.
 * If this is your first contribution to google-auth-library-php project, add a link definition for the implicit link to the bottom of the changelog as `[@username]: https://github.com/username`.

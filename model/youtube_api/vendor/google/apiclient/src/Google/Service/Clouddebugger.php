@@ -43,7 +43,7 @@ class Google_Service_Clouddebugger extends Google_Service
   public $controller_debuggees_breakpoints;
   public $debugger_debuggees;
   public $debugger_debuggees_breakpoints;
-  
+
 
   /**
    * Constructs the internal representation of the Clouddebugger service.
@@ -65,7 +65,7 @@ class Google_Service_Clouddebugger extends Google_Service
         array(
           'methods' => array(
             'register' => array(
-              'path' => 'v2/controller/debuggees/register',
+              'path' => 'v2/php/debuggees/register',
               'httpMethod' => 'POST',
               'parameters' => array(),
             ),
@@ -79,7 +79,7 @@ class Google_Service_Clouddebugger extends Google_Service
         array(
           'methods' => array(
             'list' => array(
-              'path' => 'v2/controller/debuggees/{debuggeeId}/breakpoints',
+              'path' => 'v2/php/debuggees/{debuggeeId}/breakpoints',
               'httpMethod' => 'GET',
               'parameters' => array(
                 'debuggeeId' => array(
@@ -97,7 +97,7 @@ class Google_Service_Clouddebugger extends Google_Service
                 ),
               ),
             ),'update' => array(
-              'path' => 'v2/controller/debuggees/{debuggeeId}/breakpoints/{id}',
+              'path' => 'v2/php/debuggees/{debuggeeId}/breakpoints/{id}',
               'httpMethod' => 'PUT',
               'parameters' => array(
                 'debuggeeId' => array(

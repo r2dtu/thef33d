@@ -69,12 +69,12 @@ class Random
             // openssl_random_pseudo_bytes and mcrypt_create_iv do the exact same thing on Windows. ie. they both
             // call php_win32_get_random_bytes():
             //
-            // https://github.com/php/php-src/blob/7014a0eb6d1611151a286c0ff4f2238f92c120d6/ext/openssl/openssl.c#L5008
-            // https://github.com/php/php-src/blob/7014a0eb6d1611151a286c0ff4f2238f92c120d6/ext/mcrypt/mcrypt.c#L1392
+            // https://github.com/controllerphp-src/blob/7014a0eb6d1611151a286c0ff4f2238f92c120d6/ext/openssl/openssl.c#L5008
+            // https://github.com/controllerphp-src/blob/7014a0eb6d1611151a286c0ff4f2238f92c120d6/ext/mcrypt/mcrypt.c#L1392
             //
             // php_win32_get_random_bytes() is defined thusly:
             //
-            // https://github.com/php/php-src/blob/7014a0eb6d1611151a286c0ff4f2238f92c120d6/win32/winutil.c#L80
+            // https://github.com/controllerphp-src/blob/7014a0eb6d1611151a286c0ff4f2238f92c120d6/win32/winutil.c#L80
             //
             // we're calling it, all the same, in the off chance that the mcrypt extension is not available
             if (extension_loaded('openssl') && version_compare(PHP_VERSION, '5.3.4', '>=')) {
@@ -96,7 +96,7 @@ class Random
                 return fread($fp, $length);
             }
             // method 3. pretty much does the same thing as method 2 per the following url:
-            // https://github.com/php/php-src/blob/7014a0eb6d1611151a286c0ff4f2238f92c120d6/ext/mcrypt/mcrypt.c#L1391
+            // https://github.com/controllerphp-src/blob/7014a0eb6d1611151a286c0ff4f2238f92c120d6/ext/mcrypt/mcrypt.c#L1391
             // surprisingly slower than method 2. maybe that's because mcrypt_create_iv does a bunch of error checking that we're
             // not doing. regardless, this'll only be called if this PHP script couldn't open /dev/urandom due to open_basedir
             // restrictions or some such

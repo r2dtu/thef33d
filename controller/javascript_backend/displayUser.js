@@ -98,7 +98,7 @@ $(document).ready(function() {
     // Get Reddit subscriptions
 
     var request2 = $.ajax({
-        url: "php/displayUser.php",
+        url: "controller/displayUser.php",
         type: "POST"
     });
 
@@ -137,7 +137,8 @@ function addUserInfo() {
                    '<ul class="userAccountsList">' +
                        '<li id="youtube"><img src="CSS/img/YouTube-icon-full_color.png" width="100px" ; height="100px" ; onclick="authorizeYouTube()"></li>' +
                        '<li id="reddit"><img src="CSS/img/Reddit_logo.png" width="100px" ; height="110px" ; onclick="linkReddit();"></li>' +
-                   '</ul>';
+                   '</ul>' +
+                   '<h1 class="logout">Logout</h1>';
     userPage.append(userInfo);
   });
   request.fail(function (jqXHR, textStatus, errorThrown) {

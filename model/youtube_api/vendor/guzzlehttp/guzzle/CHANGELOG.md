@@ -550,7 +550,7 @@ interfaces.
 
 * Bug fix: 0 is now an allowed value in a description parameter that has a default value (#430)
 * Bug fix: SchemaFormatter now returns an integer when formatting to a Unix timestamp
-  (see https://github.com/aws/aws-sdk-php/issues/147)
+  (see https://github.com/aws/aws-sdk-controllerissues/147)
 * Bug fix: Cleaned up and fixed URL dot segment removal to properly resolve internal dots
 * Minimum PHP version is now properly specified as 5.3.3 (up from 5.3.2) (#420)
 * Updated the bundled cacert.pem (#419)
