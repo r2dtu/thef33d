@@ -3,7 +3,7 @@
 // Make sure composer is installed! Then just load Google's Client API Library
 require_once __DIR__ . '/vendor/autoload.php';
 include_once('pretty_json.php');
-include '../php/error.php';
+include '../controllererror.php';
 
 session_start();
 

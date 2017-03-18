@@ -1,5 +1,5 @@
 function authorizeYouTube() {
-  location.href = "./youtube_api/authenticate.php";
+  location.href = "../../model/youtube_api/authenticate.php";
 }
 
 var youtubeIndexStart = 0;
@@ -84,7 +84,6 @@ function addPin( link, num, numPanel ) {
     $('.pin' + num).css( 'top', '33%' );
     $('.pin' + num).css( 'left', ((num*20) + 12) + '%' );
 }
-*/
 
 function addReddit( link, num, numPanel ) {
     //var myList = document.createElement('li');
@@ -122,7 +121,6 @@ function shiftLeft( social, numPanel ) {
         removeChildren('pin', numPanel);
         addPinList( pListRef[numPanel - 1], numPanel );
     }
-    */
 
     if(social == 3 && redditIndexStart != 0) {
         redditIndexStart -= 4;
@@ -150,7 +148,6 @@ function shiftRight( social, numPanel ) {
         removeChildren('pin', numPanel);
         addPinList( pListRef[numPanel - 1], numPanel );
     }
-    */
 
     if( social == 3 && !(redditIndexEnd >= rListRef[numPanel - 1].length) ){
         redditIndexStart += 4;

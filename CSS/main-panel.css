@@ -6,7 +6,7 @@
     /*Dark
     --primary: #101111;
     --secondary: #0073df;
-    
+
     /*Red*/
     --primary: #101111;
     --secondary: #990000;
@@ -58,6 +58,21 @@
     margin-left: 7%;
     margin-bottom: 1%;
     float: left;
+}
+
+.logout {
+  transition: 0.7s;
+  position: absolute;
+  top: 90%;
+  left: 85%;
+  text-align: right;
+  display: inline-block;
+  color: #fff;
+  font-family: 'Ubuntu', sans-serif;
+  text-decoration: none;
+  opacity: 1.0;
+  font-size: 1.5em;
+  color: black;
 }
 
 .FeedLogo {

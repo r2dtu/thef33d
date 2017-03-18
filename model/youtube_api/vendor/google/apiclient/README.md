@@ -47,7 +47,7 @@ Uncompress the zip file you download, and include the autoloader in your project
 require_once '/path/to/google-api-php-client/vendor/autoload.php';
 ```
 
-For additional installation and setup instructions, see [the documentation](https://developers.google.com/api-client-library/php/start/installation).
+For additional installation and setup instructions, see [the documentation](https://developers.google.com/api-client-library/controllerstart/installation).
 
 ## Basic Example ##
 See the examples/ directory for examples of the key client features. You can
@@ -118,7 +118,7 @@ If there is a specific bug with the library, please [file a issue](/Google/googl
 
 ### How do I contribute? ###
 
-We accept contributions via Github Pull Requests, but all contributors need to be covered by the standard Google Contributor License Agreement. You can find links, and more instructions, in the documentation: https://developers.google.com/api-client-library/php/contribute
+We accept contributions via Github Pull Requests, but all contributors need to be covered by the standard Google Contributor License Agreement. You can find links, and more instructions, in the documentation: https://developers.google.com/api-client-library/controllercontribute
 
 ### I want an example of X! ###
 

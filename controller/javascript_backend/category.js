@@ -72,7 +72,7 @@ function saveCategorySettings(id) {
   }
 
   var request = $.ajax({
-    url: "php/category.php",
+    url: "controller/category.php",
     type: "POST",
     data: category_data
   });
@@ -115,7 +115,7 @@ function deletePanel(id) {
   if (c_id != "") {
 
     var request = $.ajax({
-        url: "php/category.php",
+        url: "controllercategory.php",
 	type: "POST",
 	data: {"message" : "deleteCategory", "c_id" : c_id}
     });

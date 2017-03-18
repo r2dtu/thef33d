@@ -131,14 +131,14 @@ See [CONTRIBUTING][contributing].
 ## Support
 
 Please
-[report bugs at the project on Github](https://github.com/google/google-auth-library-php/issues). Don't
+[report bugs at the project on Github](https://github.com/google/google-auth-library-controllerissues). Don't
 hesitate to
 [ask questions](http://stackoverflow.com/questions/tagged/google-auth-library-php)
 about the client or APIs on [StackOverflow](http://stackoverflow.com).
 
 [google-apis-php-client]: https://github.com/google/google-api-php-client
 [application default credentials]: https://developers.google.com/accounts/docs/application-default-credentials
-[contributing]: https://github.com/google/google-auth-library-php/tree/master/CONTRIBUTING.md
-[copying]: https://github.com/google/google-auth-library-php/tree/master/COPYING
+[contributing]: https://github.com/google/google-auth-library-controllertree/master/CONTRIBUTING.md
+[copying]: https://github.com/google/google-auth-library-controllertree/master/COPYING
 [Guzzle]: https://github.com/guzzle/guzzle
 [developer console]: https://console.developers.google.com

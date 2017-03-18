@@ -387,7 +387,7 @@ $promise->then(null, function ($reason) {
 # Promise interop
 
 This library works with foreign promises that have a `then` method. This means
-you can use Guzzle promises with [React promises](https://github.com/reactphp/promise)
+you can use Guzzle promises with [React promises](https://github.com/reactcontrollerpromise)
 for example. When a foreign promise is returned inside of a then method
 callback, promise resolution will occur recursively.
 

@@ -138,7 +138,7 @@ function default_user_agent()
         if (extension_loaded('curl') && function_exists('curl_version')) {
             $defaultAgent .= ' curl/' . \curl_version()['version'];
         }
-        $defaultAgent .= ' PHP/' . PHP_VERSION;
+        $defaultAgent .= ' controller' . PHP_VERSION;
     }
 
     return $defaultAgent;

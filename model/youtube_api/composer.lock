@@ -152,7 +152,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/google/google-auth-library-php/zipball/ec4edcb043e523267973fda308d9412d7db78e17",
+                "url": "https://api.github.com/repos/google/google-auth-library-controllerzipball/ec4edcb043e523267973fda308d9412d7db78e17",
                 "reference": "ec4edcb043e523267973fda308d9412d7db78e17",
                 "shasum": ""
             },

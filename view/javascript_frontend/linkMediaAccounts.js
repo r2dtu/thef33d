@@ -12,7 +12,7 @@ $(document).ready(function(){
       var y_data = {"message": "link_y", "y_id": y_id}
 
       request = $.ajax({
-          url: "php/linkMediaAccounts.php",
+          url: "controllerlinkMediaAccounts.php",
           type: "POST",
           data: y_data
       });

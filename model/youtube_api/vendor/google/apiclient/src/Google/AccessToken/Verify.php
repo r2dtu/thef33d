@@ -218,7 +218,7 @@ class Google_AccessToken_Verify
    * sets constants to bypass the need for phpseclib to check phpinfo
    *
    * @see phpseclib/Math/BigInteger
-   * @see https://github.com/GoogleCloudPlatform/getting-started-php/issues/85
+   * @see https://github.com/GoogleCloudPlatform/getting-started-controllerissues/85
    */
   private function setPhpsecConstants()
   {

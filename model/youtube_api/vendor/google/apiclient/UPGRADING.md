@@ -319,9 +319,9 @@ setting the Guzzle `GuzzleHttp\ClientInterface` object.
 [Guzzle 6]: http://docs.guzzlephp.org/en/latest/psr7.html
 [Monolog]: https://github.com/Seldaek/monolog
 [Google Auth]: https://github.com/google/google-auth-library-php
-[Google Auth GCE]: https://github.com/google/google-auth-library-php/blob/master/src/GCECredentials.php
-[Google Auth OAuth2]: https://github.com/google/google-auth-library-php/blob/master/src/OAuth2.php
-[Google Auth Simple]: https://github.com/google/google-auth-library-php/blob/master/src/Simple.php
-[Google Auth AppIdentity]: https://github.com/google/google-auth-library-php/blob/master/src/AppIdentityCredentials.php
-[Google Auth CacheInterface]: https://github.com/google/google-auth-library-php/blob/master/src/CacheInterface.php
+[Google Auth GCE]: https://github.com/google/google-auth-library-controllerblob/master/src/GCECredentials.php
+[Google Auth OAuth2]: https://github.com/google/google-auth-library-controllerblob/master/src/OAuth2.php
+[Google Auth Simple]: https://github.com/google/google-auth-library-controllerblob/master/src/Simple.php
+[Google Auth AppIdentity]: https://github.com/google/google-auth-library-controllerblob/master/src/AppIdentityCredentials.php
+[Google Auth CacheInterface]: https://github.com/google/google-auth-library-controllerblob/master/src/CacheInterface.php
 [Firebase JWT]: https://github.com/firebase/php-jwt
