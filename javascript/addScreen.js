@@ -1,22 +1,23 @@
 /*** NUMPANELS GLOBAL VARIABLE ***/
-var numPanels = 1;
-var id_stuff = 1;
+var numPanels = 0;
 
-function createNewParallax(c_id, c_name, c_img){
-
+function createNewParallax (c_id, c_name, c_img) {
 
   var $panels = $('.panels');
   var $navList = $('.nav-menu-list');
+  numPanels = numPanels + 1;
 
   var embed = '<div id="embedded'+numPanels+'" class="embedded">' +
                     '<h1 id="leftScrollYoutube' + numPanels + '" class="leftScrollYoutube" onmouseover="growLeft( 1, ' + numPanels + ' )" onmouseout="shrinkLeft(1, ' + numPanels + ')" onclick="shiftLeft(1, ' + numPanels + ')">&lt;</h1>' +
                     '<ul id="mainparallax' + numPanels + '-youtube">' +
                     '</ul>' +
                     '<h1 id="rightScrollYoutube' + numPanels + '" class="rightScrollYoutube" onmouseover="growRight( 1, ' + numPanels + ' )" onmouseout="shrinkRight(1, ' + numPanels + ')" onclick="shiftRight(1, ' + numPanels + ')">&gt;</h1>' +
+                    /*
                     '<h1 id="leftScrollPin' + numPanels + '" class="leftScrollPin" onmouseover="growLeft( 2, '+numPanels+' )" onmouseout="shrinkLeft(2, '+numPanels+')" onclick="shiftLeft(2, '+numPanels+')">&lt;</h1>' +
                     '<ul id="mainparallax'+numPanels+'-pin">' +
                     '</ul>' +
                     '<h1 id="rightScrollPin'+numPanels+'" class="rightScrollPin" onmouseover="growRight( 2, '+numPanels+' )" onmouseout="shrinkRight(2, '+numPanels+')" onclick="shiftRight(2, '+numPanels+')">&gt;</h1>' +
+                    */
                     '<h1 id="leftScrollReddit'+numPanels+'" class="leftScrollReddit" onmouseover="growLeft( 3, '+numPanels+' )" onmouseout="shrinkLeft(3, '+numPanels+')" onclick="shiftLeft(3, '+numPanels+')">&lt;</h1>' +
                     '<ul id="mainparallax'+numPanels+'-reddit">' +
                     '</ul>' +
@@ -35,6 +36,7 @@ function createNewParallax(c_id, c_name, c_img){
                           '<br>' +
                           '<input type="file" id="categoryBackground' + numPanels + '" class="categoryBackgroundSelect" onchange="backgroundFlag(this.files)">' +
                       '</div>' +
+                        /*
                       '<div class="settings-categorySize">' +
                                 '<br> Size:' +
                                 '<br>' +
@@ -52,6 +54,7 @@ function createNewParallax(c_id, c_name, c_img){
                               '</option>' +
                           '</select>' +
                       '</div>' +
+                      */
                   '</form>' +
                   '<input class="updateSettingsButton" type="submit" value="Save Settings" onclick="saveCategorySettings(' + numPanels + ')">' +
                   '<input class="deleteCategoryButton" type="submit" value="Delete Panel" onclick="deletePanel(' + numPanels + ')">' +
@@ -66,9 +69,11 @@ function createNewParallax(c_id, c_name, c_img){
                               '<option value="YouTube">' +
                                   'Youtube' +
                               '</option>' +
+                                /*
                               '<option value="Pinterest">' +
                                   'Pintrest' +
                               '</option>' +
+                              */
                               '<option value="Reddit">' +
                                   'Reddit' +
                               '</option>' +
@@ -81,22 +86,20 @@ function createNewParallax(c_id, c_name, c_img){
                   '</div>' +
               '</div>';
 
-  $panels.append( '<div id="mainparallax' + numPanels + '" c_id="' + c_id + '" c_name="' + c_name + '" class="parallax_main parallax_main_general"><div id="settingsButton' + numPanels + '" class="settings-button" onclick="generic_settings(' + numPanels + ')"><img src="CSS/img/settings-gear.jpg" height="20px" width="20px" /></div><div id="showButton' + numPanels + '" class="show-button" onclick="generic_show(' + numPanels + ')"><img src="CSS/img/show.jpeg" height="20px" width="20px" /></div>' + embed + '<div id="parallaxSettings' + numPanels + '" class="parallax-settings-wrap">' + settings + '</div></div>');
+  $panels.append( '<div id="mainparallax' + numPanels + '" c_id="' + c_id + '" c_name="' + c_name + '" class="parallax_main parallax_main_general">' +
+                    '<div id="settingsButton' + numPanels + '" class="settings-button" onclick="generic_settings(' + numPanels + ')">' +
+                      '<img src="CSS/img/settings-gear.jpg" height="20px" width="20px" />' +
+                    '</div>' +
+                    '<div id="showButton' + numPanels + '" class="show-button" onclick="generic_show(' + numPanels + ')">' +
+                      '<img src="CSS/img/show.jpeg" height="20px" width="20px" />' +
+                    '</div>' + embed +
+                    '<div id="parallaxSettings' + numPanels + '" class="parallax-settings-wrap">' + settings + '</div></div>');
   $navList.append('<li draggable="true" onclick="hideMenu()"><a href="#mainparallax' + numPanels + '"><b id="name' + numPanels + '">' + c_name + '</b></a></li>');
 
   $('#mainparallax' + numPanels ).css('background-image', 'url("' + c_img + '")' );
-
-  document.getElementById('categoryBackground' + numPanels).addEventListener('change', function(evt){ handleFileSelect(evt, numPanels) }, false);
-
-  // addYoutubeList( youtubeList, numPanels );
-  // addPinList( pinList, numPanels );
-  // addRedditList( redditList, numPanels );
-  // displaySubs( numPanels, youtube_subscriptions );
-
-  numPanels = numPanels + 1;
 }
 
-
+// Adding a new category pane
 $(document).ready(function() {
 
     var $addButton = $('.addScreen');
@@ -129,9 +132,10 @@ $(document).ready(function() {
 
 });
 
-function jump( h, id ){
+function jump( h, id ) {
   var loc = "#" + h;
   window.location.href = loc;
+  console.log("JUMPED");
   $('.toggle-button').click();
   $("#settingsButton" + id).click();
 }

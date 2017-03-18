@@ -3,7 +3,7 @@
     // Log in using Google Sign-In Auth 2.0
     session_start();
 
-    // Include Google client library 
+    // Include Google client library
     include_once 'src/Google_Client.php';
     include_once 'src/contrib/Google_Oauth2Service.php';
 
@@ -18,6 +18,9 @@
     $gClient->setClientId($clientId);
     $gClient->setClientSecret($clientSecret);
     $gClient->setRedirectUri($redirectURL);
+    $gClient->setAccessType('offline');
+    //$gClient->setApprovalPrompt('force');
+
 
     // Call Google's OAuth 2.0
     $google_oauthV2 = new Google_Oauth2Service($gClient);

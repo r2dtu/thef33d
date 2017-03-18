@@ -7,6 +7,11 @@ include '../php/error.php';
 
 session_start();
 
+if (!isset($_SESSION["username"])) {
+  echo 'http://' . $_SERVER['HTTP_HOST'] . '/login.html';
+  exit();
+}
+
 // We will be using YouTube's Data API
 $SCOPES = 'https://www.googleapis.com/auth/youtube';
 
@@ -28,79 +33,84 @@ $youtube = new Google_Service_YouTube($client);
 
 // Check if an auth token exists for the required scopes
 $tokenSessionKey = 'token-' . $client->prepareScopes();
-if (isset($_GET['code'])) {
-    if (strval($_SESSION['state']) !== strval($_GET['state'])) {
-        die('The session state did not match.');
-    }
-    $client->authenticate($_GET['code']);
-    $_SESSION[$tokenSessionKey] = $client->getAccessToken();
-    echo $redirectURL;
-}
 
-// Set access token if we've retrieved one from authenticate()
-if (isset($_SESSION[$tokenSessionKey])) {
-  $client->setAccessToken($_SESSION[$tokenSessionKey]);
-}
+try {
 
-// Check to ensure that the access token was successfully acquired.
-if ($client->getAccessToken()) {
+  $conn = new PDO("mysql:host=localhost;dbname=thefeed", root, WTF110lecture);
+  $username = $_SESSION['username'];
+  $result = $conn->query("SELECT y_rtoken FROM accounts WHERE username='$username'")->fetch(PDO::FETCH_ASSOC);
 
-    if($client->isAccessTokenExpired()) {
-        $state = mt_rand();
-        $client->setState($state);
-        $_SESSION['state'] = $state;
-        $authUrl = $client->createAuthUrl();
-        echo $authUrl;
-    } else {
+  if ($result["y_rtoken"] !== null) {
+      $refreshToken = $result["y_rtoken"];
+      $client->refreshToken($refreshToken);
+      $_SESSION[$tokenSessionKey] = $client->getAccessToken();
+      $client->setAccessToken($_SESSION[$tokenSessionKey]);
+  }
 
-        try {
-            $result = array();
-            switch ($_POST["action"]) {
-                case "getSubs":
-                    $result = getSubscriptions(getChannelIdFromDB());
-                    break;
-                case "getVids":
-                    $json = $_POST["sql_data"];
-                    foreach($json as $c_id => $c_data){
-                      foreach ($c_data["y_subs"] as $sub_id) {
-                       $tmp_links = getChannelVideos($sub_id);
-                       $y_links = array();
-                       foreach($tmp_links as $y_link){
-                         array_push($y_links, $y_link);
-                       }
-                     }
-                     $result[$c_id]["y_links"] = $y_links;
-                    }
+  // Check to ensure that the access token was successfully acquired.
+  if ($client->getAccessToken()) {
 
-                    break;
-                default:
-                    break;
-            }
+      if($client->isAccessTokenExpired()) {
+        $conn = new PDO("mysql:host=localhost;dbname=thefeed", root, WTF110lecture);
+        $username = $_SESSION['username'];
+        $result = $conn->query("SELECT y_rtoken FROM accounts WHERE username='$username'")->fetch(PDO::FETCH_ASSOC);
 
-            echo json_encode($result);
-
-        } catch (Google_Service_Exception $e) {
-            $htmlBody .= sprintf('<p>A service error occurred: <code>%s</code></p>', htmlspecialchars($e->getMessage()));
-        } catch (Google_Exception $e) {
-            $htmlBody .= sprintf('<p>An client error occurred: <code>%s</code></p>', htmlspecialchars($e->getMessage()));
+        if ($result["y_rtoken"] !== null) {
+            $refreshToken = $result["y_rtoken"];
+            $client->authenticate($refreshToken);
+            $_SESSION[$tokenSessionKey] = $client->getAccessToken();
         }
+      }
+      try {
+          $result = array();
+          switch ($_POST["action"]) {
+            case "getSubs":
+              $result = getSubscriptions(getChannelIdFromDB());
+              break;
+            case "getVids":
+              $json = $_POST["sql_data"];
+              foreach($json as $c_id => $c_data) {
+                $y_links = array();
+                foreach ($c_data["y_subs"] as $sub_id) {
+                  $tmp_links = getChannelVideos($sub_id);
+                  foreach($tmp_links as $y_link){
+                    array_push($y_links, $y_link);
+                  }
+                }
+                $result[$c_id]["y_links"] = $y_links;
+              }
+              break;
+            default:
+              break;
+          }
 
-        // Update the access token
-        $_SESSION[$tokenSessionKey] = $client->getAccessToken();
-        exit();
-    }
-} else {
+          echo json_encode($result);
 
-     // If the user has not authorized the application, start the OAuth 2.0 flow.
-     //$state = mt_rand();
-     //$client->setState($state);
-     //$_SESSION['state'] = $state;
-    //
-     //$authUrl = $client->createAuthUrl();
-     //echo $authUrl;
+      } catch (Google_Service_Exception $e) {
+        $htmlBody .= sprintf('<p>A service error occurred: <code>%s</code></p>', htmlspecialchars($e->getMessage()));
+      } catch (Google_Exception $e) {
+        $htmlBody .= sprintf('<p>An client error occurred: <code>%s</code></p>', htmlspecialchars($e->getMessage()));
+      }
 
+      // Update the access token
+      $_SESSION[$tokenSessionKey] = $client->getAccessToken();
+      exit();
+
+  }
+  else {
+    $state = mt_rand();
+    $client->setState($state);
+    $_SESSION['state'] = $state;
+
+    $authUrl = $client->createAuthUrl();
+
+    header('Location: ' . $authUrl);
+  }
+
+} catch (PDOException $e) {
+  echo ("Database error");
+  exit();
 }
-
 
 function getChannelId() {
     global $youtube;
@@ -124,13 +134,24 @@ function getChannelIdFromDB() {
 function getSubscriptions($channel_id) {
     global $youtube;
 
-    $response = $youtube->subscriptions->listSubscriptions('snippet', array('channelId' => $channel_id));
+    $response = $youtube->subscriptions->listSubscriptions('snippet', array('channelId' => $channel_id, 'maxResults' => '50'));
     $subscriptions = $response->getItems();
     foreach ($subscriptions as $subscription_channel) {
 
         $cid = $subscription_channel->getSnippet()->getResourceId()->getChannelId();
         $subs[$subscription_channel->getSnippet()->getTitle()] = $cid;
     }
+    // $nextPageToken = $response->getNextPageToken();
+    // while ($nextPageToken !== "") {
+    //   $response1 = $youtube->subscriptions->listSubscriptions('snippet', array('channelId' => $channel_id, 'pageToken' => '$nextPageToken'));
+    //   $subscriptions = $response1->getItems();
+    //   foreach ($subscriptions as $subscription_channel) {
+    //
+    //       $cid = $subscription_channel->getSnippet()->getResourceId()->getChannelId();
+    //       $subs[$subscription_channel->getSnippet()->getTitle()] = $cid;
+    //   }
+    //   $nextPageToken = $response1->getNextPageToken();
+    // }
 
     return $subs;
 }
@@ -150,7 +171,7 @@ function getChannelVideos($channel_id) { // TODO add sorting
         // Grab the upload channel id
         $upload_id = $channel->getContentDetails()->getRelatedPlaylists()->getUploads();
         // Grab the videos from playlistItems
-        $videos_response = $youtube->playlistItems->listPlaylistItems('snippet', array('playlistId' => $upload_id, 'maxResults' => '50'));
+        $videos_response = $youtube->playlistItems->listPlaylistItems('snippet', array('playlistId' => $upload_id, 'maxResults' => '15'));
         $videos = $videos_response->getItems();
 
         // @TODO get nextPageToken and prevPageToken (use as input to $parts)
