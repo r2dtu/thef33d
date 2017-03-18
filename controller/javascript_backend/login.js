@@ -147,5 +147,14 @@ function showProfile( idTag ) {
 
 function hideProfile( idTag ) {
   $( '#' + idTag ).css( 'opacity', '0' );
+}
 
+function logout() {
+  var request = $.ajax({
+    url: 'controller/logout.php',
+    type: 'POST'
+  });
+  request.done(function() {
+    window.location.href = "../../login.html";
+  });
 }
