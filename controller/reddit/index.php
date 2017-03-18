@@ -25,7 +25,7 @@ $clientId = '8-kkjNXlTfpV0Q';
 $clientSecret = 'J6W5Y5UgCiJssMxapEGtsIX4Ebk';
 $userAgent = 'Reddit Functionality for thef33d.me by /u/teamfeed';
 
-$redirectUrl = "http://thef33d.me/php/reddit/";
+$redirectUrl = "http://thef33d.me/controller/reddit/";
 
 require("Client.php");
 require("GrantType/IGrantType.php");
