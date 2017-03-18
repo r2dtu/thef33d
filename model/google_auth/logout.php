@@ -13,5 +13,5 @@
     session_destroy();
 
     // Redirect to login page
-    header("Location: ../login.html");
+    header("Location: ../../login.html");
 ?>

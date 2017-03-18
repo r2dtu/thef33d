@@ -138,7 +138,7 @@ function addUserInfo() {
                        '<li id="youtube"><img src="CSS/img/YouTube-icon-full_color.png" width="100px" ; height="100px" ; onclick="authorizeYouTube()"></li>' +
                        '<li id="reddit"><img src="CSS/img/Reddit_logo.png" width="100px" ; height="110px" ; onclick="linkReddit();"></li>' +
                    '</ul>' +
-                   '<h1 class="logout">Logout</h1>';
+                   '<h1 class="logout" onclick='logout()'>Logout</h1>';
     userPage.append(userInfo);
   });
   request.fail(function (jqXHR, textStatus, errorThrown) {
