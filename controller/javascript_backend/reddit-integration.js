@@ -62,7 +62,7 @@ function redditLink(){
         var message = {"message" : "get_rtoken"}
         // Request refresh token from database.
         var request = $.ajax({
-            url: "php/redditAccount.php",
+            url: "controller/redditAccount.php",
             type: "POST",
             data: message
         });
@@ -108,7 +108,7 @@ function getHots(reddit, subreddits, num){
  */
 function linkReddit(){
     var redditPromise = redditLink();
-    redditPromise.catch(function(){location.href = "/php/reddit/index.php";});
+    redditPromise.catch(function(){location.href = "/controller/reddit/index.php";});
 }
 
 /*
@@ -119,7 +119,7 @@ function linkReddit(){
 function unlinkReddit(username){
     // Request to remove refresh token from database.
     var request = $.ajax({
-        url: "php/redditAccount.php",
+        url: "controller/redditAccount.php",
         type: "POST",
         data: {"message": "store_rtoken", "rtoken": ""}
     });
