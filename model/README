@@ -1,0 +1,8 @@
+This folder contains all database initialization and method files. Also
+contained are the folders containing all API libraries.
+
+./db_init
+./db_methods
+./youtube_api
+./pintrest_api
+./reddit_api
