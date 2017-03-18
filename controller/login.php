@@ -39,6 +39,11 @@ if ($message == "login") {
   catch (PDOException $e) {
     error_out();
   }
+  if (!$q_result) {
+    $q_result["can_login"] = "no";
+    echo json_encode($q_result);
+    exit();
+  }
   if ($q_result["password"] != $enc_pwd) {
     $q_result["can_login"] = "no";
     echo json_encode($q_result);

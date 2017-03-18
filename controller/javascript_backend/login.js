@@ -6,6 +6,10 @@ $(document).ready(function() {
       var username = $("#username").val();
       var password = $("#password").val();
       var loginData = {"message": "login", "username": username, "password": password}
+      if (username == "") {
+        alert("Please input a username.");
+        return;
+      }
 
       request = $.ajax({
           url: "../controller/login.php",
