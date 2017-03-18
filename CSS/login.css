@@ -85,7 +85,7 @@ input[type=password] {
 
 /** Google sign in button **/
 #googleSignIn{
-  margin-left: 2%;
+  margin-left: 5%;
 
   background-color: white;
 
@@ -94,8 +94,8 @@ input[type=password] {
   border: 2px;
   border-radius: 5px;
 
-  margin-top: 5.5%;
-  padding: 2% 4%;
+  margin-top: 6%;
+  padding: 4% 5%;
 
   cursor: pointer;
   width: 40%;
@@ -397,3 +397,4 @@ input[type=password] {
   cursor: pointer;
 
 }
+

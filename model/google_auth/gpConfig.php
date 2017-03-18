@@ -10,7 +10,7 @@
     // Configuration and setup Google API
     $clientId = '139115646685-qmbuj1k1tul57ns973bh2dtvqfi9tknd.apps.googleusercontent.com'; // ########-absdj######.apps.googleusercontent.com
     $clientSecret = 'cmB7NFc0s3NFVgumQ3nmvWc1'; //
-    $redirectURL = 'http://'.$_SERVER['HTTP_HOST'].'/google_auth/index.php';
+    $redirectURL = 'http://'.$_SERVER['HTTP_HOST'].'/model/google_auth/index.php';
 
     // Call Google API
     $gClient = new Google_Client();

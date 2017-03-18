@@ -8,7 +8,7 @@ $(document).ready(function() {
 
   addUserInfo();
 
-  displayUserMedia(true);
+  displayUserMedia(true, "");
 
 }); //END OF $(document).ready
 
@@ -30,14 +30,14 @@ function addUserInfo() {
                        '<li id="youtube"><img src="CSS/img/YouTube-icon-full_color.png" width="100px" ; height="100px" ; onclick="authorizeYouTube()"></li>' +
                        '<li id="reddit"><img src="CSS/img/Reddit_logo.png" width="100px" ; height="110px" ; onclick="linkReddit();"></li>' +
                    '</ul>' +
-                   '<h1 class="logout" onclick='logout()'>Logout</h1>';
+                   '<h1 class="logout" onclick="logout()">Logout</h1>';
     userPage.append(userInfo);
   });
   request.fail(function (jqXHR, textStatus, errorThrown) {
   });
 }
 
-function displayUserMedia (onload = false) {
+function displayUserMedia (onload, mediaChanged) {
 
   var request = $.ajax({
     url: "controller/displayUser.php",
@@ -83,6 +83,12 @@ function displayUserMedia (onload = false) {
             youtubeList[panel].push(parsed_data[c_id]["y_links"][link]);
           }
           shuffle(youtubeList[panel]);
+          if (!onload) {
+	    if (mediaChanged != 'YouTube') {
+	      return;
+	    }
+            removeChildren('youtube', panel);
+	  }
           addYListFirst(youtubeList[panel], panel);
           panel += 1;
         }
@@ -109,6 +115,12 @@ function displayUserMedia (onload = false) {
     	  for (var r_sub in parse[c_id]["r_subs"]) {
           redditList[panel].push(parse[c_id]["r_subs"][r_sub]);
     	  }
+          if (!onload) {
+	    if (mediaChanged != 'Reddit') {
+	      return;
+	    }
+          removeChildren('reddit', panel);
+	  }
         addRListFirst(redditList[panel], panel);
         panel += 1;
       }
@@ -117,7 +129,7 @@ function displayUserMedia (onload = false) {
           console.log("ERROR");
     });
   });
-}); //END OF $(document).ready
+}
 
 function shuffle(array) {
   var currentIndex = array.length, temporaryValue, randomIndex;

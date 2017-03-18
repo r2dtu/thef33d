@@ -100,6 +100,7 @@ function saveCategorySettings(id) {
       parallax.attr({"c_id" : c_id});
       parallax.attr({"c_name" : c_newname});
     }
+    displayUserMedia(false, social);
   });
 
   request.fail(function (jqXHR, textStatus, errorThrown) {
