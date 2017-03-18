@@ -113,27 +113,27 @@ function generic_slide() {
 }
 
 /***** Show the Forgot Password panel  and retrieval fields *****/
-var x = 0;
+var x_counter = 0;
 var locked = false;
 function transition_forgot() {
   if (!locked) {
     locked = true;
-    if ( x % 2 == 0) {
+    if ( x_counter % 2 == 0) {
       $("#container").animate({left: '+=300px'}, 1000, function() {
             $("#forgotPasswordCont").css('zIndex', '10000');
             $("#container").animate({left: '-=300px'}, 1000);
           });
-      x = x + 1;
+      x_counter = x_counter + 1;
     }
     else {
       $("#forgotPasswordCont").animate({left: '+=300px'}, 1000, function() {
             $("#forgotPasswordCont").css('zIndex', '0');
             $("#forgotPasswordCont").animate({left: '-=300px'}, 1000);
           });
-          x = x + 1;
+          x_counter = x_counter + 1;
 
     }
-    setTimeout(unlock, 1000);
+    setTimeout(unlock, 2000);
   }
 }
 
