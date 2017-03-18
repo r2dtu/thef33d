@@ -5,6 +5,7 @@ redditList = [[]];
 var master_name;
 
 $(document).ready(function() {
+
   addUserInfo();
 
   displayUserMedia(true);
@@ -45,7 +46,6 @@ function displayUserMedia (onload = false) {
 
   // Now actually load the social media feed
   request.done(function (response, textStatus, jqXHR) {
-
     if (response == 'Please log into the site.') {
       location.href = '../login.html';
     }
@@ -57,7 +57,7 @@ function displayUserMedia (onload = false) {
         continue;
       }
       if (onload) {
-        createNewParallax(c_id, c_data[c_id]["c_name"], c_data[c_id]["img"]);        
+        createNewParallax(c_id, c_data[c_id]["c_name"], c_data[c_id]["img"]);
       }
     }
 
@@ -117,7 +117,8 @@ function displayUserMedia (onload = false) {
           console.log("ERROR");
     });
   });
-}
+}); //END OF $(document).ready
+
 function shuffle(array) {
   var currentIndex = array.length, temporaryValue, randomIndex;
 
