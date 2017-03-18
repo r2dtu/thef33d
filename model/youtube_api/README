@@ -1,0 +1,21 @@
+Instructions on how to run the YouTube Client API (in the folder)
+
+1) Unzip the youtube_api.rar into your current directory.
+
+2) To access the index.php site, simply type "http://localhost/youtube_api/index.php"
+
+3) If your IP address (localhost) is not authorized, you will need to create a YouTube API account and get a developer API key.
+
+4) Go to Credentials, click on Create Credentials, and click API key.
+
+5) Click on the API key link, select IP addresses under Key Restriction, then add 127.0.0.1 (or your IP address) down below, in "Accept Requests from these server IP addresses".
+
+6) Go back to the Credentials page, and click on the client ID link.
+
+7) Add the following redirect URIs to the list of authorized redirect URIs:
+	http://localhost/youtube_api/oauth2callback.php
+	http://localhost/youtube_api/index.php
+
+
+Notes:
+- pretty_json.php is used to output the response text from YouTube
