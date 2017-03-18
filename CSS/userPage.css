@@ -68,7 +68,15 @@
 #youtube {
     
     position: absolute;
-    left: 15%;
+    left: 0%;
+    transition: 0.7s;
+    
+}
+
+#pintrest {
+    
+    position: absolute;
+    left: 40%;
     transition: 0.7s;
     
 }
@@ -76,7 +84,7 @@
 #reddit {
     
     position: absolute;
-    left: 60%;
+    left: 75%;
     top: 41%;
     transition: 0.7s;
     
