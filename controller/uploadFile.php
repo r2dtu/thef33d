@@ -6,7 +6,8 @@ if($_FILES['bg_image']['name']) {
 	if(!$_FILES['bg_image']['error']) {
 		$valid_file = true;
 
-		if($_FILES['bg_image']['size'] > (1024000)) {
+		// We shouldn't have these errors since they are checked before upload, but just in case.
+		if($_FILES['bg_image']['size'] > 1024000) {
 			$valid_file = false;
 			die('Your file\'s size is too large. File size must be <= 1MB');
 		}
@@ -20,7 +21,7 @@ if($_FILES['bg_image']['name']) {
 			$targetfolder = "../bg_images/" . $username ."/";
 
 			if (!file_exists($targetfolder)) {
-				// THIS DOES NOT WORK ON THE HOST SERVER!!!!! Now it does xD
+				// THIS DOES NOT WORK ON THE HOST SERVER!!!!!
 				mkdir($targetfolder, 0777, true);
 			}
 			$targetfolder = $targetfolder . basename($_FILES['bg_image']['name']);

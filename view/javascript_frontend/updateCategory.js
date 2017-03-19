@@ -41,6 +41,10 @@ var fileRef = null;
 function backgroundFlag( ob ) {
 
     if (ob[0].type.match('image.*')) {
+      if (ob[0].size >= 1024000) {
+        alert("The file you have chosen is too large. The image must be < 1 MB.")
+        return;
+      }
       fileRef = ob;
       background = true;
     }
