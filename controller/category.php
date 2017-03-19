@@ -27,7 +27,8 @@ if($message == "create"){
 
     $c_id = uniqid();
     if(!$c_img){
-      $c_img = "http://thef33d.me/bg_images/ocean.jpg";
+      $index = rand(0, 7);
+      $c_img = "http://thef33d.me/bg_images/.defaultimages/$index";
     }
     $statement = $conn->prepare("INSERT INTO categories (c_id, c_name, username, img) VALUES ('$c_id', '$c_newname', '$username', '$c_img')")->execute();
 
@@ -38,6 +39,7 @@ if($message == "create"){
       }
     }
     $result["c_id"] = $c_id;
+    $result["c_img"] = $c_img;
     $result["can_update_or_create"] = "yes";
     echo json_encode($result);
 

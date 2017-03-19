@@ -28,7 +28,9 @@ function saveCategorySettings(id) {
       data: fileData
     });
     request1.done(function(response) {
-      alert(response);
+      if (response == 'Your file\'s size is too large. File size must be <= 1MB') {
+        alert(response);
+      }
     });
   }
 
@@ -91,6 +93,8 @@ function saveCategorySettings(id) {
       updateSettings(id);
       parallax.attr({"c_id" : c_id});
       parallax.attr({"c_name" : c_newname});
+      var c_img = response["c_img"];
+      $('#mainparallax' + id ).css('background-image', 'url("' + c_img + '")' );
     }
     else if (response["can_update_or_create"] == "no") {
       alert("You already have a category with named \"" + c_newname + "\". Please pick another name.");
