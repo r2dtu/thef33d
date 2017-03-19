@@ -57,7 +57,7 @@ function createNewParallax (c_id, c_name, c_img) {
                       */
                   '</form>' +
                   '<input class="updateSettingsButton" type="submit" value="Save Settings" onclick="saveCategorySettings(' + numPanels + ')">' +
-                  '<input class="deleteCategoryButton" type="submit" value="Delete Panel" onclick="deletePanel(' + numPanels + ')">' +
+                  '<input class="deleteCategoryButton" type="submit" value="Delete Content Pane" onclick="deletePanel(' + numPanels + ')">' +
                   '<div class="panel-information">' +
                       '<div class="panel-information-accounts">' +
                           '<br> Account:' +
@@ -96,7 +96,7 @@ function createNewParallax (c_id, c_name, c_img) {
                     '<div id="parallaxSettings' + numPanels + '" class="parallax-settings-wrap">' + settings + '</div>' +
                     '</section>');
 //  $navList.append('<li draggable="true" onclick="jump(' + numPanels + ')"><a href="#mainparallax' + numPanels + '"><b id="name' + numPanels + '">' + c_name + '</b></a></li>');
-  $navList.append('<li draggable="true" onclick="hideMenu()"><a href="#mainparallax' + numPanels + '" id="name' + numPanels + '">' + c_name + '</a></li>');
+  $navList.append('<li draggable="true" onclick="window.scrollTo(0,0);hideMenu();"><a href="#mainparallax' + numPanels + '" id="name' + numPanels + '">' + c_name + '</a></li>');
 //  $navList.append('<li draggable="true" onclick="hideMenu()"><a href="#mainparallax' + numPanels + '" name="' + numPanels + '">' + c_name + '</a></li>');
 
   $('#mainparallax' + numPanels ).css('background-image', 'url("' + c_img + '")' );

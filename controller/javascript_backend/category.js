@@ -27,6 +27,9 @@ function saveCategorySettings(id) {
       processData: false,
       data: fileData
     });
+    request1.done(function(response) {
+      alert(response);
+    });
   }
 
   var subs = {};
@@ -116,7 +119,7 @@ function deletePanel(id) {
   if (c_id != "") {
 
     var request = $.ajax({
-        url: "controllercategory.php",
+        url: "controller/category.php",
 	type: "POST",
 	data: {"message" : "deleteCategory", "c_id" : c_id}
     });

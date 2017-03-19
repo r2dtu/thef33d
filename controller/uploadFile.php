@@ -6,9 +6,9 @@ if($_FILES['bg_image']['name']) {
 	if(!$_FILES['bg_image']['error']) {
 		$valid_file = true;
 
-		if($_FILES['bg_image']['size'] > (1024000 * 10)) {
+		if($_FILES['bg_image']['size'] > (1024000)) {
 			$valid_file = false;
-			die('Your file\'s size is too large. File size must be <= 10MB');
+			die('Your file\'s size is too large. File size must be <= 1MB');
 		}
 		if(!getimagesize($_FILES['bg_image']['tmp_name'])) {
 			die("Please make sure you are uploading an image.");
@@ -20,7 +20,7 @@ if($_FILES['bg_image']['name']) {
 			$targetfolder = "../bg_images/" . $username ."/";
 
 			if (!file_exists($targetfolder)) {
-				// THIS DOES NOT WORK ON THE HOST SERVER!!!!!
+				// THIS DOES NOT WORK ON THE HOST SERVER!!!!! Now it does xD
 				mkdir($targetfolder, 0777, true);
 			}
 			$targetfolder = $targetfolder . basename($_FILES['bg_image']['name']);

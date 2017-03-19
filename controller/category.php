@@ -26,6 +26,9 @@ if($c_newname){
 if($message == "create"){
 
     $c_id = uniqid();
+    if(!$c_img){
+      $c_img = "http://thef33d.me/bg_images/ocean.jpg";
+    }
     $statement = $conn->prepare("INSERT INTO categories (c_id, c_name, username, img) VALUES ('$c_id', '$c_newname', '$username', '$c_img')")->execute();
 
     if ($subs) {
