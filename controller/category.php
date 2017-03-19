@@ -14,7 +14,7 @@ $table = $_POST["table"];
 
 //USER IS TRYING TO UPDATE C_NAME OR CREATE NEW CATEGORY
 if($c_newname){
-  $q_result = $conn->query("SELECT c_id FROM categories WHERE username='$username' AND c_name='$c_newname'")->fetchColumn();
+  $q_result = $conn->query("SELECT c_id FROM categories WHERE username='$username' AND c_name='$c_newname'")->fetch(PDO::FETCH_ASSOC);
   if($q_result){
     $result["can_update_or_create"] = "no";
     echo json_encode($result);
@@ -84,9 +84,9 @@ if($message == "create"){
     if($table == "y_subs"){
       $q_result = $conn->query("SELECT sub_id FROM y_subs WHERE sub_name='$sub_name' AND c_id='$c_id'")->fetch(PDO::FETCH_ASSOC);
     }else if($table == "p_subs"){
-      $q_result = $conn->query("SELECT sub_id FROM p_subs WHERE sub_name='$sub_name' AND c_id='$c_id'")->fetch(PDO::FETCH_ASSOC);;
+      $q_result = $conn->query("SELECT sub_id FROM p_subs WHERE sub_name='$sub_name' AND c_id='$c_id'")->fetch(PDO::FETCH_ASSOC);
     }else{
-      $q_result = $conn->query("SELECT sub_id FROM r_subs WHERE sub_name='$sub_name' AND c_id='$c_id'")->fetch(PDO::FETCH_ASSOC);;
+      $q_result = $conn->query("SELECT sub_id FROM r_subs WHERE sub_name='$sub_name' AND c_id='$c_id'")->fetch(PDO::FETCH_ASSOC);
     }
     if($q_result){
       array_push($result, $sub_name);

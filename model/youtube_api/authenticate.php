@@ -40,7 +40,7 @@ $client->setScopes($SCOPES);
 $redirectURL = filter_var('http://' . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF'], FILTER_SANITIZE_URL);
 $client->setRedirectUri($redirectURL);
 $client->setAccessType('offline');
-//$client->setApprovalPrompt('force');
+$client->setApprovalPrompt('force');
 
 // Define an object that will be used to make all API requests.
 $youtube = new Google_Service_YouTube($client);

@@ -75,7 +75,6 @@ function saveCategorySettings(id) {
       category_data["table"] = "r_subs";
       break;
   }
-
   var request = $.ajax({
     url: "controller/category.php",
     type: "POST",
@@ -94,7 +93,9 @@ function saveCategorySettings(id) {
       parallax.attr({"c_id" : c_id});
       parallax.attr({"c_name" : c_newname});
       var c_img = response["c_img"];
-      $('#mainparallax' + id ).css('background-image', 'url("' + c_img + '")' );
+      if (c_img) {
+        $('#mainparallax' + id ).css('background-image', 'url("' + c_img + '")' );
+      }
     }
     else if (response["can_update_or_create"] == "no") {
       alert("You already have a category with named \"" + c_newname + "\". Please pick another name.");
@@ -111,7 +112,7 @@ function saveCategorySettings(id) {
   });
 
   request.fail(function (jqXHR, textStatus, errorThrown) {
-    alert("HTTPRequest: " + textStatus + " " + errorThrown);
+//    alert("HTTPRequest: " + textStatus + " " + errorThrown);
   });
 }
 
@@ -161,7 +162,7 @@ function displayCheckMarks(id, c_id, table) {
   });
 
   request.fail(function (jqXHR, textStatus, errorThrown) {
-    alert("HTTPRequest: " + textStatus + " " + errorThrown);
+ //   alert("HTTPRequest: " + textStatus + " " + errorThrown);
   });
 
 }

@@ -35,7 +35,7 @@ $(document).ready(function() {
 
       request.fail(function (jqXHR, textStatus, errorThrown) {
           console.log(jqXHR);
-          alert("HTTPRequest: " + textStatus + " " + errorThrown);
+//          alert("HTTPRequest: " + textStatus + " " + errorThrown);
       });
 
     });
@@ -73,7 +73,7 @@ $(document).ready(function() {
       });
 
       request.fail(function (jqXHR, textStatus, errorThrown) {
-          alert("HTTPRequest: " + textStatus + " " + errorThrown);
+  //        alert("HTTPRequest: " + textStatus + " " + errorThrown);
       });
     });
 
@@ -98,7 +98,7 @@ $(document).ready(function() {
       });
 
       request.fail(function (jqXHR, textStatus, errorThrown) {
-          alert("HTTPRequest: " + textStatus + " " + errorThrown);
+ //         alert("HTTPRequest: " + textStatus + " " + errorThrown);
       });
 
 
