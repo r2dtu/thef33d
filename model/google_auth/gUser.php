@@ -41,12 +41,11 @@ class gUser {
             if ($prevResult->num_rows < 1) {
 
                 // Insert user data
-                $query = "INSERT INTO ".$this->userTbl." SET
-								username = '".$userData['email']."',
-								first_name = '".$userData['first_name']."',
-                oauth_provider = '".$userData['oauth_provider']."',
-                oauth_uid = '".$userData['oauth_uid']."'";
-								echo $query;
+		$query = "INSERT INTO ".$this->userTbl." (username, first_name, oauth_provider, oauth_uid) VALUES
+		('".$userData['email']."',
+		'".$userData['first_name']."',
+                '".$userData['oauth_provider']."',
+                '".$userData['oauth_uid']."')";
                 $insert = $this->db->query($query);
             }
 

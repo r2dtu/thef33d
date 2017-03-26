@@ -97,16 +97,8 @@ function saveCategorySettings(id) {
         $('#mainparallax' + id ).css('background-image', 'url("' + c_img + '")' );
       }
     }
-    else if (response["can_update_or_create"] == "no") {
-      alert("You already have a category with named \"" + c_newname + "\". Please pick another name.");
-    }
     else {
-      if(c_id == ""){
-        c_id = response["c_id"];
-      }
-      updateSettings(id);
-      parallax.attr({"c_id" : c_id});
-      parallax.attr({"c_name" : c_newname});
+      alert("You already have a category with named \"" + c_newname + "\". Please pick another name.");
     }
     displayUserMedia(false, social);
   });

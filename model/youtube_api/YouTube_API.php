@@ -57,7 +57,7 @@ try {
 
         if ($result["y_rtoken"] !== null) {
             $refreshToken = $result["y_rtoken"];
-            $client->authenticate($refreshToken);
+            $client->refreshToken($refreshToken);
             $_SESSION[$tokenSessionKey] = $client->getAccessToken();
         }
       }
@@ -171,7 +171,7 @@ function getChannelVideos($channel_id) { // TODO add sorting
         // Grab the upload channel id
         $upload_id = $channel->getContentDetails()->getRelatedPlaylists()->getUploads();
         // Grab the videos from playlistItems
-        $videos_response = $youtube->playlistItems->listPlaylistItems('snippet', array('playlistId' => $upload_id, 'maxResults' => '15'));
+        $videos_response = $youtube->playlistItems->listPlaylistItems('snippet', array('playlistId' => $upload_id, 'maxResults' => '20'));
         $videos = $videos_response->getItems();
 
         // @TODO get nextPageToken and prevPageToken (use as input to $parts)

@@ -85,8 +85,8 @@ else
 
     <script src="https://not-an-aardvark.github.io/snoowrap/snoowrap-v1.js" type="text/javascript">
     </script>
-    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js" type="text/javascript"></script>
     <script type="text/javascript" src="../../javascript/reddit-integration.js">
     </script>
     <!--script src="jsoauth2/test/user.js" type="text/javascript"></script-->

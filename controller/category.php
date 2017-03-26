@@ -33,9 +33,9 @@ if($message == "create"){
     $statement = $conn->prepare("INSERT INTO categories (c_id, c_name, username, img) VALUES ('$c_id', '$c_newname', '$username', '$c_img')")->execute();
 
     if ($subs) {
-      $result = $conn->prepare("DELETE FROM $table WHERE c_id='$c_id'")->execute();
+      $statement = $conn->prepare("DELETE FROM $table WHERE c_id='$c_id'")->execute();
       foreach ($subs as $sub_name => $sub_id) {
-        $result = $conn->prepare("INSERT INTO $table (c_id, sub_name, sub_id) VALUES ('$c_id', '$sub_name', '$sub_id')")->execute();
+        $statement = $conn->prepare("INSERT INTO $table (c_id, sub_name, sub_id) VALUES ('$c_id', '$sub_name', '$sub_id')")->execute();
       }
     }
     $result["c_id"] = $c_id;
@@ -56,9 +56,9 @@ if($message == "create"){
     }
 
     if ($subs) {
-      $result = $conn->prepare("DELETE FROM $table WHERE c_id='$c_id'")->execute();
+      $statement = $conn->prepare("DELETE FROM $table WHERE c_id='$c_id'")->execute();
       foreach ($subs as $sub_name => $sub_id) {
-        $result = $conn->prepare("INSERT INTO $table (c_id, sub_name, sub_id) VALUES ('$c_id', '$sub_name', '$sub_id')")->execute();
+        $statement = $conn->prepare("INSERT INTO $table (c_id, sub_name, sub_id) VALUES ('$c_id', '$sub_name', '$sub_id')")->execute();
       }
     }
 
